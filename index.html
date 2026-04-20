@@ -74,14 +74,8 @@
         .page-bottom-text { position: relative; z-index: 2; color: #333; font-size: 11px; letter-spacing: 1px; }
 
         .warning-banner {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin: 10px 14px;
-            padding: 14px 16px;
-            background: rgba(199, 150, 74, 0.1);
-            border: 1px solid rgba(199, 150, 74, 0.25);
-            border-radius: 12px;
+            display: flex; align-items: flex-start; gap: 12px; margin: 10px 14px; padding: 14px 16px;
+            background: rgba(199, 150, 74, 0.1); border: 1px solid rgba(199, 150, 74, 0.25); border-radius: 12px;
         }
         .warning-banner-icon { flex-shrink: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
         .warning-banner-icon svg { width: 20px; height: 20px; fill: none; stroke: #c7964a; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -89,16 +83,12 @@
         .warning-banner-title { font-size: 13px; font-weight: 600; color: #c7964a; margin-bottom: 3px; }
         .warning-banner-desc { font-size: 11px; color: #888; line-height: 1.4; }
 
-        .nav-bar {
-            display: flex; align-items: center; gap: 6px; padding: 12px 16px;
-            border-bottom: 1px solid #2a2e32; background: #1a1d20;
-        }
+        .nav-bar { display: flex; align-items: center; gap: 6px; padding: 12px 16px; border-bottom: 1px solid #2a2e32; background: #1a1d20; }
         .nav-btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-            padding: 10px 16px; color: #5b9bd5; font-size: 15px; font-style: italic;
-            cursor: pointer; border-radius: 10px; background: #222528; border: 1px solid #2a2e32;
-            transition: background 0.15s; -webkit-user-select: none; user-select: none;
-            pointer-events: auto; touch-action: manipulation; text-decoration: none;
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 16px;
+            color: #5b9bd5; font-size: 15px; font-style: italic; cursor: pointer; border-radius: 10px;
+            background: #222528; border: 1px solid #2a2e32; transition: background 0.15s; -webkit-user-select: none;
+            user-select: none; pointer-events: auto; touch-action: manipulation; text-decoration: none;
             -webkit-tap-highlight-color: transparent;
         }
         .nav-btn:active { background: #1e2124; }
@@ -123,14 +113,8 @@
         .menu-btn:active { background: #1e2124; transform: scale(0.98); }
         .menu-btn-text { position: relative; z-index: 1; text-align: left; width: 100%; pointer-events: none; }
         .menu-btn-text * { pointer-events: none; }
-        .menu-btn-label {
-            font-size: 17px; color: #e0e0e0; font-weight: 600; line-height: 1.2;
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-        }
-        .menu-btn-sublabel {
-            font-size: 12px; color: #5a5a5a; margin-top: 2px; line-height: 1.2;
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-        }
+        .menu-btn-label { font-size: 17px; color: #e0e0e0; font-weight: 600; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .menu-btn-sublabel { font-size: 12px; color: #5a5a5a; margin-top: 2px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         .scale-form { background: #222528; border: 1px solid #2a2e32; border-radius: 14px; margin: 12px 16px; padding: 16px; }
         .scale-form-label { color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
@@ -232,6 +216,46 @@
         input[type="radio"] { pointer-events: auto; touch-action: manipulation; cursor: pointer; }
         input[type="radio"] + div { pointer-events: none; }
         input[type="radio"] + div > * { pointer-events: none; }
+
+        /* Стили для выбора метода калибровки буйкового уровнемера */
+        .buoy-select-container {
+            display: flex; flex-direction: row; gap: 16px; padding: 20px 16px;
+            justify-content: center; align-items: stretch;
+        }
+        .buoy-card {
+            flex: 1; background: #222528; border: 1px solid #2a2e32; border-radius: 20px;
+            cursor: pointer; transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            overflow: hidden; position: relative;
+        }
+        .buoy-card:hover { transform: translateY(-6px); border-color: #5b9bd5; box-shadow: 0 12px 24px rgba(0,0,0,0.3); }
+        .buoy-card:active { transform: scale(0.97); }
+        .buoy-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, #5b9bd5, #4ac771); opacity: 0; transition: opacity 0.3s;
+        }
+        .buoy-card:hover::before { opacity: 1; }
+        .buoy-card-inner { padding: 20px 16px 24px; text-align: center; }
+        .buoy-illustration {
+            margin-bottom: 16px; display: flex; justify-content: center; align-items: center;
+            min-height: 220px; background: rgba(26,29,32,0.5); border-radius: 12px; padding: 10px;
+        }
+        .buoy-illustration svg { width: 100%; max-width: 200px; height: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+        .buoy-card-title { font-size: 18px; font-weight: 700; color: #5b9bd5; margin-bottom: 8px; }
+        .buoy-card-desc { font-size: 12px; color: #888; margin-bottom: 12px; line-height: 1.4; }
+        .buoy-card-formula {
+            font-size: 11px; font-family: 'Inter', monospace; background: #1a1d20;
+            padding: 8px 12px; border-radius: 10px; color: #4ac771; display: inline-block; font-weight: 600;
+        }
+        @media (max-width: 600px) {
+            .buoy-select-container { flex-direction: column; gap: 20px; }
+            .buoy-illustration { min-height: 180px; }
+        }
+        @keyframes liquidWave { 0% { transform: translateX(0px); } 50% { transform: translateX(3px); } 100% { transform: translateX(0px); } }
+        @keyframes buoyBobbing { 0% { transform: translateY(0px); } 50% { transform: translateY(2px); } 100% { transform: translateY(0px); } }
+        @keyframes weightsGlow { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
+        .liquid-animation { animation: liquidWave 3s ease-in-out infinite; }
+        .buoy-animation { animation: buoyBobbing 2s ease-in-out infinite; transform-origin: center; }
+        .weights-animation { animation: weightsGlow 1.5s ease-in-out infinite; }
     </style>
 </head>
 <body>
@@ -263,7 +287,6 @@
                     <div class="warning-banner-desc">Некоторые функции и данные могут быть неполными или временно недоступны. Мы продолжаем развивать приложение.</div>
                 </div>
             </div>
-            
             <div class="menu-btn-row">
                 <div class="menu-btn" onclick="navigateTo('converter')">
                     <div class="menu-btn-text"><div class="menu-btn-label">Конвертер единиц измерения</div><div class="menu-btn-sublabel">Давление, расход, температура и др.</div></div>
@@ -274,7 +297,7 @@
                 <div class="menu-btn" onclick="navigateTo('error-select')">
                     <div class="menu-btn-text"><div class="menu-btn-label">Расчёт погрешности</div><div class="menu-btn-sublabel">Класс точности, приведённая погрешность</div></div>
                 </div>
-                <div class="menu-btn" onclick="navigateTo('buoy')">
+                <div class="menu-btn" onclick="navigateTo('buoy-select')">
                     <div class="menu-btn-text"><div class="menu-btn-label">Буйковый уровнемер</div><div class="menu-btn-sublabel">Калибровка, выталкивающая сила, подбор гирь</div></div>
                 </div>
                 <div class="menu-btn" onclick="navigateTo('library')">
@@ -286,11 +309,7 @@
 
         <!-- Конвертер -->
         <div id="page-converter" class="page-content fade-in" style="padding-bottom: 80px;">
-            <div class="nav-bar">
-                <div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div>
-                <span class="nav-separator">‹</span>
-                <div class="nav-btn" onclick="navigateTo('dashboard')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div>
-            </div>
+            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('dashboard')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Конвертер единиц</h2><p>Выберите тип конвертации</p></div>
             <div class="menu-btn-row">
                 <div class="menu-btn" onclick="navigateTo('conv-pressure')"><div class="menu-btn-text"><div class="menu-btn-label">Давление</div><div class="menu-btn-sublabel">Па, МПа, бар, атм, мм рт. ст.</div></div></div>
@@ -305,7 +324,7 @@
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Контроль · Измерения · Автоматизация</div></div>
         </div>
 
-        <!-- Страницы конвертеров -->
+        <!-- Страницы конвертеров (сокращено для читаемости) -->
         <div id="page-conv-pressure" class="page-content fade-in" style="padding-bottom: 80px;">
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('converter')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Давление</h2><p>Перевод единиц давления</p></div>
@@ -400,6 +419,128 @@
 
         <!-- Расчёт погрешности - Выбор типа прибора -->
         <div id="page-error-select" class="page-content fade-in" style="padding-bottom: 80px;">
+            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('dashboard')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
+            <div class="content-header"><h2>Расчёт погрешности</h2><p>Выберите тип прибора</p></div>
+            <div class="menu-btn-row">
+                <div class="menu-btn" onclick="navigateTo('error-pressure')"><div class="menu-btn-text"><div class="menu-btn-label">Датчик давления</div><div class="menu-btn-sublabel">МПа, бар, кПа</div></div></div>
+                <div class="menu-btn" onclick="navigateTo('error-temp-select')"><div class="menu-btn-text"><div class="menu-btn-label">Датчик температуры</div><div class="menu-btn-sublabel">ТС (ГОСТ 6651-2009), ТП (ГОСТ Р 8.585-2001)</div></div></div>
+                <div class="menu-btn" onclick="navigateTo('error-flow')"><div class="menu-btn-text"><div class="menu-btn-label">Расходомер</div><div class="menu-btn-sublabel">м³/ч, л/мин, т/ч</div></div></div>
+                <div class="menu-btn" onclick="navigateTo('error-level')"><div class="menu-btn-text"><div class="menu-btn-label">Уровнемер</div><div class="menu-btn-sublabel">мм, %, радар, ультразвук</div></div></div>
+                <div class="menu-btn" onclick="navigateTo('error-generic')"><div class="menu-btn-text"><div class="menu-btn-label">Аналоговый преобразователь</div><div class="menu-btn-sublabel">Общий случай, 4-20 мА</div></div></div>
+            </div>
+            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Расчёт погрешности</div></div>
+        </div>
+
+        <!-- Страницы расчёта погрешности (сокращено) -->
+        <div id="page-error-pressure" class="page-content fade-in" style="padding-bottom: 80px;">
+            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-select')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
+            <div class="content-header"><h2>Датчик давления</h2><p>Расчёт погрешности</p></div>
+            <div class="scale-form">
+                <div class="scale-form-label">Диапазон измерения</div>
+                <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                    <input type="number" id="pressure_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any">
+                    <input type="number" id="pressure_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="1.6" step="any">
+                </div>
+                <div class="scale-form-label">Класс точности</div>
+                <select id="pressure_accuracy_class" class="scale-field"><option value="0.05">0.05</option><option value="0.5" selected>0.5</option><option value="1.0">1.0</option><option value="1.5">1.5</option><option value="2.5">2.5</option></select>
+                <div class="scale-form-label">Текущее значение (опционально)</div>
+                <input type="number" id="pressure_current_value" class="scale-field" placeholder="необязательно" step="any">
+            </div>
+            <button class="converter-convert-btn" onclick="calcErrorPressure()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
+            <div id="errorPressureResults" class="converter-result-group" style="display:none;"></div>
+            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Датчик давления</div></div>
+        </div>
+        <div id="page-error-temp-select" class="page-content fade-in" style="padding-bottom: 80px;">
+            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-select')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
+            <div class="content-header"><h2>Датчик температуры</h2><p>Выберите тип датчика</p></div>
+            <div class="menu-btn-row">
+                <div class="menu-btn" onclick="navigateTo('error-temp-rtd')"><div class="menu-btn-text"><div class="menu-btn-label">Термопреобразователи сопротивления (ТС)</div><div class="menu-btn-sublabel">Pt (10П, 50П, 100П, 500П, 1000П) — Cu (10М, 50М, 100М) — Ni (50Н, 100Н, 120Н, 500Н, 1000Н)</div></div></div>
+                <div class="menu-btn" onclick="navigateTo('error-temp-tc')"><div class="menu-btn-text"><div class="menu-btn-label">Термопары (ТП)</div><div class="menu-btn-sublabel">K, J, T, N, E, R, S, B — ГОСТ Р 8.585-2001</div></div></div>
+            </div>
+            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Датчик температуры</div></div>
+        </div>
+        <div id="page-error-temp-rtd" class="page-content fade-in" style="padding-bottom: 80px;">
+            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-temp-select')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
+            <div class="content-header"><h2>Термопреобразователи сопротивления (ТС)</h2><p>Расчёт погрешности по ГОСТ 6651-2009</p></div>
+            <div class="scale-form">
+                <div class="scale-form-label">Группа ТС</div>
+                <select id="rtd_group" class="scale-field" onchange="updateRtdTypeOptions()"><option value="Pt" selected>Платиновые (Pt) — 10П, 50П, 100П, 500П, 1000П</option><option value="Cu">Медные (Cu) — 10М, 50М, 100М</option><option value="Ni">Никелевые (Ni) — 50Н, 100Н, 120Н, 500Н, 1000Н</option></select>
+                <div class="scale-form-label">Тип ТС (НСХ)</div>
+                <select id="rtd_type" class="scale-field" onchange="updateRtdClassOptions()"><option value="pt10">Pt10 (10П)</option><option value="pt50">Pt50 (50П)</option><option value="pt100" selected>Pt100 (100П)</option><option value="pt500">Pt500 (500П)</option><option value="pt1000">Pt1000 (1000П)</option></select>
+                <div class="scale-form-label">Класс допуска</div>
+                <select id="rtd_class" class="scale-field"><option value="AA">AA (1/3 B)</option><option value="A" selected>A</option><option value="B">B</option><option value="C">C</option></select>
+                <div class="scale-form-label">Температура измерения (t), °C</div>
+                <input type="number" id="rtd_temperature" class="scale-field" value="100" step="any" placeholder="температура в °C">
+                <div id="rtd_range_warning" style="color:#c7964a; font-size:11px; margin-top:4px; padding-left:4px; display:none;"></div>
+            </div>
+            <button class="converter-convert-btn" onclick="calcRtdError()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
+            <div id="rtdResults" class="converter-result-group" style="display:none;"></div>
+            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · ТС · ГОСТ 6651-2009</div></div>
+        </div>
+        <div id="page-error-temp-tc" class="page-content fade-in" style="padding-bottom: 80px;">
+            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-temp-select')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
+            <div class="content-header"><h2>Термопары (ТП)</h2><p>Расчёт погрешности по ГОСТ Р 8.585-2001</p></div>
+            <div class="scale-form">
+                <div class="scale-form-label">Тип термопары</div>
+                <select id="tc_type" class="scale-field" onchange="updateTcRanges()"><option value="K" selected>K (ТХА) — хромель-алюмель, -250…+1300°C</option><option value="J">J (ТЖК)</option><option value="T">T (ТМК)</option><option value="N">N (ТНН)</option><option value="E">E (ТХКн)</option><option value="R">R (ТПП)</option><option value="S">S (ТПП)</option><option value="B">B (ТПР)</option></select>
+                <div class="scale-form-label">Класс точности</div>
+                <select id="tc_class" class="scale-field" onchange="updateTcRanges()"><option value="1">Класс 1</option><option value="2" selected>Класс 2</option><option value="3">Класс 3</option></select>
+                <div class="scale-form-label">Температура измерения (t), °C</div>
+                <input type="number" id="tc_temperature" class="scale-field" value="100" step="any" placeholder="температура в °C">
+                <div id="tc_range_warning" style="color:#c7964a; font-size:11px; margin-top:4px; padding-left:4px; display:none;"></div>
+            </div>
+            <button class="converter-convert-btn" onclick="calcTcError()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
+            <div id="tcResults" class="converter-result-group" style="display:none;"></div>
+            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · ТП · ГОСТ Р 8.585-2001</div></div>
+        </div>
+        <div id="page-error-flow" class="page-content fade-in" style="padding-bottom: 80px;">
+            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-select')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
+            <div class="content-header"><h2>Расходомер</h2><p>Расчёт погрешности</p></div>
+            <div class="scale-form">
+                <div class="scale-form-label">Диапазон измерения</div>
+                <div style="display: flex; gap: 8px; margin-bottom: 12px;"><input type="number" id="flow_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any"><input type="number" id="flow_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="100" step="any"></div>
+                <div class="scale-form-label">Класс точности</div>
+                <select id="flow_accuracy_class" class="scale-field"><option value="0.5" selected>0.5</option><option value="1.0">1.0</option><option value="1.5">1.5</option><option value="2.0">2.0</option></select>
+                <div class="scale-form-label">Текущее значение (опционально)</div>
+                <input type="number" id="flow_current_value" class="scale-field" placeholder="необязательно" step="any">
+            </div>
+            <button class="converter-convert-btn" onclick="calcErrorFlow()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
+            <div id="errorFlowResults" class="converter-result-group" style="display:none;"></div>
+            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Расходомер</div></div>
+        </div>
+        <div id="page-error-level" class="page-content fade-in" style="padding-bottom: 80px;">
+            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-select')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
+            <div class="content-header"><h2>Уровнемер</h2><p>Расчёт погрешности</p></div>
+            <div class="scale-form">
+                <div class="scale-form-label">Диапазон измерения</div>
+                <div style="display: flex; gap: 8px; margin-bottom: 12px;"><input type="number" id="level_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any"><input type="number" id="level_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="5000" step="any"></div>
+                <div class="scale-form-label">Класс точности</div>
+                <select id="level_accuracy_class" class="scale-field"><option value="0.5" selected>0.5</option><option value="1.0">1.0</option></select>
+                <div class="scale-form-label">Текущее значение (опционально)</div>
+                <input type="number" id="level_current_value" class="scale-field" placeholder="необязательно" step="any">
+            </div>
+            <button class="converter-convert-btn" onclick="calcErrorLevel()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
+            <div id="errorLevelResults" class="converter-result-group" style="display:none;"></div>
+            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Уровнемер</div></div>
+        </div>
+        <div id="page-error-generic" class="page-content fade-in" style="padding-bottom: 80px;">
+            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-select')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
+            <div class="content-header"><h2>Аналоговый преобразователь</h2><p>Расчёт погрешности</p></div>
+            <div class="scale-form">
+                <div class="scale-form-label">Диапазон измерения</div>
+                <div style="display: flex; gap: 8px; margin-bottom: 12px;"><input type="number" id="generic_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any"><input type="number" id="generic_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="100" step="any"></div>
+                <div class="scale-form-label">Класс точности</div>
+                <select id="generic_accuracy_class" class="scale-field"><option value="0.5" selected>0.5</option><option value="1.0">1.0</option></select>
+                <div class="scale-form-label">Текущее значение (опционально)</div>
+                <input type="number" id="generic_current_value" class="scale-field" placeholder="необязательно" step="any">
+            </div>
+            <button class="converter-convert-btn" onclick="calcErrorGeneric()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
+            <div id="errorGenericResults" class="converter-result-group" style="display:none;"></div>
+            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Аналоговый преобразователь</div></div>
+        </div>
+
+        <!-- Буйковый уровнемер - Выбор метода калибровки -->
+        <div id="page-buoy-select" class="page-content fade-in" style="padding-bottom: 80px;">
             <div class="nav-bar">
                 <div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
@@ -411,277 +552,149 @@
                     <span>Назад</span>
                 </div>
             </div>
-            
             <div class="content-header">
-                <h2>Расчёт погрешности</h2>
-                <p>Выберите тип прибора</p>
+                <h2>Калибровка буйкового уровнемера</h2>
+                <p>Выберите метод калибровки</p>
             </div>
-            
-            <div class="menu-btn-row">
-                <div class="menu-btn" onclick="navigateTo('error-pressure')">
-                    <div class="menu-btn-text"><div class="menu-btn-label">Датчик давления</div><div class="menu-btn-sublabel">МПа, бар, кПа, кгс/см²</div></div>
-                </div>
-                <div class="menu-btn" onclick="navigateTo('error-temp-select')">
-                    <div class="menu-btn-text"><div class="menu-btn-label">Датчик температуры</div><div class="menu-btn-sublabel">ТС (ГОСТ 6651-2009), ТП (ГОСТ Р 8.585-2001)</div></div>
-                </div>
-                <div class="menu-btn" onclick="navigateTo('error-flow')">
-                    <div class="menu-btn-text"><div class="menu-btn-label">Расходомер</div><div class="menu-btn-sublabel">м³/ч, л/мин, т/ч</div></div>
-                </div>
-                <div class="menu-btn" onclick="navigateTo('error-level')">
-                    <div class="menu-btn-text"><div class="menu-btn-label">Уровнемер</div><div class="menu-btn-sublabel">мм, %, радар, ультразвук</div></div>
-                </div>
-                <div class="menu-btn" onclick="navigateTo('error-generic')">
-                    <div class="menu-btn-text"><div class="menu-btn-label">Аналоговый преобразователь</div><div class="menu-btn-sublabel">Общий случай, 4-20 мА и др.</div></div>
-                </div>
-            </div>
-            
-            <div class="page-bottom-bg">
-                <div class="page-bottom-text">КИП ИОС · Расчёт погрешности</div>
-            </div>
-        </div>
-
-        <!-- Расчёт погрешности - Датчик давления -->
-        <div id="page-error-pressure" class="page-content fade-in" style="padding-bottom: 80px;">
-            <div class="nav-bar">
-                <div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div>
-                <span class="nav-separator">‹</span>
-                <div class="nav-btn" onclick="navigateTo('error-select')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div>
-            </div>
-            <div class="content-header"><h2>Датчик давления</h2><p>Расчёт погрешности</p></div>
-            <div class="scale-form">
-                <div class="scale-form-label">Диапазон измерения</div>
-                <div style="display: flex; gap: 8px; margin-bottom: 12px;">
-                    <input type="number" id="pressure_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any">
-                    <input type="number" id="pressure_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="1.6" step="any">
-                </div>
-                <div style="color:#666; font-size:11px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">Единица измерения: МПа, бар, кПа и т.д.</div>
-                <div class="scale-form-label">Класс точности</div>
-                <select id="pressure_accuracy_class" class="scale-field">
-                    <option value="0.02">0.02</option><option value="0.05">0.05</option><option value="0.075">0.075</option>
-                    <option value="0.1">0.1</option><option value="0.15">0.15</option><option value="0.25">0.25</option>
-                    <option value="0.4">0.4</option><option value="0.5" selected>0.5</option><option value="1.0">1.0</option>
-                    <option value="1.5">1.5</option><option value="2.5">2.5</option>
-                </select>
-                <div class="scale-form-label">Текущее значение (опционально)</div>
-                <input type="number" id="pressure_current_value" class="scale-field" placeholder="необязательно" step="any">
-                <div style="color:#666; font-size:11px; margin-top:-6px; padding-left:4px;">Для расчёта относительной погрешности</div>
-            </div>
-            <button class="converter-convert-btn" onclick="calcErrorPressure()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
-            <div id="errorPressureResults" class="converter-result-group" style="display:none;"></div>
-            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Датчик давления · Расчёт погрешности</div></div>
-        </div>
-
-        <!-- Расчёт погрешности - Выбор типа датчика температуры -->
-        <div id="page-error-temp-select" class="page-content fade-in" style="padding-bottom: 80px;">
-            <div class="nav-bar">
-                <div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div>
-                <span class="nav-separator">‹</span>
-                <div class="nav-btn" onclick="navigateTo('error-select')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div>
-            </div>
-            <div class="content-header">
-                <h2>Датчик температуры</h2>
-                <p>Выберите тип датчика</p>
-            </div>
-            <div class="menu-btn-row">
-                <div class="menu-btn" onclick="navigateTo('error-temp-rtd')">
-                    <div class="menu-btn-text">
-                        <div class="menu-btn-label">Термопреобразователи сопротивления (ТС)</div>
-                        <div class="menu-btn-sublabel">Pt (10П, 50П, 100П, 500П, 1000П) — Cu (10М, 50М, 100М) — Ni (50Н, 100Н, 120Н, 500Н, 1000Н)</div>
+            <div class="buoy-select-container">
+                <!-- Карточка: С буйком -->
+                <div class="buoy-card" onclick="selectCalibMethod('with_buoy')">
+                    <div class="buoy-card-inner">
+                        <div class="buoy-illustration">
+                            <svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="liquidGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#4a8fc7" stop-opacity="0.6"/>
+                                        <stop offset="100%" stop-color="#2a5a8a" stop-opacity="0.8"/>
+                                    </linearGradient>
+                                    <linearGradient id="metalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#8a8a8a"/>
+                                        <stop offset="50%" stop-color="#c0c0c0"/>
+                                        <stop offset="100%" stop-color="#8a8a8a"/>
+                                    </linearGradient>
+                                    <linearGradient id="buoyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#5b9bd5"/>
+                                        <stop offset="30%" stop-color="#8abbe0"/>
+                                        <stop offset="70%" stop-color="#5b9bd5"/>
+                                        <stop offset="100%" stop-color="#3a6d99"/>
+                                    </linearGradient>
+                                    <filter id="glow"><feGaussianBlur stdDeviation="1" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                                </defs>
+                                <!-- Резервуар -->
+                                <rect x="30" y="40" width="110" height="170" rx="6" stroke="#5b9bd5" stroke-width="1.5" fill="none"/>
+                                <!-- Жидкость с анимацией -->
+                                <g class="liquid-animation">
+                                    <rect x="32" y="100" width="106" height="108" rx="4" fill="url(#liquidGrad)"/>
+                                    <path d="M32 108 Q52 103 72 108 Q92 113 112 108 Q132 103 138 108" stroke="#7ab8e0" stroke-width="1" fill="none" opacity="0.6"/>
+                                    <path d="M32 118 Q52 113 72 118 Q92 123 112 118 Q132 113 138 118" stroke="#7ab8e0" stroke-width="0.8" fill="none" opacity="0.4"/>
+                                </g>
+                                <!-- Буёк с анимацией -->
+                                <g class="buoy-animation">
+                                    <ellipse cx="85" cy="130" rx="14" ry="6" fill="#3a6d99" stroke="#2a5a8a" stroke-width="1"/>
+                                    <rect x="77" y="105" width="16" height="25" rx="3" fill="url(#buoyGrad)" stroke="#3a6d99" stroke-width="1"/>
+                                    <ellipse cx="85" cy="105" rx="8" ry="4" fill="#8abbe0" stroke="#3a6d99" stroke-width="1"/>
+                                    <rect x="80" y="108" width="10" height="19" rx="2" fill="white" opacity="0.15"/>
+                                </g>
+                                <!-- Шток -->
+                                <line x1="85" y1="40" x2="85" y2="99" stroke="#c7964a" stroke-width="2.5"/>
+                                <circle cx="85" cy="38" r="5" fill="#c7964a" stroke="#a67a30" stroke-width="1"/>
+                                <!-- Рычаг -->
+                                <line x1="85" y1="38" x2="50" y2="15" stroke="#c7964a" stroke-width="2.5"/>
+                                <circle cx="50" cy="15" r="3.5" fill="#a67a30"/>
+                                <!-- Противовес с гирями -->
+                                <rect x="38" y="8" width="24" height="14" rx="2" fill="url(#metalGrad)" stroke="#666" stroke-width="0.8"/>
+                                <rect x="42" y="22" width="16" height="12" rx="1.5" fill="#4ac771" stroke="#2a8a4a" stroke-width="0.8"/>
+                                <text x="50" y="31" text-anchor="middle" fill="#fff" font-size="6" font-weight="bold">ГИРИ</text>
+                                <!-- Подписи -->
+                                <text x="85" y="195" text-anchor="middle" fill="#e0e0e0" font-size="8" font-weight="bold">Буёк</text>
+                                <text x="155" y="160" text-anchor="middle" fill="#888" font-size="7">Жидкость</text>
+                                <text x="35" y="5" text-anchor="middle" fill="#888" font-size="6">Рычаг</text>
+                            </svg>
+                        </div>
+                        <div class="buoy-card-title">Вариант 1: С буйком</div>
+                        <div class="buoy-card-desc">Гири подвешиваются с противоположной стороны рычага</div>
+                        <div class="buoy-card-formula">m_гири = m_выт + m_подвеса</div>
                     </div>
                 </div>
-                <div class="menu-btn" onclick="navigateTo('error-temp-tc')">
-                    <div class="menu-btn-text">
-                        <div class="menu-btn-label">Термопары (ТП)</div>
-                        <div class="menu-btn-sublabel">K, J, T, N, E, R, S, B — ГОСТ Р 8.585-2001</div>
+                
+                <!-- Карточка: Без буйка -->
+                <div class="buoy-card" onclick="selectCalibMethod('without_buoy')">
+                    <div class="buoy-card-inner">
+                        <div class="buoy-illustration">
+                            <svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="metalGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#8a8a8a"/>
+                                        <stop offset="50%" stop-color="#c0c0c0"/>
+                                        <stop offset="100%" stop-color="#8a8a8a"/>
+                                    </linearGradient>
+                                </defs>
+                                <!-- Резервуар (пунктирный) -->
+                                <rect x="30" y="40" width="110" height="170" rx="6" stroke="#5b9bd5" stroke-width="1.5" stroke-dasharray="6,4" fill="none" opacity="0.6"/>
+                                <!-- Нет жидкости, крестик на месте буйка -->
+                                <text x="85" y="140" text-anchor="middle" fill="#c7964a" font-size="12" font-weight="bold">✕</text>
+                                <text x="85" y="160" text-anchor="middle" fill="#666" font-size="8">Буёк снят</text>
+                                <!-- Шток (оборван) -->
+                                <line x1="85" y1="40" x2="85" y2="90" stroke="#c7964a" stroke-width="2" stroke-dasharray="4,3"/>
+                                <line x1="75" y1="80" x2="95" y2="100" stroke="#c74a4a" stroke-width="1.5"/>
+                                <line x1="95" y1="80" x2="75" y2="100" stroke="#c74a4a" stroke-width="1.5"/>
+                                <circle cx="85" cy="38" r="5" fill="#c7964a" stroke="#a67a30" stroke-width="1"/>
+                                <!-- Рычаг -->
+                                <line x1="85" y1="38" x2="50" y2="15" stroke="#c7964a" stroke-width="2.5"/>
+                                <circle cx="50" cy="15" r="3.5" fill="#a67a30"/>
+                                <!-- Гири на рычаге (вместо буйка) с анимацией -->
+                                <g class="weights-animation">
+                                    <rect x="70" y="42" width="20" height="14" rx="2" fill="url(#metalGrad2)" stroke="#666" stroke-width="0.8"/>
+                                    <rect x="74" y="56" width="12" height="10" rx="1.5" fill="#4ac771" stroke="#2a8a4a" stroke-width="0.8"/>
+                                    <text x="80" y="64" text-anchor="middle" fill="#fff" font-size="5" font-weight="bold">ГИРЯ</text>
+                                </g>
+                                <!-- Подписи -->
+                                <text x="85" y="195" text-anchor="middle" fill="#e0e0e0" font-size="8" font-weight="bold">Гири вместо буйка</text>
+                                <text x="35" y="5" text-anchor="middle" fill="#888" font-size="6">Рычаг</text>
+                            </svg>
+                        </div>
+                        <div class="buoy-card-title">Вариант 2: Без буйка</div>
+                        <div class="buoy-card-desc">Гири подвешиваются на рычаг вместо буйка</div>
+                        <div class="buoy-card-formula">m_гири = m_буйка − m_выт + m_подвеса</div>
                     </div>
                 </div>
             </div>
-            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Датчик температуры</div></div>
-        </div>
-
-        <!-- Расчёт погрешности - Термопреобразователи сопротивления (ТС) -->
-        <div id="page-error-temp-rtd" class="page-content fade-in" style="padding-bottom: 80px;">
-            <div class="nav-bar">
-                <div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div>
-                <span class="nav-separator">‹</span>
-                <div class="nav-btn" onclick="navigateTo('error-temp-select')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div>
-            </div>
-            <div class="content-header">
-                <h2>Термопреобразователи сопротивления (ТС)</h2>
-                <p>Расчёт погрешности по ГОСТ 6651-2009</p>
-            </div>
-            <div class="scale-form">
-                <div class="scale-form-label">Группа ТС</div>
-                <select id="rtd_group" class="scale-field" onchange="updateRtdTypeOptions()">
-                    <option value="Pt" selected>Платиновые (Pt) — 10П, 50П, 100П, 500П, 1000П</option>
-                    <option value="Cu">Медные (Cu) — 10М, 50М, 100М</option>
-                    <option value="Ni">Никелевые (Ni) — 50Н, 100Н, 120Н, 500Н, 1000Н</option>
-                </select>
-                
-                <div class="scale-form-label">Тип ТС (НСХ)</div>
-                <select id="rtd_type" class="scale-field" onchange="updateRtdClassOptions()">
-                    <option value="pt10">Pt10 (10П) — 10 Ом, -200…+850°C</option>
-                    <option value="pt50">Pt50 (50П) — 50 Ом, -200…+850°C</option>
-                    <option value="pt100" selected>Pt100 (100П) — 100 Ом, -260…+850°C</option>
-                    <option value="pt500">Pt500 (500П) — 500 Ом, -200…+600°C</option>
-                    <option value="pt1000">Pt1000 (1000П) — 1000 Ом, -200…+600°C</option>
-                </select>
-                
-                <div class="scale-form-label">Класс допуска</div>
-                <select id="rtd_class" class="scale-field">
-                    <option value="AA">AA (1/3 B) — ±(0,10 + 0,0017·|t|) °C</option>
-                    <option value="A" selected>A — ±(0,15 + 0,0020·|t|) °C</option>
-                    <option value="B">B — ±(0,30 + 0,0050·|t|) °C</option>
-                    <option value="C">C — ±(0,60 + 0,0100·|t|) °C</option>
-                </select>
-                
-                <div class="scale-form-label">Температура измерения (t), °C</div>
-                <input type="number" id="rtd_temperature" class="scale-field" value="100" step="any" placeholder="температура в °C">
-                <div id="rtd_range_warning" style="color:#c7964a; font-size:11px; margin-top:4px; padding-left:4px; display:none;"></div>
-                <div id="rtd_info_text" style="color:#666; font-size:11px; margin-top:4px; padding-left:4px;">ℹ️ Выберите группу, тип ТС и класс точности</div>
-            </div>
-            <button class="converter-convert-btn" onclick="calcRtdError()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-                Рассчитать погрешность
-            </button>
-            <div id="rtdResults" class="converter-result-group" style="display:none;"></div>
             <div class="page-bottom-bg">
-                <div class="page-bottom-text">КИП ИОС · ТС · ГОСТ 6651-2009 · Pt (10П,50П,100П,500П,1000П) · Cu (10М,50М,100М) · Ni (50Н,100Н,120Н,500Н,1000Н)</div>
+                <div class="page-bottom-text">КИП ИОС · Буйковый уровнемер · Выбор метода калибровки</div>
             </div>
         </div>
 
-        <!-- Расчёт погрешности - Термопары (ТП) -->
-        <div id="page-error-temp-tc" class="page-content fade-in" style="padding-bottom: 80px;">
+        <!-- Буйковый уровнемер - Расчёт -->
+        <div id="page-buoy-calc" class="page-content fade-in" style="padding-bottom: 80px;">
             <div class="nav-bar">
-                <div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div>
+                <div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                    <span>Главная</span>
+                </div>
                 <span class="nav-separator">‹</span>
-                <div class="nav-btn" onclick="navigateTo('error-temp-select')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div>
+                <div class="nav-btn" onclick="navigateTo('buoy-select')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                    <span>Назад</span>
+                </div>
             </div>
+            
+            <!-- Индикатор выбранного метода -->
+            <div id="selectedMethodIndicator" style="background: #1e2124; margin: 12px 16px; padding: 12px 16px; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #2a2e32;">
+                <div>
+                    <span style="color: #888; font-size: 12px;">Выбранный метод:</span>
+                    <span id="selectedMethodText" style="color: #4ac771; font-weight: 600; margin-left: 8px;"></span>
+                </div>
+                <button class="query-btn" onclick="navigateTo('buoy-select')" style="width: auto; padding: 6px 12px; font-size: 12px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                    Изменить метод
+                </button>
+            </div>
+            
             <div class="content-header">
-                <h2>Термопары (ТП)</h2>
-                <p>Расчёт погрешности по ГОСТ Р 8.585-2001</p>
+                <h2>Буйковый уровнемер</h2>
+                <p>Расчёт выталкивающей силы и калибровочных гирь</p>
             </div>
-            <div class="scale-form">
-                <div class="scale-form-label">Тип термопары</div>
-                <select id="tc_type" class="scale-field" onchange="updateTcRanges()">
-                    <option value="K" selected>K (ТХА) — хромель-алюмель, -250…+1300°C</option>
-                    <option value="J">J (ТЖК) — железо-константан, -40…+900°C</option>
-                    <option value="T">T (ТМК) — медь-константан, -250…+400°C</option>
-                    <option value="N">N (ТНН) — нихросил-нисил, -250…+1300°C</option>
-                    <option value="E">E (ТХКн) — хромель-константан, -250…+1000°C</option>
-                    <option value="R">R (ТПП) — платина/платина-родий (13% Rh), 0…+1600°C</option>
-                    <option value="S">S (ТПП) — платина/платина-родий (10% Rh), 0…+1600°C</option>
-                    <option value="B">B (ТПР) — платина-родий/платина-родий (30%/6%), +600…+1800°C</option>
-                </select>
-                
-                <div class="scale-form-label">Класс точности</div>
-                <select id="tc_class" class="scale-field" onchange="updateTcRanges()">
-                    <option value="1">Класс 1</option>
-                    <option value="2" selected>Класс 2</option>
-                    <option value="3">Класс 3</option>
-                </select>
-                
-                <div class="scale-form-label">Температура измерения (t), °C</div>
-                <input type="number" id="tc_temperature" class="scale-field" value="100" step="any" placeholder="температура в °C">
-                <div id="tc_range_warning" style="color:#c7964a; font-size:11px; margin-top:4px; padding-left:4px; display:none;"></div>
-                <div id="tc_info_text" style="color:#666; font-size:11px; margin-top:4px; padding-left:4px;">ℹ️ Выберите тип термопары, класс точности и температуру измерения</div>
-            </div>
-            <button class="converter-convert-btn" onclick="calcTcError()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-                Рассчитать погрешность
-            </button>
-            <div id="tcResults" class="converter-result-group" style="display:none;"></div>
-            <div class="page-bottom-bg">
-                <div class="page-bottom-text">КИП ИОС · ТП · ГОСТ Р 8.585-2001 · K, J, T, N, E, R, S, B</div>
-            </div>
-        </div>
-
-        <!-- Расчёт погрешности - Расходомер -->
-        <div id="page-error-flow" class="page-content fade-in" style="padding-bottom: 80px;">
-            <div class="nav-bar">
-                <div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div>
-                <span class="nav-separator">‹</span>
-                <div class="nav-btn" onclick="navigateTo('error-select')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div>
-            </div>
-            <div class="content-header"><h2>Расходомер</h2><p>Расчёт погрешности</p></div>
-            <div class="scale-form">
-                <div class="scale-form-label">Диапазон измерения</div>
-                <div style="display: flex; gap: 8px; margin-bottom: 12px;">
-                    <input type="number" id="flow_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any">
-                    <input type="number" id="flow_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="100" step="any">
-                </div>
-                <div style="color:#666; font-size:11px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">Единица измерения: м³/ч, л/мин, т/ч</div>
-                <div class="scale-form-label">Класс точности</div>
-                <select id="flow_accuracy_class" class="scale-field"><option value="0.2">0.2</option><option value="0.5" selected>0.5</option><option value="1.0">1.0</option><option value="1.5">1.5</option><option value="2.0">2.0</option></select>
-                <div class="scale-form-label">Текущее значение (опционально)</div>
-                <input type="number" id="flow_current_value" class="scale-field" placeholder="необязательно" step="any">
-                <div style="color:#666; font-size:11px; margin-top:-6px; padding-left:4px;">Для расчёта относительной погрешности</div>
-            </div>
-            <button class="converter-convert-btn" onclick="calcErrorFlow()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
-            <div id="errorFlowResults" class="converter-result-group" style="display:none;"></div>
-            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Расходомер · Расчёт погрешности</div></div>
-        </div>
-
-        <!-- Расчёт погрешности - Уровнемер -->
-        <div id="page-error-level" class="page-content fade-in" style="padding-bottom: 80px;">
-            <div class="nav-bar">
-                <div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div>
-                <span class="nav-separator">‹</span>
-                <div class="nav-btn" onclick="navigateTo('error-select')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div>
-            </div>
-            <div class="content-header"><h2>Уровнемер</h2><p>Расчёт погрешности</p></div>
-            <div class="scale-form">
-                <div class="scale-form-label">Диапазон измерения</div>
-                <div style="display: flex; gap: 8px; margin-bottom: 12px;">
-                    <input type="number" id="level_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any">
-                    <input type="number" id="level_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="5000" step="any">
-                </div>
-                <div style="color:#666; font-size:11px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">Единица измерения: мм, %</div>
-                <div class="scale-form-label">Класс точности</div>
-                <select id="level_accuracy_class" class="scale-field"><option value="0.1">0.1</option><option value="0.2">0.2</option><option value="0.5" selected>0.5</option><option value="1.0">1.0</option></select>
-                <div class="scale-form-label">Текущее значение (опционально)</div>
-                <input type="number" id="level_current_value" class="scale-field" placeholder="необязательно" step="any">
-                <div style="color:#666; font-size:11px; margin-top:-6px; padding-left:4px;">Для расчёта относительной погрешности</div>
-            </div>
-            <button class="converter-convert-btn" onclick="calcErrorLevel()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
-            <div id="errorLevelResults" class="converter-result-group" style="display:none;"></div>
-            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Уровнемер · Расчёт погрешности</div></div>
-        </div>
-
-        <!-- Расчёт погрешности - Аналоговый преобразователь -->
-        <div id="page-error-generic" class="page-content fade-in" style="padding-bottom: 80px;">
-            <div class="nav-bar">
-                <div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div>
-                <span class="nav-separator">‹</span>
-                <div class="nav-btn" onclick="navigateTo('error-select')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div>
-            </div>
-            <div class="content-header"><h2>Аналоговый преобразователь</h2><p>Расчёт погрешности</p></div>
-            <div class="scale-form">
-                <div class="scale-form-label">Диапазон измерения</div>
-                <div style="display: flex; gap: 8px; margin-bottom: 12px;">
-                    <input type="number" id="generic_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any">
-                    <input type="number" id="generic_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="100" step="any">
-                </div>
-                <div style="color:#666; font-size:11px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">Единица измерения: ед.</div>
-                <div class="scale-form-label">Класс точности</div>
-                <select id="generic_accuracy_class" class="scale-field"><option value="0.05">0.05</option><option value="0.1">0.1</option><option value="0.2">0.2</option><option value="0.25">0.25</option><option value="0.5" selected>0.5</option><option value="1.0">1.0</option></select>
-                <div class="scale-form-label">Текущее значение (опционально)</div>
-                <input type="number" id="generic_current_value" class="scale-field" placeholder="необязательно" step="any">
-                <div style="color:#666; font-size:11px; margin-top:-6px; padding-left:4px;">Для расчёта относительной погрешности</div>
-            </div>
-            <button class="converter-convert-btn" onclick="calcErrorGeneric()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
-            <div id="errorGenericResults" class="converter-result-group" style="display:none;"></div>
-            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Аналоговый преобразователь · Расчёт погрешности</div></div>
-        </div>
-
-        <!-- Буйковый уровнемер -->
-        <div id="page-buoy" class="page-content fade-in" style="padding-bottom: 80px;">
-            <div class="nav-bar">
-                <div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div>
-                <span class="nav-separator">‹</span>
-                <div class="nav-btn" onclick="navigateTo('dashboard')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div>
-            </div>
-            <div class="content-header"><h2>Буйковый уровнемер</h2><p>Расчёт выталкивающей силы и калибровочных гирь</p></div>
+            
             <div class="scale-form">
                 <div class="scale-form-label">Метод калибровки</div>
                 <div style="background: #1a1d20; border-radius: 12px; padding: 12px; margin-bottom: 8px;">
@@ -695,6 +708,7 @@
                     </label>
                 </div>
             </div>
+
             <div class="scale-form">
                 <div class="scale-form-label">Параметры буйка</div>
                 <div class="scale-form-label" style="margin-top: 0;">Диаметр (D)</div>
@@ -707,6 +721,7 @@
                 <input type="number" id="buoy_weight_kg" class="scale-field" value="2.0" step="0.1" placeholder="кг">
                 <div style="color:#666; font-size:11px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">⚖️ Масса буйка в килограммах (кг)</div>
             </div>
+
             <div class="scale-form">
                 <div class="scale-form-label">Параметры жидкости</div>
                 <div class="scale-form-label" style="margin-top: 0;">Тип среды</div>
@@ -719,11 +734,13 @@
                     <input type="number" id="liquid_density" class="scale-field" style="flex: 1;" value="998" step="10" placeholder="кг/м³">
                 </div>
             </div>
+
             <div class="scale-form">
                 <div class="scale-form-label">Подвесная система</div>
                 <input type="number" id="suspension_mass" class="scale-field" value="0.5" step="0.01" placeholder="0.500">
                 <div style="color:#666; font-size:11px; margin-top:4px; padding-left:4px;">⚙️ Масса тарелки, крюка, цепи, кг</div>
             </div>
+
             <div class="scale-form">
                 <div class="scale-form-label">Выходной сигнал</div>
                 <select id="buoy_signal_type" class="scale-field" onchange="updateBuoySignalUnit()">
@@ -735,16 +752,12 @@
                     <optgroup label="🔧 Другие"><option value="custom">Своё значение</option></optgroup>
                 </select>
                 <div id="customSignalRange" style="display: none; margin-top: 12px;">
-                    <div style="display: flex; gap: 8px;">
-                        <input type="number" id="signal_min_custom" class="scale-field" style="flex: 1;" placeholder="Мин." step="any">
-                        <input type="number" id="signal_max_custom" class="scale-field" style="flex: 1;" placeholder="Макс." step="any">
-                    </div>
-                    <select id="signal_unit_custom" class="scale-field" style="margin-top: 8px;">
-                        <option value="mA">мА</option><option value="V">В</option><option value="kPa">кПа</option><option value="bar">бар</option><option value="psi">psi</option><option value="kgf_cm2">кгс/см²</option>
-                    </select>
+                    <div style="display: flex; gap: 8px;"><input type="number" id="signal_min_custom" class="scale-field" style="flex: 1;" placeholder="Мин." step="any"><input type="number" id="signal_max_custom" class="scale-field" style="flex: 1;" placeholder="Макс." step="any"></div>
+                    <select id="signal_unit_custom" class="scale-field" style="margin-top: 8px;"><option value="mA">мА</option><option value="V">В</option><option value="kPa">кПа</option><option value="bar">бар</option><option value="psi">psi</option><option value="kgf_cm2">кгс/см²</option></select>
                 </div>
                 <div id="signalUnitDisplay" style="color:#666; font-size:11px; margin-top:8px; padding-left:4px;">📊 Сигнал: 4-20 мА</div>
             </div>
+
             <button class="converter-convert-btn" onclick="calculateBuoyCalibration()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать калибровку</button>
             <div id="buoyResults" class="converter-result-group" style="display:none;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
@@ -773,6 +786,8 @@
         updateBuoySignalUnit();
         if (document.getElementById('rtd_group')) { updateRtdTypeOptions(); }
         if (document.getElementById('tc_type')) { updateTcRanges(); }
+        // Установить метод на странице расчёта буйкового уровнемера
+        if (document.getElementById('selectedMethodText')) { setCalibMethodOnForm(); }
     });
 
     function navigateTo(page) {
@@ -908,6 +923,257 @@
         resDiv.innerHTML='<div style="padding:10px 12px;border-bottom:1px solid #2a2e32;"><span style="color:#999;font-size:13px;">Сигнал: <b>'+formatNumber(queryVal)+'</b> ('+(pct*100).toFixed(2)+'%)</span></div><div style="padding:10px 12px;background:#1e2124;border-radius:10px;margin-top:6px;"><span style="color:#999;font-size:13px;">→ Шкала: <b style="color:#4ac771;font-size:18px;">'+formatNumber(scaleVal)+' '+unit+'</b></span></div>';
     }
 
+    // --- Расчёт погрешности ---
+    function formatErrorNumber(num) {
+        if (num === 0) return '0';
+        if (Math.abs(num) >= 1e9 || (Math.abs(num) < 0.00001 && num !== 0)) return num.toExponential(4);
+        var decimals = Math.abs(num) >= 100 ? 2 : Math.abs(num) >= 1 ? 4 : 6;
+        return parseFloat(num.toFixed(decimals)).toString();
+    }
+
+    function calcErrorPressure() {
+        var rangeMin = parseFloat(document.getElementById('pressure_range_min').value);
+        var rangeMax = parseFloat(document.getElementById('pressure_range_max').value);
+        var accuracyClass = parseFloat(document.getElementById('pressure_accuracy_class').value);
+        var currentValue = parseFloat(document.getElementById('pressure_current_value').value);
+        if (isNaN(rangeMin) || isNaN(rangeMax) || isNaN(accuracyClass)) { showToast('Заполните диапазон и класс точности'); return; }
+        if (rangeMin >= rangeMax) { showToast('НПИ должен быть меньше ВПИ'); return; }
+        var rangeSpan = rangeMax - rangeMin;
+        var absoluteError = (accuracyClass / 100) * rangeSpan;
+        var html = '<div class="converter-result-label-title">Результаты расчёта</div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Приведённая погрешность (γ)</span><span class="converter-result-value">' + accuracyClass + ' %</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Абсолютная погрешность (±Δ)</span><span class="converter-result-value">± ' + formatErrorNumber(absoluteError) + ' ед.</span></div>';
+        if (!isNaN(currentValue) && currentValue !== 0) {
+            var relativeError = (absoluteError / Math.abs(currentValue)) * 100;
+            html += '<div class="converter-result-item"><span class="converter-result-label">Относительная погрешность (δ)</span><span class="converter-result-value">± ' + formatErrorNumber(relativeError) + ' %</span></div>';
+        }
+        html += '<div class="converter-result-item"><span class="converter-result-label">Диапазон измерения</span><span class="converter-result-value">' + formatErrorNumber(rangeMin) + ' … ' + formatErrorNumber(rangeMax) + '</span></div>';
+        html += '<div style="margin-top:12px; padding:12px; background:#1e2124; border-radius:10px; font-size:12px; color:#666;">📐 Формула: Δ = γ × (X<sub>В</sub> - X<sub>Н</sub>) / 100</div>';
+        document.getElementById('errorPressureResults').innerHTML = html;
+        document.getElementById('errorPressureResults').style.display = 'block';
+        setTimeout(function() { document.getElementById('errorPressureResults').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+    }
+
+    function calcErrorFlow() {
+        var rangeMin = parseFloat(document.getElementById('flow_range_min').value);
+        var rangeMax = parseFloat(document.getElementById('flow_range_max').value);
+        var accuracyClass = parseFloat(document.getElementById('flow_accuracy_class').value);
+        var currentValue = parseFloat(document.getElementById('flow_current_value').value);
+        if (isNaN(rangeMin) || isNaN(rangeMax) || isNaN(accuracyClass)) { showToast('Заполните диапазон и класс точности'); return; }
+        if (rangeMin >= rangeMax) { showToast('НПИ должен быть меньше ВПИ'); return; }
+        var rangeSpan = rangeMax - rangeMin;
+        var absoluteError = (accuracyClass / 100) * rangeSpan;
+        var html = '<div class="converter-result-label-title">Результаты расчёта</div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Приведённая погрешность (γ)</span><span class="converter-result-value">' + accuracyClass + ' %</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Абсолютная погрешность (±Δ)</span><span class="converter-result-value">± ' + formatErrorNumber(absoluteError) + ' ед.</span></div>';
+        if (!isNaN(currentValue) && currentValue !== 0) {
+            var relativeError = (absoluteError / Math.abs(currentValue)) * 100;
+            html += '<div class="converter-result-item"><span class="converter-result-label">Относительная погрешность (δ)</span><span class="converter-result-value">± ' + formatErrorNumber(relativeError) + ' %</span></div>';
+        }
+        html += '<div class="converter-result-item"><span class="converter-result-label">Диапазон измерения</span><span class="converter-result-value">' + formatErrorNumber(rangeMin) + ' … ' + formatErrorNumber(rangeMax) + '</span></div>';
+        html += '<div style="margin-top:12px; padding:12px; background:#1e2124; border-radius:10px; font-size:12px; color:#666;">📐 Формула: Δ = γ × (X<sub>В</sub> - X<sub>Н</sub>) / 100</div>';
+        document.getElementById('errorFlowResults').innerHTML = html;
+        document.getElementById('errorFlowResults').style.display = 'block';
+        setTimeout(function() { document.getElementById('errorFlowResults').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+    }
+
+    function calcErrorLevel() {
+        var rangeMin = parseFloat(document.getElementById('level_range_min').value);
+        var rangeMax = parseFloat(document.getElementById('level_range_max').value);
+        var accuracyClass = parseFloat(document.getElementById('level_accuracy_class').value);
+        var currentValue = parseFloat(document.getElementById('level_current_value').value);
+        if (isNaN(rangeMin) || isNaN(rangeMax) || isNaN(accuracyClass)) { showToast('Заполните диапазон и класс точности'); return; }
+        if (rangeMin >= rangeMax) { showToast('НПИ должен быть меньше ВПИ'); return; }
+        var rangeSpan = rangeMax - rangeMin;
+        var absoluteError = (accuracyClass / 100) * rangeSpan;
+        var html = '<div class="converter-result-label-title">Результаты расчёта</div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Приведённая погрешность (γ)</span><span class="converter-result-value">' + accuracyClass + ' %</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Абсолютная погрешность (±Δ)</span><span class="converter-result-value">± ' + formatErrorNumber(absoluteError) + ' ед.</span></div>';
+        if (!isNaN(currentValue) && currentValue !== 0) {
+            var relativeError = (absoluteError / Math.abs(currentValue)) * 100;
+            html += '<div class="converter-result-item"><span class="converter-result-label">Относительная погрешность (δ)</span><span class="converter-result-value">± ' + formatErrorNumber(relativeError) + ' %</span></div>';
+        }
+        html += '<div class="converter-result-item"><span class="converter-result-label">Диапазон измерения</span><span class="converter-result-value">' + formatErrorNumber(rangeMin) + ' … ' + formatErrorNumber(rangeMax) + '</span></div>';
+        html += '<div style="margin-top:12px; padding:12px; background:#1e2124; border-radius:10px; font-size:12px; color:#666;">📐 Формула: Δ = γ × (X<sub>В</sub> - X<sub>Н</sub>) / 100</div>';
+        document.getElementById('errorLevelResults').innerHTML = html;
+        document.getElementById('errorLevelResults').style.display = 'block';
+        setTimeout(function() { document.getElementById('errorLevelResults').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+    }
+
+    function calcErrorGeneric() {
+        var rangeMin = parseFloat(document.getElementById('generic_range_min').value);
+        var rangeMax = parseFloat(document.getElementById('generic_range_max').value);
+        var accuracyClass = parseFloat(document.getElementById('generic_accuracy_class').value);
+        var currentValue = parseFloat(document.getElementById('generic_current_value').value);
+        if (isNaN(rangeMin) || isNaN(rangeMax) || isNaN(accuracyClass)) { showToast('Заполните диапазон и класс точности'); return; }
+        if (rangeMin >= rangeMax) { showToast('НПИ должен быть меньше ВПИ'); return; }
+        var rangeSpan = rangeMax - rangeMin;
+        var absoluteError = (accuracyClass / 100) * rangeSpan;
+        var html = '<div class="converter-result-label-title">Результаты расчёта</div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Приведённая погрешность (γ)</span><span class="converter-result-value">' + accuracyClass + ' %</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Абсолютная погрешность (±Δ)</span><span class="converter-result-value">± ' + formatErrorNumber(absoluteError) + ' ед.</span></div>';
+        if (!isNaN(currentValue) && currentValue !== 0) {
+            var relativeError = (absoluteError / Math.abs(currentValue)) * 100;
+            html += '<div class="converter-result-item"><span class="converter-result-label">Относительная погрешность (δ)</span><span class="converter-result-value">± ' + formatErrorNumber(relativeError) + ' %</span></div>';
+        }
+        html += '<div class="converter-result-item"><span class="converter-result-label">Диапазон измерения</span><span class="converter-result-value">' + formatErrorNumber(rangeMin) + ' … ' + formatErrorNumber(rangeMax) + '</span></div>';
+        html += '<div style="margin-top:12px; padding:12px; background:#1e2124; border-radius:10px; font-size:12px; color:#666;">📐 Формула: Δ = γ × (X<sub>В</sub> - X<sub>Н</sub>) / 100</div>';
+        document.getElementById('errorGenericResults').innerHTML = html;
+        document.getElementById('errorGenericResults').style.display = 'block';
+        setTimeout(function() { document.getElementById('errorGenericResults').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+    }
+
+    // --- ТС по ГОСТ 6651-2009 ---
+    const rtdData = {
+        'pt10': { name: 'Pt10 (10П)', group: 'Pt', r0: 10, nsc: '10П', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-100, 450] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-196, 600] }, classC: { formula: { const: 0.60, coeff: 0.0100 }, range: [-196, 600] } },
+        'pt50': { name: 'Pt50 (50П)', group: 'Pt', r0: 50, nsc: '50П', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-100, 450] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-196, 600] }, classC: { formula: { const: 0.60, coeff: 0.0100 }, range: [-196, 600] } },
+        'pt100': { name: 'Pt100 (100П)', group: 'Pt', r0: 100, nsc: '100П', classAA: { formula: { const: 0.10, coeff: 0.0017 }, range: [-50, 250] }, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-100, 450] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-196, 600] }, classC: { formula: { const: 0.60, coeff: 0.0100 }, range: [-196, 600] } },
+        'pt500': { name: 'Pt500 (500П)', group: 'Pt', r0: 500, nsc: '500П', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-200, 600] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-200, 600] }, classC: { formula: { const: 0.60, coeff: 0.0100 }, range: [-200, 600] } },
+        'pt1000': { name: 'Pt1000 (1000П)', group: 'Pt', r0: 1000, nsc: '1000П', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-200, 600] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-200, 600] }, classC: { formula: { const: 0.60, coeff: 0.0100 }, range: [-200, 600] } },
+        'cu10': { name: 'Cu10 (10М)', group: 'Cu', r0: 10, nsc: '10М', classAA: null, classA: null, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-50, 150] }, classC: null },
+        'cu50': { name: 'Cu50 (50М)', group: 'Cu', r0: 50, nsc: '50М', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-50, 150] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-50, 150] }, classC: null },
+        'cu100': { name: 'Cu100 (100М)', group: 'Cu', r0: 100, nsc: '100М', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-50, 150] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-50, 150] }, classC: null },
+        'ni50': { name: 'Ni50 (50Н)', group: 'Ni', r0: 50, nsc: '50Н', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-60, 180] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-60, 180] }, classC: null },
+        'ni100': { name: 'Ni100 (100Н)', group: 'Ni', r0: 100, nsc: '100Н', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-60, 180] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-60, 180] }, classC: null },
+        'ni120': { name: 'Ni120 (120Н)', group: 'Ni', r0: 120, nsc: '120Н', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-60, 180] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-60, 180] }, classC: null },
+        'ni500': { name: 'Ni500 (500Н)', group: 'Ni', r0: 500, nsc: '500Н', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-60, 180] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-60, 180] }, classC: null },
+        'ni1000': { name: 'Ni1000 (1000Н)', group: 'Ni', r0: 1000, nsc: '1000Н', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-60, 180] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-60, 180] }, classC: null }
+    };
+
+    function updateRtdTypeOptions() {
+        var group = document.getElementById('rtd_group').value;
+        var typeSelect = document.getElementById('rtd_type');
+        var classSelect = document.getElementById('rtd_class');
+        var options = '';
+        if (group === 'Pt') {
+            options = '<option value="pt10">Pt10 (10П)</option><option value="pt50">Pt50 (50П)</option><option value="pt100" selected>Pt100 (100П)</option><option value="pt500">Pt500 (500П)</option><option value="pt1000">Pt1000 (1000П)</option>';
+            classSelect.innerHTML = '<option value="AA">AA (1/3 B)</option><option value="A" selected>A</option><option value="B">B</option><option value="C">C</option>';
+        } else if (group === 'Cu') {
+            options = '<option value="cu10">Cu10 (10М)</option><option value="cu50">Cu50 (50М)</option><option value="cu100" selected>Cu100 (100М)</option>';
+            classSelect.innerHTML = '<option value="A">A</option><option value="B" selected>B</option>';
+        } else if (group === 'Ni') {
+            options = '<option value="ni50">Ni50 (50Н)</option><option value="ni100">Ni100 (100Н)</option><option value="ni120">Ni120 (120Н)</option><option value="ni500">Ni500 (500Н)</option><option value="ni1000" selected>Ni1000 (1000Н)</option>';
+            classSelect.innerHTML = '<option value="A">A</option><option value="B" selected>B</option>';
+        }
+        typeSelect.innerHTML = options;
+        updateRtdClassOptions();
+    }
+
+    function updateRtdClassOptions() {
+        var rtdType = document.getElementById('rtd_type').value;
+        var data = rtdData[rtdType];
+        var classSelect = document.getElementById('rtd_class');
+        if (!data) return;
+        for (var i = 0; i < classSelect.options.length; i++) {
+            var option = classSelect.options[i];
+            var classKey = option.value.toLowerCase();
+            var isAvailable = data[classKey] !== null && data[classKey] !== undefined;
+            option.disabled = !isAvailable;
+            if (!isAvailable && option.selected) {
+                for (var j = 0; j < classSelect.options.length; j++) {
+                    if (!classSelect.options[j].disabled) { classSelect.options[j].selected = true; break; }
+                }
+            }
+        }
+    }
+
+    function calcRtdError() {
+        var rtdType = document.getElementById('rtd_type').value;
+        var rtdClass = document.getElementById('rtd_class').value.toLowerCase();
+        var temperature = parseFloat(document.getElementById('rtd_temperature').value);
+        var warningDiv = document.getElementById('rtd_range_warning');
+        if (isNaN(temperature)) { showToast('Введите температуру измерения'); return; }
+        var data = rtdData[rtdType];
+        if (!data) { showToast('Выберите корректный тип ТС'); return; }
+        var classData = data[rtdClass];
+        if (!classData) { showToast('Для данного типа ТС класс ' + rtdClass.toUpperCase() + ' не определён'); return; }
+        var absT = Math.abs(temperature);
+        var range = classData.range;
+        var formula = classData.formula;
+        var error = formula.const + formula.coeff * absT;
+        if (temperature < range[0] || temperature > range[1]) {
+            warningDiv.style.display = 'block'; warningDiv.innerHTML = '⚠️ Температура ' + temperature + '°C выходит за пределы диапазона [' + range[0] + '…' + range[1] + ']°C';
+        } else { warningDiv.style.display = 'none'; }
+        var groupNames = { 'Pt': 'Платиновый (Pt)', 'Cu': 'Медный (Cu)', 'Ni': 'Никелевый (Ni)' };
+        var formulaStr = 'Δ = ±(' + formula.const + ' + ' + formula.coeff + '·|t|) °C';
+        var html = '<div class="converter-result-label-title">Результаты расчёта (ГОСТ 6651-2009)</div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Тип ТС (НСХ)</span><span class="converter-result-value">' + data.name + '</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Материал</span><span class="converter-result-value">' + groupNames[data.group] + '</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">R₀ (при 0°C)</span><span class="converter-result-value">' + data.r0 + ' Ом</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Класс допуска</span><span class="converter-result-value">' + rtdClass.toUpperCase() + '</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Температура измерения</span><span class="converter-result-value">' + formatErrorNumber(temperature) + ' °C</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Предел допускаемой погрешности</span><span class="converter-result-value">± ' + formatErrorNumber(error) + ' °C</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Формула расчёта</span><span class="converter-result-value">' + formulaStr + '</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Допустимый диапазон</span><span class="converter-result-value">' + range[0] + ' … ' + range[1] + ' °C</span></div>';
+        html += '<div style="margin-top:12px; padding:12px; background:#1e2124; border-radius:10px; font-size:12px; color:#666;">📐 ГОСТ 6651-2009 «Термопреобразователи сопротивления»<br>📊 НСХ: ' + data.nsc + '<br>ℹ️ |t| — абсолютное значение температуры</div>';
+        document.getElementById('rtdResults').innerHTML = html;
+        document.getElementById('rtdResults').style.display = 'block';
+        setTimeout(function() { document.getElementById('rtdResults').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+    }
+
+    // --- Термопары по ГОСТ Р 8.585-2001 ---
+    const tcData = {
+        'K': { name: 'K (ТХА) — хромель-алюмель', ranges: { class1: [[-40, 375, 'const', 1.5], [375, 1000, 'linear', 0.004]], class2: [[-40, 333, 'const', 2.5], [333, 1300, 'linear', 0.0075]], class3: [[-250, -167, 'linear', 0.015], [-167, 40, 'const', 2.5]] }},
+        'J': { name: 'J (ТЖК) — железо-константан', ranges: { class1: [[-40, 375, 'const', 1.5], [375, 750, 'linear', 0.004]], class2: [[0, 333, 'const', 2.5], [333, 900, 'linear', 0.0075]], class3: null }},
+        'T': { name: 'T (ТМК) — медь-константан', ranges: { class1: [[-40, 125, 'const', 0.5], [125, 350, 'linear', 0.004]], class2: [[-40, 135, 'const', 1.0], [135, 350, 'linear', 0.0075]], class3: [[-200, -66, 'linear', 0.015], [-66, 40, 'const', 1.0]] }},
+        'N': { name: 'N (ТНН) — нихросил-нисил', ranges: { class1: [[-40, 375, 'const', 1.5], [375, 1000, 'linear', 0.004]], class2: [[-40, 333, 'const', 2.5], [333, 1300, 'linear', 0.0075]], class3: [[-250, -167, 'linear', 0.015], [-167, 40, 'const', 2.5]] }},
+        'E': { name: 'E (ТХКн) — хромель-константан', ranges: { class1: [[-40, 375, 'const', 1.5], [375, 800, 'linear', 0.004]], class2: [[-40, 333, 'const', 2.5], [333, 900, 'linear', 0.0075]], class3: [[-200, -167, 'linear', 0.015], [-167, 40, 'const', 2.5]] }},
+        'R': { name: 'R (ТПП) — платина/платина-родий (13% Rh)', ranges: { class1: [[0, 1100, 'const', 1.0], [1100, 1600, 'linear2', [1.0, 0.003]]], class2: [[0, 600, 'const', 1.5], [600, 1600, 'linear', 0.0025]], class3: null }},
+        'S': { name: 'S (ТПП) — платина/платина-родий (10% Rh)', ranges: { class1: [[0, 1100, 'const', 1.0], [1100, 1600, 'linear2', [1.0, 0.003]]], class2: [[0, 600, 'const', 1.5], [600, 1600, 'linear', 0.0025]], class3: null }},
+        'B': { name: 'B (ТПР) — платина-родий/платина-родий (30%/6%)', ranges: { class1: null, class2: [[600, 800, 'linear', 0.0025], [800, 1800, 'linear', 0.005]], class3: [[600, 800, 'const', 4.0], [800, 1800, 'linear', 0.005]] }}
+    };
+
+    function updateTcRanges() {
+        var tcType = document.getElementById('tc_type').value;
+        var tcClass = document.getElementById('tc_class').value;
+        var infoDiv = document.getElementById('tc_info_text');
+        var data = tcData[tcType];
+        if (data && data.ranges['class' + tcClass]) {
+            infoDiv.innerHTML = '✅ Для ' + data.name + ', класс ' + tcClass + ' доступен'; infoDiv.style.color = '#4ac771';
+        } else {
+            infoDiv.innerHTML = '⚠️ Для ' + data.name + ', класс ' + tcClass + ' не определён'; infoDiv.style.color = '#c7964a';
+        }
+    }
+
+    function calcTcError() {
+        var tcType = document.getElementById('tc_type').value;
+        var tcClass = document.getElementById('tc_class').value;
+        var temperature = parseFloat(document.getElementById('tc_temperature').value);
+        var warningDiv = document.getElementById('tc_range_warning');
+        if (isNaN(temperature)) { showToast('Введите температуру измерения'); return; }
+        var data = tcData[tcType];
+        if (!data) { showToast('Выберите корректный тип термопары'); return; }
+        var classKey = 'class' + tcClass;
+        var classData = data.ranges[classKey];
+        if (!classData) { showToast('Для термопары ' + data.name + ' класс ' + tcClass + ' не определён'); return; }
+        var absT = Math.abs(temperature);
+        var error = null; var formula = ''; var validRange = '';
+        for (var i = 0; i < classData.length; i++) {
+            var range = classData[i];
+            var tMin = range[0], tMax = range[1], type = range[2];
+            if (temperature >= tMin && temperature <= tMax) {
+                if (type === 'const') { error = range[3]; formula = 'Δ = ±' + range[3] + ' °C'; }
+                else if (type === 'linear') { error = range[3] * absT; formula = 'Δ = ±' + range[3] + '·|t| °C'; }
+                else if (type === 'linear2') { var params = range[3]; error = params[0] + params[1] * (temperature - 1100); formula = 'Δ = ±[' + params[0] + ' + 0,003·(t-1100)] °C'; }
+                validRange = tMin + ' … ' + tMax + ' °C';
+                break;
+            }
+        }
+        if (error === null) { warningDiv.style.display = 'block'; warningDiv.innerHTML = '⚠️ Температура ' + temperature + '°C выходит за пределы допустимого диапазона'; return; }
+        else { warningDiv.style.display = 'none'; }
+        var html = '<div class="converter-result-label-title">Результаты расчёта (ГОСТ Р 8.585-2001)</div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Тип термопары</span><span class="converter-result-value">' + data.name + '</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Класс точности</span><span class="converter-result-value">' + tcClass + '</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Температура измерения</span><span class="converter-result-value">' + formatErrorNumber(temperature) + ' °C</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Предел допускаемой погрешности</span><span class="converter-result-value">± ' + formatErrorNumber(error) + ' °C</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Формула расчёта</span><span class="converter-result-value">' + formula + '</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Рабочий диапазон</span><span class="converter-result-value">' + validRange + '</span></div>';
+        html += '<div style="margin-top:12px; padding:12px; background:#1e2124; border-radius:10px; font-size:12px; color:#666;">📐 ГОСТ Р 8.585-2001 «Термопары»<br>ℹ️ |t| — абсолютное значение температуры<br>⚠️ Погрешность в температурном эквиваленте</div>';
+        document.getElementById('tcResults').innerHTML = html;
+        document.getElementById('tcResults').style.display = 'block';
+        setTimeout(function() { document.getElementById('tcResults').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+    }
+
     // --- Буйковый уровнемер ---
     const G = 9.80665;
 
@@ -992,16 +1258,13 @@
         var suspensionMass = parseFloat(document.getElementById('suspension_mass').value);
         var calibMethod = document.querySelector('input[name="calib_method"]:checked').value;
         var signalType = document.getElementById('buoy_signal_type').value;
-        
         if (isNaN(diam_mm)||diam_mm<=0) { showToast('Введите корректный диаметр'); return; }
         if (isNaN(length_mm)||length_mm<=0) { showToast('Введите корректную длину'); return; }
         if (isNaN(buoyWeight_kg)||buoyWeight_kg<=0) { showToast('Введите корректный вес буйка'); return; }
         if (isNaN(liquidDensity)||liquidDensity<=0) { showToast('Введите корректную плотность жидкости'); return; }
         if (isNaN(suspensionMass)||suspensionMass<0) { showToast('Введите корректную массу подвеса'); return; }
-        
         var signalRange = getSignalRangeAndUnit(signalType);
         if (signalType === 'custom' && (isNaN(signalRange.min)||isNaN(signalRange.max))) { showToast('Введите диапазон сигнала'); return; }
-
         var volume_m3 = calcBuoyVolume(diam_mm, length_mm);
         var results = [];
         for (var pct = 0; pct <= 100; pct += 10) {
@@ -1011,7 +1274,6 @@
             var sigVal = calculateSignalValue(pct, signalType);
             results.push({ pct: pct, level: (pct/100)*length_mm, mass: buoyMass, force: buoyN, weights: mass_kg, signal: sigVal.value, sigUnit: sigVal.unit });
         }
-
         var html = '<div style="overflow-x:auto;border-radius:10px;border:1px solid #2a2e32;"><table style="min-width:100%;width:100%;border-collapse:collapse;"><thead><tr style="background:#262a2e;">';
         html += '<th style="padding:10px 12px;font-size:11px;color:#5b9bd5;text-align:left;font-weight:600;">Уровень (%)</th>';
         html += '<th style="padding:10px 12px;font-size:11px;color:#5b9bd5;text-align:left;font-weight:600;">Уровень (мм)</th>';
@@ -1028,7 +1290,6 @@
             html += '<td style="padding:8px 12px;font-size:12px;color:#5b9bd5;">' + formatBuoyNumber(r.signal) + ' ' + r.sigUnit + '</td></tr>';
         }
         html += '</tbody></table></div>';
-
         var methodName = calibMethod === 'without_buoy' ? 'Вариант 1 (Без буйка)' : 'Вариант 2 (С буйком)';
         var formulaText = calibMethod === 'without_buoy' ? 'm_гири = m_буйка − m_выт + m_подвеса' : 'm_гири = m_выт + m_подвеса';
         document.getElementById('buoyTableContainer').innerHTML = html;
@@ -1037,312 +1298,29 @@
         setTimeout(function() { document.getElementById('buoyResults').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
     }
 
-    // --- Расчёт погрешности (Давление, Расход, Уровень, Общий) ---
-    function formatErrorNumber(num) {
-        if (num === 0) return '0';
-        if (Math.abs(num) >= 1e9 || (Math.abs(num) < 0.00001 && num !== 0)) return num.toExponential(4);
-        var decimals = Math.abs(num) >= 100 ? 2 : Math.abs(num) >= 1 ? 4 : 6;
-        return parseFloat(num.toFixed(decimals)).toString();
+    // Сохранение выбранного метода калибровки
+    function selectCalibMethod(method) {
+        localStorage.setItem('buoy_calib_method', method);
+        navigateTo('buoy-calc');
     }
 
-    function calcErrorPressure() {
-        var rangeMin = parseFloat(document.getElementById('pressure_range_min').value);
-        var rangeMax = parseFloat(document.getElementById('pressure_range_max').value);
-        var accuracyClass = parseFloat(document.getElementById('pressure_accuracy_class').value);
-        var currentValue = parseFloat(document.getElementById('pressure_current_value').value);
-        
-        if (isNaN(rangeMin) || isNaN(rangeMax) || isNaN(accuracyClass)) { showToast('Заполните диапазон и класс точности'); return; }
-        if (rangeMin >= rangeMax) { showToast('НПИ должен быть меньше ВПИ'); return; }
-        
-        var rangeSpan = rangeMax - rangeMin;
-        var absoluteError = (accuracyClass / 100) * rangeSpan;
-        
-        var html = '<div class="converter-result-label-title">Результаты расчёта</div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Приведённая погрешность (γ)</span><span class="converter-result-value">' + accuracyClass + ' %</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Абсолютная погрешность (±Δ)</span><span class="converter-result-value">± ' + formatErrorNumber(absoluteError) + ' ед.</span></div>';
-        
-        if (!isNaN(currentValue) && currentValue !== 0) {
-            var relativeError = (absoluteError / Math.abs(currentValue)) * 100;
-            html += '<div class="converter-result-item"><span class="converter-result-label">Относительная погрешность (δ)</span><span class="converter-result-value">± ' + formatErrorNumber(relativeError) + ' %</span></div>';
+    function getSelectedCalibMethod() {
+        var method = localStorage.getItem('buoy_calib_method');
+        return (method === 'with_buoy' || method === 'without_buoy') ? method : 'with_buoy';
+    }
+
+    function setCalibMethodOnForm() {
+        var method = getSelectedCalibMethod();
+        var radioWithBuoy = document.querySelector('input[name="calib_method"][value="with_buoy"]');
+        var radioWithoutBuoy = document.querySelector('input[name="calib_method"][value="without_buoy"]');
+        var indicatorText = document.getElementById('selectedMethodText');
+        if (method === 'with_buoy' && radioWithBuoy) {
+            radioWithBuoy.checked = true;
+            if (indicatorText) indicatorText.textContent = 'С буйком (компенсационный)';
+        } else if (radioWithoutBuoy) {
+            radioWithoutBuoy.checked = true;
+            if (indicatorText) indicatorText.textContent = 'Без буйка (имитация выталкивающей силы)';
         }
-        
-        html += '<div class="converter-result-item"><span class="converter-result-label">Диапазон измерения</span><span class="converter-result-value">' + formatErrorNumber(rangeMin) + ' … ' + formatErrorNumber(rangeMax) + '</span></div>';
-        html += '<div style="margin-top:12px; padding:12px; background:#1e2124; border-radius:10px; font-size:12px; color:#666;">📐 Формула: Δ = γ × (X<sub>В</sub> - X<sub>Н</sub>) / 100</div>';
-        
-        document.getElementById('errorPressureResults').innerHTML = html;
-        document.getElementById('errorPressureResults').style.display = 'block';
-        setTimeout(function() { document.getElementById('errorPressureResults').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
-    }
-
-    function calcErrorFlow() {
-        var rangeMin = parseFloat(document.getElementById('flow_range_min').value);
-        var rangeMax = parseFloat(document.getElementById('flow_range_max').value);
-        var accuracyClass = parseFloat(document.getElementById('flow_accuracy_class').value);
-        var currentValue = parseFloat(document.getElementById('flow_current_value').value);
-        
-        if (isNaN(rangeMin) || isNaN(rangeMax) || isNaN(accuracyClass)) { showToast('Заполните диапазон и класс точности'); return; }
-        if (rangeMin >= rangeMax) { showToast('НПИ должен быть меньше ВПИ'); return; }
-        
-        var rangeSpan = rangeMax - rangeMin;
-        var absoluteError = (accuracyClass / 100) * rangeSpan;
-        
-        var html = '<div class="converter-result-label-title">Результаты расчёта</div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Приведённая погрешность (γ)</span><span class="converter-result-value">' + accuracyClass + ' %</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Абсолютная погрешность (±Δ)</span><span class="converter-result-value">± ' + formatErrorNumber(absoluteError) + ' ед.</span></div>';
-        
-        if (!isNaN(currentValue) && currentValue !== 0) {
-            var relativeError = (absoluteError / Math.abs(currentValue)) * 100;
-            html += '<div class="converter-result-item"><span class="converter-result-label">Относительная погрешность (δ)</span><span class="converter-result-value">± ' + formatErrorNumber(relativeError) + ' %</span></div>';
-        }
-        
-        html += '<div class="converter-result-item"><span class="converter-result-label">Диапазон измерения</span><span class="converter-result-value">' + formatErrorNumber(rangeMin) + ' … ' + formatErrorNumber(rangeMax) + '</span></div>';
-        html += '<div style="margin-top:12px; padding:12px; background:#1e2124; border-radius:10px; font-size:12px; color:#666;">📐 Формула: Δ = γ × (X<sub>В</sub> - X<sub>Н</sub>) / 100</div>';
-        
-        document.getElementById('errorFlowResults').innerHTML = html;
-        document.getElementById('errorFlowResults').style.display = 'block';
-        setTimeout(function() { document.getElementById('errorFlowResults').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
-    }
-
-    function calcErrorLevel() {
-        var rangeMin = parseFloat(document.getElementById('level_range_min').value);
-        var rangeMax = parseFloat(document.getElementById('level_range_max').value);
-        var accuracyClass = parseFloat(document.getElementById('level_accuracy_class').value);
-        var currentValue = parseFloat(document.getElementById('level_current_value').value);
-        
-        if (isNaN(rangeMin) || isNaN(rangeMax) || isNaN(accuracyClass)) { showToast('Заполните диапазон и класс точности'); return; }
-        if (rangeMin >= rangeMax) { showToast('НПИ должен быть меньше ВПИ'); return; }
-        
-        var rangeSpan = rangeMax - rangeMin;
-        var absoluteError = (accuracyClass / 100) * rangeSpan;
-        
-        var html = '<div class="converter-result-label-title">Результаты расчёта</div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Приведённая погрешность (γ)</span><span class="converter-result-value">' + accuracyClass + ' %</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Абсолютная погрешность (±Δ)</span><span class="converter-result-value">± ' + formatErrorNumber(absoluteError) + ' ед.</span></div>';
-        
-        if (!isNaN(currentValue) && currentValue !== 0) {
-            var relativeError = (absoluteError / Math.abs(currentValue)) * 100;
-            html += '<div class="converter-result-item"><span class="converter-result-label">Относительная погрешность (δ)</span><span class="converter-result-value">± ' + formatErrorNumber(relativeError) + ' %</span></div>';
-        }
-        
-        html += '<div class="converter-result-item"><span class="converter-result-label">Диапазон измерения</span><span class="converter-result-value">' + formatErrorNumber(rangeMin) + ' … ' + formatErrorNumber(rangeMax) + '</span></div>';
-        html += '<div style="margin-top:12px; padding:12px; background:#1e2124; border-radius:10px; font-size:12px; color:#666;">📐 Формула: Δ = γ × (X<sub>В</sub> - X<sub>Н</sub>) / 100</div>';
-        
-        document.getElementById('errorLevelResults').innerHTML = html;
-        document.getElementById('errorLevelResults').style.display = 'block';
-        setTimeout(function() { document.getElementById('errorLevelResults').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
-    }
-
-    function calcErrorGeneric() {
-        var rangeMin = parseFloat(document.getElementById('generic_range_min').value);
-        var rangeMax = parseFloat(document.getElementById('generic_range_max').value);
-        var accuracyClass = parseFloat(document.getElementById('generic_accuracy_class').value);
-        var currentValue = parseFloat(document.getElementById('generic_current_value').value);
-        
-        if (isNaN(rangeMin) || isNaN(rangeMax) || isNaN(accuracyClass)) { showToast('Заполните диапазон и класс точности'); return; }
-        if (rangeMin >= rangeMax) { showToast('НПИ должен быть меньше ВПИ'); return; }
-        
-        var rangeSpan = rangeMax - rangeMin;
-        var absoluteError = (accuracyClass / 100) * rangeSpan;
-        
-        var html = '<div class="converter-result-label-title">Результаты расчёта</div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Приведённая погрешность (γ)</span><span class="converter-result-value">' + accuracyClass + ' %</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Абсолютная погрешность (±Δ)</span><span class="converter-result-value">± ' + formatErrorNumber(absoluteError) + ' ед.</span></div>';
-        
-        if (!isNaN(currentValue) && currentValue !== 0) {
-            var relativeError = (absoluteError / Math.abs(currentValue)) * 100;
-            html += '<div class="converter-result-item"><span class="converter-result-label">Относительная погрешность (δ)</span><span class="converter-result-value">± ' + formatErrorNumber(relativeError) + ' %</span></div>';
-        }
-        
-        html += '<div class="converter-result-item"><span class="converter-result-label">Диапазон измерения</span><span class="converter-result-value">' + formatErrorNumber(rangeMin) + ' … ' + formatErrorNumber(rangeMax) + '</span></div>';
-        html += '<div style="margin-top:12px; padding:12px; background:#1e2124; border-radius:10px; font-size:12px; color:#666;">📐 Формула: Δ = γ × (X<sub>В</sub> - X<sub>Н</sub>) / 100</div>';
-        
-        document.getElementById('errorGenericResults').innerHTML = html;
-        document.getElementById('errorGenericResults').style.display = 'block';
-        setTimeout(function() { document.getElementById('errorGenericResults').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
-    }
-
-    // ============================================================
-    // ТЕРМОПРЕОБРАЗОВАТЕЛИ СОПРОТИВЛЕНИЯ (ТС) по ГОСТ 6651-2009
-    // ============================================================
-    const rtdData = {
-        'pt10': { name: 'Pt10 (10П)', group: 'Pt', r0: 10, nsc: '10П', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-100, 450] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-196, 600] }, classC: { formula: { const: 0.60, coeff: 0.0100 }, range: [-196, 600] } },
-        'pt50': { name: 'Pt50 (50П)', group: 'Pt', r0: 50, nsc: '50П', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-100, 450] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-196, 600] }, classC: { formula: { const: 0.60, coeff: 0.0100 }, range: [-196, 600] } },
-        'pt100': { name: 'Pt100 (100П)', group: 'Pt', r0: 100, nsc: '100П', classAA: { formula: { const: 0.10, coeff: 0.0017 }, range: [-50, 250] }, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-100, 450] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-196, 600] }, classC: { formula: { const: 0.60, coeff: 0.0100 }, range: [-196, 600] } },
-        'pt500': { name: 'Pt500 (500П)', group: 'Pt', r0: 500, nsc: '500П', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-200, 600] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-200, 600] }, classC: { formula: { const: 0.60, coeff: 0.0100 }, range: [-200, 600] } },
-        'pt1000': { name: 'Pt1000 (1000П)', group: 'Pt', r0: 1000, nsc: '1000П', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-200, 600] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-200, 600] }, classC: { formula: { const: 0.60, coeff: 0.0100 }, range: [-200, 600] } },
-        'cu10': { name: 'Cu10 (10М)', group: 'Cu', r0: 10, nsc: '10М', classAA: null, classA: null, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-50, 150] }, classC: null },
-        'cu50': { name: 'Cu50 (50М)', group: 'Cu', r0: 50, nsc: '50М', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-50, 150] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-50, 150] }, classC: null },
-        'cu100': { name: 'Cu100 (100М)', group: 'Cu', r0: 100, nsc: '100М', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-50, 150] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-50, 150] }, classC: null },
-        'ni50': { name: 'Ni50 (50Н)', group: 'Ni', r0: 50, nsc: '50Н', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-60, 180] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-60, 180] }, classC: null },
-        'ni100': { name: 'Ni100 (100Н)', group: 'Ni', r0: 100, nsc: '100Н', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-60, 180] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-60, 180] }, classC: null },
-        'ni120': { name: 'Ni120 (120Н)', group: 'Ni', r0: 120, nsc: '120Н', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-60, 180] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-60, 180] }, classC: null },
-        'ni500': { name: 'Ni500 (500Н)', group: 'Ni', r0: 500, nsc: '500Н', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-60, 180] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-60, 180] }, classC: null },
-        'ni1000': { name: 'Ni1000 (1000Н)', group: 'Ni', r0: 1000, nsc: '1000Н', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-60, 180] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-60, 180] }, classC: null }
-    };
-
-    function updateRtdTypeOptions() {
-        var group = document.getElementById('rtd_group').value;
-        var typeSelect = document.getElementById('rtd_type');
-        var classSelect = document.getElementById('rtd_class');
-        var options = '';
-        if (group === 'Pt') {
-            options = '<option value="pt10">Pt10 (10П) — 10 Ом, -200…+850°C</option><option value="pt50">Pt50 (50П) — 50 Ом, -200…+850°C</option><option value="pt100" selected>Pt100 (100П) — 100 Ом, -260…+850°C</option><option value="pt500">Pt500 (500П) — 500 Ом, -200…+600°C</option><option value="pt1000">Pt1000 (1000П) — 1000 Ом, -200…+600°C</option>';
-            classSelect.innerHTML = '<option value="AA">AA (1/3 B) — ±(0,10 + 0,0017·|t|) °C</option><option value="A" selected>A — ±(0,15 + 0,0020·|t|) °C</option><option value="B">B — ±(0,30 + 0,0050·|t|) °C</option><option value="C">C — ±(0,60 + 0,0100·|t|) °C</option>';
-        } else if (group === 'Cu') {
-            options = '<option value="cu10">Cu10 (10М) — 10 Ом, -50…+150°C</option><option value="cu50">Cu50 (50М) — 50 Ом, -50…+150°C</option><option value="cu100" selected>Cu100 (100М) — 100 Ом, -50…+150°C</option>';
-            classSelect.innerHTML = '<option value="A">A — ±(0,15 + 0,0020·|t|) °C</option><option value="B" selected>B — ±(0,30 + 0,0050·|t|) °C</option>';
-        } else if (group === 'Ni') {
-            options = '<option value="ni50">Ni50 (50Н) — 50 Ом, -60…+180°C</option><option value="ni100">Ni100 (100Н) — 100 Ом, -60…+180°C</option><option value="ni120">Ni120 (120Н) — 120 Ом, -60…+180°C</option><option value="ni500">Ni500 (500Н) — 500 Ом, -60…+180°C</option><option value="ni1000" selected>Ni1000 (1000Н) — 1000 Ом, -60…+180°C</option>';
-            classSelect.innerHTML = '<option value="A">A — ±(0,15 + 0,0020·|t|) °C</option><option value="B" selected>B — ±(0,30 + 0,0050·|t|) °C</option>';
-        }
-        typeSelect.innerHTML = options;
-        updateRtdClassOptions();
-    }
-
-    function updateRtdClassOptions() {
-        var rtdType = document.getElementById('rtd_type').value;
-        var data = rtdData[rtdType];
-        var classSelect = document.getElementById('rtd_class');
-        if (!data) return;
-        for (var i = 0; i < classSelect.options.length; i++) {
-            var option = classSelect.options[i];
-            var classKey = option.value.toLowerCase();
-            var isAvailable = data[classKey] !== null && data[classKey] !== undefined;
-            option.disabled = !isAvailable;
-            if (!isAvailable && option.selected) {
-                for (var j = 0; j < classSelect.options.length; j++) {
-                    if (!classSelect.options[j].disabled) { classSelect.options[j].selected = true; break; }
-                }
-            }
-        }
-    }
-
-    function calcRtdError() {
-        var rtdType = document.getElementById('rtd_type').value;
-        var rtdClass = document.getElementById('rtd_class').value.toLowerCase();
-        var temperature = parseFloat(document.getElementById('rtd_temperature').value);
-        var warningDiv = document.getElementById('rtd_range_warning');
-        
-        if (isNaN(temperature)) { showToast('Введите температуру измерения'); return; }
-        
-        var data = rtdData[rtdType];
-        if (!data) { showToast('Выберите корректный тип ТС'); return; }
-        
-        var classData = data[rtdClass];
-        if (!classData) { showToast('Для данного типа ТС класс ' + rtdClass.toUpperCase() + ' не определён'); return; }
-        
-        var absT = Math.abs(temperature);
-        var range = classData.range;
-        var formula = classData.formula;
-        var error = formula.const + formula.coeff * absT;
-        
-        if (temperature < range[0] || temperature > range[1]) {
-            warningDiv.style.display = 'block';
-            warningDiv.innerHTML = '⚠️ Температура ' + temperature + '°C выходит за пределы диапазона [' + range[0] + '…' + range[1] + ']°C';
-        } else { warningDiv.style.display = 'none'; }
-        
-        var groupNames = { 'Pt': 'Платиновый (Pt)', 'Cu': 'Медный (Cu)', 'Ni': 'Никелевый (Ni)' };
-        var groupName = groupNames[data.group] || data.group;
-        
-        var formulaStr = '';
-        if (formula.const === 0.10 && formula.coeff === 0.0017) formulaStr = 'Δ = ±(0,10 + 0,0017·|t|) °C';
-        else if (formula.const === 0.15 && formula.coeff === 0.0020) formulaStr = 'Δ = ±(0,15 + 0,0020·|t|) °C';
-        else if (formula.const === 0.30 && formula.coeff === 0.0050) formulaStr = 'Δ = ±(0,30 + 0,0050·|t|) °C';
-        else if (formula.const === 0.60 && formula.coeff === 0.0100) formulaStr = 'Δ = ±(0,60 + 0,0100·|t|) °C';
-        else formulaStr = 'Δ = ±(' + formula.const + ' + ' + formula.coeff + '·|t|) °C';
-        
-        var html = '<div class="converter-result-label-title">Результаты расчёта (ГОСТ 6651-2009)</div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Тип ТС (НСХ)</span><span class="converter-result-value">' + data.name + '</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Материал</span><span class="converter-result-value">' + groupName + '</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">R₀ (при 0°C)</span><span class="converter-result-value">' + data.r0 + ' Ом</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Класс допуска</span><span class="converter-result-value">' + rtdClass.toUpperCase() + '</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Температура измерения</span><span class="converter-result-value">' + formatErrorNumber(temperature) + ' °C</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Предел допускаемой погрешности</span><span class="converter-result-value">± ' + formatErrorNumber(error) + ' °C</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Формула расчёта</span><span class="converter-result-value">' + formulaStr + '</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Допустимый диапазон</span><span class="converter-result-value">' + range[0] + ' … ' + range[1] + ' °C</span></div>';
-        html += '<div style="margin-top:12px; padding:12px; background:#1e2124; border-radius:10px; font-size:12px; color:#666;">📐 ГОСТ 6651-2009 «Термопреобразователи сопротивления из платины, меди и никеля»<br>📊 НСХ: ' + data.nsc + '<br>ℹ️ |t| — абсолютное значение температуры в °C</div>';
-        
-        document.getElementById('rtdResults').innerHTML = html;
-        document.getElementById('rtdResults').style.display = 'block';
-        setTimeout(function() { document.getElementById('rtdResults').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
-    }
-
-    // ============================================================
-    // ТЕРМОПАРЫ (ТП) по ГОСТ Р 8.585-2001
-    // ============================================================
-    const tcData = {
-        'K': { name: 'K (ТХА) — хромель-алюмель', ranges: { class1: [[-40, 375, 'const', 1.5], [375, 1000, 'linear', 0.004]], class2: [[-40, 333, 'const', 2.5], [333, 1300, 'linear', 0.0075]], class3: [[-250, -167, 'linear', 0.015], [-167, 40, 'const', 2.5]] }},
-        'J': { name: 'J (ТЖК) — железо-константан', ranges: { class1: [[-40, 375, 'const', 1.5], [375, 750, 'linear', 0.004]], class2: [[0, 333, 'const', 2.5], [333, 900, 'linear', 0.0075]], class3: null }},
-        'T': { name: 'T (ТМК) — медь-константан', ranges: { class1: [[-40, 125, 'const', 0.5], [125, 350, 'linear', 0.004]], class2: [[-40, 135, 'const', 1.0], [135, 350, 'linear', 0.0075]], class3: [[-200, -66, 'linear', 0.015], [-66, 40, 'const', 1.0]] }},
-        'N': { name: 'N (ТНН) — нихросил-нисил', ranges: { class1: [[-40, 375, 'const', 1.5], [375, 1000, 'linear', 0.004]], class2: [[-40, 333, 'const', 2.5], [333, 1300, 'linear', 0.0075]], class3: [[-250, -167, 'linear', 0.015], [-167, 40, 'const', 2.5]] }},
-        'E': { name: 'E (ТХКн) — хромель-константан', ranges: { class1: [[-40, 375, 'const', 1.5], [375, 800, 'linear', 0.004]], class2: [[-40, 333, 'const', 2.5], [333, 900, 'linear', 0.0075]], class3: [[-200, -167, 'linear', 0.015], [-167, 40, 'const', 2.5]] }},
-        'R': { name: 'R (ТПП) — платина/платина-родий (13% Rh)', ranges: { class1: [[0, 1100, 'const', 1.0], [1100, 1600, 'linear2', [1.0, 0.003]]], class2: [[0, 600, 'const', 1.5], [600, 1600, 'linear', 0.0025]], class3: null }},
-        'S': { name: 'S (ТПП) — платина/платина-родий (10% Rh)', ranges: { class1: [[0, 1100, 'const', 1.0], [1100, 1600, 'linear2', [1.0, 0.003]]], class2: [[0, 600, 'const', 1.5], [600, 1600, 'linear', 0.0025]], class3: null }},
-        'B': { name: 'B (ТПР) — платина-родий/платина-родий (30%/6%)', ranges: { class1: null, class2: [[600, 800, 'linear', 0.0025], [800, 1800, 'linear', 0.005]], class3: [[600, 800, 'const', 4.0], [800, 1800, 'linear', 0.005]] }}
-    };
-
-    function updateTcRanges() {
-        var tcType = document.getElementById('tc_type').value;
-        var tcClass = document.getElementById('tc_class').value;
-        var infoDiv = document.getElementById('tc_info_text');
-        var data = tcData[tcType];
-        
-        if (data && data.ranges['class' + tcClass]) {
-            infoDiv.innerHTML = '✅ Для ' + data.name + ', класс ' + tcClass + ' доступен';
-            infoDiv.style.color = '#4ac771';
-        } else {
-            infoDiv.innerHTML = '⚠️ Для ' + data.name + ', класс ' + tcClass + ' не определён по ГОСТ Р 8.585-2001';
-            infoDiv.style.color = '#c7964a';
-        }
-    }
-
-    function calcTcError() {
-        var tcType = document.getElementById('tc_type').value;
-        var tcClass = document.getElementById('tc_class').value;
-        var temperature = parseFloat(document.getElementById('tc_temperature').value);
-        var warningDiv = document.getElementById('tc_range_warning');
-        
-        if (isNaN(temperature)) { showToast('Введите температуру измерения'); return; }
-        
-        var data = tcData[tcType];
-        if (!data) { showToast('Выберите корректный тип термопары'); return; }
-        
-        var classKey = 'class' + tcClass;
-        var classData = data.ranges[classKey];
-        if (!classData) { showToast('Для термопары ' + data.name + ' класс ' + tcClass + ' не определён'); return; }
-        
-        var absT = Math.abs(temperature);
-        var error = null;
-        var formula = '';
-        var validRange = '';
-        
-        for (var i = 0; i < classData.length; i++) {
-            var range = classData[i];
-            var tMin = range[0], tMax = range[1], type = range[2];
-            if (temperature >= tMin && temperature <= tMax) {
-                if (type === 'const') { error = range[3]; formula = 'Δ = ±' + range[3] + ' °C'; } 
-                else if (type === 'linear') { error = range[3] * absT; formula = 'Δ = ±' + range[3] + '·|t| °C'; } 
-                else if (type === 'linear2') { var params = range[3]; error = params[0] + params[1] * (temperature - 1100); formula = 'Δ = ±[' + params[0] + ' + 0,003·(t-1100)] °C'; }
-                validRange = tMin + ' … ' + tMax + ' °C';
-                break;
-            }
-        }
-        
-        if (error === null) { warningDiv.style.display = 'block'; warningDiv.innerHTML = '⚠️ Температура ' + temperature + '°C выходит за пределы допустимого диапазона'; return; } 
-        else { warningDiv.style.display = 'none'; }
-        
-        var html = '<div class="converter-result-label-title">Результаты расчёта (ГОСТ Р 8.585-2001)</div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Тип термопары</span><span class="converter-result-value">' + data.name + '</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Класс точности</span><span class="converter-result-value">' + tcClass + '</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Температура измерения</span><span class="converter-result-value">' + formatErrorNumber(temperature) + ' °C</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Предел допускаемой погрешности</span><span class="converter-result-value">± ' + formatErrorNumber(error) + ' °C</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Формула расчёта</span><span class="converter-result-value">' + formula + '</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Рабочий диапазон</span><span class="converter-result-value">' + validRange + '</span></div>';
-        html += '<div style="margin-top:12px; padding:12px; background:#1e2124; border-radius:10px; font-size:12px; color:#666;">📐 ГОСТ Р 8.585-2001 «Термопары. Номинальные статические характеристики преобразования»<br>ℹ️ |t| — абсолютное значение температуры в °C<br>⚠️ Погрешность указана в температурном эквиваленте</div>';
-        
-        document.getElementById('tcResults').innerHTML = html;
-        document.getElementById('tcResults').style.display = 'block';
-        setTimeout(function() { document.getElementById('tcResults').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
     }
 </script>
 </body>
