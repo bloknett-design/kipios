@@ -636,33 +636,22 @@
                 <div class="buoy-card" onclick="selectCalibMethod('with_buoy')">
                     <div class="buoy-card-inner">
                         <div class="buoy-illustration">
-                            <!-- Схематичный чертёж: С буйком -->
                             <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#5b9bd5" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                <!-- Резервуар -->
                                 <rect x="40" y="30" width="120" height="160" stroke-width="1.5" stroke-dasharray="4,3"/>
-                                <!-- Линия жидкости -->
                                 <line x1="40" y1="100" x2="160" y2="100" stroke-dasharray="2,2" stroke-width="0.8"/>
-                                <!-- Буёк -->
                                 <rect x="80" y="85" width="40" height="30" rx="2" fill="none" stroke-width="1.5"/>
                                 <line x1="90" y1="100" x2="110" y2="100" stroke-width="0.8"/>
                                 <line x1="100" y1="90" x2="100" y2="110" stroke-width="0.8"/>
-                                <!-- Шток -->
                                 <line x1="100" y1="85" x2="100" y2="40" stroke-width="1.5"/>
                                 <circle cx="100" cy="38" r="3" fill="none" stroke-width="1.2"/>
-                                <!-- Рычаг -->
                                 <line x1="100" y1="38" x2="55" y2="15" stroke-width="1.5"/>
-                                <!-- Ось -->
                                 <circle cx="55" cy="15" r="4" fill="none" stroke-width="1.2"/>
                                 <line x1="52" y1="12" x2="58" y2="18" stroke-width="0.8"/>
                                 <line x1="58" y1="12" x2="52" y2="18" stroke-width="0.8"/>
-                                <!-- Гири -->
                                 <rect x="43" y="8" width="24" height="14" fill="none" stroke-width="1.2"/>
                                 <text x="55" y="18" text-anchor="middle" fill="#5b9bd5" font-size="7" stroke="none">m₁</text>
-                                <!-- Подписи -->
                                 <text x="100" y="130" text-anchor="middle" fill="rgba(91,155,213,0.6)" font-size="8" stroke="none">Буёк</text>
                                 <text x="170" y="70" text-anchor="middle" fill="rgba(91,155,213,0.4)" font-size="7" stroke="none">жидк.</text>
-                                <text x="55" y="6" text-anchor="middle" fill="rgba(91,155,213,0.5)" font-size="7" stroke="none">Опора</text>
-                                <!-- Размерные линии -->
                                 <line x1="30" y1="85" x2="30" y2="115" stroke="rgba(91,155,213,0.3)" stroke-width="0.8"/>
                                 <line x1="27" y1="85" x2="33" y2="85" stroke="rgba(91,155,213,0.3)" stroke-width="0.8"/>
                                 <line x1="27" y1="115" x2="33" y2="115" stroke="rgba(91,155,213,0.3)" stroke-width="0.8"/>
@@ -677,32 +666,21 @@
                 <div class="buoy-card" onclick="selectCalibMethod('without_buoy')">
                     <div class="buoy-card-inner">
                         <div class="buoy-illustration">
-                            <!-- Схематичный чертёж: Без буйка -->
                             <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#5b9bd5" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                <!-- Резервуар (пустой) -->
                                 <rect x="40" y="30" width="120" height="160" stroke-width="1.5" stroke-dasharray="4,3"/>
-                                <!-- Перечёркнутый буёк -->
                                 <rect x="80" y="85" width="40" height="30" rx="2" fill="none" stroke-width="1" stroke-dasharray="3,2" opacity="0.4"/>
                                 <line x1="75" y1="80" x2="125" y2="120" stroke-width="1.5" stroke="#c74a4a"/>
                                 <line x1="125" y1="80" x2="75" y2="120" stroke-width="1.5" stroke="#c74a4a"/>
-                                <!-- Шток оборван -->
                                 <line x1="100" y1="85" x2="100" y2="55" stroke-width="1" stroke-dasharray="3,2" opacity="0.4"/>
-                                <!-- Рычаг -->
                                 <line x1="100" y1="40" x2="55" y2="15" stroke-width="1.5"/>
-                                <!-- Ось -->
                                 <circle cx="55" cy="15" r="4" fill="none" stroke-width="1.2"/>
                                 <line x1="52" y1="12" x2="58" y2="18" stroke-width="0.8"/>
                                 <line x1="58" y1="12" x2="52" y2="18" stroke-width="0.8"/>
-                                <!-- Гири (больше) -->
                                 <rect x="40" y="6" width="30" height="16" fill="none" stroke-width="1.2"/>
                                 <text x="55" y="17" text-anchor="middle" fill="#5b9bd5" font-size="7" stroke="none">m₁</text>
-                                <!-- Стрелка вверх -->
                                 <line x1="100" y1="40" x2="100" y2="55" stroke-width="1"/>
                                 <polyline points="96,52 100,40 104,52" stroke-width="1" fill="none"/>
-                                <!-- Подписи -->
                                 <text x="140" y="105" text-anchor="middle" fill="rgba(199,74,74,0.5)" font-size="8" stroke="none">буёк снят</text>
-                                <text x="55" y="4" text-anchor="middle" fill="rgba(91,155,213,0.5)" font-size="7" stroke="none">Опора</text>
-                                <!-- Размерные линии -->
                                 <line x1="30" y1="30" x2="30" y2="190" stroke="rgba(91,155,213,0.3)" stroke-width="0.8"/>
                                 <line x1="27" y1="30" x2="33" y2="30" stroke="rgba(91,155,213,0.3)" stroke-width="0.8"/>
                                 <line x1="27" y1="190" x2="33" y2="190" stroke="rgba(91,155,213,0.3)" stroke-width="0.8"/>
@@ -829,7 +807,6 @@
 </div>
 
 <script>
-    // Инициализация
     document.addEventListener('DOMContentLoaded', function() {
         setSignalDefaults();
         setLiquidDensity();
@@ -878,7 +855,6 @@
         setTimeout(function() { t.classList.remove('show'); }, 2500);
     }
 
-    // --- Конвертер единиц ---
     var unitData = {
         pressure: { units: { 'Pa': { label: 'Па', factor: 1 }, 'kPa': { label: 'кПа', factor: 1000 }, 'MPa': { label: 'МПа', factor: 1000000 }, 'bar': { label: 'бар', factor: 100000 }, 'mbar': { label: 'мбар', factor: 100 }, 'atm': { label: 'атм', factor: 101325 }, 'kgf_cm2': { label: 'кгс/см²', factor: 98066.5 }, 'mmHg': { label: 'мм рт. ст.', factor: 133.322 }, 'PSI': { label: 'PSI', factor: 6894.757 }, 'Torr': { label: 'Торр', factor: 133.322 }, 'mmH2O': { label: 'мм вод. ст.', factor: 9.80665 } } },
         flow: { units: { 'm3h': { label: 'м³/ч', factor: 1 }, 'm3s': { label: 'м³/с', factor: 3600 }, 'l_min': { label: 'л/мин', factor: 0.06 }, 'l_s': { label: 'л/с', factor: 3.6 }, 'gpm': { label: 'GPM', factor: 0.2271 }, 't_h': { label: 'т/ч', factor: 1 }, 'kg_s': { label: 'кг/с', factor: 3.6 }, 'kg_h': { label: 'кг/ч', factor: 0.001 } } },
@@ -933,7 +909,6 @@
         resultsDiv.innerHTML = html;
     }
 
-    // --- Шкала-сигнал ---
     var sigUnitLabels = {'4_20':'мА','0_20':'мА','0_10':'В','0_5':'В','1_5':'В','custom':'ед.'};
     function setSignalDefaults() {
         var type = document.getElementById('sigType').value;
@@ -988,7 +963,6 @@
         resDiv.innerHTML='<div style="padding:8px 10px;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:rgba(255,255,255,0.4);font-size:12px;">Сигнал: <b>'+formatNumber(queryVal)+'</b> ('+(pct*100).toFixed(2)+'%)</span></div><div style="padding:8px 10px;background:rgba(13,17,23,0.4);border-radius:8px;margin-top:5px;"><span style="color:rgba(255,255,255,0.4);font-size:12px;">→ Шкала: <b style="color:#4ac771;font-size:16px;">'+formatNumber(scaleVal)+' '+unit+'</b></span></div>';
     }
 
-    // --- Расчёт погрешности ---
     function formatErrorNumber(num) {
         if (num === 0) return '0';
         if (Math.abs(num) >= 1e9 || (Math.abs(num) < 0.00001 && num !== 0)) return num.toExponential(4);
@@ -1084,7 +1058,6 @@
         setTimeout(function() { document.getElementById('errorGenericResults').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
     }
 
-    // --- ТС по ГОСТ 6651-2009 ---
     const rtdData = {
         'pt10': { name: 'Pt10 (10П)', group: 'Pt', r0: 10, nsc: '10П', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-100, 450] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-196, 600] }, classC: { formula: { const: 0.60, coeff: 0.0100 }, range: [-196, 600] } },
         'pt50': { name: 'Pt50 (50П)', group: 'Pt', r0: 50, nsc: '50П', classAA: null, classA: { formula: { const: 0.15, coeff: 0.0020 }, range: [-100, 450] }, classB: { formula: { const: 0.30, coeff: 0.0050 }, range: [-196, 600] }, classC: { formula: { const: 0.60, coeff: 0.0100 }, range: [-196, 600] } },
@@ -1171,7 +1144,6 @@
         setTimeout(function() { document.getElementById('rtdResults').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
     }
 
-    // --- Термопары по ГОСТ Р 8.585-2001 ---
     const tcData = {
         'K': { name: 'K (ТХА)', ranges: { class1: [[-40, 375, 'const', 1.5], [375, 1000, 'linear', 0.004]], class2: [[-40, 333, 'const', 2.5], [333, 1300, 'linear', 0.0075]], class3: [[-250, -167, 'linear', 0.015], [-167, 40, 'const', 2.5]] }},
         'J': { name: 'J (ТЖК)', ranges: { class1: [[-40, 375, 'const', 1.5], [375, 750, 'linear', 0.004]], class2: [[0, 333, 'const', 2.5], [333, 900, 'linear', 0.0075]], class3: null }},
@@ -1304,14 +1276,18 @@
         navigator.clipboard.writeText(csvData.join('\n')).then(function() { showToast('Таблица скопирована'); }).catch(function() { showToast('Не удалось скопировать'); });
     }
 
+    // ИСПРАВЛЕННАЯ ФУНКЦИЯ РАСЧЁТА КАЛИБРОВКИ
     function calculateBuoyCalibration() {
         var diam_mm = parseFloat(document.getElementById('buoy_diam').value);
         var length_mm = parseFloat(document.getElementById('buoy_length').value);
         var buoyWeight_kg = parseFloat(document.getElementById('buoy_weight_kg').value);
         var liquidDensity = parseFloat(document.getElementById('liquid_density').value);
         var suspensionMass = parseFloat(document.getElementById('suspension_mass').value);
-        var calibMethod = document.querySelector('input[name="calib_method"]:checked').value;
         var signalType = document.getElementById('buoy_signal_type').value;
+        
+        // Используем метод из localStorage вместо radio-кнопок
+        var calibMethod = getSelectedCalibMethod();
+        
         if (isNaN(diam_mm)||diam_mm<=0) { showToast('Введите корректный диаметр'); return; }
         if (isNaN(length_mm)||length_mm<=0) { showToast('Введите корректную длину'); return; }
         if (isNaN(buoyWeight_kg)||buoyWeight_kg<=0) { showToast('Введите корректный вес буйка'); return; }
@@ -1364,15 +1340,9 @@
 
     function setCalibMethodOnForm() {
         var method = getSelectedCalibMethod();
-        var radioWithBuoy = document.querySelector('input[name="calib_method"][value="with_buoy"]');
-        var radioWithoutBuoy = document.querySelector('input[name="calib_method"][value="without_buoy"]');
         var indicatorText = document.getElementById('selectedMethodText');
-        if (method === 'with_buoy' && radioWithBuoy) {
-            radioWithBuoy.checked = true;
-            if (indicatorText) indicatorText.textContent = 'С буйком';
-        } else if (radioWithoutBuoy) {
-            radioWithoutBuoy.checked = true;
-            if (indicatorText) indicatorText.textContent = 'Без буйка';
+        if (indicatorText) {
+            indicatorText.textContent = method === 'with_buoy' ? 'С буйком' : 'Без буйка';
         }
     }
 </script>
