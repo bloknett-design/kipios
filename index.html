@@ -24,8 +24,8 @@
         @keyframes floatLine { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-6px); } }
         @keyframes pulseDot { 0%, 100% { opacity: 0.12; r: 2; } 50% { opacity: 0.3; r: 2.5; } }
         
-        /* Обои главной страницы */
-        .dashboard-wallpaper {
+        /* Обои для всех страниц */
+        .page-wallpaper {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             z-index: 0;
@@ -34,7 +34,7 @@
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cdefs%3E%3Cpattern id='p1' x='0' y='0' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='20' cy='20' r='14' stroke='%231c2836' stroke-width='1.5' fill='none'/%3E%3Ccircle cx='20' cy='20' r='10' stroke='%231c2836' stroke-width='1' fill='none'/%3E%3Cpath d='M10 20 L20 20 M20 20 L28 12 M20 20 L26 28' stroke='%231c2836' stroke-width='0.8' fill='none'/%3E%3Cline x1='40' y1='20' x2='60' y2='20' stroke='%231c2836' stroke-width='1'/%3E%3Cline x1='60' y1='20' x2='60' y2='80' stroke='%231c2836' stroke-width='1'/%3E%3Cline x1='60' y1='80' x2='80' y2='80' stroke='%231c2836' stroke-width='1'/%3E%3Cpath d='M30 40 L40 50 L50 40' stroke='%231c2836' stroke-width='1' fill='none'/%3E%3Crect x='75' y='75' width='10' height='10' rx='1' stroke='%231c2836' stroke-width='0.8' fill='none'/%3E%3C/pattern%3E%3Cpattern id='p2' x='0' y='0' width='200' height='200' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='100' cy='100' r='40' stroke='%2317202a' stroke-width='1' fill='none'/%3E%3Ccircle cx='100' cy='100' r='30' stroke='%2317202a' stroke-width='0.5' fill='none'/%3E%3Cpath d='M60 100 Q100 60 140 100 T100 140 Z' stroke='%2317202a' stroke-width='0.8' fill='none'/%3E%3Cline x1='0' y1='0' x2='200' y2='200' stroke='%2317202a' stroke-width='0.5' stroke-dasharray='4,4'/%3E%3Cline x1='200' y1='0' x2='0' y2='200' stroke='%2317202a' stroke-width='0.5' stroke-dasharray='4,4'/%3E%3Cpath d='M0 100 Q50 80 100 100 T200 100' stroke='%2317202a' stroke-width='0.8' fill='none'/%3E%3Cpath d='M100 0 Q120 50 100 100 T100 200' stroke='%2317202a' stroke-width='0.8' fill='none'/%3E%3Crect x='80' y='10' width='40' height='30' rx='2' stroke='%2317202a' stroke-width='0.8' fill='none'/%3E%3Cline x1='85' y1='25' x2='115' y2='25' stroke='%2317202a' stroke-width='0.5'/%3E%3Cline x1='85' y1='30' x2='105' y2='30' stroke='%2317202a' stroke-width='0.5'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='400' height='400' fill='%230d1117'/%3E%3Crect width='400' height='400' fill='url(%23p1)'/%3E%3Crect width='400' height='400' fill='url(%23p2)'/%3E%3Ccircle cx='50' cy='50' r='8' stroke='%231a2634' stroke-width='0.8' fill='none'/%3E%3Ccircle cx='150' cy='80' r='12' stroke='%231a2634' stroke-width='0.8' fill='none'/%3E%3Ccircle cx='320' cy='40' r='6' stroke='%231a2634' stroke-width='0.8' fill='none'/%3E%3Ccircle cx='380' cy='380' r='10' stroke='%231a2634' stroke-width='0.8' fill='none'/%3E%3Cpath d='M100 250 L130 250 L130 280 L160 280' stroke='%23151d27' stroke-width='1' fill='none'/%3E%3Cpath d='M250 100 L280 100 L280 130 L310 130' stroke='%23151d27' stroke-width='1' fill='none'/%3E%3Ccircle cx='200' cy='300' r='20' stroke='%23151d27' stroke-width='0.5' fill='none'/%3E%3Cline x1='185' y1='300' x2='200' y2='300' stroke='%23151d27' stroke-width='0.5'/%3E%3Cline x1='200' y1='300' x2='210' y2='290' stroke='%23151d27' stroke-width='0.5'/%3E%3C/svg%3E");
             background-size: 400px 400px;
         }
-        .dashboard-overlay {
+        .page-overlay {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background: radial-gradient(ellipse at center, transparent 30%, #0d1117 90%);
             z-index: 1; pointer-events: none;
@@ -57,6 +57,16 @@
         .app-header-inner {
             display: flex; align-items: center; justify-content: space-between;
             width: 100%; padding: 0 20px; height: 100%;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header-logo {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
         }
         .header-title {
             font-size: 20px; font-weight: 800; letter-spacing: 2px;
@@ -89,7 +99,7 @@
         .nav-btn-home { color: rgba(74, 199, 113, 0.8); background: rgba(74, 199, 113, 0.06); border-color: rgba(74, 199, 113, 0.12); }
         .nav-separator { color: rgba(255,255,255,0.12); font-size: 16px; padding: 0 4px; }
         
-        .content-header { padding: 18px 20px 14px; }
+        .content-header { padding: 18px 20px 14px; position: relative; z-index: 2; }
         .content-header h2 { color: #e0e0e0; font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
         .content-header p { color: rgba(255,255,255,0.35); font-size: 12px; margin-top: 5px; }
         
@@ -131,6 +141,7 @@
         .scale-form, .converter-form { 
             background: rgba(22, 27, 34, 0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(255,255,255,0.05); border-radius: 14px; margin: 10px 16px; padding: 16px; 
+            position: relative; z-index: 2;
         }
         .scale-form-label, .form-label { color: rgba(255,255,255,0.35); font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; font-weight: 500; }
         .scale-field, .form-field {
@@ -148,13 +159,14 @@
             border: none; border-radius: 12px; color: #fff; font-size: 15px; font-weight: 600;
             font-family: 'Inter', sans-serif; cursor: pointer; pointer-events: auto;
             touch-action: manipulation; transition: all 0.25s; -webkit-tap-highlight-color: transparent;
+            position: relative; z-index: 2;
         }
         .converter-convert-btn:active, .scale-calc-btn:active { transform: scale(0.97); opacity: 0.9; }
         .converter-convert-btn svg, .scale-calc-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; pointer-events: none; }
         .converter-convert-btn { background: linear-gradient(135deg, #2563eb, #3b82f6); box-shadow: 0 3px 12px rgba(37, 99, 235, 0.25); }
         .scale-calc-btn { background: linear-gradient(135deg, #059669, #10b981); box-shadow: 0 3px 12px rgba(5, 150, 105, 0.25); }
         
-        .converter-result-group { margin: 6px 16px 16px; }
+        .converter-result-group { margin: 6px 16px 16px; position: relative; z-index: 2; }
         .converter-result-label-title { color: rgba(255,255,255,0.3); font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px; padding-left: 4px; font-weight: 500; }
         .converter-result-item {
             display: flex; justify-content: space-between; align-items: center;
@@ -166,11 +178,12 @@
         .converter-result-value { color: #4a8fc7; font-size: 14px; font-weight: 600; }
         @keyframes slideIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
         
-        .buoy-select-container { display: flex; flex-direction: row; gap: 12px; padding: 14px 16px; justify-content: center; align-items: stretch; }
+        .buoy-select-container { display: flex; flex-direction: row; gap: 12px; padding: 14px 16px; justify-content: center; align-items: stretch; position: relative; z-index: 2; }
         .buoy-card {
             flex: 1; background: rgba(22, 27, 34, 0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; cursor: pointer;
             transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1); overflow: hidden; position: relative;
+            min-width: 0;
         }
         .buoy-card:hover, .buoy-card:active { transform: translateY(-3px); border-color: rgba(74, 143, 199, 0.15); box-shadow: 0 6px 16px rgba(0,0,0,0.25); }
         .buoy-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #4a8fc7, #4ac771); opacity: 0; transition: opacity 0.25s; }
@@ -178,20 +191,19 @@
         .buoy-card-inner { padding: 14px 12px 18px; text-align: center; }
         .buoy-illustration {
             margin-bottom: 12px; display: flex; justify-content: center; align-items: center;
-            min-height: 160px; background: rgba(13, 17, 23, 0.6); border-radius: 12px; padding: 10px;
+            min-height: 140px; background: rgba(13, 17, 23, 0.6); border-radius: 12px; padding: 8px;
             border: 1px solid rgba(255,255,255,0.03);
         }
-        .buoy-illustration svg { width: 100%; max-width: 170px; height: auto; }
-        .buoy-card-title { font-size: 15px; font-weight: 700; color: #4a8fc7; margin-bottom: 5px; }
-        .buoy-card-desc { font-size: 10px; color: rgba(255,255,255,0.3); margin-bottom: 8px; line-height: 1.3; }
+        .buoy-illustration svg { width: 100%; max-width: 150px; height: auto; }
+        .buoy-card-title { font-size: 14px; font-weight: 700; color: #4a8fc7; margin-bottom: 4px; }
+        .buoy-card-desc { font-size: 10px; color: rgba(255,255,255,0.3); margin-bottom: 6px; line-height: 1.3; }
         .buoy-card-formula {
-            font-size: 10px; font-family: 'Inter', monospace; background: rgba(13, 17, 23, 0.8);
-            padding: 6px 10px; border-radius: 8px; color: #4ac771; display: inline-block; font-weight: 600;
+            font-size: 9px; font-family: 'Inter', monospace; background: rgba(13, 17, 23, 0.8);
+            padding: 5px 8px; border-radius: 8px; color: #4ac771; display: inline-block; font-weight: 600;
             border: 1px solid rgba(74, 199, 113, 0.08);
         }
-        @media (max-width: 600px) { .buoy-select-container { flex-direction: column; gap: 12px; } .buoy-illustration { min-height: 140px; } }
         
-        .method-indicator { background: rgba(22, 27, 34, 0.5); backdrop-filter: blur(8px); margin: 10px 16px; padding: 12px 14px; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(255,255,255,0.05); }
+        .method-indicator { background: rgba(22, 27, 34, 0.5); backdrop-filter: blur(8px); margin: 10px 16px; padding: 12px 14px; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(255,255,255,0.05); position: relative; z-index: 2; }
         
         .query-btn {
             width: 100%; background: rgba(22, 27, 34, 0.7); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px;
@@ -255,6 +267,7 @@
             .nav-btn { padding: 6px 10px; font-size: 12px; }
             .form-field, .scale-field { padding: 11px 12px; font-size: 14px; }
             .warning-banner { margin: 8px 12px 0; padding: 10px 12px; }
+            .buoy-illustration { min-height: 120px; }
         }
         @media (max-width: 400px) {
             .menu-btn { width: calc(100% - 16px); margin: 3px 8px; padding: 10px 12px; }
@@ -265,6 +278,9 @@
             .form-field, .scale-field { padding: 10px 10px; font-size: 13px; }
             .bottom-nav-item { min-width: 52px; padding: 5px 2px; }
             .bottom-nav-label { font-size: 8px; }
+            .buoy-illustration { min-height: 100px; }
+            .buoy-card-title { font-size: 12px; }
+            .buoy-card-desc { font-size: 9px; }
         }
         @media (min-width: 481px) { .menu-btn { max-width: 480px; } }
     </style>
@@ -295,9 +311,38 @@
 <div id="mainApp">
     <header class="app-header">
         <div class="app-header-inner">
-            <div>
-                <div class="header-title">КИП ИОС</div>
-                <div class="header-subtitle">Контроль · Измерения · Автоматизация</div>
+            <div class="header-left">
+                <!-- Логотип КИПиА -->
+                <svg class="header-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Верхний ряд: К И П -->
+                    <circle cx="25" cy="25" r="14" fill="#4a8fc7"/>
+                    <text x="25" y="30" text-anchor="middle" fill="white" font-size="16" font-weight="bold" font-family="Inter, sans-serif">К</text>
+                    <circle cx="50" cy="25" r="14" fill="#4a8fc7"/>
+                    <text x="50" y="30" text-anchor="middle" fill="white" font-size="16" font-weight="bold" font-family="Inter, sans-serif">И</text>
+                    <circle cx="75" cy="25" r="14" fill="#4a8fc7"/>
+                    <text x="75" y="30" text-anchor="middle" fill="white" font-size="16" font-weight="bold" font-family="Inter, sans-serif">П</text>
+                    <!-- Соединительные линии верхнего ряда -->
+                    <path d="M39 25 Q44 20 50 25" stroke="#4a8fc7" stroke-width="3" fill="none"/>
+                    <path d="M61 25 Q66 20 72 25" stroke="#4a8fc7" stroke-width="3" fill="none"/>
+                    <!-- Средний ряд -->
+                    <circle cx="25" cy="50" r="12" fill="#1a1a1a"/>
+                    <circle cx="50" cy="50" r="14" fill="#4a8fc7"/>
+                    <text x="50" y="55" text-anchor="middle" fill="white" font-size="16" font-weight="bold" font-family="Inter, sans-serif">И</text>
+                    <circle cx="75" cy="50" r="12" fill="#1a1a1a"/>
+                    <!-- Соединительная линия вертикальная -->
+                    <path d="M50 39 Q55 44 50 50" stroke="#4a8fc7" stroke-width="3" fill="none"/>
+                    <!-- Нижний ряд -->
+                    <circle cx="25" cy="75" r="12" fill="#1a1a1a"/>
+                    <circle cx="50" cy="75" r="14" fill="#4a8fc7"/>
+                    <text x="50" y="80" text-anchor="middle" fill="white" font-size="16" font-weight="bold" font-family="Inter, sans-serif">А</text>
+                    <circle cx="75" cy="75" r="12" fill="#1a1a1a"/>
+                    <!-- Соединительная линия вертикальная -->
+                    <path d="M50 64 Q55 69 50 75" stroke="#4a8fc7" stroke-width="3" fill="none"/>
+                </svg>
+                <div>
+                    <div class="header-title">КИП ИОС</div>
+                    <div class="header-subtitle">Контроль · Измерения · Автоматизация</div>
+                </div>
             </div>
             <div class="header-btn" onclick="showToast('Обновлено')">
                 <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
@@ -308,8 +353,8 @@
     <div id="contentArea">
         <!-- Главная страница -->
         <div id="page-dashboard" class="page-content active">
-            <div class="dashboard-wallpaper"></div>
-            <div class="dashboard-overlay"></div>
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="warning-banner">
                 <div class="warning-icon">
                     <svg viewBox="0 0 24 24"><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
@@ -347,6 +392,8 @@
 
         <!-- Конвертер -->
         <div id="page-converter" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Конвертер единиц</h2><p>Выберите тип конвертации</p></div>
             <div class="menu-btn-row">
@@ -363,6 +410,8 @@
         </div>
 
         <div id="page-conv-pressure" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('converter')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Давление</h2><p>Перевод единиц давления</p></div>
             <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-pressure-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-pressure-unit" class="form-field"><option value="Pa">Па</option><option value="kPa">кПа</option><option value="MPa" selected>МПа</option><option value="bar">бар</option><option value="mbar">мбар</option><option value="atm">атм</option><option value="kgf_cm2">кгс/см²</option><option value="mmHg">мм рт. ст.</option><option value="PSI">PSI</option><option value="Torr">Торр</option><option value="mmH2O">мм вод. ст.</option></select></div>
@@ -372,6 +421,8 @@
         </div>
 
         <div id="page-conv-flow" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('converter')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Расход</h2><p>Перевод единиц расхода</p></div>
             <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-flow-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-flow-unit" class="form-field"><option value="m3h" selected>м³/ч</option><option value="m3s">м³/с</option><option value="l_min">л/мин</option><option value="l_s">л/с</option><option value="gpm">GPM</option><option value="t_h">т/ч</option><option value="kg_s">кг/с</option><option value="kg_h">кг/ч</option></select></div>
@@ -381,6 +432,8 @@
         </div>
 
         <div id="page-conv-mass" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('converter')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Вес и масса</h2><p>Перевод единиц массы</p></div>
             <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-mass-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-mass-unit" class="form-field"><option value="kg" selected>кг</option><option value="g">г</option><option value="mg">мг</option><option value="t">т</option><option value="lb">фунт</option><option value="oz">унция</option><option value="ton">тонна US</option></select></div>
@@ -390,6 +443,8 @@
         </div>
 
         <div id="page-conv-temp" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('converter')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Температура</h2><p>Перевод единиц температуры</p></div>
             <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-temp-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-temp-unit" class="form-field"><option value="C" selected>°C</option><option value="F">°F</option><option value="K">K</option><option value="R">°R</option><option value="Ra">°Ra</option></select></div>
@@ -399,6 +454,8 @@
         </div>
 
         <div id="page-conv-length" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('converter')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Длина и расстояние</h2><p>Перевод единиц длины</p></div>
             <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-length-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-length-unit" class="form-field"><option value="m" selected>м</option><option value="km">км</option><option value="cm">см</option><option value="mm">мм</option><option value="um">мкм</option><option value="mi">миля</option><option value="ft">фут</option><option value="in">дюйм</option><option value="yd">ярд</option></select></div>
@@ -408,6 +465,8 @@
         </div>
 
         <div id="page-conv-density" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('converter')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Плотность</h2><p>Перевод единиц плотности</p></div>
             <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-density-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-density-unit" class="form-field"><option value="kg_m3" selected>кг/м³</option><option value="g_cm3">г/см³</option><option value="g_l">г/л</option><option value="kg_l">кг/л</option><option value="lb_ft3">lb/ft³</option><option value="lb_gal">lb/gal</option></select></div>
@@ -417,6 +476,8 @@
         </div>
 
         <div id="page-conv-time" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('converter')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Время</h2><p>Перевод единиц времени</p></div>
             <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-time-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-time-unit" class="form-field"><option value="s" selected>секунда</option><option value="ms">мс</option><option value="min">минута</option><option value="h">час</option><option value="d">сутки</option><option value="week">неделя</option><option value="month">месяц</option><option value="year">год</option></select></div>
@@ -426,6 +487,8 @@
         </div>
 
         <div id="page-conv-volume" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('converter')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Объём</h2><p>Перевод единиц объёма</p></div>
             <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-volume-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-volume-unit" class="form-field"><option value="m3" selected>м³</option><option value="l">литр</option><option value="ml">мл</option><option value="cm3">см³</option><option value="gal">галлон</option><option value="bbl">баррель</option><option value="ft3">куб. фут</option></select></div>
@@ -436,6 +499,8 @@
 
         <!-- Шкала-сигнал -->
         <div id="page-scale-signal" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Шкала-сигнал</h2><p>Расчёт соответствия шкалы и сигнала</p></div>
             <div class="scale-form">
@@ -463,6 +528,8 @@
 
         <!-- Расчёт погрешности - Выбор -->
         <div id="page-error-select" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Расчёт погрешности</h2><p>Выберите тип прибора</p></div>
             <div class="menu-btn-row">
@@ -476,6 +543,8 @@
         </div>
 
         <div id="page-error-pressure" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-select')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Датчик давления</h2><p>Расчёт погрешности</p></div>
             <div class="scale-form">
@@ -492,6 +561,8 @@
         </div>
 
         <div id="page-error-temp-select" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-select')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Датчик температуры</h2><p>Выберите тип датчика</p></div>
             <div class="menu-btn-row">
@@ -502,6 +573,8 @@
         </div>
 
         <div id="page-error-temp-rtd" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-temp-select')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Термопреобразователи сопротивления</h2><p>ГОСТ 6651-2009</p></div>
             <div class="scale-form">
@@ -521,6 +594,8 @@
         </div>
 
         <div id="page-error-temp-tc" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-temp-select')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Термопары (ТП)</h2><p>ГОСТ Р 8.585-2001</p></div>
             <div class="scale-form">
@@ -538,6 +613,8 @@
         </div>
 
         <div id="page-error-flow" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-select')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Расходомер</h2><p>Расчёт погрешности</p></div>
             <div class="scale-form">
@@ -554,6 +631,8 @@
         </div>
 
         <div id="page-error-level" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-select')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Уровнемер</h2><p>Расчёт погрешности</p></div>
             <div class="scale-form">
@@ -570,6 +649,8 @@
         </div>
 
         <div id="page-error-generic" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-select')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Аналоговый преобразователь</h2><p>Расчёт погрешности</p></div>
             <div class="scale-form">
@@ -587,6 +668,8 @@
 
         <!-- Буйковый уровнемер - Выбор метода -->
         <div id="page-buoy-select" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Калибровка буйкового уровнемера</h2><p>Выберите метод калибровки</p></div>
             <div class="buoy-select-container">
@@ -595,12 +678,9 @@
                         <div class="buoy-illustration">
                             <!-- Схематичный чертёж: С буйком (стиль проектного чертежа) -->
                             <svg viewBox="0 0 220 240" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#3b6ea5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                                <!-- Резервуар -->
                                 <rect x="50" y="40" width="120" height="160" stroke-width="1.8" stroke-dasharray="6,4"/>
-                                <!-- Линия жидкости (штриховка) -->
                                 <line x1="50" y1="110" x2="170" y2="110" stroke-width="1"/>
                                 <path d="M50 110 L170 110 L170 200 L50 200 Z" fill="rgba(59,110,165,0.05)"/>
-                                <!-- Штриховка жидкости -->
                                 <line x1="60" y1="120" x2="160" y2="120" stroke-width="0.5" stroke-dasharray="2,2"/>
                                 <line x1="60" y1="130" x2="160" y2="130" stroke-width="0.5" stroke-dasharray="2,2"/>
                                 <line x1="60" y1="140" x2="160" y2="140" stroke-width="0.5" stroke-dasharray="2,2"/>
@@ -609,73 +689,57 @@
                                 <line x1="60" y1="170" x2="160" y2="170" stroke-width="0.5" stroke-dasharray="2,2"/>
                                 <line x1="60" y1="180" x2="160" y2="180" stroke-width="0.5" stroke-dasharray="2,2"/>
                                 <line x1="60" y1="190" x2="160" y2="190" stroke-width="0.5" stroke-dasharray="2,2"/>
-                                <!-- Буёк -->
                                 <rect x="90" y="95" width="40" height="25" rx="1" fill="rgba(59,110,165,0.15)"/>
                                 <line x1="100" y1="108" x2="120" y2="108" stroke-width="0.8"/>
                                 <line x1="110" y1="98" x2="110" y2="118" stroke-width="0.8"/>
-                                <!-- Шток -->
                                 <line x1="110" y1="95" x2="110" y2="50" stroke-width="1.5"/>
                                 <circle cx="110" cy="48" r="4" fill="none"/>
-                                <!-- Рычаг -->
                                 <line x1="110" y1="48" x2="60" y2="25" stroke-width="1.5"/>
-                                <!-- Опора -->
                                 <circle cx="60" cy="25" r="5" fill="none"/>
                                 <line x1="57" y1="22" x2="63" y2="28" stroke-width="0.8"/>
                                 <line x1="63" y1="22" x2="57" y2="28" stroke-width="0.8"/>
-                                <!-- Гири -->
                                 <rect x="48" y="15" width="24" height="14" fill="none"/>
                                 <text x="60" y="25" text-anchor="middle" fill="#3b6ea5" font-size="8" font-family="Inter" stroke="none">m₁</text>
-                                <!-- Размерная линия уровня -->
                                 <line x1="40" y1="95" x2="40" y2="110" stroke="rgba(59,110,165,0.4)" stroke-width="0.8"/>
                                 <line x1="37" y1="95" x2="43" y2="95" stroke="rgba(59,110,165,0.4)" stroke-width="0.8"/>
                                 <line x1="37" y1="110" x2="43" y2="110" stroke="rgba(59,110,165,0.4)" stroke-width="0.8"/>
                                 <text x="35" y="105" text-anchor="middle" fill="rgba(59,110,165,0.5)" font-size="7" font-family="Inter" stroke="none">h</text>
-                                <!-- Подписи -->
                                 <text x="110" y="135" text-anchor="middle" fill="rgba(59,110,165,0.7)" font-size="8" font-family="Inter" stroke="none">Буёк</text>
                                 <text x="185" y="150" text-anchor="middle" fill="rgba(59,110,165,0.5)" font-size="7" font-family="Inter" stroke="none">жидк.</text>
                             </svg>
                         </div>
                         <div class="buoy-card-title">С буйком</div>
-                        <div class="buoy-card-desc">Компенсационный метод с буёком в жидкости</div>
+                        <div class="buoy-card-desc">Компенсационный метод</div>
                         <div class="buoy-card-formula">m_гири = m_выт + m_подвеса</div>
                     </div>
                 </div>
                 <div class="buoy-card" onclick="selectCalibMethod('without_buoy')">
                     <div class="buoy-card-inner">
                         <div class="buoy-illustration">
-                            <!-- Схематичный чертёж: Без буйка (стиль проектного чертежа) -->
+                            <!-- Схематичный чертёж: Без буйка -->
                             <svg viewBox="0 0 220 240" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#3b6ea5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                                <!-- Резервуар (пустой, пунктир) -->
                                 <rect x="50" y="40" width="120" height="160" stroke-width="1.8" stroke-dasharray="6,4"/>
-                                <!-- Перечёркнутый буёк -->
                                 <rect x="90" y="95" width="40" height="25" rx="1" fill="none" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.4"/>
                                 <line x1="85" y1="90" x2="135" y2="125" stroke-width="1.5" stroke="#a85b5b"/>
                                 <line x1="135" y1="90" x2="85" y2="125" stroke-width="1.5" stroke="#a85b5b"/>
-                                <!-- Шток оборван -->
                                 <line x1="110" y1="95" x2="110" y2="65" stroke-width="1" stroke-dasharray="3,2" opacity="0.4"/>
-                                <!-- Стрелка вверх -->
                                 <line x1="110" y1="48" x2="110" y2="60" stroke-width="1"/>
                                 <polyline points="106,57 110,48 114,57" stroke-width="1" fill="none"/>
-                                <!-- Рычаг -->
                                 <line x1="110" y1="48" x2="60" y2="25" stroke-width="1.5"/>
-                                <!-- Опора -->
                                 <circle cx="60" cy="25" r="5" fill="none"/>
                                 <line x1="57" y1="22" x2="63" y2="28" stroke-width="0.8"/>
                                 <line x1="63" y1="22" x2="57" y2="28" stroke-width="0.8"/>
-                                <!-- Гири -->
                                 <rect x="48" y="13" width="24" height="16" fill="none"/>
                                 <text x="60" y="24" text-anchor="middle" fill="#3b6ea5" font-size="8" font-family="Inter" stroke="none">m₁</text>
-                                <!-- Размерная линия длины -->
                                 <line x1="40" y1="40" x2="40" y2="200" stroke="rgba(59,110,165,0.4)" stroke-width="0.8"/>
                                 <line x1="37" y1="40" x2="43" y2="40" stroke="rgba(59,110,165,0.4)" stroke-width="0.8"/>
                                 <line x1="37" y1="200" x2="43" y2="200" stroke="rgba(59,110,165,0.4)" stroke-width="0.8"/>
                                 <text x="35" y="123" text-anchor="middle" fill="rgba(59,110,165,0.5)" font-size="7" font-family="Inter" stroke="none">L</text>
-                                <!-- Подписи -->
                                 <text x="150" y="110" text-anchor="middle" fill="rgba(168,91,91,0.7)" font-size="8" font-family="Inter" stroke="none">буёк снят</text>
                             </svg>
                         </div>
                         <div class="buoy-card-title">Без буйка</div>
-                        <div class="buoy-card-desc">Имитация выталкивающей силы гирями</div>
+                        <div class="buoy-card-desc">Имитация выталкивающей силы</div>
                         <div class="buoy-card-formula">m_гири = m_буйка − m_выт + m_подвеса</div>
                     </div>
                 </div>
@@ -685,6 +749,8 @@
 
         <!-- Буйковый уровнемер - Расчёт -->
         <div id="page-buoy-calc" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('buoy-select')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             
             <div id="selectedMethodIndicator" class="method-indicator">
@@ -698,7 +764,7 @@
                 </button>
             </div>
             
-            <div class="content-header"><h2>Буйковый уровнемер</h2><p>Расчёт выталкивающей силы и калибровочных гирь</p></div>
+            <div class="content-header"><h2 id="buoyCalcTitle">Буйковый уровнемер</h2><p>Расчёт выталкивающей силы и калибровочных гирь</p></div>
             
             <div class="scale-form">
                 <div class="scale-form-label">Параметры буйка</div>
@@ -800,7 +866,7 @@
         updateBuoySignalUnit();
         if (document.getElementById('rtd_group')) { updateRtdTypeOptions(); }
         if (document.getElementById('tc_type')) { updateTcRanges(); }
-        if (document.getElementById('selectedMethodText')) { setCalibMethodOnForm(); }
+        setCalibMethodOnForm();
     });
 
     function navigateTo(page) {
@@ -822,6 +888,11 @@
             });
         }
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Обновляем заголовок страницы буйкового уровнемера
+        if (page === 'buoy-calc') {
+            updateBuoyCalcTitle();
+        }
     }
 
     (function() {
@@ -1325,6 +1396,15 @@
         var indicatorText = document.getElementById('selectedMethodText');
         if (indicatorText) {
             indicatorText.textContent = method === 'with_buoy' ? 'С буйком' : 'Без буйка';
+        }
+        updateBuoyCalcTitle();
+    }
+    
+    function updateBuoyCalcTitle() {
+        var method = getSelectedCalibMethod();
+        var titleEl = document.getElementById('buoyCalcTitle');
+        if (titleEl) {
+            titleEl.textContent = method === 'with_buoy' ? 'С буйком' : 'Без буйка';
         }
     }
 </script>
