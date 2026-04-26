@@ -23,15 +23,25 @@
         .bg-network .dot { fill: rgba(74, 143, 199, 0.12); }
         @keyframes floatLine { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-6px); } }
         @keyframes pulseDot { 0%, 100% { opacity: 0.12; r: 2; } 50% { opacity: 0.3; r: 2.5; } }
-        .bg-overlay {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(ellipse at top left, rgba(74,143,199,0.05) 0%, transparent 60%),
-                        radial-gradient(ellipse at bottom right, rgba(74,199,113,0.03) 0%, transparent 50%);
-            z-index: 0; pointer-events: none;
+        
+        /* Обои главной страницы */
+        .dashboard-wallpaper {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-color: #0d1117;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cdefs%3E%3Cpattern id='p1' x='0' y='0' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='20' cy='20' r='14' stroke='%231c2836' stroke-width='1.5' fill='none'/%3E%3Ccircle cx='20' cy='20' r='10' stroke='%231c2836' stroke-width='1' fill='none'/%3E%3Cpath d='M10 20 L20 20 M20 20 L28 12 M20 20 L26 28' stroke='%231c2836' stroke-width='0.8' fill='none'/%3E%3Cline x1='40' y1='20' x2='60' y2='20' stroke='%231c2836' stroke-width='1'/%3E%3Cline x1='60' y1='20' x2='60' y2='80' stroke='%231c2836' stroke-width='1'/%3E%3Cline x1='60' y1='80' x2='80' y2='80' stroke='%231c2836' stroke-width='1'/%3E%3Cpath d='M30 40 L40 50 L50 40' stroke='%231c2836' stroke-width='1' fill='none'/%3E%3Crect x='75' y='75' width='10' height='10' rx='1' stroke='%231c2836' stroke-width='0.8' fill='none'/%3E%3C/pattern%3E%3Cpattern id='p2' x='0' y='0' width='200' height='200' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='100' cy='100' r='40' stroke='%2317202a' stroke-width='1' fill='none'/%3E%3Ccircle cx='100' cy='100' r='30' stroke='%2317202a' stroke-width='0.5' fill='none'/%3E%3Cpath d='M60 100 Q100 60 140 100 T100 140 Z' stroke='%2317202a' stroke-width='0.8' fill='none'/%3E%3Cline x1='0' y1='0' x2='200' y2='200' stroke='%2317202a' stroke-width='0.5' stroke-dasharray='4,4'/%3E%3Cline x1='200' y1='0' x2='0' y2='200' stroke='%2317202a' stroke-width='0.5' stroke-dasharray='4,4'/%3E%3Cpath d='M0 100 Q50 80 100 100 T200 100' stroke='%2317202a' stroke-width='0.8' fill='none'/%3E%3Cpath d='M100 0 Q120 50 100 100 T100 200' stroke='%2317202a' stroke-width='0.8' fill='none'/%3E%3Crect x='80' y='10' width='40' height='30' rx='2' stroke='%2317202a' stroke-width='0.8' fill='none'/%3E%3Cline x1='85' y1='25' x2='115' y2='25' stroke='%2317202a' stroke-width='0.5'/%3E%3Cline x1='85' y1='30' x2='105' y2='30' stroke='%2317202a' stroke-width='0.5'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='400' height='400' fill='%230d1117'/%3E%3Crect width='400' height='400' fill='url(%23p1)'/%3E%3Crect width='400' height='400' fill='url(%23p2)'/%3E%3Ccircle cx='50' cy='50' r='8' stroke='%231a2634' stroke-width='0.8' fill='none'/%3E%3Ccircle cx='150' cy='80' r='12' stroke='%231a2634' stroke-width='0.8' fill='none'/%3E%3Ccircle cx='320' cy='40' r='6' stroke='%231a2634' stroke-width='0.8' fill='none'/%3E%3Ccircle cx='380' cy='380' r='10' stroke='%231a2634' stroke-width='0.8' fill='none'/%3E%3Cpath d='M100 250 L130 250 L130 280 L160 280' stroke='%23151d27' stroke-width='1' fill='none'/%3E%3Cpath d='M250 100 L280 100 L280 130 L310 130' stroke='%23151d27' stroke-width='1' fill='none'/%3E%3Ccircle cx='200' cy='300' r='20' stroke='%23151d27' stroke-width='0.5' fill='none'/%3E%3Cline x1='185' y1='300' x2='200' y2='300' stroke='%23151d27' stroke-width='0.5'/%3E%3Cline x1='200' y1='300' x2='210' y2='290' stroke='%23151d27' stroke-width='0.5'/%3E%3C/svg%3E");
+            background-size: 400px 400px;
+        }
+        .dashboard-overlay {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at center, transparent 30%, #0d1117 90%);
+            z-index: 1; pointer-events: none;
         }
         
         .page-content { 
-            display: none; position: relative; z-index: 1;
+            display: none; position: relative; z-index: 2;
             opacity: 0; transform: translateY(10px);
             transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -83,7 +93,7 @@
         .content-header h2 { color: #e0e0e0; font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
         .content-header p { color: rgba(255,255,255,0.35); font-size: 12px; margin-top: 5px; }
         
-        .menu-btn-row { display: flex; flex-direction: column; align-items: center; padding: 10px 0 24px; }
+        .menu-btn-row { display: flex; flex-direction: column; align-items: center; padding: 10px 0 24px; position: relative; z-index: 2; }
         .menu-btn {
             display: flex; align-items: center; justify-content: flex-start; position: relative;
             width: calc(100% - 32px); min-width: 0; padding: 14px 16px; margin: 5px 16px;
@@ -105,7 +115,7 @@
             margin: 10px 16px 0; padding: 12px 14px;
             background: rgba(199, 150, 74, 0.05);
             border: 1px solid rgba(199, 150, 74, 0.1);
-            border-radius: 12px;
+            border-radius: 12px; position: relative; z-index: 2;
         }
         .warning-icon {
             width: 32px; height: 32px; flex-shrink: 0;
@@ -202,7 +212,7 @@
         .toast.show { transform: translateY(0); opacity: 1; }
         .toast svg { width: 18px; height: 18px; stroke: #4ac771; fill: none; stroke-width: 2; stroke-linecap: round; }
         
-        .page-bottom-bg { position: relative; margin-top: 20px; padding: 20px 16px 40px; text-align: center; overflow: hidden; }
+        .page-bottom-bg { position: relative; margin-top: 20px; padding: 20px 16px 40px; text-align: center; overflow: hidden; z-index: 2; }
         .page-bottom-bg::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at center, rgba(74,143,199,0.03) 0%, transparent 70%); z-index: 0; }
         .page-bottom-text { position: relative; z-index: 2; color: rgba(255,255,255,0.12); font-size: 9px; letter-spacing: 1px; }
         
@@ -210,66 +220,27 @@
         input[type="radio"] + div { pointer-events: none; }
         input[type="radio"] + div > * { pointer-events: none; }
         
-        /* Фиксированная нижняя навигация */
         .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            background: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255,255,255,0.06);
-            padding: 8px 8px;
-            padding-bottom: max(8px, env(safe-area-inset-bottom));
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(13, 17, 23, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255,255,255,0.06); padding: 8px 8px; padding-bottom: max(8px, env(safe-area-inset-bottom));
         }
-        .bottom-nav-inner {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
+        .bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; }
         .bottom-nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 6px 4px;
-            cursor: pointer;
-            transition: all 0.2s;
-            border-radius: 10px;
-            min-width: 60px;
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-            pointer-events: auto;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 6px 4px; cursor: pointer; transition: all 0.2s; border-radius: 10px; min-width: 60px;
+            -webkit-tap-highlight-color: transparent; touch-action: manipulation; pointer-events: auto;
         }
         .bottom-nav-item:active { transform: scale(0.92); background: rgba(255,255,255,0.05); }
-        .bottom-nav-icon {
-            width: 22px;
-            height: 22px;
-            margin-bottom: 3px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        .bottom-nav-icon { width: 22px; height: 22px; margin-bottom: 3px; display: flex; align-items: center; justify-content: center; }
         .bottom-nav-icon svg {
-            width: 18px;
-            height: 18px;
-            stroke: rgba(255,255,255,0.35);
-            fill: none;
-            stroke-width: 1.8;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            transition: stroke 0.2s;
+            width: 18px; height: 18px; stroke: rgba(255,255,255,0.35); fill: none; stroke-width: 1.8;
+            stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s;
         }
         .bottom-nav-item:active .bottom-nav-icon svg { stroke: rgba(74, 143, 199, 0.8); }
         .bottom-nav-label {
-            font-size: 9px;
-            color: rgba(255,255,255,0.35);
-            text-align: center;
-            line-height: 1.2;
-            white-space: nowrap;
-            transition: color 0.2s;
+            font-size: 9px; color: rgba(255,255,255,0.35); text-align: center; line-height: 1.2;
+            white-space: nowrap; transition: color 0.2s;
         }
         .bottom-nav-item:active .bottom-nav-label { color: rgba(74, 143, 199, 0.8); }
         
@@ -279,8 +250,7 @@
         }
         @media (max-width: 480px) {
             .menu-btn { width: calc(100% - 24px); margin: 4px 12px; padding: 12px 14px; }
-            .menu-btn-label { font-size: 14px; }
-            .menu-btn-sublabel { font-size: 10px; }
+            .menu-btn-label { font-size: 14px; } .menu-btn-sublabel { font-size: 10px; }
             .header-title { font-size: 18px; }
             .nav-btn { padding: 6px 10px; font-size: 12px; }
             .form-field, .scale-field { padding: 11px 12px; font-size: 14px; }
@@ -288,8 +258,7 @@
         }
         @media (max-width: 400px) {
             .menu-btn { width: calc(100% - 16px); margin: 3px 8px; padding: 10px 12px; }
-            .menu-btn-label { font-size: 13px; }
-            .menu-btn-sublabel { font-size: 9px; }
+            .menu-btn-label { font-size: 13px; } .menu-btn-sublabel { font-size: 9px; }
             .header-title { font-size: 16px; letter-spacing: 1px; }
             .header-subtitle { font-size: 7px; letter-spacing: 2px; }
             .nav-btn { padding: 5px 8px; font-size: 11px; gap: 3px; }
@@ -322,7 +291,6 @@
         </g>
     </svg>
 </div>
-<div class="bg-overlay"></div>
 
 <div id="mainApp">
     <header class="app-header">
@@ -340,6 +308,8 @@
     <div id="contentArea">
         <!-- Главная страница -->
         <div id="page-dashboard" class="page-content active">
+            <div class="dashboard-wallpaper"></div>
+            <div class="dashboard-overlay"></div>
             <div class="warning-banner">
                 <div class="warning-icon">
                     <svg viewBox="0 0 24 24"><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
@@ -392,16 +362,10 @@
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Конвертер единиц измерения</div></div>
         </div>
 
-        <!-- Страницы конвертеров -->
         <div id="page-conv-pressure" class="page-content">
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('converter')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Давление</h2><p>Перевод единиц давления</p></div>
-            <div class="converter-form">
-                <div class="form-label">Значение</div>
-                <input type="number" id="conv-pressure-input" class="form-field" placeholder="Введите значение" step="any">
-                <div class="form-label">Единица измерения</div>
-                <select id="conv-pressure-unit" class="form-field"><option value="Pa">Па</option><option value="kPa">кПа</option><option value="MPa" selected>МПа</option><option value="bar">бар</option><option value="mbar">мбар</option><option value="atm">атм</option><option value="kgf_cm2">кгс/см²</option><option value="mmHg">мм рт. ст.</option><option value="PSI">PSI</option><option value="Torr">Торр</option><option value="mmH2O">мм вод. ст.</option></select>
-            </div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-pressure-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-pressure-unit" class="form-field"><option value="Pa">Па</option><option value="kPa">кПа</option><option value="MPa" selected>МПа</option><option value="bar">бар</option><option value="mbar">мбар</option><option value="atm">атм</option><option value="kgf_cm2">кгс/см²</option><option value="mmHg">мм рт. ст.</option><option value="PSI">PSI</option><option value="Torr">Торр</option><option value="mmH2O">мм вод. ст.</option></select></div>
             <button class="converter-convert-btn" onclick="convertUnits('pressure')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-pressure-results"></div>
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Конвертер давления</div></div>
@@ -511,7 +475,6 @@
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Расчёт погрешности</div></div>
         </div>
 
-        <!-- Расчёт погрешности - Давление -->
         <div id="page-error-pressure" class="page-content">
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-select')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Датчик давления</h2><p>Расчёт погрешности</p></div>
@@ -528,7 +491,6 @@
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Датчик давления</div></div>
         </div>
 
-        <!-- Расчёт погрешности - Температура выбор -->
         <div id="page-error-temp-select" class="page-content">
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-select')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Датчик температуры</h2><p>Выберите тип датчика</p></div>
@@ -539,7 +501,6 @@
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Датчик температуры</div></div>
         </div>
 
-        <!-- Расчёт погрешности - ТС -->
         <div id="page-error-temp-rtd" class="page-content">
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-temp-select')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Термопреобразователи сопротивления</h2><p>ГОСТ 6651-2009</p></div>
@@ -559,7 +520,6 @@
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · ТС · ГОСТ 6651-2009</div></div>
         </div>
 
-        <!-- Расчёт погрешности - ТП -->
         <div id="page-error-temp-tc" class="page-content">
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-temp-select')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Термопары (ТП)</h2><p>ГОСТ Р 8.585-2001</p></div>
@@ -577,7 +537,6 @@
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · ТП · ГОСТ Р 8.585-2001</div></div>
         </div>
 
-        <!-- Расчёт погрешности - Расходомер -->
         <div id="page-error-flow" class="page-content">
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-select')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Расходомер</h2><p>Расчёт погрешности</p></div>
@@ -594,7 +553,6 @@
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Расходомер</div></div>
         </div>
 
-        <!-- Расчёт погрешности - Уровнемер -->
         <div id="page-error-level" class="page-content">
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-select')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Уровнемер</h2><p>Расчёт погрешности</p></div>
@@ -611,7 +569,6 @@
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Уровнемер</div></div>
         </div>
 
-        <!-- Расчёт погрешности - Общий -->
         <div id="page-error-generic" class="page-content">
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="navigateTo('error-select')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Аналоговый преобразователь</h2><p>Расчёт погрешности</p></div>
@@ -636,26 +593,46 @@
                 <div class="buoy-card" onclick="selectCalibMethod('with_buoy')">
                     <div class="buoy-card-inner">
                         <div class="buoy-illustration">
-                            <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#5b9bd5" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="40" y="30" width="120" height="160" stroke-width="1.5" stroke-dasharray="4,3"/>
-                                <line x1="40" y1="100" x2="160" y2="100" stroke-dasharray="2,2" stroke-width="0.8"/>
-                                <rect x="80" y="85" width="40" height="30" rx="2" fill="none" stroke-width="1.5"/>
-                                <line x1="90" y1="100" x2="110" y2="100" stroke-width="0.8"/>
-                                <line x1="100" y1="90" x2="100" y2="110" stroke-width="0.8"/>
-                                <line x1="100" y1="85" x2="100" y2="40" stroke-width="1.5"/>
-                                <circle cx="100" cy="38" r="3" fill="none" stroke-width="1.2"/>
-                                <line x1="100" y1="38" x2="55" y2="15" stroke-width="1.5"/>
-                                <circle cx="55" cy="15" r="4" fill="none" stroke-width="1.2"/>
-                                <line x1="52" y1="12" x2="58" y2="18" stroke-width="0.8"/>
-                                <line x1="58" y1="12" x2="52" y2="18" stroke-width="0.8"/>
-                                <rect x="43" y="8" width="24" height="14" fill="none" stroke-width="1.2"/>
-                                <text x="55" y="18" text-anchor="middle" fill="#5b9bd5" font-size="7" stroke="none">m₁</text>
-                                <text x="100" y="130" text-anchor="middle" fill="rgba(91,155,213,0.6)" font-size="8" stroke="none">Буёк</text>
-                                <text x="170" y="70" text-anchor="middle" fill="rgba(91,155,213,0.4)" font-size="7" stroke="none">жидк.</text>
-                                <line x1="30" y1="85" x2="30" y2="115" stroke="rgba(91,155,213,0.3)" stroke-width="0.8"/>
-                                <line x1="27" y1="85" x2="33" y2="85" stroke="rgba(91,155,213,0.3)" stroke-width="0.8"/>
-                                <line x1="27" y1="115" x2="33" y2="115" stroke="rgba(91,155,213,0.3)" stroke-width="0.8"/>
-                                <text x="25" y="103" text-anchor="middle" fill="rgba(91,155,213,0.4)" font-size="6" stroke="none">h</text>
+                            <!-- Схематичный чертёж: С буйком (стиль проектного чертежа) -->
+                            <svg viewBox="0 0 220 240" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#3b6ea5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <!-- Резервуар -->
+                                <rect x="50" y="40" width="120" height="160" stroke-width="1.8" stroke-dasharray="6,4"/>
+                                <!-- Линия жидкости (штриховка) -->
+                                <line x1="50" y1="110" x2="170" y2="110" stroke-width="1"/>
+                                <path d="M50 110 L170 110 L170 200 L50 200 Z" fill="rgba(59,110,165,0.05)"/>
+                                <!-- Штриховка жидкости -->
+                                <line x1="60" y1="120" x2="160" y2="120" stroke-width="0.5" stroke-dasharray="2,2"/>
+                                <line x1="60" y1="130" x2="160" y2="130" stroke-width="0.5" stroke-dasharray="2,2"/>
+                                <line x1="60" y1="140" x2="160" y2="140" stroke-width="0.5" stroke-dasharray="2,2"/>
+                                <line x1="60" y1="150" x2="160" y2="150" stroke-width="0.5" stroke-dasharray="2,2"/>
+                                <line x1="60" y1="160" x2="160" y2="160" stroke-width="0.5" stroke-dasharray="2,2"/>
+                                <line x1="60" y1="170" x2="160" y2="170" stroke-width="0.5" stroke-dasharray="2,2"/>
+                                <line x1="60" y1="180" x2="160" y2="180" stroke-width="0.5" stroke-dasharray="2,2"/>
+                                <line x1="60" y1="190" x2="160" y2="190" stroke-width="0.5" stroke-dasharray="2,2"/>
+                                <!-- Буёк -->
+                                <rect x="90" y="95" width="40" height="25" rx="1" fill="rgba(59,110,165,0.15)"/>
+                                <line x1="100" y1="108" x2="120" y2="108" stroke-width="0.8"/>
+                                <line x1="110" y1="98" x2="110" y2="118" stroke-width="0.8"/>
+                                <!-- Шток -->
+                                <line x1="110" y1="95" x2="110" y2="50" stroke-width="1.5"/>
+                                <circle cx="110" cy="48" r="4" fill="none"/>
+                                <!-- Рычаг -->
+                                <line x1="110" y1="48" x2="60" y2="25" stroke-width="1.5"/>
+                                <!-- Опора -->
+                                <circle cx="60" cy="25" r="5" fill="none"/>
+                                <line x1="57" y1="22" x2="63" y2="28" stroke-width="0.8"/>
+                                <line x1="63" y1="22" x2="57" y2="28" stroke-width="0.8"/>
+                                <!-- Гири -->
+                                <rect x="48" y="15" width="24" height="14" fill="none"/>
+                                <text x="60" y="25" text-anchor="middle" fill="#3b6ea5" font-size="8" font-family="Inter" stroke="none">m₁</text>
+                                <!-- Размерная линия уровня -->
+                                <line x1="40" y1="95" x2="40" y2="110" stroke="rgba(59,110,165,0.4)" stroke-width="0.8"/>
+                                <line x1="37" y1="95" x2="43" y2="95" stroke="rgba(59,110,165,0.4)" stroke-width="0.8"/>
+                                <line x1="37" y1="110" x2="43" y2="110" stroke="rgba(59,110,165,0.4)" stroke-width="0.8"/>
+                                <text x="35" y="105" text-anchor="middle" fill="rgba(59,110,165,0.5)" font-size="7" font-family="Inter" stroke="none">h</text>
+                                <!-- Подписи -->
+                                <text x="110" y="135" text-anchor="middle" fill="rgba(59,110,165,0.7)" font-size="8" font-family="Inter" stroke="none">Буёк</text>
+                                <text x="185" y="150" text-anchor="middle" fill="rgba(59,110,165,0.5)" font-size="7" font-family="Inter" stroke="none">жидк.</text>
                             </svg>
                         </div>
                         <div class="buoy-card-title">С буйком</div>
@@ -666,25 +643,35 @@
                 <div class="buoy-card" onclick="selectCalibMethod('without_buoy')">
                     <div class="buoy-card-inner">
                         <div class="buoy-illustration">
-                            <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#5b9bd5" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="40" y="30" width="120" height="160" stroke-width="1.5" stroke-dasharray="4,3"/>
-                                <rect x="80" y="85" width="40" height="30" rx="2" fill="none" stroke-width="1" stroke-dasharray="3,2" opacity="0.4"/>
-                                <line x1="75" y1="80" x2="125" y2="120" stroke-width="1.5" stroke="#c74a4a"/>
-                                <line x1="125" y1="80" x2="75" y2="120" stroke-width="1.5" stroke="#c74a4a"/>
-                                <line x1="100" y1="85" x2="100" y2="55" stroke-width="1" stroke-dasharray="3,2" opacity="0.4"/>
-                                <line x1="100" y1="40" x2="55" y2="15" stroke-width="1.5"/>
-                                <circle cx="55" cy="15" r="4" fill="none" stroke-width="1.2"/>
-                                <line x1="52" y1="12" x2="58" y2="18" stroke-width="0.8"/>
-                                <line x1="58" y1="12" x2="52" y2="18" stroke-width="0.8"/>
-                                <rect x="40" y="6" width="30" height="16" fill="none" stroke-width="1.2"/>
-                                <text x="55" y="17" text-anchor="middle" fill="#5b9bd5" font-size="7" stroke="none">m₁</text>
-                                <line x1="100" y1="40" x2="100" y2="55" stroke-width="1"/>
-                                <polyline points="96,52 100,40 104,52" stroke-width="1" fill="none"/>
-                                <text x="140" y="105" text-anchor="middle" fill="rgba(199,74,74,0.5)" font-size="8" stroke="none">буёк снят</text>
-                                <line x1="30" y1="30" x2="30" y2="190" stroke="rgba(91,155,213,0.3)" stroke-width="0.8"/>
-                                <line x1="27" y1="30" x2="33" y2="30" stroke="rgba(91,155,213,0.3)" stroke-width="0.8"/>
-                                <line x1="27" y1="190" x2="33" y2="190" stroke="rgba(91,155,213,0.3)" stroke-width="0.8"/>
-                                <text x="25" y="113" text-anchor="middle" fill="rgba(91,155,213,0.4)" font-size="6" stroke="none">L</text>
+                            <!-- Схематичный чертёж: Без буйка (стиль проектного чертежа) -->
+                            <svg viewBox="0 0 220 240" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#3b6ea5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                <!-- Резервуар (пустой, пунктир) -->
+                                <rect x="50" y="40" width="120" height="160" stroke-width="1.8" stroke-dasharray="6,4"/>
+                                <!-- Перечёркнутый буёк -->
+                                <rect x="90" y="95" width="40" height="25" rx="1" fill="none" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.4"/>
+                                <line x1="85" y1="90" x2="135" y2="125" stroke-width="1.5" stroke="#a85b5b"/>
+                                <line x1="135" y1="90" x2="85" y2="125" stroke-width="1.5" stroke="#a85b5b"/>
+                                <!-- Шток оборван -->
+                                <line x1="110" y1="95" x2="110" y2="65" stroke-width="1" stroke-dasharray="3,2" opacity="0.4"/>
+                                <!-- Стрелка вверх -->
+                                <line x1="110" y1="48" x2="110" y2="60" stroke-width="1"/>
+                                <polyline points="106,57 110,48 114,57" stroke-width="1" fill="none"/>
+                                <!-- Рычаг -->
+                                <line x1="110" y1="48" x2="60" y2="25" stroke-width="1.5"/>
+                                <!-- Опора -->
+                                <circle cx="60" cy="25" r="5" fill="none"/>
+                                <line x1="57" y1="22" x2="63" y2="28" stroke-width="0.8"/>
+                                <line x1="63" y1="22" x2="57" y2="28" stroke-width="0.8"/>
+                                <!-- Гири -->
+                                <rect x="48" y="13" width="24" height="16" fill="none"/>
+                                <text x="60" y="24" text-anchor="middle" fill="#3b6ea5" font-size="8" font-family="Inter" stroke="none">m₁</text>
+                                <!-- Размерная линия длины -->
+                                <line x1="40" y1="40" x2="40" y2="200" stroke="rgba(59,110,165,0.4)" stroke-width="0.8"/>
+                                <line x1="37" y1="40" x2="43" y2="40" stroke="rgba(59,110,165,0.4)" stroke-width="0.8"/>
+                                <line x1="37" y1="200" x2="43" y2="200" stroke="rgba(59,110,165,0.4)" stroke-width="0.8"/>
+                                <text x="35" y="123" text-anchor="middle" fill="rgba(59,110,165,0.5)" font-size="7" font-family="Inter" stroke="none">L</text>
+                                <!-- Подписи -->
+                                <text x="150" y="110" text-anchor="middle" fill="rgba(168,91,91,0.7)" font-size="8" font-family="Inter" stroke="none">буёк снят</text>
                             </svg>
                         </div>
                         <div class="buoy-card-title">Без буйка</div>
@@ -1201,7 +1188,6 @@
         setTimeout(function() { document.getElementById('tcResults').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
     }
 
-    // --- Буйковый уровнемер ---
     const G = 9.80665;
 
     function setLiquidDensity() {
@@ -1276,7 +1262,6 @@
         navigator.clipboard.writeText(csvData.join('\n')).then(function() { showToast('Таблица скопирована'); }).catch(function() { showToast('Не удалось скопировать'); });
     }
 
-    // ИСПРАВЛЕННАЯ ФУНКЦИЯ РАСЧЁТА КАЛИБРОВКИ
     function calculateBuoyCalibration() {
         var diam_mm = parseFloat(document.getElementById('buoy_diam').value);
         var length_mm = parseFloat(document.getElementById('buoy_length').value);
@@ -1285,7 +1270,6 @@
         var suspensionMass = parseFloat(document.getElementById('suspension_mass').value);
         var signalType = document.getElementById('buoy_signal_type').value;
         
-        // Используем метод из localStorage вместо radio-кнопок
         var calibMethod = getSelectedCalibMethod();
         
         if (isNaN(diam_mm)||diam_mm<=0) { showToast('Введите корректный диаметр'); return; }
@@ -1304,18 +1288,16 @@
             var sigVal = calculateSignalValue(pct, signalType);
             results.push({ pct: pct, level: (pct/100)*length_mm, mass: buoyMass, force: buoyN, weights: mass_kg, signal: sigVal.value, sigUnit: sigVal.unit });
         }
+        
+        // ИСПРАВЛЕННАЯ ТАБЛИЦА: убраны столбцы "Уровень (мм)" и "Сила (Н)"
         var html = '<div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.05);"><table style="min-width:100%;width:100%;border-collapse:collapse;"><thead><tr style="background:rgba(22,27,34,0.7);">';
         html += '<th style="padding:9px 10px;font-size:10px;color:#4a8fc7;text-align:left;font-weight:600;">Уровень (%)</th>';
-        html += '<th style="padding:9px 10px;font-size:10px;color:#4a8fc7;text-align:left;font-weight:600;">Уровень (мм)</th>';
-        html += '<th style="padding:9px 10px;font-size:10px;color:#4a8fc7;text-align:left;font-weight:600;">Сила (Н)</th>';
         html += '<th style="padding:9px 10px;font-size:10px;color:#4ac771;text-align:left;font-weight:600;">Масса гирь (кг)</th>';
         html += '<th style="padding:9px 10px;font-size:10px;color:#4a8fc7;text-align:left;font-weight:600;">Сигнал (' + results[0].sigUnit + ')</th>';
         html += '</tr></thead><tbody>';
         for (var i = 0; i < results.length; i++) {
             var r = results[i], bg = i % 2 === 0 ? 'rgba(13,17,23,0.4)' : 'rgba(22,27,34,0.4)';
             html += '<tr style="background:' + bg + ';"><td style="padding:7px 10px;font-size:11px;color:rgba(255,255,255,0.4);">' + r.pct + '%</td>';
-            html += '<td style="padding:7px 10px;font-size:11px;color:#e0e0e0;">' + formatBuoyNumber(r.level) + '</td>';
-            html += '<td style="padding:7px 10px;font-size:11px;color:#e0e0e0;">' + formatBuoyNumber(r.force) + '</td>';
             html += '<td style="padding:7px 10px;font-size:11px;color:#4ac771;font-weight:600;">' + formatBuoyNumber(r.weights) + '</td>';
             html += '<td style="padding:7px 10px;font-size:11px;color:#5b9bd5;">' + formatBuoyNumber(r.signal) + ' ' + r.sigUnit + '</td></tr>';
         }
