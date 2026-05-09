@@ -13,7 +13,7 @@
 <link href="https://cdn.jsdelivr.net/npm/@fontsource/inter@4.5.15/index.min.css" rel="stylesheet">
 <style>
     * { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: linear-gradient(180deg, #1a2233 0%, #17212b 40%, #0e1621 100%); color: #e0e0e0; overflow-x: hidden; padding-bottom: 140px; min-height: 100vh; }
+    body { background: linear-gradient(180deg, #1a2233 0%, #17212b 40%, #0e1621 100%); color: #e0e0e0; overflow-x: hidden; padding-bottom: 80px; min-height: 100vh; }
     
     .bg-network {
         position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; pointer-events: none; overflow: hidden;
@@ -105,11 +105,11 @@
     .nav-btn-home:active { background: rgba(94, 163, 219, 1); border-color: rgba(150, 220, 255, 0.8); }
     .nav-separator { color: rgba(255,255,255,0.35); font-size: 18px; padding: 0 6px; font-weight: 400; }
     
-    .content-header { padding: 18px 20px 14px; position: relative; z-index: 2; }
+    .content-header { padding: 14px 20px 10px; position: relative; z-index: 2; }
     .content-header h2 { color: #e0e0e0; font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
     .content-header p { color: rgba(255,255,255,0.35); font-size: 12px; margin-top: 5px; }
     
-    .menu-btn-row { display: flex; flex-direction: column; align-items: center; padding: 10px 0 24px; position: relative; z-index: 2; }
+    .menu-btn-row { display: flex; flex-direction: column; align-items: center; padding: 10px 0 12px; position: relative; z-index: 2; }
     .menu-btn {
         display: flex; align-items: center; justify-content: flex-start; position: relative;
         width: calc(100% - 32px); min-width: 0; padding: 14px 16px; margin: 5px 16px;
@@ -131,7 +131,7 @@
     
     .warning-banner {
         display: flex; align-items: center; gap: 12px;
-        margin: 10px 16px 0; padding: 12px 14px;
+        margin: 8px 16px 0; padding: 10px 12px;
         background: rgba(199, 150, 74, 0.08);
         border: 1px solid rgba(199, 150, 74, 0.15);
         border-radius: 12px; position: relative; z-index: 2;
@@ -149,7 +149,7 @@
     
     .scale-form, .converter-form { 
         background: rgba(30, 42, 56, 0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-        border: 1px solid rgba(74, 143, 199, 0.1); border-radius: 14px; margin: 10px 16px; padding: 16px; 
+        border: 1px solid rgba(74, 143, 199, 0.1); border-radius: 14px; margin: 8px 16px; padding: 14px; 
         position: relative; z-index: 2;
     }
     .scale-form-label, .form-label { color: rgba(255,255,255,0.35); font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; font-weight: 500; }
@@ -175,7 +175,7 @@
     .converter-convert-btn { background: linear-gradient(135deg, #2563eb, #3b82f6); box-shadow: 0 3px 12px rgba(37, 99, 235, 0.25); }
     .scale-calc-btn { background: linear-gradient(135deg, #2563eb, #3b82f6); box-shadow: 0 3px 12px rgba(37, 99, 235, 0.25); }
     
-    .converter-result-group { margin: 6px 16px 16px; position: relative; z-index: 2; }
+    .converter-result-group { margin: 6px 16px 10px; position: relative; z-index: 2; }
     .converter-result-label-title { color: rgba(255,255,255,0.3); font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px; padding-left: 4px; font-weight: 500; }
     .converter-result-item {
         display: flex; justify-content: space-between; align-items: center;
@@ -187,29 +187,29 @@
     .converter-result-value { color: #4a8fc7; font-size: 14px; font-weight: 600; }
     @keyframes slideIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
     
-    .buoy-select-container { display: flex; flex-direction: row; gap: 12px; padding: 14px 16px; justify-content: center; align-items: stretch; position: relative; z-index: 2; }
+    .buoy-select-container { display: flex; flex-direction: row; gap: 16px; padding: 20px 16px; justify-content: center; align-items: stretch; position: relative; z-index: 2; }
     .buoy-card {
-        flex: 1; background: rgba(30, 42, 56, 0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-        border: 1px solid rgba(74, 143, 199, 0.12); border-radius: 16px; cursor: pointer;
-        transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1); overflow: hidden; position: relative;
+        flex: 1; background: rgba(30, 42, 56, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(74, 143, 199, 0.18); border-radius: 20px; cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1); overflow: hidden; position: relative;
         min-width: 0;
     }
-    .buoy-card:hover, .buoy-card:active { transform: translateY(-3px); border-color: rgba(74, 143, 199, 0.15); box-shadow: 0 6px 16px rgba(0,0,0,0.25); }
-    .buoy-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #4a8fc7, #4ac771); opacity: 0; transition: opacity 0.25s; }
-    .buoy-card:active::before { opacity: 1; }
-    .buoy-card-inner { padding: 14px 12px 18px; text-align: center; }
+    .buoy-card:hover, .buoy-card:active { transform: translateY(-4px); border-color: rgba(74, 143, 199, 0.4); box-shadow: 0 8px 24px rgba(0,0,0,0.3), 0 0 12px rgba(74, 143, 199, 0.1); }
+    .buoy-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #4a8fc7, #4ac771); opacity: 0; transition: opacity 0.3s; }
+    .buoy-card:hover::before { opacity: 1; }
+    .buoy-card-inner { padding: 20px 16px 24px; text-align: center; }
     .buoy-illustration {
-        margin-bottom: 12px; display: flex; justify-content: center; align-items: center;
-        min-height: 140px; background: rgba(23, 33, 43, 0.7); border-radius: 12px; padding: 8px;
-        border: 1px solid rgba(74, 143, 199, 0.08);
+        margin-bottom: 16px; display: flex; justify-content: center; align-items: center;
+        min-height: 180px; background: rgba(23, 33, 43, 0.6); border-radius: 16px; padding: 12px;
+        border: 1px solid rgba(74, 143, 199, 0.1);
     }
-    .buoy-illustration svg { width: 100%; max-width: 150px; height: auto; }
-    .buoy-card-title { font-size: 14px; font-weight: 700; color: #4a8fc7; margin-bottom: 4px; }
-    .buoy-card-desc { font-size: 10px; color: rgba(255,255,255,0.3); margin-bottom: 6px; line-height: 1.3; }
+    .buoy-illustration svg { width: 100%; max-width: 180px; height: auto; }
+    .buoy-card-title { font-size: 20px; font-weight: 800; color: #4a8fc7; margin-bottom: 8px; letter-spacing: 0.5px; }
+    .buoy-card-desc { font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 10px; line-height: 1.4; font-weight: 500; }
     .buoy-card-formula {
-        font-size: 9px; font-family: 'Inter', monospace; background: rgba(23, 33, 43, 0.8);
-        padding: 5px 8px; border-radius: 8px; color: #4ac771; display: inline-block; font-weight: 600;
-        border: 1px solid rgba(74, 199, 113, 0.15);
+        font-size: 13px; font-family: 'Inter', monospace; background: rgba(23, 33, 43, 0.9);
+        padding: 8px 12px; border-radius: 10px; color: #4ac771; display: inline-block; font-weight: 700;
+        border: 1px solid rgba(74, 199, 113, 0.2); letter-spacing: 0.3px;
     }
     
     .method-indicator { background: rgba(30, 42, 56, 0.6); backdrop-filter: blur(8px); margin: 10px 16px; padding: 12px 14px; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(74, 143, 199, 0.1); position: relative; z-index: 2; }
@@ -233,7 +233,7 @@
     .toast.show { transform: translateY(0); opacity: 1; }
     .toast svg { width: 18px; height: 18px; stroke: #4ac771; fill: none; stroke-width: 2; stroke-linecap: round; }
     
-    .page-bottom-bg { position: relative; margin-top: 20px; padding: 20px 16px 40px; text-align: center; overflow: hidden; z-index: 2; background: rgba(23, 33, 43, 0.3); border-radius: 16px 16px 0 0; margin: 20px 8px 0; }
+    .page-bottom-bg { position: relative; margin-top: 10px; padding: 12px 16px 20px; text-align: center; overflow: hidden; z-index: 2; background: rgba(23, 33, 43, 0.3); border-radius: 12px 12px 0 0; margin: 10px 8px 0; }
     .page-bottom-bg::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at center, rgba(74,143,199,0.03) 0%, transparent 70%); z-index: 0; }
     .page-bottom-text { position: relative; z-index: 2; color: rgba(255,255,255,0.12); font-size: 9px; letter-spacing: 1px; }
     
@@ -258,6 +258,17 @@
         width: 18px; height: 18px; stroke: rgba(255,255,255,0.35); fill: none; stroke-width: 1.8;
         stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s;
     }
+    .bottom-nav-icon svg {
+        filter: drop-shadow(0 0 2px rgba(74, 143, 199, 0.25));
+    }
+    .bottom-nav-item.active .bottom-nav-icon svg {
+        stroke: rgba(74, 143, 199, 0.95);
+        filter: drop-shadow(0 0 5px rgba(74, 143, 199, 0.6)) drop-shadow(0 0 10px rgba(74, 143, 199, 0.3));
+    }
+    .bottom-nav-item.active .bottom-nav-label {
+        color: rgba(74, 143, 199, 0.95);
+        text-shadow: 0 0 5px rgba(74, 143, 199, 0.4);
+    }
     .bottom-nav-item:active .bottom-nav-icon svg { stroke: rgba(74, 143, 199, 0.8); }
     .bottom-nav-label {
         font-size: 9px; color: rgba(255,255,255,0.35); text-align: center; line-height: 1.2;
@@ -266,8 +277,8 @@
     .bottom-nav-item:active .bottom-nav-label { color: rgba(74, 143, 199, 0.8); }
     
     @supports (padding-bottom: env(safe-area-inset-bottom)) {
-        .page-content { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
-        body { padding-bottom: calc(140px + env(safe-area-inset-bottom)); }
+        .page-content { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
+        body { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
     }
     @media (max-width: 480px) {
         .menu-btn { width: calc(100% - 24px); margin: 4px 12px; padding: 12px 14px; }
@@ -383,7 +394,7 @@
             <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Давление</h2><p>Перевод единиц давления</p></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-pressure-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-pressure-unit" class="form-field"><option value="Pa">Па</option><option value="kPa">кПа</option><option value="MPa" selected>МПа</option><option value="bar">бар</option><option value="mbar">мбар</option><option value="atm">атм</option><option value="kgf_cm2">кгс/см²</option><option value="mmHg">мм рт. ст.</option><option value="PSI">PSI</option><option value="Torr">Торр</option><option value="mmH2O">мм вод. ст.</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-pressure-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-pressure-unit" class="form-field"><option value="Pa">Па</option><option value="kPa">кПа</option><option value="MPa" selected>МПа</option><option value="bar">бар</option><option value="mbar">мбар</option><option value="atm">атм</option><option value="kgf_cm2">кгс/см²</option><option value="mmHg">мм рт. ст.</option><option value="PSI">PSI</option><option value="mmH2O">мм вод. ст.</option></select></div>
             <button class="converter-convert-btn" onclick="convertUnits('pressure')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-pressure-results"></div>
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Конвертер давления</div></div>
@@ -395,7 +406,7 @@
             <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Расход</h2><p>Перевод единиц расхода</p></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-flow-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-flow-unit" class="form-field"><option value="m3h" selected>м³/ч</option><option value="m3s">м³/с</option><option value="l_min">л/мин</option><option value="l_s">л/с</option><option value="gpm">GPM (гал/мин)</option><option value="t_h">т/ч</option><option value="kg_s">кг/с</option><option value="kg_h">кг/ч</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-flow-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-flow-unit" class="form-field"><option value="m3h" selected>м³/ч</option><option value="m3s">м³/с</option><option value="l_min">л/мин</option><option value="l_s">л/с</option><option value="t_h">т/ч</option><option value="kg_s">кг/с</option><option value="kg_h">кг/ч</option></select></div>
             <button class="converter-convert-btn" onclick="convertUnits('flow')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-flow-results"></div>
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Конвертер расхода</div></div>
@@ -407,7 +418,7 @@
             <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Вес и масса</h2><p>Перевод единиц массы</p></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-mass-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-mass-unit" class="form-field"><option value="kg" selected>кг</option><option value="g">г</option><option value="mg">мг</option><option value="t">т</option><option value="lb">фунт (lb)</option><option value="oz">унция (oz)</option><option value="ton">тонна (US)</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-mass-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-mass-unit" class="form-field"><option value="kg" selected>кг</option><option value="g">г</option><option value="mg">мг</option><option value="t">т</option><option value="lb">фунт (lb)</option><option value="oz">унция (oz)</option></select></div>
             <button class="converter-convert-btn" onclick="convertUnits('mass')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-mass-results"></div>
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Конвертер массы</div></div>
@@ -443,7 +454,7 @@
             <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Плотность</h2><p>Перевод единиц плотности</p></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-density-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-density-unit" class="form-field"><option value="kg_m3" selected>кг/м³</option><option value="g_cm3">г/см³</option><option value="g_l">г/л</option><option value="kg_l">кг/л</option><option value="lb_ft3">lb/ft³</option><option value="lb_gal">lb/gal (US)</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-density-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-density-unit" class="form-field"><option value="kg_m3" selected>кг/м³</option><option value="g_cm3">г/см³</option><option value="g_l">г/л</option><option value="kg_l">кг/л</option></select></div>
             <button class="converter-convert-btn" onclick="convertUnits('density')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-density-results"></div>
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Конвертер плотности</div></div>
@@ -467,7 +478,7 @@
             <div class="page-overlay"></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Объём</h2><p>Перевод единиц объёма</p></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-volume-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-volume-unit" class="form-field"><option value="m3" selected>м³</option><option value="l">литр</option><option value="ml">мл</option><option value="cm3">см³</option><option value="gal">галлон (US)</option><option value="bbl">баррель</option><option value="ft3">куб. фут</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-volume-input" class="form-field" placeholder="Введите значение" step="any"><div class="form-label">Единица измерения</div><select id="conv-volume-unit" class="form-field"><option value="m3" selected>м³</option><option value="l">литр</option><option value="ml">мл</option><option value="cm3">см³</option><option value="gal">галлон (US)</option><option value="bbl">баррель</option><option value="ft3">куб. фут</option><option value="dm3">дм³</option></select></div>
             <button class="converter-convert-btn" onclick="convertUnits('volume')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-volume-results"></div>
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Конвертер объёма</div></div>
@@ -611,8 +622,8 @@
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="content-header"><h2>Калибровка буйкового уровнемера</h2><p>Выберите метод калибровки</p></div>
             <div class="buoy-select-container">
-                <div class="buoy-card" onclick="selectCalibMethod('with_buoy')"><div class="buoy-card-inner"><div class="buoy-illustration"><svg viewBox="0 0 220 240" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#3b6ea5" stroke-width="1.2"><rect x="50" y="40" width="120" height="160" stroke-width="1.8" stroke-dasharray="6,4"/><line x1="50" y1="110" x2="170" y2="110" stroke-width="1"/><path d="M50 110 L170 110 L170 200 L50 200 Z" fill="rgba(59,110,165,0.05)"/><rect x="90" y="95" width="40" height="25" rx="1" fill="rgba(59,110,165,0.15)"/><line x1="110" y1="95" x2="110" y2="50" stroke-width="1.5"/><circle cx="110" cy="48" r="4" fill="none"/><line x1="110" y1="48" x2="60" y2="25" stroke-width="1.5"/><circle cx="60" cy="25" r="5" fill="none"/><rect x="48" y="15" width="24" height="14" fill="none"/><text x="60" y="25" text-anchor="middle" fill="#3b6ea5" font-size="8" stroke="none">m₁</text><text x="110" y="135" text-anchor="middle" fill="rgba(59,110,165,0.7)" font-size="8" stroke="none">Буёк</text></svg></div><div class="buoy-card-title">С буйком</div><div class="buoy-card-desc">Компенсационный метод</div><div class="buoy-card-formula">m_гири = m_выт + m_подвеса</div></div></div>
-                <div class="buoy-card" onclick="selectCalibMethod('without_buoy')"><div class="buoy-card-inner"><div class="buoy-illustration"><svg viewBox="0 0 220 240" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#3b6ea5" stroke-width="1.2"><rect x="50" y="40" width="120" height="160" stroke-width="1.8" stroke-dasharray="6,4"/><rect x="90" y="95" width="40" height="25" rx="1" fill="none" stroke-width="0.8" opacity="0.4"/><line x1="85" y1="90" x2="135" y2="125" stroke-width="1.5" stroke="#a85b5b"/><line x1="135" y1="90" x2="85" y2="125" stroke-width="1.5" stroke="#a85b5b"/><line x1="110" y1="48" x2="60" y2="25" stroke-width="1.5"/><circle cx="60" cy="25" r="5" fill="none"/><rect x="48" y="13" width="24" height="16" fill="none"/><text x="60" y="24" text-anchor="middle" fill="#3b6ea5" font-size="8" stroke="none">m₁</text><text x="150" y="110" text-anchor="middle" fill="rgba(168,91,91,0.7)" font-size="8" stroke="none">буёк снят</text></svg></div><div class="buoy-card-title">Без буйка</div><div class="buoy-card-desc">Имитация выталкивающей силы</div><div class="buoy-card-formula">m_гири = m_буйка − m_выт + m_подвеса</div></div></div>
+                <div class="buoy-card" onclick="selectCalibMethod('with_buoy')"><div class="buoy-card-inner"><div class="buoy-illustration"><svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="20" width="160" height="160" rx="12" stroke="#4a8fc7" stroke-width="2" stroke-dasharray="8,4" fill="rgba(74,143,199,0.03)"/><line x1="20" y1="100" x2="180" y2="100" stroke="#4a8fc7" stroke-width="1.5" stroke-dasharray="4,4"/><rect x="80" y="60" width="40" height="80" rx="4" stroke="#4a8fc7" stroke-width="2.5" fill="rgba(74,143,199,0.08)"/><circle cx="100" cy="40" r="6" stroke="#4a8fc7" stroke-width="2" fill="none"/><line x1="100" y1="34" x2="100" y2="20" stroke="#4a8fc7" stroke-width="2"/><line x1="100" y1="20" x2="60" y2="20" stroke="#4a8fc7" stroke-width="2"/><rect x="45" y="12" width="30" height="16" rx="3" stroke="#4ac771" stroke-width="2" fill="rgba(74,199,113,0.1)"/><text x="60" y="24" text-anchor="middle" fill="#4ac771" font-size="10" font-weight="700" stroke="none">m₁</text><line x1="80" y1="140" x2="120" y2="140" stroke="#4a8fc7" stroke-width="1.5"/><line x1="90" y1="145" x2="110" y2="145" stroke="#4a8fc7" stroke-width="1.5"/><text x="100" y="165" text-anchor="middle" fill="#4a8fc7" font-size="11" font-weight="600" stroke="none">БУЁК</text><path d="M100 100 L100 120" stroke="#4a8fc7" stroke-width="1.5" stroke-dasharray="3,2"/></svg></div><div class="buoy-card-title">С буйком</div><div class="buoy-card-desc">Компенсационный метод калибровки</div><div class="buoy-card-formula">m<sub>гири</sub> = m<sub>выт</sub> + m<sub>подвеса</sub></div></div></div>
+                <div class="buoy-card" onclick="selectCalibMethod('without_buoy')"><div class="buoy-card-inner"><div class="buoy-illustration"><svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="20" width="160" height="160" rx="12" stroke="#4a8fc7" stroke-width="2" stroke-dasharray="8,4" fill="rgba(74,143,199,0.03)"/><line x1="20" y1="100" x2="180" y2="100" stroke="#4a8fc7" stroke-width="1.5" stroke-dasharray="4,4"/><rect x="80" y="60" width="40" height="80" rx="4" stroke="#4a8fc7" stroke-width="2" fill="none" stroke-dasharray="6,3" opacity="0.4"/><line x1="75" y1="55" x2="125" y2="145" stroke="#c74a4a" stroke-width="2.5" stroke-linecap="round"/><line x1="125" y1="55" x2="75" y2="145" stroke="#c74a4a" stroke-width="2.5" stroke-linecap="round"/><circle cx="100" cy="40" r="6" stroke="#4a8fc7" stroke-width="2" fill="none"/><line x1="100" y1="34" x2="100" y2="20" stroke="#4a8fc7" stroke-width="2"/><line x1="100" y1="20" x2="60" y2="20" stroke="#4a8fc7" stroke-width="2"/><rect x="45" y="12" width="30" height="16" rx="3" stroke="#4ac771" stroke-width="2" fill="rgba(74,199,113,0.1)"/><text x="60" y="24" text-anchor="middle" fill="#4ac771" font-size="10" font-weight="700" stroke="none">m₁</text><text x="100" y="165" text-anchor="middle" fill="#c74a4a" font-size="11" font-weight="600" stroke="none">БУЁК СНЯТ</text><path d="M100 100 L100 120" stroke="#4a8fc7" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.3"/></svg></div><div class="buoy-card-title">Без буйка</div><div class="buoy-card-desc">Имитация выталкивающей силы гирями</div><div class="buoy-card-formula">m<sub>гири</sub> = m<sub>буйка</sub> − m<sub>выт</sub> + m<sub>подвеса</sub></div></div></div>
             </div>
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Буйковый уровнемер · Выбор метода</div></div>
         </div>
@@ -652,19 +663,25 @@
         if (target) { target.classList.add('active'); requestAnimationFrame(() => { requestAnimationFrame(() => target.classList.add('visible')); }); }
         window.scrollTo({ top: 0, behavior: 'smooth' });
         if (page === 'buoy-calc') { updateBuoyCalcTitle(); setCalibMethodOnForm(); }
+        updateBottomNavActive(page);
+    }
+    function updateBottomNavActive(page) {
+        let map = {'converter':0,'scale-signal':1,'error-select':2,'buoy-select':3,'library':4};
+        let idx = map[page];
+        document.querySelectorAll('.bottom-nav-item').forEach((el, i) => { el.classList.toggle('active', i === idx); });
     }
     function goBack() { if (pageHistory.length) { let prev = pageHistory.pop(); navigateTo(prev, false); } else { navigateTo('dashboard', false); } }
     function showToast(msg) { let t = document.getElementById('toast'); document.getElementById('toastMessage').textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2500); }
 
     // ======================== КОНВЕРТЕРЫ (полные данные) ========================
     const unitData = {
-        pressure: { units: { 'Pa':{label:'Па',factor:1}, 'kPa':{label:'кПа',factor:1000}, 'MPa':{label:'МПа',factor:1000000}, 'bar':{label:'бар',factor:100000}, 'mbar':{label:'мбар',factor:100}, 'atm':{label:'атм',factor:101325}, 'kgf_cm2':{label:'кгс/см²',factor:98066.5}, 'mmHg':{label:'мм рт. ст.',factor:133.322}, 'PSI':{label:'PSI',factor:6894.757}, 'Torr':{label:'Торр',factor:133.322}, 'mmH2O':{label:'мм вод. ст.',factor:9.80665} } },
-        flow: { units: { 'm3h':{label:'м³/ч',factor:1}, 'm3s':{label:'м³/с',factor:3600}, 'l_min':{label:'л/мин',factor:0.06}, 'l_s':{label:'л/с',factor:3.6}, 'gpm':{label:'GPM',factor:0.2271}, 't_h':{label:'т/ч',factor:1}, 'kg_s':{label:'кг/с',factor:3.6}, 'kg_h':{label:'кг/ч',factor:0.001} } },
-        mass: { units: { 'kg':{label:'кг',factor:1}, 'g':{label:'г',factor:0.001}, 'mg':{label:'мг',factor:0.000001}, 't':{label:'т',factor:1000}, 'lb':{label:'фунт',factor:0.453592}, 'oz':{label:'унция',factor:0.0283495}, 'ton':{label:'тонна US',factor:907.185} } },
+        pressure: { units: { 'Pa':{label:'Па',factor:1}, 'kPa':{label:'кПа',factor:1000}, 'MPa':{label:'МПа',factor:1000000}, 'bar':{label:'бар',factor:100000}, 'mbar':{label:'мбар',factor:100}, 'atm':{label:'атм',factor:101325}, 'kgf_cm2':{label:'кгс/см²',factor:98066.5}, 'mmHg':{label:'мм рт. ст.',factor:133.322}, 'PSI':{label:'PSI',factor:6894.757}, 'mmH2O':{label:'мм вод. ст.',factor:9.80665} } },
+        flow: { units: { 'm3h':{label:'м³/ч',factor:1}, 'm3s':{label:'м³/с',factor:3600}, 'l_min':{label:'л/мин',factor:0.06}, 'l_s':{label:'л/с',factor:3.6}, 't_h':{label:'т/ч',factor:1}, 'kg_s':{label:'кг/с',factor:3.6}, 'kg_h':{label:'кг/ч',factor:0.001} } },
+        mass: { units: { 'kg':{label:'кг',factor:1}, 'g':{label:'г',factor:0.001}, 'mg':{label:'мг',factor:0.000001}, 't':{label:'т',factor:1000}, 'lb':{label:'фунт',factor:0.453592}, 'oz':{label:'унция',factor:0.0283495},  } },
         length: { units: { 'm':{label:'м',factor:1}, 'km':{label:'км',factor:1000}, 'cm':{label:'см',factor:0.01}, 'mm':{label:'мм',factor:0.001}, 'um':{label:'мкм',factor:0.000001}, 'mi':{label:'миля',factor:1609.344}, 'ft':{label:'фут',factor:0.3048}, 'in':{label:'дюйм',factor:0.0254}, 'yd':{label:'ярд',factor:0.9144} } },
-        density: { units: { 'kg_m3':{label:'кг/м³',factor:1}, 'g_cm3':{label:'г/см³',factor:1000}, 'g_l':{label:'г/л',factor:1}, 'kg_l':{label:'кг/л',factor:1000}, 'lb_ft3':{label:'lb/ft³',factor:16.0185}, 'lb_gal':{label:'lb/gal US',factor:119.826} } },
+        density: { units: { 'kg_m3':{label:'кг/м³',factor:1}, 'g_cm3':{label:'г/см³',factor:1000}, 'g_l':{label:'г/л',factor:1}, 'kg_l':{label:'кг/л',factor:1000},  } },
         time: { units: { 's':{label:'секунда',factor:1}, 'ms':{label:'мс',factor:0.001}, 'min':{label:'минута',factor:60}, 'h':{label:'час',factor:3600}, 'd':{label:'сутки',factor:86400}, 'week':{label:'неделя',factor:604800}, 'month':{label:'месяц',factor:2592000}, 'year':{label:'год',factor:31536000} } },
-        volume: { units: { 'm3':{label:'м³',factor:1}, 'l':{label:'литр',factor:0.001}, 'ml':{label:'мл',factor:0.000001}, 'cm3':{label:'см³',factor:0.000001}, 'gal':{label:'галлон US',factor:0.00378541}, 'bbl':{label:'баррель',factor:0.158987}, 'ft3':{label:'куб. фут',factor:0.0283168} } }
+        volume: { units: { 'm3':{label:'м³',factor:1}, 'l':{label:'литр',factor:0.001}, 'ml':{label:'мл',factor:0.000001}, 'cm3':{label:'см³',factor:0.000001}, 'gal':{label:'галлон US',factor:0.00378541}, 'bbl':{label:'баррель',factor:0.158987}, 'ft3':{label:'куб. фут',factor:0.0283168}, 'dm3':{label:'дм³',factor:0.001} } }
     };
     function formatNumber(n) { if (n===0) return '0'; if (Math.abs(n)>=1e9||Math.abs(n)<0.00001&&n!==0) return n.toExponential(4); let d=Math.abs(n)>=100?2:Math.abs(n)>=1?4:6; return parseFloat(n.toFixed(d)).toString(); }
     function convertUnits(cat) { if (cat==='temp') { convertTemp(); return; } let d=unitData[cat]; let val=parseFloat(document.getElementById(`conv-${cat}-input`).value); let from=document.getElementById(`conv-${cat}-unit`).value; let resDiv=document.getElementById(`conv-${cat}-results`); if(isNaN(val)) { resDiv.innerHTML='<p style="text-align:center;color:#c74a4a;font-size:14px;padding:16px;">Введите значение</p>'; return; } let base=val*d.units[from].factor; let html='<div class="converter-result-label-title">Результаты</div>'; let delay=0; for(let u in d.units){ if(u===from) continue; let v=base/d.units[u].factor; html+=`<div class="converter-result-item" style="animation-delay:${delay}ms"><span class="converter-result-label">${d.units[u].label}</span><span class="converter-result-value">${formatNumber(v)}</span></div>`; delay+=40; } resDiv.innerHTML=html; }
@@ -741,7 +758,7 @@
         if(document.getElementById('tc_type')) updateTcRanges();
         setCalibMethodOnForm();
         let firstActive=document.querySelector('.page-content.active');
-        if(firstActive) requestAnimationFrame(()=>firstActive.classList.add('visible'));
+        if(firstActive) { requestAnimationFrame(()=>firstActive.classList.add('visible')); updateBottomNavActive(firstActive.id.replace('page-','')); }
     });
 </script>
 </body>
