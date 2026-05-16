@@ -391,7 +391,7 @@
                 <div class="menu-btn" onclick="navigateTo('buoy-select')"><div class="menu-btn-text"><div class="menu-btn-label">Буйковый уровнемер</div><div class="menu-btn-sublabel">Калибровка, выталкивающая сила</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('temp-sensors')"><div class="menu-btn-text"><div class="menu-btn-label">Датчики температуры</div><div class="menu-btn-sublabel">Расчёт R и мВ по температуре (°C)</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('circuit-breaker')"><div class="menu-btn-text"><div class="menu-btn-label">Автоматический выключатель</div><div class="menu-btn-sublabel">Расчёт по мощности, току, сечению кабеля</div></div><i class="menu-btn-arrow">›</i></div>
-                <div class="menu-btn" onclick="navigateTo('orifice-plate')"><div class="menu-btn-text"><div class="menu-btn-label">Сужающее устройство</div><div class="menu-btn-sublabel">Расчёт диафрагмы по расходу и перепаду</div></div><i class="menu-btn-arrow">›</i></div>
+                <div class="menu-btn" onclick="navigateTo('orifice-select')"><div class="menu-btn-text"><div class="menu-btn-label">Сужающее устройство</div><div class="menu-btn-sublabel">Расчёт диафрагмы по расходу и перепаду</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('library')"><div class="menu-btn-text"><div class="menu-btn-label">Библиотека КИП и А</div><div class="menu-btn-sublabel">Документация, схемы, инструкции</div></div><i class="menu-btn-arrow">›</i></div>
             </div>
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Контроль · Измерения · Автоматизация</div></div>
@@ -620,8 +620,241 @@
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Автоматический выключатель · ГОСТ Р 50345-2010</div></div>
         </div>
 
-        <!-- ======================== СУЖАЮЩЕЕ УСТРОЙСТВО (ДИАФРАГМА) ======================== -->
-        <div id="page-orifice-plate" class="page-content">
+        <!-- ======================== ВЫБОР РАСЧЁТА СУЖАЮЩЕГО УСТРОЙСТВА ======================== -->
+        <div id="page-orifice-select" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
+            <div class="page-inline-header"><div class="page-inline-header-title">Диаметр диска d₂₀</div><div class="header-btn" onclick="showToast('Обновлено')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div></div>
+            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
+
+            <div class="content-header" style="padding: 14px 20px 10px;">
+                <h2 style="color: #e0e0e0; font-size: 22px; font-weight: 700; letter-spacing: -0.3px;">Выбор расчёта</h2>
+                <p style="color: rgba(255,255,255,0.35); font-size: 12px; margin-top: 5px;">РД 50-411-83 / ГОСТ 26969-86</p>
+            </div>
+
+            <div class="menu-btn-row">
+                <div class="menu-btn" onclick="navigateTo('orifice-dp')">
+                    <div class="menu-btn-text">
+                        <div class="menu-btn-label">Перепад давления</div>
+                        <div class="menu-btn-sublabel">Расчёт Δp по расходу Q и диаметру диска d₂₀</div>
+                    </div>
+                    <i class="menu-btn-arrow">›</i>
+                </div>
+                <div class="menu-btn" onclick="navigateTo('orifice-flow')">
+                    <div class="menu-btn-text">
+                        <div class="menu-btn-label">Расход среды</div>
+                        <div class="menu-btn-sublabel">Расчёт Q по перепаду Δp и диаметру диска d₂₀</div>
+                    </div>
+                    <i class="menu-btn-arrow">›</i>
+                </div>
+                <div class="menu-btn" onclick="navigateTo('orifice-diameter')">
+                    <div class="menu-btn-text">
+                        <div class="menu-btn-label">Диаметр диска</div>
+                        <div class="menu-btn-sublabel">Расчёт d₂₀ по расходу Q и перепаду Δp</div>
+                    </div>
+                    <i class="menu-btn-arrow">›</i>
+                </div>
+            </div>
+
+            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Сужающее устройство · Выбор расчёта</div></div>
+        </div>
+
+        <!-- ======================== РАСЧЁТ ПЕРЕПАДА ДАВЛЕНИЯ (Δp) ======================== --><!-- ======================== РАСЧЁТ ПЕРЕПАДА ДАВЛЕНИЯ (Δp) ======================== -->
+        <div id="page-orifice-dp" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
+            <div class="page-inline-header"><div class="page-inline-header-title">Перепад давления Δp</div><div class="header-btn" onclick="showToast('Обновлено')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div></div>
+            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Тип среды</div>
+                <select id="op_dp_medium_type" class="scale-field" onchange="updateOpDpForm()" autocomplete="off">
+                    <option value="liquid" selected>Жидкость (несжимаемая)</option>
+                    <option value="gas">Газ / пар (сжимаемая)</option>
+                </select>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Параметры трубопровода</div>
+                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
+                    <input type="number" id="op_dp_d20" class="scale-field" style="flex:2; margin-bottom:0;" value="100" step="1" placeholder="D₂₀, мм" autocomplete="off" autocorrect="off" spellcheck="false">
+                    <select id="op_dp_pipe_material" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
+                        <option value="steel20" selected>Сталь 20</option>
+                        <option value="steel12x18h10t">12Х18Н10Т</option>
+                        <option value="steel15x5m">15Х5М</option>
+                        <option value="brass">Латунь</option>
+                    </select>
+                </div>
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-bottom:8px;">Внутренний диаметр трубы при 20°C · Материал</div>
+                <input type="number" id="op_dp_temp" class="scale-field" value="20" step="1" placeholder="t, °C" autocomplete="off" autocorrect="off" spellcheck="false">
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Рабочая температура, °C</div>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Расход среды (Q)</div>
+                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
+                    <input type="number" id="op_dp_flow" class="scale-field" style="flex:2; margin-bottom:0;" value="50" step="0.1" placeholder="Q" autocomplete="off" autocorrect="off" spellcheck="false">
+                    <select id="op_dp_flow_unit" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
+                        <option value="m3h" selected>м³/ч</option>
+                        <option value="m3s">м³/с</option>
+                        <option value="l_s">л/с</option>
+                        <option value="kg_h">кг/ч</option>
+                        <option value="kg_s">кг/с</option>
+                        <option value="t_h">т/ч</option>
+                    </select>
+                </div>
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Номинальный расход</div>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Диаметр диска (d₂₀)</div>
+                <input type="number" id="op_dp_d_plate" class="scale-field" value="50" step="0.1" placeholder="d₂₀, мм" autocomplete="off" autocorrect="off" spellcheck="false">
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Диаметр отверстия диафрагмы при 20°C, мм</div>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Параметры среды</div>
+                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
+                    <input type="number" id="op_dp_density" class="scale-field" style="flex:1; margin-bottom:0;" value="998" step="1" placeholder="ρ, кг/м³" autocomplete="off" autocorrect="off" spellcheck="false">
+                    <input type="number" id="op_dp_viscosity" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="ν, сСт" autocomplete="off" autocorrect="off" spellcheck="false">
+                </div>
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-bottom:8px;">Плотность · Кинематическая вязкость (сСт = мм²/с)</div>
+                <div id="op_dp_gas_params" style="display:none;">
+                    <div style="display:flex; gap:8px; align-items:stretch;">
+                        <input type="number" id="op_dp_kappa" class="scale-field" style="flex:1; margin-bottom:0;" value="1.4" step="0.01" placeholder="κ" autocomplete="off" autocorrect="off" spellcheck="false">
+                        <input type="number" id="op_dp_z" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="Z" autocomplete="off" autocorrect="off" spellcheck="false">
+                    </div>
+                    <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Показатель адиабаты κ · Коэффициент сжимаемости Z</div>
+                </div>
+                <input type="number" id="op_dp_pressure" class="scale-field" style="margin-top:8px; margin-bottom:0;" value="0.1" step="0.01" placeholder="P, МПа" autocomplete="off" autocorrect="off" spellcheck="false">
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Избыточное давление, МПа (для газов)</div>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Тип сужающего устройства</div>
+                <select id="op_dp_device_type" class="scale-field" autocomplete="off">
+                    <option value="orifice" selected>Диафрагма стандартная (ГОСТ 26969-86)</option>
+                    <option value="nozzle">Сопло стандартное</option>
+                    <option value="venturi">Труба Вентури</option>
+                </select>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Материал диафрагмы</div>
+                <select id="op_dp_plate_material" class="scale-field" autocomplete="off">
+                    <option value="steel12x18h10t" selected>Сталь 12Х18Н10Т</option>
+                    <option value="steel20">Сталь 20</option>
+                    <option value="brass">Латунь Л63</option>
+                    <option value="bronze">Бронза БрАЖ</option>
+                </select>
+            </div>
+
+            <button class="converter-convert-btn" onclick="calcOrificeDp()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать перепад Δp</button>
+
+            <div id="opResultsDp" class="converter-result-group" style="display:none;"></div>
+
+            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Перепад давления · РД 50-411-83</div></div>
+        </div>
+
+        <!-- ======================== РАСЧЁТ РАСХОДА (Q) ======================== -->
+        <div id="page-orifice-flow" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
+            <div class="page-inline-header"><div class="page-inline-header-title">Расход среды Q</div><div class="header-btn" onclick="showToast('Обновлено')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div></div>
+            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Тип среды</div>
+                <select id="op_flow_medium_type" class="scale-field" onchange="updateOpFlowForm()" autocomplete="off">
+                    <option value="liquid" selected>Жидкость (несжимаемая)</option>
+                    <option value="gas">Газ / пар (сжимаемая)</option>
+                </select>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Параметры трубопровода</div>
+                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
+                    <input type="number" id="op_flow_d20" class="scale-field" style="flex:2; margin-bottom:0;" value="100" step="1" placeholder="D₂₀, мм" autocomplete="off" autocorrect="off" spellcheck="false">
+                    <select id="op_flow_pipe_material" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
+                        <option value="steel20" selected>Сталь 20</option>
+                        <option value="steel12x18h10t">12Х18Н10Т</option>
+                        <option value="steel15x5m">15Х5М</option>
+                        <option value="brass">Латунь</option>
+                    </select>
+                </div>
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-bottom:8px;">Внутренний диаметр трубы при 20°C · Материал</div>
+                <input type="number" id="op_flow_temp" class="scale-field" value="20" step="1" placeholder="t, °C" autocomplete="off" autocorrect="off" spellcheck="false">
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Рабочая температура, °C</div>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Перепад давления (Δp)</div>
+                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
+                    <input type="number" id="op_flow_dp" class="scale-field" style="flex:2; margin-bottom:0;" value="25" step="1" placeholder="Δp" autocomplete="off" autocorrect="off" spellcheck="false">
+                    <select id="op_flow_dp_unit" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
+                        <option value="kPa" selected>кПа</option>
+                        <option value="Pa">Па</option>
+                        <option value="MPa">МПа</option>
+                        <option value="mmH2O">мм вод.ст.</option>
+                        <option value="mmHg">мм рт.ст.</option>
+                        <option value="bar">бар</option>
+                    </select>
+                </div>
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Номинальный перепад давления</div>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Диаметр диска (d₂₀)</div>
+                <input type="number" id="op_flow_d_plate" class="scale-field" value="50" step="0.1" placeholder="d₂₀, мм" autocomplete="off" autocorrect="off" spellcheck="false">
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Диаметр отверстия диафрагмы при 20°C, мм</div>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Параметры среды</div>
+                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
+                    <input type="number" id="op_flow_density" class="scale-field" style="flex:1; margin-bottom:0;" value="998" step="1" placeholder="ρ, кг/м³" autocomplete="off" autocorrect="off" spellcheck="false">
+                    <input type="number" id="op_flow_viscosity" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="ν, сСт" autocomplete="off" autocorrect="off" spellcheck="false">
+                </div>
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-bottom:8px;">Плотность · Кинематическая вязкость (сСт = мм²/с)</div>
+                <div id="op_flow_gas_params" style="display:none;">
+                    <div style="display:flex; gap:8px; align-items:stretch;">
+                        <input type="number" id="op_flow_kappa" class="scale-field" style="flex:1; margin-bottom:0;" value="1.4" step="0.01" placeholder="κ" autocomplete="off" autocorrect="off" spellcheck="false">
+                        <input type="number" id="op_flow_z" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="Z" autocomplete="off" autocorrect="off" spellcheck="false">
+                    </div>
+                    <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Показатель адиабаты κ · Коэффициент сжимаемости Z</div>
+                </div>
+                <input type="number" id="op_flow_pressure" class="scale-field" style="margin-top:8px; margin-bottom:0;" value="0.1" step="0.01" placeholder="P, МПа" autocomplete="off" autocorrect="off" spellcheck="false">
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Избыточное давление, МПа (для газов)</div>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Тип сужающего устройства</div>
+                <select id="op_flow_device_type" class="scale-field" autocomplete="off">
+                    <option value="orifice" selected>Диафрагма стандартная (ГОСТ 26969-86)</option>
+                    <option value="nozzle">Сопло стандартное</option>
+                    <option value="venturi">Труба Вентури</option>
+                </select>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Материал диафрагмы</div>
+                <select id="op_flow_plate_material" class="scale-field" autocomplete="off">
+                    <option value="steel12x18h10t" selected>Сталь 12Х18Н10Т</option>
+                    <option value="steel20">Сталь 20</option>
+                    <option value="brass">Латунь Л63</option>
+                    <option value="bronze">Бронза БрАЖ</option>
+                </select>
+            </div>
+
+            <button class="converter-convert-btn" onclick="calcOrificeFlow()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать расход Q</button>
+
+            <div id="opResultsFlow" class="converter-result-group" style="display:none;"></div>
+
+            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Расход среды · РД 50-411-83</div></div>
+        </div>
+
+        <!-- ======================== РАСЧЁТ ДИАМЕТРА ДИСКА (d₂₀) ======================== --><!-- ======================== СУЖАЮЩЕЕ УСТРОЙСТВО (ДИАФРАГМА) ======================== -->
+        <div id="page-orifice-diameter" class="page-content">
             <div class="page-wallpaper"></div>
             <div class="page-overlay"></div>
             <div class="page-inline-header"><div class="page-inline-header-title">Сужающее устройство</div><div class="header-btn" onclick="showToast('Обновлено')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div></div>
@@ -729,11 +962,11 @@
                 </select>
             </div>
 
-            <button class="converter-convert-btn" onclick="calcOrificePlate()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать диафрагму</button>
+            <button class="converter-convert-btn" onclick="calcOrificeDiameter()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать диафрагму</button>
 
-            <div id="opResults" class="converter-result-group" style="display:none;"></div>
+            <div id="opResultsDiameter" class="converter-result-group" style="display:none;"></div>
 
-            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Сужающее устройство · РД 50-411-83 / ГОСТ 26969-86</div></div>
+            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Диаметр диска · РД 50-411-83 / ГОСТ 26969-86</div></div>
         </div>
 
         <!-- ======================== БИБЛИОТЕКА КИП И А (ВНУТРЕННЯЯ) ======================== -->
@@ -1527,6 +1760,198 @@ function roundNumber(n) { if (n===0) return '0'; let s=n.toPrecision(1); let v=p
         document.getElementById('opResults').innerHTML = html;
         document.getElementById('opResults').style.display = 'block';
         setTimeout(() => document.getElementById('opResults').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    }
+
+    
+    // Сужающее устройство — Перепад давления (Δp)
+    function updateOpDpForm() {
+        let type = document.getElementById('op_dp_medium_type').value;
+        document.getElementById('op_dp_gas_params').style.display = type === 'gas' ? 'block' : 'none';
+    }
+    function updateOpFlowForm() {
+        let type = document.getElementById('op_flow_medium_type').value;
+        document.getElementById('op_flow_gas_params').style.display = type === 'gas' ? 'block' : 'none';
+    }
+    function getOpAlpha(m, device) {
+        let coeff = opAlphaCoefficients[device];
+        return coeff.A + coeff.B * m + coeff.C * m * m + coeff.D * m * m * m;
+    }
+    function getOpEpsilon(m, dp_Pa, pressure_abs, kappa, medium) {
+        if (medium !== 'gas') return 1.0;
+        let tau = dp_Pa / pressure_abs;
+        let eps = 1 - (0.41 + 0.35 * Math.pow(m, 1.5)) * tau / kappa;
+        return eps < 0.9 ? 0.9 : eps;
+    }
+    function convertOpFlowToM3s(flow, unit, rho) {
+        switch(unit) {
+            case 'm3h': return flow / 3600;
+            case 'm3s': return flow;
+            case 'l_s': return flow / 1000;
+            case 'kg_h': return flow / (3600 * rho);
+            case 'kg_s': return flow / rho;
+            case 't_h': return flow * 1000 / (3600 * rho);
+            default: return flow / 3600;
+        }
+    }
+    function convertOpDpToPa(dp, unit) {
+        switch(unit) {
+            case 'kPa': return dp * 1000;
+            case 'Pa': return dp;
+            case 'MPa': return dp * 1e6;
+            case 'mmH2O': return dp * 9.80665;
+            case 'mmHg': return dp * 133.322;
+            case 'bar': return dp * 1e5;
+            default: return dp * 1000;
+        }
+    }
+    function getOpThermalD(d20_mm, material, temp) {
+        let alpha = opThermalExpansion[material] || 11.9e-6;
+        return d20_mm / 1000 * (1 + alpha * (temp - 20));
+    }
+
+    // Расчёт перепада давления Δp по Q и d₂₀
+    function calcOrificeDp() {
+        let medium = document.getElementById('op_dp_medium_type').value;
+        let d20_mm = parseFloat(document.getElementById('op_dp_d20').value);
+        let pipeMat = document.getElementById('op_dp_pipe_material').value;
+        let temp = parseFloat(document.getElementById('op_dp_temp').value);
+        let flow = parseFloat(document.getElementById('op_dp_flow').value);
+        let flowUnit = document.getElementById('op_dp_flow_unit').value;
+        let d_plate_mm = parseFloat(document.getElementById('op_dp_d_plate').value);
+        let rho = parseFloat(document.getElementById('op_dp_density').value);
+        let nu_cSt = parseFloat(document.getElementById('op_dp_viscosity').value);
+        let device = document.getElementById('op_dp_device_type').value;
+        let plateMat = document.getElementById('op_dp_plate_material').value;
+        let pressure = parseFloat(document.getElementById('op_dp_pressure').value) || 0;
+
+        if (isNaN(d20_mm) || d20_mm <= 0) { showToast('Введите диаметр трубопровода'); return; }
+        if (isNaN(flow) || flow <= 0) { showToast('Введите расход'); return; }
+        if (isNaN(d_plate_mm) || d_plate_mm <= 0) { showToast('Введите диаметр диска'); return; }
+        if (isNaN(rho) || rho <= 0) { showToast('Введите плотность'); return; }
+        if (isNaN(nu_cSt) || nu_cSt <= 0) { showToast('Введите вязкость'); return; }
+        if (d_plate_mm >= d20_mm) { showToast('Диаметр диска должен быть меньше диаметра трубы'); return; }
+
+        let D = getOpThermalD(d20_mm, pipeMat, temp);
+        let d = d_plate_mm / 1000 * (1 + (opThermalExpansion[plateMat] || 16.6e-6) * (temp - 20));
+        let m = (d / D) * (d / D);
+        let Q_m3s = convertOpFlowToM3s(flow, flowUnit, rho);
+        let alpha = getOpAlpha(m, device);
+        let kappa = medium === 'gas' ? (parseFloat(document.getElementById('op_dp_kappa').value) || 1.4) : 1.0;
+        let Z = medium === 'gas' ? (parseFloat(document.getElementById('op_dp_z').value) || 1.0) : 1.0;
+        let pressure_abs = pressure * 1e6 + 101325;
+
+        // Initial epsilon estimate
+        let epsilon = getOpEpsilon(m, 25000, pressure_abs, kappa, medium);
+        let dp_Pa;
+        // Iterate for epsilon convergence
+        for (let iter = 0; iter < 20; iter++) {
+            let denom = alpha * epsilon * (Math.PI * D * D / 4) * Math.sqrt(2 / rho) * m;
+            dp_Pa = Math.pow(Q_m3s / denom, 2);
+            let eps_new = getOpEpsilon(m, dp_Pa, pressure_abs, kappa, medium);
+            if (Math.abs(eps_new - epsilon) < 0.0001) break;
+            epsilon = eps_new;
+        }
+
+        let ReD = (4 * Q_m3s) / (Math.PI * D * nu_cSt * 1e-6);
+        let dp_kPa = dp_Pa / 1000;
+        let dp_mmH2O = dp_Pa / 9.80665;
+
+        let warnings = [];
+        if (m < 0.05) warnings.push('m < 0,05 — ниже рекомендуемого диапазона');
+        if (m > 0.64) warnings.push('m > 0,64 — превышает рекомендуемый диапазон');
+        if (ReD < 1e5) warnings.push('ReD < 10⁵ — возможна зависимость α от Re');
+        if (dp_Pa > 0.25 * pressure_abs) warnings.push('Δp > 0,25·P — применение формулы ограничено');
+
+        let deviceNames = { orifice: 'Диафрагма стандартная', nozzle: 'Сопло стандартное', venturi: 'Труба Вентури' };
+        let html = '<div class="converter-result-label-title">Результаты расчёта Δp (РД 50-411-83)</div>';
+        html += `<div class="converter-result-item"><span class="converter-result-label">Тип СУ</span><span class="converter-result-value">${deviceNames[device]}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Расход Q</span><span class="converter-result-value">${formatNumber(Q_m3s * 3600)} м³/ч</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Диаметр диска d₂₀</span><span class="converter-result-value">${formatNumber(d_plate_mm)} мм</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Относительное отверстие m</span><span class="converter-result-value">${formatNumber(m)}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Коэффициент расхода α</span><span class="converter-result-value">${formatNumber(alpha)}</span></div>`;
+        if (medium === 'gas') {
+            html += `<div class="converter-result-item"><span class="converter-result-label">Коэффициент расширения ε</span><span class="converter-result-value">${formatNumber(epsilon)}</span></div>`;
+        }
+        html += `<div class="converter-result-item"><span class="converter-result-label">Число ReD</span><span class="converter-result-value">${formatNumber(ReD)}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Перепад Δp</span><span class="converter-result-value" style="color:#4ac771; font-size:18px;">${formatNumber(dp_kPa)} кПа</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Перепад Δp</span><span class="converter-result-value">${formatNumber(dp_mmH2O)} мм вод.ст.</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Перепад Δp</span><span class="converter-result-value">${formatNumber(dp_Pa)} Па</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">Δp = ρ/2 · [Q/(α·ε·(πD²/4)·m)]²</span></div>`;
+
+        if (warnings.length > 0) {
+            html += `<div class="warning-banner" style="margin:10px 0 0;"><div class="warning-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div class="warning-banner-content"><div class="warning-banner-title">Рекомендации</div><div class="warning-banner-desc">${warnings.join('<br>')}</div></div></div>`;
+        }
+
+        document.getElementById('opResultsDp').innerHTML = html;
+        document.getElementById('opResultsDp').style.display = 'block';
+        setTimeout(() => document.getElementById('opResultsDp').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    }
+
+    // Расчёт расхода Q по Δp и d₂₀
+    function calcOrificeFlow() {
+        let medium = document.getElementById('op_flow_medium_type').value;
+        let d20_mm = parseFloat(document.getElementById('op_flow_d20').value);
+        let pipeMat = document.getElementById('op_flow_pipe_material').value;
+        let temp = parseFloat(document.getElementById('op_flow_temp').value);
+        let dp = parseFloat(document.getElementById('op_flow_dp').value);
+        let dpUnit = document.getElementById('op_flow_dp_unit').value;
+        let d_plate_mm = parseFloat(document.getElementById('op_flow_d_plate').value);
+        let rho = parseFloat(document.getElementById('op_flow_density').value);
+        let nu_cSt = parseFloat(document.getElementById('op_flow_viscosity').value);
+        let device = document.getElementById('op_flow_device_type').value;
+        let plateMat = document.getElementById('op_flow_plate_material').value;
+        let pressure = parseFloat(document.getElementById('op_flow_pressure').value) || 0;
+
+        if (isNaN(d20_mm) || d20_mm <= 0) { showToast('Введите диаметр трубопровода'); return; }
+        if (isNaN(dp) || dp <= 0) { showToast('Введите перепад давления'); return; }
+        if (isNaN(d_plate_mm) || d_plate_mm <= 0) { showToast('Введите диаметр диска'); return; }
+        if (isNaN(rho) || rho <= 0) { showToast('Введите плотность'); return; }
+        if (isNaN(nu_cSt) || nu_cSt <= 0) { showToast('Введите вязкость'); return; }
+        if (d_plate_mm >= d20_mm) { showToast('Диаметр диска должен быть меньше диаметра трубы'); return; }
+
+        let D = getOpThermalD(d20_mm, pipeMat, temp);
+        let d = d_plate_mm / 1000 * (1 + (opThermalExpansion[plateMat] || 16.6e-6) * (temp - 20));
+        let m = (d / D) * (d / D);
+        let dp_Pa = convertOpDpToPa(dp, dpUnit);
+        let alpha = getOpAlpha(m, device);
+        let kappa = medium === 'gas' ? (parseFloat(document.getElementById('op_flow_kappa').value) || 1.4) : 1.0;
+        let Z = medium === 'gas' ? (parseFloat(document.getElementById('op_flow_z').value) || 1.0) : 1.0;
+        let pressure_abs = pressure * 1e6 + 101325;
+        let epsilon = getOpEpsilon(m, dp_Pa, pressure_abs, kappa, medium);
+
+        let Q_m3s = alpha * epsilon * (Math.PI * D * D / 4) * Math.sqrt(2 * dp_Pa / rho) * m;
+        let ReD = (4 * Q_m3s) / (Math.PI * D * nu_cSt * 1e-6);
+
+        let warnings = [];
+        if (m < 0.05) warnings.push('m < 0,05 — ниже рекомендуемого диапазона');
+        if (m > 0.64) warnings.push('m > 0,64 — превышает рекомендуемый диапазон');
+        if (ReD < 1e5) warnings.push('ReD < 10⁵ — возможна зависимость α от Re');
+        if (dp_Pa > 0.25 * pressure_abs) warnings.push('Δp > 0,25·P — применение формулы ограничено');
+
+        let deviceNames = { orifice: 'Диафрагма стандартная', nozzle: 'Сопло стандартное', venturi: 'Труба Вентури' };
+        let html = '<div class="converter-result-label-title">Результаты расчёта Q (РД 50-411-83)</div>';
+        html += `<div class="converter-result-item"><span class="converter-result-label">Тип СУ</span><span class="converter-result-value">${deviceNames[device]}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Перепад Δp</span><span class="converter-result-value">${formatNumber(dp_Pa / 1000)} кПа</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Диаметр диска d₂₀</span><span class="converter-result-value">${formatNumber(d_plate_mm)} мм</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Относительное отверстие m</span><span class="converter-result-value">${formatNumber(m)}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Коэффициент расхода α</span><span class="converter-result-value">${formatNumber(alpha)}</span></div>`;
+        if (medium === 'gas') {
+            html += `<div class="converter-result-item"><span class="converter-result-label">Коэффициент расширения ε</span><span class="converter-result-value">${formatNumber(epsilon)}</span></div>`;
+        }
+        html += `<div class="converter-result-item"><span class="converter-result-label">Число ReD</span><span class="converter-result-value">${formatNumber(ReD)}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Расход Q</span><span class="converter-result-value" style="color:#4ac771; font-size:18px;">${formatNumber(Q_m3s * 3600)} м³/ч</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Расход Q</span><span class="converter-result-value">${formatNumber(Q_m3s)} м³/с</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Расход Q</span><span class="converter-result-value">${formatNumber(Q_m3s * 1000)} л/с</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Массовый расход</span><span class="converter-result-value">${formatNumber(Q_m3s * rho * 3600)} кг/ч</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">Q = α·ε·(πD²/4)·√(2Δp/ρ)·m</span></div>`;
+
+        if (warnings.length > 0) {
+            html += `<div class="warning-banner" style="margin:10px 0 0;"><div class="warning-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div class="warning-banner-content"><div class="warning-banner-title">Рекомендации</div><div class="warning-banner-desc">${warnings.join('<br>')}</div></div></div>`;
+        }
+
+        document.getElementById('opResultsFlow').innerHTML = html;
+        document.getElementById('opResultsFlow').style.display = 'block';
+        setTimeout(() => document.getElementById('opResultsFlow').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
     }
 
     document.addEventListener('DOMContentLoaded', function(){
