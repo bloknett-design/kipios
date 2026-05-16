@@ -111,7 +111,7 @@
     
     .menu-btn-row { display: flex; flex-direction: column; align-items: center; padding: 10px 0 12px; position: relative; z-index: 2; }
     #page-dashboard .menu-btn-row { display: grid; grid-template-columns: 1fr; gap: 10px; padding: 10px 16px 12px; }
-    #page-dashboard .menu-btn { width: 100%; margin: 0; }
+    #page-dashboard .menu-btn { width: 100%; margin: 0; min-height: 64px; }
     .menu-btn {
         display: flex; align-items: center; justify-content: flex-start; position: relative;
         width: calc(100% - 32px); min-width: 0; padding: 14px 16px; margin: 5px 16px;
@@ -128,8 +128,8 @@
     .menu-btn-arrow { color: rgba(255,255,255,0.12); font-size: 18px; z-index: 1; transition: transform 0.25s; pointer-events: none; }
     .menu-btn:active .menu-btn-arrow { transform: translateX(3px); color: rgba(74,143,199,0.4); }
     
-    #page-dashboard .menu-btn-label { font-size: 28px; }
-    #page-dashboard .menu-btn-sublabel { font-size: 20px; }
+    #page-dashboard .menu-btn-label { font-size: 20px; }
+    #page-dashboard .menu-btn-sublabel { font-size: 13px; }
     
     .warning-banner {
         display: flex; align-items: center; gap: 12px;
@@ -291,8 +291,8 @@
     @media (max-width: 480px) {
         .menu-btn { width: calc(100% - 24px); margin: 4px 12px; padding: 12px 14px; }
         .menu-btn-label { font-size: 14px; } .menu-btn-sublabel { font-size: 10px; }
-        #page-dashboard .menu-btn-label { font-size: 26px; }
-        #page-dashboard .menu-btn-sublabel { font-size: 18px; }
+        #page-dashboard .menu-btn-label { font-size: 18px; }
+        #page-dashboard .menu-btn-sublabel { font-size: 12px; }
         .header-title { font-size: 18px; }
         .nav-btn { padding: 9px 14px; font-size: 13px; }
         .form-field, .scale-field { padding: 11px 12px; font-size: 14px; }
@@ -302,8 +302,8 @@
     @media (max-width: 400px) {
         .menu-btn { width: calc(100% - 16px); margin: 3px 8px; padding: 10px 12px; }
         .menu-btn-label { font-size: 13px; } .menu-btn-sublabel { font-size: 9px; }
-        #page-dashboard .menu-btn-label { font-size: 24px; }
-        #page-dashboard .menu-btn-sublabel { font-size: 16px; }
+        #page-dashboard .menu-btn-label { font-size: 16px; }
+        #page-dashboard .menu-btn-sublabel { font-size: 11px; }
         .header-title { font-size: 16px; letter-spacing: 1px; }
         .header-subtitle { font-size: 7px; letter-spacing: 2px; }
         .nav-btn { padding: 8px 12px; font-size: 12px; gap: 5px; }
@@ -389,7 +389,9 @@
                 <div class="menu-btn" onclick="navigateTo('scale-signal')"><div class="menu-btn-text"><div class="menu-btn-label">Шкала-сигнал</div><div class="menu-btn-sublabel">Расчёт диапазонов шкалы и сигнала</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('error-select')"><div class="menu-btn-text"><div class="menu-btn-label">Расчёт погрешности</div><div class="menu-btn-sublabel">Класс точности, приведённая погрешность</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('buoy-select')"><div class="menu-btn-text"><div class="menu-btn-label">Буйковый уровнемер</div><div class="menu-btn-sublabel">Калибровка, выталкивающая сила</div></div><i class="menu-btn-arrow">›</i></div>
-                <div class="menu-btn" onclick="navigateTo('temp-sensors')"><div class="menu-btn-text"><div class="menu-btn-label">Датчики температуры</div><div class="menu-btn-sublabel">ТС сопротивления, термопары, расчёт по °C</div></div><i class="menu-btn-arrow">›</i></div>
+                <div class="menu-btn" onclick="navigateTo('temp-sensors')"><div class="menu-btn-text"><div class="menu-btn-label">Датчики температуры</div><div class="menu-btn-sublabel">Расчёт R и мВ по температуре (°C)</div></div><i class="menu-btn-arrow">›</i></div>
+                <div class="menu-btn" onclick="navigateTo('circuit-breaker')"><div class="menu-btn-text"><div class="menu-btn-label">Автоматический выключатель</div><div class="menu-btn-sublabel">Расчёт по мощности, току, сечению кабеля</div></div><i class="menu-btn-arrow">›</i></div>
+                <div class="menu-btn" onclick="navigateTo('orifice-plate')"><div class="menu-btn-text"><div class="menu-btn-label">Сужающее устройство</div><div class="menu-btn-sublabel">Расчёт диафрагмы по расходу и перепаду</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('library')"><div class="menu-btn-text"><div class="menu-btn-label">Библиотека КИП и А</div><div class="menu-btn-sublabel">Документация, схемы, инструкции</div></div><i class="menu-btn-arrow">›</i></div>
             </div>
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Контроль · Измерения · Автоматизация</div></div>
@@ -525,7 +527,269 @@
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Шкала-сигнал</div></div>
         </div>
 
-        <!-- ======================== РАСЧЁТ ПОГРЕШНОСТИ ======================== -->
+        <!-- ======================== АВТОМАТИЧЕСКИЙ ВЫКЛЮЧАТЕЛЬ ======================== -->
+        <div id="page-circuit-breaker" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
+            <div class="page-inline-header"><div class="page-inline-header-title">Автоматический выключатель</div><div class="header-btn" onclick="showToast('Обновлено')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div></div>
+            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Тип нагрузки</div>
+                <select id="cb_load_type" class="scale-field" onchange="updateCbForm()" autocomplete="off">
+                    <option value="power" selected>По мощности (P, Вт)</option>
+                    <option value="current">По току (I, А)</option>
+                </select>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Параметры сети</div>
+                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
+                    <select id="cb_phase" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
+                        <option value="1" selected>Однофазная (220 В)</option>
+                        <option value="3">Трёхфазная (380 В)</option>
+                    </select>
+                    <input type="number" id="cb_cosphi" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" min="0.1" max="1.0" placeholder="cos φ" autocomplete="off" autocorrect="off" spellcheck="false">
+                </div>
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">cos φ: 1,0 — активная нагрузка; 0,8–0,9 — двигатели; 0,5–0,7 — люминесцентные лампы</div>
+            </div>
+
+            <div class="scale-form" id="cb_power_block">
+                <div class="scale-form-label">Мощность нагрузки (P)</div>
+                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
+                    <input type="number" id="cb_power" class="scale-field" style="flex:2; margin-bottom:0;" value="3000" step="100" placeholder="Вт" autocomplete="off" autocorrect="off" spellcheck="false">
+                    <select id="cb_power_unit" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
+                        <option value="1" selected>Вт</option>
+                        <option value="1000">кВт</option>
+                    </select>
+                </div>
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Суммарная мощность всех потребителей</div>
+            </div>
+
+            <div class="scale-form" id="cb_current_block" style="display:none;">
+                <div class="scale-form-label">Ток нагрузки (I)</div>
+                <input type="number" id="cb_current" class="scale-field" value="15" step="0.1" placeholder="А" autocomplete="off" autocorrect="off" spellcheck="false">
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Амперы</div>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Тип линии</div>
+                <select id="cb_line_type" class="scale-field" onchange="updateCbCableTable()" autocomplete="off">
+                    <option value="lighting" selected>Освещение (кабель 1,5 мм²)</option>
+                    <option value="socket">Розетки (кабель 2,5 мм²)</option>
+                    <option value="power">Силовая линия (кабель 4–6 мм²)</option>
+                    <option value="custom">Своё сечение кабеля</option>
+                </select>
+            </div>
+
+            <div class="scale-form" id="cb_custom_cable" style="display:none;">
+                <div class="scale-form-label">Сечение кабеля (мм²)</div>
+                <select id="cb_cable_section" class="scale-field" autocomplete="off">
+                    <option value="0.75">0,75 мм²</option>
+                    <option value="1.0">1,0 мм²</option>
+                    <option value="1.5" selected>1,5 мм²</option>
+                    <option value="2.5">2,5 мм²</option>
+                    <option value="4">4 мм²</option>
+                    <option value="6">6 мм²</option>
+                    <option value="10">10 мм²</option>
+                    <option value="16">16 мм²</option>
+                    <option value="25">25 мм²</option>
+                    <option value="35">35 мм²</option>
+                </select>
+                <div class="scale-form-label" style="margin-top:12px;">Материал жилы</div>
+                <select id="cb_cable_material" class="scale-field" autocomplete="off">
+                    <option value="cu" selected>Медь (Cu)</option>
+                    <option value="al">Алюминий (Al)</option>
+                </select>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Характеристика срабатывания</div>
+                <select id="cb_curve" class="scale-field" autocomplete="off">
+                    <option value="B">B (3–5 In) — освещение, электроника</option>
+                    <option value="C" selected>C (5–10 In) — бытовые нагрузки, розетки</option>
+                    <option value="D">D (10–20 In) — двигатели, сварка</option>
+                </select>
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">B — чувствительный · C — универсальный · D — инерционный</div>
+            </div>
+
+            <button class="converter-convert-btn" onclick="calcCircuitBreaker()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать автомат</button>
+
+            <div id="cbResults" class="converter-result-group" style="display:none;"></div>
+
+            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Автоматический выключатель · ГОСТ Р 50345-2010</div></div>
+        </div>
+
+        <!-- ======================== СУЖАЮЩЕЕ УСТРОЙСТВО (ДИАФРАГМА) ======================== -->
+        <div id="page-orifice-plate" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
+            <div class="page-inline-header"><div class="page-inline-header-title">Сужающее устройство</div><div class="header-btn" onclick="showToast('Обновлено')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div></div>
+            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Тип среды</div>
+                <select id="op_medium_type" class="scale-field" onchange="updateOpForm()" autocomplete="off">
+                    <option value="liquid" selected>Жидкость (несжимаемая)</option>
+                    <option value="gas">Газ / пар (сжимаемая)</option>
+                </select>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Параметры трубопровода</div>
+                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
+                    <input type="number" id="op_d20" class="scale-field" style="flex:2; margin-bottom:0;" value="100" step="1" placeholder="D₂₀" autocomplete="off" autocorrect="off" spellcheck="false">
+                    <select id="op_d_unit" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
+                        <option value="mm" selected>мм</option>
+                        <option value="m">м</option>
+                    </select>
+                </div>
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-bottom:8px;">Внутренний диаметр трубопровода при 20°C</div>
+                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
+                    <select id="op_pipe_material" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
+                        <option value="steel20" selected>Сталь 20</option>
+                        <option value="steel12x18h10t">Сталь 12Х18Н10Т</option>
+                        <option value="steel15x5m">Сталь 15Х5М</option>
+                        <option value="brass">Латунь</option>
+                    </select>
+                    <input type="number" id="op_temp" class="scale-field" style="flex:1; margin-bottom:0;" value="20" step="1" placeholder="t, °C" autocomplete="off" autocorrect="off" spellcheck="false">
+                </div>
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Материал трубы · Рабочая температура, °C</div>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Расход среды</div>
+                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
+                    <input type="number" id="op_flow" class="scale-field" style="flex:2; margin-bottom:0;" value="50" step="0.1" placeholder="Q" autocomplete="off" autocorrect="off" spellcheck="false">
+                    <select id="op_flow_unit" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
+                        <option value="m3h" selected>м³/ч</option>
+                        <option value="m3s">м³/с</option>
+                        <option value="l_s">л/с</option>
+                        <option value="kg_h">кг/ч</option>
+                        <option value="kg_s">кг/с</option>
+                        <option value="t_h">т/ч</option>
+                    </select>
+                </div>
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-bottom:8px;">Номинальный (максимальный) расход</div>
+                <div style="display:flex; gap:8px; align-items:stretch;">
+                    <input type="number" id="op_flow_min" class="scale-field" style="flex:1; margin-bottom:0;" value="15" step="0.1" placeholder="Qₘᵢₙ" autocomplete="off" autocorrect="off" spellcheck="false">
+                    <input type="number" id="op_pressure" class="scale-field" style="flex:1; margin-bottom:0;" value="0.1" step="0.01" placeholder="P, МПа" autocomplete="off" autocorrect="off" spellcheck="false">
+                </div>
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Минимальный расход · Избыточное давление, МПа</div>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Параметры среды</div>
+                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
+                    <input type="number" id="op_density" class="scale-field" style="flex:1; margin-bottom:0;" value="998" step="1" placeholder="ρ, кг/м³" autocomplete="off" autocorrect="off" spellcheck="false">
+                    <input type="number" id="op_viscosity" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="ν, сСт" autocomplete="off" autocorrect="off" spellcheck="false">
+                </div>
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-bottom:8px;">Плотность · Кинематическая вязкость (сСт = мм²/с)</div>
+                <div id="op_gas_params" style="display:none;">
+                    <div style="display:flex; gap:8px; align-items:stretch;">
+                        <input type="number" id="op_kappa" class="scale-field" style="flex:1; margin-bottom:0;" value="1.4" step="0.01" placeholder="κ" autocomplete="off" autocorrect="off" spellcheck="false">
+                        <input type="number" id="op_z" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="Z" autocomplete="off" autocorrect="off" spellcheck="false">
+                    </div>
+                    <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Показатель адиабаты κ · Коэффициент сжимаемости Z</div>
+                </div>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Перепад давления</div>
+                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
+                    <input type="number" id="op_dp" class="scale-field" style="flex:2; margin-bottom:0;" value="25" step="1" placeholder="Δp" autocomplete="off" autocorrect="off" spellcheck="false">
+                    <select id="op_dp_unit" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
+                        <option value="kPa" selected>кПа</option>
+                        <option value="Pa">Па</option>
+                        <option value="MPa">МПа</option>
+                        <option value="mmH2O">мм вод.ст.</option>
+                        <option value="mmHg">мм рт.ст.</option>
+                        <option value="bar">бар</option>
+                    </select>
+                </div>
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Номинальный перепад давления на диафрагме</div>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Тип сужающего устройства</div>
+                <select id="op_device_type" class="scale-field" autocomplete="off">
+                    <option value="orifice" selected>Диафрагма стандартная (ГОСТ 26969-86)</option>
+                    <option value="nozzle">Сопло стандартное</option>
+                    <option value="venturi">Труба Вентури</option>
+                </select>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Материал диафрагмы</div>
+                <select id="op_plate_material" class="scale-field" autocomplete="off">
+                    <option value="steel12x18h10t" selected>Сталь 12Х18Н10Т</option>
+                    <option value="steel20">Сталь 20</option>
+                    <option value="brass">Латунь Л63</option>
+                    <option value="bronze">Бронза БрАЖ</option>
+                </select>
+            </div>
+
+            <button class="converter-convert-btn" onclick="calcOrificePlate()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать диафрагму</button>
+
+            <div id="opResults" class="converter-result-group" style="display:none;"></div>
+
+            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Сужающее устройство · РД 50-411-83 / ГОСТ 26969-86</div></div>
+        </div>
+
+        <!-- ======================== БИБЛИОТЕКА КИП И А (ВНУТРЕННЯЯ) ======================== -->
+        <div id="page-library-internal" class="page-content">
+            <div class="page-wallpaper"></div>
+            <div class="page-overlay"></div>
+            <div class="page-inline-header"><div class="page-inline-header-title">Библиотека КИП и А</div><div class="header-btn" onclick="showToast('Обновлено')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div></div>
+            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
+
+            <div class="content-header" style="padding: 14px 20px 10px;">
+                <h2 style="color: #e0e0e0; font-size: 22px; font-weight: 700; letter-spacing: -0.3px;">Разделы библиотеки</h2>
+                <p style="color: rgba(255,255,255,0.35); font-size: 12px; margin-top: 5px;">Переход к папкам OneDrive</p>
+            </div>
+
+            <div class="menu-btn-row">
+                <a href="https://1drv.ms/f/c/c9414adb26fe5b28/IgCsnPuKLQ7hTKUyMTKT4_-iAaiQPXefFlnsy1ZSizDoZ0w?e=HBCWlW" class="menu-btn" style="text-decoration: none; color: inherit;">
+                    <div class="menu-btn-text">
+                        <div class="menu-btn-label">Метрология</div>
+                        <div class="menu-btn-sublabel">Стандарты, поверка, эталоны</div>
+                    </div>
+                    <svg class="menu-btn-arrow" viewBox="0 0 24 24" style="width: 18px; height: 18px; stroke: rgba(255,255,255,0.12); fill: none; stroke-width: 2; stroke-linecap: round;"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
+                <a href="https://1drv.ms/f/c/c9414adb26fe5b28/IgDbdnNeZCGZQJxFg5M8_h37Ab8t8FitTj-qAbF4lvmLWzQ?e=mJ1ccK" class="menu-btn" style="text-decoration: none; color: inherit;">
+                    <div class="menu-btn-text">
+                        <div class="menu-btn-label">ОТ и ПБ, пожарная безопасность</div>
+                        <div class="menu-btn-sublabel">Охрана труда, промышленная безопасность</div>
+                    </div>
+                    <svg class="menu-btn-arrow" viewBox="0 0 24 24" style="width: 18px; height: 18px; stroke: rgba(255,255,255,0.12); fill: none; stroke-width: 2; stroke-linecap: round;"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
+                <a href="https://1drv.ms/f/c/c9414adb26fe5b28/IgDYB_Oe9Oc1S6ZntX6wmigUAVkCO2RLXATHvn3LYV8ARz0?e=T4U2K6" class="menu-btn" style="text-decoration: none; color: inherit;">
+                    <div class="menu-btn-text">
+                        <div class="menu-btn-label">Приборы</div>
+                        <div class="menu-btn-sublabel">Документация, паспорта, руководства</div>
+                    </div>
+                    <svg class="menu-btn-arrow" viewBox="0 0 24 24" style="width: 18px; height: 18px; stroke: rgba(255,255,255,0.12); fill: none; stroke-width: 2; stroke-linecap: round;"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
+                <a href="https://1drv.ms/f/c/c9414adb26fe5b28/IgCpadh65JcrTrN8DD3L7Tk-AaET8G0nHw6qSI3H-gzPvLM?e=WZNl1G" class="menu-btn" style="text-decoration: none; color: inherit;">
+                    <div class="menu-btn-text">
+                        <div class="menu-btn-label">Электробезопасность</div>
+                        <div class="menu-btn-sublabel">Правила, инструкции, группы по ЭБ</div>
+                    </div>
+                    <svg class="menu-btn-arrow" viewBox="0 0 24 24" style="width: 18px; height: 18px; stroke: rgba(255,255,255,0.12); fill: none; stroke-width: 2; stroke-linecap: round;"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
+                <a href="https://1drv.ms/f/c/c9414adb26fe5b28/IgAR33ojK-OUSbWRfFCGCOtAAWkmf7-5L54P00BBiMqgjjM?e=0q2Z4M" class="menu-btn" style="text-decoration: none; color: inherit;">
+                    <div class="menu-btn-text">
+                        <div class="menu-btn-label">Справочник</div>
+                        <div class="menu-btn-sublabel">Таблицы, коэффициенты, формулы</div>
+                    </div>
+                    <svg class="menu-btn-arrow" viewBox="0 0 24 24" style="width: 18px; height: 18px; stroke: rgba(255,255,255,0.12); fill: none; stroke-width: 2; stroke-linecap: round;"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
+            </div>
+
+            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Библиотека · OneDrive</div></div>
+        </div>
+
+        <!-- ======================== РАСЧЁТ ПОГРЕШНОСТИ ======================== --><!-- ======================== РАСЧЁТ ПОГРЕШНОСТИ ======================== --><!-- ======================== РАСЧЁТ ПОГРЕШНОСТИ ======================== --><!-- ======================== РАСЧЁТ ПОГРЕШНОСТИ ======================== -->
         <div id="page-error-select" class="page-content">
             <div class="page-wallpaper"></div>
             <div class="page-overlay"></div>
@@ -707,7 +971,7 @@
     // ИСТОРИЯ И НАВИГАЦИЯ
     let pageHistory = [];
     function navigateTo(page, addToHistory=true) {
-        if (page === 'library') { window.location.href = 'https://1drv.ms/f/c/c9414adb26fe5b28/EmAnpv2y2GBDu-LHw7XMIKUB8crd6WiQXi_l3jPDPzXm3g?e=UKmbGK'; return; }
+        if (page === 'library') { navigateTo('library-internal'); return; }
         let active = document.querySelector('.page-content.active');
         if (active && addToHistory) { let id = active.id.replace('page-', ''); if (id !== page) pageHistory.push(id); }
         document.querySelectorAll('.page-content').forEach(el => { el.classList.remove('active', 'visible'); });
@@ -1012,6 +1276,259 @@ function roundNumber(n) { if (n===0) return '0'; let s=n.toPrecision(1); let v=p
     }
 
     // DOMContentLoaded
+    
+    // Автоматический выключатель
+    const cbCableData = {
+        cu: {
+            0.75: { Ik: 15, Imax: 10 },
+            1.0: { Ik: 17, Imax: 10 },
+            1.5: { Ik: 23, Imax: 16 },
+            2.5: { Ik: 30, Imax: 25 },
+            4: { Ik: 41, Imax: 32 },
+            6: { Ik: 50, Imax: 40 },
+            10: { Ik: 70, Imax: 50 },
+            16: { Ik: 95, Imax: 63 },
+            25: { Ik: 125, Imax: 80 },
+            35: { Ik: 155, Imax: 100 }
+        },
+        al: {
+            0.75: { Ik: 11, Imax: 6 },
+            1.0: { Ik: 13, Imax: 10 },
+            1.5: { Ik: 17, Imax: 10 },
+            2.5: { Ik: 23, Imax: 16 },
+            4: { Ik: 30, Imax: 25 },
+            6: { Ik: 38, Imax: 32 },
+            10: { Ik: 55, Imax: 40 },
+            16: { Ik: 75, Imax: 63 },
+            25: { Ik: 100, Imax: 80 },
+            35: { Ik: 125, Imax: 100 }
+        }
+    };
+    const cbStandardSeries = [1, 2, 3, 4, 6, 8, 10, 13, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160];
+    function getCbCableData(lineType, customSection, customMaterial) {
+        let preset = {
+            lighting: { mat: 'cu', sec: 1.5 },
+            socket: { mat: 'cu', sec: 2.5 },
+            power: { mat: 'cu', sec: 6 }
+        };
+        let mat = lineType === 'custom' ? customMaterial : preset[lineType].mat;
+        let sec = lineType === 'custom' ? parseFloat(customSection) : preset[lineType].sec;
+        return { material: mat, section: sec, data: cbCableData[mat][sec] };
+    }
+    function nearestCbStandard(val) {
+        for (let i = 0; i < cbStandardSeries.length; i++) {
+            if (cbStandardSeries[i] >= val) return cbStandardSeries[i];
+        }
+        return cbStandardSeries[cbStandardSeries.length - 1];
+    }
+    function updateCbForm() {
+        let type = document.getElementById('cb_load_type').value;
+        document.getElementById('cb_power_block').style.display = type === 'power' ? 'block' : 'none';
+        document.getElementById('cb_current_block').style.display = type === 'current' ? 'block' : 'none';
+    }
+    function updateCbCableTable() {
+        let lineType = document.getElementById('cb_line_type').value;
+        document.getElementById('cb_custom_cable').style.display = lineType === 'custom' ? 'block' : 'none';
+    }
+    function calcCircuitBreaker() {
+        let loadType = document.getElementById('cb_load_type').value;
+        let phase = parseInt(document.getElementById('cb_phase').value);
+        let cosphi = parseFloat(document.getElementById('cb_cosphi').value) || 1.0;
+        let lineType = document.getElementById('cb_line_type').value;
+        let curve = document.getElementById('cb_curve').value;
+        let customSection = document.getElementById('cb_cable_section') ? document.getElementById('cb_cable_section').value : '1.5';
+        let customMaterial = document.getElementById('cb_cable_material') ? document.getElementById('cb_cable_material').value : 'cu';
+        let U = phase === 1 ? 220 : 380;
+        let Icalc;
+        if (loadType === 'power') {
+            let P = parseFloat(document.getElementById('cb_power').value);
+            let unitMult = parseInt(document.getElementById('cb_power_unit').value);
+            if (isNaN(P) || P <= 0) { showToast('Введите мощность'); return; }
+            P = P * unitMult;
+            Icalc = P / (U * cosphi);
+            if (phase === 3) Icalc = Icalc / Math.sqrt(3);
+        } else {
+            Icalc = parseFloat(document.getElementById('cb_current').value);
+            if (isNaN(Icalc) || Icalc <= 0) { showToast('Введите ток'); return; }
+        }
+        if (cosphi <= 0 || cosphi > 1) { showToast('cos φ должен быть 0,1…1,0'); return; }
+        let cable = getCbCableData(lineType, customSection, customMaterial);
+        let In_min = Icalc * 1.1;
+        let Ina = nearestCbStandard(In_min);
+        let warning = '';
+        if (Ina > cable.data.Imax) {
+            warning = `⚠️ Выбранный автомат ${Ina} А превышает допустимый для кабеля ${cable.section} мм² (${cable.data.Imax} А). Увеличьте сечение кабеля.`;
+        }
+        let Pmax = Ina * U * cosphi;
+        if (phase === 3) Pmax = Pmax * Math.sqrt(3);
+        let html = '<div class="converter-result-label-title">Результаты расчёта</div>';
+        html += `<div class="converter-result-item"><span class="converter-result-label">Расчётный ток нагрузки</span><span class="converter-result-value">${formatNumber(Icalc)} А</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Напряжение сети</span><span class="converter-result-value">${U} В (${phase === 1 ? 'однофазная' : 'трёхфазная'})</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">cos φ</span><span class="converter-result-value">${cosphi}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Кабель</span><span class="converter-result-value">${cable.material === 'cu' ? 'медь' : 'алюминий'} ${cable.section} мм² · ${cable.data.Ik} А (допустимый)</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Макс. автомат для кабеля</span><span class="converter-result-value">${cable.data.Imax} А</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Рекомендуемый автомат</span><span class="converter-result-value" style="color:#4ac771; font-size:18px;">${curve}${Ina}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Макс. мощность по автомату</span><span class="converter-result-value">${formatNumber(Pmax / 1000)} кВт</span></div>`;
+        if (warning) {
+            html += `<div class="warning-banner" style="margin:10px 0 0;"><div class="warning-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div class="warning-banner-content"><div class="warning-banner-title">Внимание!</div><div class="warning-banner-desc">${warning}</div></div></div>`;
+        }
+        document.getElementById('cbResults').innerHTML = html;
+        document.getElementById('cbResults').style.display = 'block';
+        setTimeout(() => document.getElementById('cbResults').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    }
+
+    
+    // Сужающее устройство (диафрагма)
+    const opAlphaCoefficients = {
+        orifice: {
+            // Стандартная диафрагма по РД 50-411-83 / ГОСТ 26969-86
+            // α = A + B·m + C·m² + D·m³ (упрощённая аппроксимация)
+            // Для ReD ≥ 10⁵ и 0.05 ≤ m ≤ 0.64
+            A: 0.5959, B: 0.0312, C: -0.1840, D: 0.0390
+        },
+        nozzle: {
+            A: 0.9965, B: 0.0105, C: -0.0420, D: 0.0085
+        },
+        venturi: {
+            A: 0.9840, B: 0.0050, C: -0.0150, D: 0.0030
+        }
+    };
+    const opThermalExpansion = {
+        steel20: 11.9e-6,
+        steel12x18h10t: 16.6e-6,
+        steel15x5m: 11.5e-6,
+        brass: 18.9e-6,
+        bronze: 17.6e-6
+    };
+    function updateOpForm() {
+        let type = document.getElementById('op_medium_type').value;
+        document.getElementById('op_gas_params').style.display = type === 'gas' ? 'block' : 'none';
+    }
+    function calcOrificePlate() {
+        let medium = document.getElementById('op_medium_type').value;
+        let d20 = parseFloat(document.getElementById('op_d20').value);
+        let dUnit = document.getElementById('op_d_unit').value;
+        let pipeMat = document.getElementById('op_pipe_material').value;
+        let temp = parseFloat(document.getElementById('op_temp').value);
+        let flow = parseFloat(document.getElementById('op_flow').value);
+        let flowUnit = document.getElementById('op_flow_unit').value;
+        let flowMin = parseFloat(document.getElementById('op_flow_min').value);
+        let pressure = parseFloat(document.getElementById('op_pressure').value);
+        let rho = parseFloat(document.getElementById('op_density').value);
+        let nu_cSt = parseFloat(document.getElementById('op_viscosity').value);
+        let dp = parseFloat(document.getElementById('op_dp').value);
+        let dpUnit = document.getElementById('op_dp_unit').value;
+        let device = document.getElementById('op_device_type').value;
+        let plateMat = document.getElementById('op_plate_material').value;
+
+        if (isNaN(d20) || d20 <= 0) { showToast('Введите диаметр трубопровода'); return; }
+        if (isNaN(flow) || flow <= 0) { showToast('Введите расход'); return; }
+        if (isNaN(rho) || rho <= 0) { showToast('Введите плотность'); return; }
+        if (isNaN(dp) || dp <= 0) { showToast('Введите перепад давления'); return; }
+        if (isNaN(nu_cSt) || nu_cSt <= 0) { showToast('Введите вязкость'); return; }
+
+        // Convert D20 to meters
+        let D20_m = dUnit === 'mm' ? d20 / 1000 : d20;
+        // Convert flow to m³/s
+        let Q_m3s;
+        switch(flowUnit) {
+            case 'm3h': Q_m3s = flow / 3600; break;
+            case 'm3s': Q_m3s = flow; break;
+            case 'l_s': Q_m3s = flow / 1000; break;
+            case 'kg_h': Q_m3s = flow / (3600 * rho); break;
+            case 'kg_s': Q_m3s = flow / rho; break;
+            case 't_h': Q_m3s = flow * 1000 / (3600 * rho); break;
+            default: Q_m3s = flow / 3600;
+        }
+        // Convert dp to Pa
+        let dp_Pa;
+        switch(dpUnit) {
+            case 'kPa': dp_Pa = dp * 1000; break;
+            case 'Pa': dp_Pa = dp; break;
+            case 'MPa': dp_Pa = dp * 1e6; break;
+            case 'mmH2O': dp_Pa = dp * 9.80665; break;
+            case 'mmHg': dp_Pa = dp * 133.322; break;
+            case 'bar': dp_Pa = dp * 1e5; break;
+            default: dp_Pa = dp * 1000;
+        }
+
+        // Thermal expansion correction
+        let alpha_pipe = opThermalExpansion[pipeMat] || 11.9e-6;
+        let alpha_plate = opThermalExpansion[plateMat] || 16.6e-6;
+        let kt_pipe = 1 + alpha_pipe * (temp - 20);
+        let kt_plate = 1 + alpha_plate * (temp - 20);
+        let D = D20_m * kt_pipe;
+
+        // Iterative calculation of m (area ratio)
+        // Q = α · ε · (π·D²/4) · √(2·Δp/ρ) · m
+        // where m = (d/D)²
+        let coeff = opAlphaCoefficients[device];
+        let kappa = medium === 'gas' ? (parseFloat(document.getElementById('op_kappa').value) || 1.4) : 1.0;
+        let Z = medium === 'gas' ? (parseFloat(document.getElementById('op_z').value) || 1.0) : 1.0;
+
+        // Initial approximation
+        let m = 0.25;
+        let alpha, epsilon = 1.0;
+        let Q_calc;
+        let iter;
+        for (iter = 0; iter < 50; iter++) {
+            alpha = coeff.A + coeff.B * m + coeff.C * m * m + coeff.D * m * m * m;
+            // Expansion factor for gases
+            if (medium === 'gas') {
+                let tau = dp_Pa / (pressure * 1e6 + 101325); // relative pressure drop
+                epsilon = 1 - (0.41 + 0.35 * Math.pow(m, 1.5)) * tau / kappa;
+                if (epsilon < 0.9) epsilon = 0.9;
+            }
+            Q_calc = alpha * epsilon * (Math.PI * D * D / 4) * Math.sqrt(2 * dp_Pa / rho) * m;
+            let err = (Q_calc - Q_m3s) / Q_m3s;
+            if (Math.abs(err) < 0.0001) break;
+            m = m * (1 - err * 0.5);
+            if (m < 0.02) m = 0.02;
+            if (m > 0.70) m = 0.70;
+        }
+
+        let d = D * Math.sqrt(m);
+        let d20_calc = d / kt_plate;
+        let d_mm = d20_calc * 1000;
+        let ReD = (4 * Q_m3s * rho) / (Math.PI * D * nu_cSt * 1e-6 * rho); // Re = 4Q/(πDν)
+        let ReD_min = ReD * (flowMin / flow);
+
+        // Check limits
+        let warnings = [];
+        if (m < 0.05) warnings.push('Относительное отверстие m < 0,05 — ниже рекомендуемого диапазона');
+        if (m > 0.64) warnings.push('Относительное отверстие m > 0,64 — превышает рекомендуемый диапазон');
+        if (ReD < 1e5) warnings.push('ReD < 10⁵ — возможна зависимость α от Re (вне нормируемой области)');
+        if (d20_calc / D20_m > 0.8) warnings.push('d₂₀/D₂₀ > 0,8 — проверьте условия установки');
+        if (flowMin / flow < 0.3) warnings.push('Qₘᵢₙ/Q < 0,3 — возможна недостаточная точность на малых расходах');
+
+        let deviceNames = { orifice: 'Диафрагма стандартная', nozzle: 'Сопло стандартное', venturi: 'Труба Вентури' };
+        let html = '<div class="converter-result-label-title">Результаты расчёта (РД 50-411-83)</div>';
+        html += `<div class="converter-result-item"><span class="converter-result-label">Тип СУ</span><span class="converter-result-value">${deviceNames[device]}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Диаметр трубы D₂₀</span><span class="converter-result-value">${formatNumber(d20)} ${dUnit}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Рабочий диаметр D</span><span class="converter-result-value">${formatNumber(D * 1000)} мм</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Расход Q</span><span class="converter-result-value">${formatNumber(Q_m3s * 3600)} м³/ч</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Перепад Δp</span><span class="converter-result-value">${formatNumber(dp_Pa / 1000)} кПа</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Относительное отверстие m</span><span class="converter-result-value">${formatNumber(m)}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Коэффициент расхода α</span><span class="converter-result-value">${formatNumber(alpha)}</span></div>`;
+        if (medium === 'gas') {
+            html += `<div class="converter-result-item"><span class="converter-result-label">Коэффициент расширения ε</span><span class="converter-result-value">${formatNumber(epsilon)}</span></div>`;
+        }
+        html += `<div class="converter-result-item"><span class="converter-result-label">Число ReD (ном.)</span><span class="converter-result-value">${formatNumber(ReD)}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Число ReD (мин.)</span><span class="converter-result-value">${formatNumber(ReD_min)}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Диаметр отверстия d₂₀</span><span class="converter-result-value" style="color:#4ac771; font-size:18px;">${formatNumber(d_mm)} мм</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Отношение d₂₀/D₂₀</span><span class="converter-result-value">${formatNumber(d20_calc / D20_m)}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Итераций</span><span class="converter-result-value">${iter}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">Q = α·ε·(πD²/4)·√(2Δp/ρ)·m</span></div>`;
+
+        if (warnings.length > 0) {
+            html += `<div class="warning-banner" style="margin:10px 0 0;"><div class="warning-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div class="warning-banner-content"><div class="warning-banner-title">Рекомендации</div><div class="warning-banner-desc">${warnings.join('<br>')}</div></div></div>`;
+        }
+
+        document.getElementById('opResults').innerHTML = html;
+        document.getElementById('opResults').style.display = 'block';
+        setTimeout(() => document.getElementById('opResults').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    }
+
     document.addEventListener('DOMContentLoaded', function(){
         setSignalDefaults();
         setLiquidDensity();
