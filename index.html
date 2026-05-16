@@ -535,6 +535,28 @@
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
 
             <div class="scale-form">
+                <div class="scale-form-label">Тип питания</div>
+                <select id="cb_supply_type" class="scale-field" onchange="updateCbForm()" autocomplete="off">
+                    <option value="ac220" selected>Переменный ток ~220 В (розетки, освещение)</option>
+                    <option value="dc24">Постоянный ток =24 В (КИП, клапаны, датчики)</option>
+                    <option value="dc12">Постоянный ток =12 В (блоки питания, реле)</option>
+                    <option value="dc36">Постоянный ток =36 В (исполнительные механизмы)</option>
+                    <option value="ac24">Переменный ток ~24 В (сигнальные цепи)</option>
+                    <option value="ac36">Переменный ток ~36 В (местное освещение)</option>
+                    <option value="custom">Своё напряжение</option>
+                </select>
+                <div id="cb_custom_voltage_block" style="display:none; margin-top:12px;">
+                    <div style="display:flex; gap:8px; align-items:stretch;">
+                        <input type="number" id="cb_custom_voltage" class="scale-field" style="flex:2; margin-bottom:0;" value="24" step="1" placeholder="U, В" autocomplete="off" autocorrect="off" spellcheck="false">
+                        <select id="cb_custom_voltage_type" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
+                            <option value="dc" selected>пост.</option>
+                            <option value="ac">перем.</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scale-form">
                 <div class="scale-form-label">Тип нагрузки</div>
                 <select id="cb_load_type" class="scale-field" onchange="updateCbForm()" autocomplete="off">
                     <option value="power" selected>По мощности (P, Вт)</option>
@@ -542,318 +564,97 @@
                 </select>
             </div>
 
-            <div class="scale-form">
-                <div class="scale-form-label">Параметры сети</div>
-                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <select id="cb_phase" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
-                        <option value="1" selected>Однофазная (220 В)</option>
-                        <option value="3">Трёхфазная (380 В)</option>
-                    </select>
-                    <input type="number" id="cb_cosphi" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" min="0.1" max="1.0" placeholder="cos φ" autocomplete="off" autocorrect="off" spellcheck="false">
-                </div>
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">cos φ: 1,0 — активная нагрузка; 0,8–0,9 — двигатели; 0,5–0,7 — люминесцентные лампы</div>
-            </div>
-
             <div class="scale-form" id="cb_power_block">
                 <div class="scale-form-label">Мощность нагрузки (P)</div>
                 <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="cb_power" class="scale-field" style="flex:2; margin-bottom:0;" value="3000" step="100" placeholder="Вт" autocomplete="off" autocorrect="off" spellcheck="false">
+                    <input type="number" id="cb_power" class="scale-field" style="flex:2; margin-bottom:0;" value="50" step="1" placeholder="Вт" autocomplete="off" autocorrect="off" spellcheck="false">
                     <select id="cb_power_unit" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
                         <option value="1" selected>Вт</option>
+                        <option value="0.001">мВт</option>
                         <option value="1000">кВт</option>
                     </select>
                 </div>
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Суммарная мощность всех потребителей</div>
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Суммарная мощность потребителей (КИП, АСУ ТП)</div>
             </div>
 
             <div class="scale-form" id="cb_current_block" style="display:none;">
                 <div class="scale-form-label">Ток нагрузки (I)</div>
-                <input type="number" id="cb_current" class="scale-field" value="15" step="0.1" placeholder="А" autocomplete="off" autocorrect="off" spellcheck="false">
+                <input type="number" id="cb_current" class="scale-field" value="2" step="0.01" placeholder="А" autocomplete="off" autocorrect="off" spellcheck="false">
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Амперы</div>
             </div>
 
             <div class="scale-form">
-                <div class="scale-form-label">Тип линии</div>
-                <select id="cb_line_type" class="scale-field" onchange="updateCbCableTable()" autocomplete="off">
-                    <option value="lighting" selected>Освещение (кабель 1,5 мм²)</option>
-                    <option value="socket">Розетки (кабель 2,5 мм²)</option>
-                    <option value="power">Силовая линия (кабель 4–6 мм²)</option>
-                    <option value="custom">Своё сечение кабеля</option>
+                <div class="scale-form-label">Тип потребителей</div>
+                <select id="cb_consumer_type" class="scale-field" onchange="updateCbCosPhi()" autocomplete="off">
+                    <option value="kip_resistive" selected>КИП — активная нагрузка (датчики, индикация)</option>
+                    <option value="kip_inductive">КИП — индуктивная нагрузка (клапаны, реле, соленоиды)</option>
+                    <option value="asutp_controller">АСУ ТП — контроллер + модули ввода/вывода</option>
+                    <option value="asutp_actuator">АСУ ТП — исполнительные механизмы (IM)</option>
+                    <option value="mixed">Смешанная нагрузка (контроллер + клапана + датчики)</option>
+                    <option value="custom">Своё значение cos φ / пусковой ток</option>
                 </select>
+                <div id="cb_custom_cosphi_block" style="display:none; margin-top:12px;">
+                    <div style="display:flex; gap:8px; align-items:stretch;">
+                        <input type="number" id="cb_custom_cosphi" class="scale-field" style="flex:1; margin-bottom:0;" value="0.8" step="0.01" min="0.1" max="1.0" placeholder="cos φ" autocomplete="off" autocorrect="off" spellcheck="false">
+                        <input type="number" id="cb_inrush_factor" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.1" min="1.0" placeholder="Kпуск" autocomplete="off" autocorrect="off" spellcheck="false">
+                    </div>
+                    <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-top:4px;">cos φ · Коэффициент пускового тока (1,0 = без учёта)</div>
+                </div>
             </div>
 
-            <div class="scale-form" id="cb_custom_cable" style="display:none;">
-                <div class="scale-form-label">Сечение кабеля (мм²)</div>
-                <select id="cb_cable_section" class="scale-field" autocomplete="off">
-                    <option value="0.75">0,75 мм²</option>
-                    <option value="1.0">1,0 мм²</option>
-                    <option value="1.5" selected>1,5 мм²</option>
-                    <option value="2.5">2,5 мм²</option>
-                    <option value="4">4 мм²</option>
-                    <option value="6">6 мм²</option>
-                    <option value="10">10 мм²</option>
-                    <option value="16">16 мм²</option>
-                    <option value="25">25 мм²</option>
-                    <option value="35">35 мм²</option>
+            <div class="scale-form">
+                <div class="scale-form-label">Тип линии и сечение кабеля</div>
+                <select id="cb_line_type" class="scale-field" onchange="updateCbCableTable()" autocomplete="off">
+                    <option value="signal_0_75" selected>Сигнальный кабель 0,75 мм² (датчики, 4-20 мА)</option>
+                    <option value="power_1_0">Силовой кабель 1,0 мм² (питание 24 В)</option>
+                    <option value="power_1_5">Силовой кабель 1,5 мм² (питание 220 В)</option>
+                    <option value="power_2_5">Силовой кабель 2,5 мм² (группа приборов)</option>
+                    <option value="custom">Своё сечение кабеля</option>
                 </select>
-                <div class="scale-form-label" style="margin-top:12px;">Материал жилы</div>
-                <select id="cb_cable_material" class="scale-field" autocomplete="off">
-                    <option value="cu" selected>Медь (Cu)</option>
-                    <option value="al">Алюминий (Al)</option>
-                </select>
+                <div id="cb_custom_cable" style="display:none; margin-top:12px;">
+                    <div style="display:flex; gap:8px; align-items:stretch;">
+                        <select id="cb_cable_section" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
+                            <option value="0.5">0,5 мм²</option>
+                            <option value="0.75" selected>0,75 мм²</option>
+                            <option value="1.0">1,0 мм²</option>
+                            <option value="1.5">1,5 мм²</option>
+                            <option value="2.5">2,5 мм²</option>
+                            <option value="4">4 мм²</option>
+                            <option value="6">6 мм²</option>
+                        </select>
+                        <select id="cb_cable_material" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
+                            <option value="cu" selected>Медь (Cu)</option>
+                            <option value="al">Алюминий (Al)</option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
             <div class="scale-form">
                 <div class="scale-form-label">Характеристика срабатывания</div>
                 <select id="cb_curve" class="scale-field" autocomplete="off">
-                    <option value="B">B (3–5 In) — освещение, электроника</option>
-                    <option value="C" selected>C (5–10 In) — бытовые нагрузки, розетки</option>
-                    <option value="D">D (10–20 In) — двигатели, сварка</option>
+                    <option value="B">B (3–5 In) — электроника, датчики, контроллеры</option>
+                    <option value="C" selected>C (5–10 In) — клапана, реле, смешанная нагрузка</option>
+                    <option value="D">D (10–20 In) — соленоиды, пускатели с высоким inrush</option>
+                    <option value="Z">Z (2–3 In) — сверхчувствительная защита (измерит. цепи)</option>
                 </select>
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">B — чувствительный · C — универсальный · D — инерционный</div>
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">B — чувствительный · C — универсальный · D — инерционный · Z — сверхчувствительный</div>
+            </div>
+
+            <div class="scale-form">
+                <div class="scale-form-label">Количество потребителей (опционально)</div>
+                <input type="number" id="cb_device_count" class="scale-field" value="1" step="1" min="1" placeholder="шт." autocomplete="off" autocorrect="off" spellcheck="false">
+                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Для расчёта суммарного тока группы приборов</div>
             </div>
 
             <button class="converter-convert-btn" onclick="calcCircuitBreaker()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать автомат</button>
 
             <div id="cbResults" class="converter-result-group" style="display:none;"></div>
 
-            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Автоматический выключатель · ГОСТ Р 50345-2010</div></div>
+            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Автоматический выключатель · ГОСТ Р 50345-2010 / ПУЭ</div></div>
         </div>
 
-        <!-- ======================== ВЫБОР РАСЧЁТА СУЖАЮЩЕГО УСТРОЙСТВА ======================== -->
-        <div id="page-orifice-select" class="page-content">
-            <div class="page-wallpaper"></div>
-            <div class="page-overlay"></div>
-            <div class="page-inline-header"><div class="page-inline-header-title">Диаметр диска d₂₀</div><div class="header-btn" onclick="showToast('Обновлено')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div></div>
-            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-
-            <div class="content-header" style="padding: 14px 20px 10px;">
-                <h2 style="color: #e0e0e0; font-size: 22px; font-weight: 700; letter-spacing: -0.3px;">Выбор расчёта</h2>
-                <p style="color: rgba(255,255,255,0.35); font-size: 12px; margin-top: 5px;">РД 50-411-83 / ГОСТ 26969-86</p>
-            </div>
-
-            <div class="menu-btn-row">
-                <div class="menu-btn" onclick="navigateTo('orifice-dp')">
-                    <div class="menu-btn-text">
-                        <div class="menu-btn-label">Перепад давления</div>
-                        <div class="menu-btn-sublabel">Расчёт Δp по расходу Q и диаметру диска d₂₀</div>
-                    </div>
-                    <i class="menu-btn-arrow">›</i>
-                </div>
-                <div class="menu-btn" onclick="navigateTo('orifice-flow')">
-                    <div class="menu-btn-text">
-                        <div class="menu-btn-label">Расход среды</div>
-                        <div class="menu-btn-sublabel">Расчёт Q по перепаду Δp и диаметру диска d₂₀</div>
-                    </div>
-                    <i class="menu-btn-arrow">›</i>
-                </div>
-                <div class="menu-btn" onclick="navigateTo('orifice-diameter')">
-                    <div class="menu-btn-text">
-                        <div class="menu-btn-label">Диаметр диска</div>
-                        <div class="menu-btn-sublabel">Расчёт d₂₀ по расходу Q и перепаду Δp</div>
-                    </div>
-                    <i class="menu-btn-arrow">›</i>
-                </div>
-            </div>
-
-            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Сужающее устройство · Выбор расчёта</div></div>
-        </div>
-
-        <!-- ======================== РАСЧЁТ ПЕРЕПАДА ДАВЛЕНИЯ (Δp) ======================== --><!-- ======================== РАСЧЁТ ПЕРЕПАДА ДАВЛЕНИЯ (Δp) ======================== -->
-        <div id="page-orifice-dp" class="page-content">
-            <div class="page-wallpaper"></div>
-            <div class="page-overlay"></div>
-            <div class="page-inline-header"><div class="page-inline-header-title">Перепад давления Δp</div><div class="header-btn" onclick="showToast('Обновлено')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div></div>
-            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-
-            <div class="scale-form">
-                <div class="scale-form-label">Тип среды</div>
-                <select id="op_dp_medium_type" class="scale-field" onchange="updateOpDpForm()" autocomplete="off">
-                    <option value="liquid" selected>Жидкость (несжимаемая)</option>
-                    <option value="gas">Газ / пар (сжимаемая)</option>
-                </select>
-            </div>
-
-            <div class="scale-form">
-                <div class="scale-form-label">Параметры трубопровода</div>
-                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="op_dp_d20" class="scale-field" style="flex:2; margin-bottom:0;" value="100" step="1" placeholder="D₂₀, мм" autocomplete="off" autocorrect="off" spellcheck="false">
-                    <select id="op_dp_pipe_material" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
-                        <option value="steel20" selected>Сталь 20</option>
-                        <option value="steel12x18h10t">12Х18Н10Т</option>
-                        <option value="steel15x5m">15Х5М</option>
-                        <option value="brass">Латунь</option>
-                    </select>
-                </div>
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-bottom:8px;">Внутренний диаметр трубы при 20°C · Материал</div>
-                <input type="number" id="op_dp_temp" class="scale-field" value="20" step="1" placeholder="t, °C" autocomplete="off" autocorrect="off" spellcheck="false">
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Рабочая температура, °C</div>
-            </div>
-
-            <div class="scale-form">
-                <div class="scale-form-label">Расход среды (Q)</div>
-                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="op_dp_flow" class="scale-field" style="flex:2; margin-bottom:0;" value="50" step="0.1" placeholder="Q" autocomplete="off" autocorrect="off" spellcheck="false">
-                    <select id="op_dp_flow_unit" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
-                        <option value="m3h" selected>м³/ч</option>
-                        <option value="m3s">м³/с</option>
-                        <option value="l_s">л/с</option>
-                        <option value="kg_h">кг/ч</option>
-                        <option value="kg_s">кг/с</option>
-                        <option value="t_h">т/ч</option>
-                    </select>
-                </div>
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Номинальный расход</div>
-            </div>
-
-            <div class="scale-form">
-                <div class="scale-form-label">Диаметр диска (d₂₀)</div>
-                <input type="number" id="op_dp_d_plate" class="scale-field" value="50" step="0.1" placeholder="d₂₀, мм" autocomplete="off" autocorrect="off" spellcheck="false">
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Диаметр отверстия диафрагмы при 20°C, мм</div>
-            </div>
-
-            <div class="scale-form">
-                <div class="scale-form-label">Параметры среды</div>
-                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="op_dp_density" class="scale-field" style="flex:1; margin-bottom:0;" value="998" step="1" placeholder="ρ, кг/м³" autocomplete="off" autocorrect="off" spellcheck="false">
-                    <input type="number" id="op_dp_viscosity" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="ν, сСт" autocomplete="off" autocorrect="off" spellcheck="false">
-                </div>
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-bottom:8px;">Плотность · Кинематическая вязкость (сСт = мм²/с)</div>
-                <div id="op_dp_gas_params" style="display:none;">
-                    <div style="display:flex; gap:8px; align-items:stretch;">
-                        <input type="number" id="op_dp_kappa" class="scale-field" style="flex:1; margin-bottom:0;" value="1.4" step="0.01" placeholder="κ" autocomplete="off" autocorrect="off" spellcheck="false">
-                        <input type="number" id="op_dp_z" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="Z" autocomplete="off" autocorrect="off" spellcheck="false">
-                    </div>
-                    <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Показатель адиабаты κ · Коэффициент сжимаемости Z</div>
-                </div>
-                <input type="number" id="op_dp_pressure" class="scale-field" style="margin-top:8px; margin-bottom:0;" value="0.1" step="0.01" placeholder="P, МПа" autocomplete="off" autocorrect="off" spellcheck="false">
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Избыточное давление, МПа (для газов)</div>
-            </div>
-
-            <div class="scale-form">
-                <div class="scale-form-label">Тип сужающего устройства</div>
-                <select id="op_dp_device_type" class="scale-field" autocomplete="off">
-                    <option value="orifice" selected>Диафрагма стандартная (ГОСТ 26969-86)</option>
-                    <option value="nozzle">Сопло стандартное</option>
-                    <option value="venturi">Труба Вентури</option>
-                </select>
-            </div>
-
-            <div class="scale-form">
-                <div class="scale-form-label">Материал диафрагмы</div>
-                <select id="op_dp_plate_material" class="scale-field" autocomplete="off">
-                    <option value="steel12x18h10t" selected>Сталь 12Х18Н10Т</option>
-                    <option value="steel20">Сталь 20</option>
-                    <option value="brass">Латунь Л63</option>
-                    <option value="bronze">Бронза БрАЖ</option>
-                </select>
-            </div>
-
-            <button class="converter-convert-btn" onclick="calcOrificeDp()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать перепад Δp</button>
-
-            <div id="opResultsDp" class="converter-result-group" style="display:none;"></div>
-
-            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Перепад давления · РД 50-411-83</div></div>
-        </div>
-
-        <!-- ======================== РАСЧЁТ РАСХОДА (Q) ======================== -->
-        <div id="page-orifice-flow" class="page-content">
-            <div class="page-wallpaper"></div>
-            <div class="page-overlay"></div>
-            <div class="page-inline-header"><div class="page-inline-header-title">Расход среды Q</div><div class="header-btn" onclick="showToast('Обновлено')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div></div>
-            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-
-            <div class="scale-form">
-                <div class="scale-form-label">Тип среды</div>
-                <select id="op_flow_medium_type" class="scale-field" onchange="updateOpFlowForm()" autocomplete="off">
-                    <option value="liquid" selected>Жидкость (несжимаемая)</option>
-                    <option value="gas">Газ / пар (сжимаемая)</option>
-                </select>
-            </div>
-
-            <div class="scale-form">
-                <div class="scale-form-label">Параметры трубопровода</div>
-                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="op_flow_d20" class="scale-field" style="flex:2; margin-bottom:0;" value="100" step="1" placeholder="D₂₀, мм" autocomplete="off" autocorrect="off" spellcheck="false">
-                    <select id="op_flow_pipe_material" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
-                        <option value="steel20" selected>Сталь 20</option>
-                        <option value="steel12x18h10t">12Х18Н10Т</option>
-                        <option value="steel15x5m">15Х5М</option>
-                        <option value="brass">Латунь</option>
-                    </select>
-                </div>
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-bottom:8px;">Внутренний диаметр трубы при 20°C · Материал</div>
-                <input type="number" id="op_flow_temp" class="scale-field" value="20" step="1" placeholder="t, °C" autocomplete="off" autocorrect="off" spellcheck="false">
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Рабочая температура, °C</div>
-            </div>
-
-            <div class="scale-form">
-                <div class="scale-form-label">Перепад давления (Δp)</div>
-                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="op_flow_dp" class="scale-field" style="flex:2; margin-bottom:0;" value="25" step="1" placeholder="Δp" autocomplete="off" autocorrect="off" spellcheck="false">
-                    <select id="op_flow_dp_unit" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
-                        <option value="kPa" selected>кПа</option>
-                        <option value="Pa">Па</option>
-                        <option value="MPa">МПа</option>
-                        <option value="mmH2O">мм вод.ст.</option>
-                        <option value="mmHg">мм рт.ст.</option>
-                        <option value="bar">бар</option>
-                    </select>
-                </div>
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Номинальный перепад давления</div>
-            </div>
-
-            <div class="scale-form">
-                <div class="scale-form-label">Диаметр диска (d₂₀)</div>
-                <input type="number" id="op_flow_d_plate" class="scale-field" value="50" step="0.1" placeholder="d₂₀, мм" autocomplete="off" autocorrect="off" spellcheck="false">
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Диаметр отверстия диафрагмы при 20°C, мм</div>
-            </div>
-
-            <div class="scale-form">
-                <div class="scale-form-label">Параметры среды</div>
-                <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="op_flow_density" class="scale-field" style="flex:1; margin-bottom:0;" value="998" step="1" placeholder="ρ, кг/м³" autocomplete="off" autocorrect="off" spellcheck="false">
-                    <input type="number" id="op_flow_viscosity" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="ν, сСт" autocomplete="off" autocorrect="off" spellcheck="false">
-                </div>
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-bottom:8px;">Плотность · Кинематическая вязкость (сСт = мм²/с)</div>
-                <div id="op_flow_gas_params" style="display:none;">
-                    <div style="display:flex; gap:8px; align-items:stretch;">
-                        <input type="number" id="op_flow_kappa" class="scale-field" style="flex:1; margin-bottom:0;" value="1.4" step="0.01" placeholder="κ" autocomplete="off" autocorrect="off" spellcheck="false">
-                        <input type="number" id="op_flow_z" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="Z" autocomplete="off" autocorrect="off" spellcheck="false">
-                    </div>
-                    <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Показатель адиабаты κ · Коэффициент сжимаемости Z</div>
-                </div>
-                <input type="number" id="op_flow_pressure" class="scale-field" style="margin-top:8px; margin-bottom:0;" value="0.1" step="0.01" placeholder="P, МПа" autocomplete="off" autocorrect="off" spellcheck="false">
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Избыточное давление, МПа (для газов)</div>
-            </div>
-
-            <div class="scale-form">
-                <div class="scale-form-label">Тип сужающего устройства</div>
-                <select id="op_flow_device_type" class="scale-field" autocomplete="off">
-                    <option value="orifice" selected>Диафрагма стандартная (ГОСТ 26969-86)</option>
-                    <option value="nozzle">Сопло стандартное</option>
-                    <option value="venturi">Труба Вентури</option>
-                </select>
-            </div>
-
-            <div class="scale-form">
-                <div class="scale-form-label">Материал диафрагмы</div>
-                <select id="op_flow_plate_material" class="scale-field" autocomplete="off">
-                    <option value="steel12x18h10t" selected>Сталь 12Х18Н10Т</option>
-                    <option value="steel20">Сталь 20</option>
-                    <option value="brass">Латунь Л63</option>
-                    <option value="bronze">Бронза БрАЖ</option>
-                </select>
-            </div>
-
-            <button class="converter-convert-btn" onclick="calcOrificeFlow()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать расход Q</button>
-
-            <div id="opResultsFlow" class="converter-result-group" style="display:none;"></div>
-
-            <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Расход среды · РД 50-411-83</div></div>
-        </div>
-
-        <!-- ======================== РАСЧЁТ ДИАМЕТРА ДИСКА (d₂₀) ======================== --><!-- ======================== СУЖАЮЩЕЕ УСТРОЙСТВО (ДИАФРАГМА) ======================== -->
+        <!-- ======================== СУЖАЮЩЕЕ УСТРОЙСТВО<!-- ======================== СУЖАЮЩЕЕ УСТРОЙСТВО (ДИАФРАГМА) ======================== -->
         <div id="page-orifice-diameter" class="page-content">
             <div class="page-wallpaper"></div>
             <div class="page-overlay"></div>
@@ -1510,451 +1311,164 @@ function roundNumber(n) { if (n===0) return '0'; let s=n.toPrecision(1); let v=p
 
     // DOMContentLoaded
     
-    // Автоматический выключатель
-    const cbCableData = {
+    // Автоматический выключатель — адаптирован для КИП, АСУ ТП, малой мощности, 12-36 В
+    const cbCableDataKip = {
         cu: {
-            0.75: { Ik: 15, Imax: 10 },
-            1.0: { Ik: 17, Imax: 10 },
-            1.5: { Ik: 23, Imax: 16 },
-            2.5: { Ik: 30, Imax: 25 },
-            4: { Ik: 41, Imax: 32 },
-            6: { Ik: 50, Imax: 40 },
-            10: { Ik: 70, Imax: 50 },
-            16: { Ik: 95, Imax: 63 },
-            25: { Ik: 125, Imax: 80 },
-            35: { Ik: 155, Imax: 100 }
+            0.5: { Ik: 11, Imax: 6, desc: 'сигнальные цепи, датчики' },
+            0.75: { Ik: 15, Imax: 10, desc: '4-20 мА, термопары, ТС' },
+            1.0: { Ik: 17, Imax: 10, desc: 'питание 24 В DC, клапана' },
+            1.5: { Ik: 23, Imax: 16, desc: 'группа приборов 220 В' },
+            2.5: { Ik: 30, Imax: 25, desc: 'силовая линия, щит' },
+            4: { Ik: 41, Imax: 32, desc: 'щит питания АСУ ТП' },
+            6: { Ik: 50, Imax: 40, desc: 'главный ввод' }
         },
         al: {
-            0.75: { Ik: 11, Imax: 6 },
-            1.0: { Ik: 13, Imax: 10 },
-            1.5: { Ik: 17, Imax: 10 },
-            2.5: { Ik: 23, Imax: 16 },
-            4: { Ik: 30, Imax: 25 },
-            6: { Ik: 38, Imax: 32 },
-            10: { Ik: 55, Imax: 40 },
-            16: { Ik: 75, Imax: 63 },
-            25: { Ik: 100, Imax: 80 },
-            35: { Ik: 125, Imax: 100 }
+            0.5: { Ik: 8, Imax: 4, desc: 'не рекомендуется для КИП' },
+            0.75: { Ik: 11, Imax: 6, desc: 'не рекомендуется для КИП' },
+            1.0: { Ik: 13, Imax: 10, desc: 'временные линии' },
+            1.5: { Ik: 17, Imax: 10, desc: 'освещение' },
+            2.5: { Ik: 23, Imax: 16, desc: 'силовая линия' },
+            4: { Ik: 30, Imax: 25, desc: 'щит' },
+            6: { Ik: 38, Imax: 32, desc: 'главный ввод' }
         }
     };
-    const cbStandardSeries = [1, 2, 3, 4, 6, 8, 10, 13, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160];
-    function getCbCableData(lineType, customSection, customMaterial) {
+    const cbStandardSeriesKip = [0.5, 1, 2, 3, 4, 6, 8, 10, 13, 16, 20, 25, 32, 40, 50, 63];
+    const cbConsumerProfiles = {
+        kip_resistive: { cosphi: 1.0, inrush: 1.0, desc: 'активная нагрузка' },
+        kip_inductive: { cosphi: 0.7, inrush: 3.0, desc: 'клапана, реле, соленоиды' },
+        asutp_controller: { cosphi: 0.95, inrush: 1.2, desc: 'контроллер + модули' },
+        asutp_actuator: { cosphi: 0.75, inrush: 5.0, desc: 'исполнительные механизмы' },
+        mixed: { cosphi: 0.85, inrush: 2.0, desc: 'смешанная нагрузка' },
+        custom: { cosphi: null, inrush: null, desc: 'пользовательские параметры' }
+    };
+    const cbSupplyProfiles = {
+        ac220: { U: 220, type: 'AC', desc: '~220 В' },
+        dc24: { U: 24, type: 'DC', desc: '=24 В' },
+        dc12: { U: 12, type: 'DC', desc: '=12 В' },
+        dc36: { U: 36, type: 'DC', desc: '=36 В' },
+        ac24: { U: 24, type: 'AC', desc: '~24 В' },
+        ac36: { U: 36, type: 'AC', desc: '~36 В' },
+        custom: { U: null, type: null, desc: 'своё' }
+    };
+    function getCbCableDataKip(lineType, customSection, customMaterial) {
         let preset = {
-            lighting: { mat: 'cu', sec: 1.5 },
-            socket: { mat: 'cu', sec: 2.5 },
-            power: { mat: 'cu', sec: 6 }
+            signal_0_75: { mat: 'cu', sec: 0.75 },
+            power_1_0: { mat: 'cu', sec: 1.0 },
+            power_1_5: { mat: 'cu', sec: 1.5 },
+            power_2_5: { mat: 'cu', sec: 2.5 }
         };
         let mat = lineType === 'custom' ? customMaterial : preset[lineType].mat;
         let sec = lineType === 'custom' ? parseFloat(customSection) : preset[lineType].sec;
-        return { material: mat, section: sec, data: cbCableData[mat][sec] };
+        return { material: mat, section: sec, data: cbCableDataKip[mat][sec] };
     }
-    function nearestCbStandard(val) {
-        for (let i = 0; i < cbStandardSeries.length; i++) {
-            if (cbStandardSeries[i] >= val) return cbStandardSeries[i];
+    function nearestCbStandardKip(val) {
+        for (let i = 0; i < cbStandardSeriesKip.length; i++) {
+            if (cbStandardSeriesKip[i] >= val) return cbStandardSeriesKip[i];
         }
-        return cbStandardSeries[cbStandardSeries.length - 1];
+        return cbStandardSeriesKip[cbStandardSeriesKip.length - 1];
     }
     function updateCbForm() {
-        let type = document.getElementById('cb_load_type').value;
-        document.getElementById('cb_power_block').style.display = type === 'power' ? 'block' : 'none';
-        document.getElementById('cb_current_block').style.display = type === 'current' ? 'block' : 'none';
+        let loadType = document.getElementById('cb_load_type').value;
+        document.getElementById('cb_power_block').style.display = loadType === 'power' ? 'block' : 'none';
+        document.getElementById('cb_current_block').style.display = loadType === 'current' ? 'block' : 'none';
+        let supply = document.getElementById('cb_supply_type').value;
+        document.getElementById('cb_custom_voltage_block').style.display = supply === 'custom' ? 'block' : 'none';
+    }
+    function updateCbCosPhi() {
+        let consumer = document.getElementById('cb_consumer_type').value;
+        document.getElementById('cb_custom_cosphi_block').style.display = consumer === 'custom' ? 'block' : 'none';
     }
     function updateCbCableTable() {
         let lineType = document.getElementById('cb_line_type').value;
         document.getElementById('cb_custom_cable').style.display = lineType === 'custom' ? 'block' : 'none';
     }
     function calcCircuitBreaker() {
+        let supplyType = document.getElementById('cb_supply_type').value;
         let loadType = document.getElementById('cb_load_type').value;
-        let phase = parseInt(document.getElementById('cb_phase').value);
-        let cosphi = parseFloat(document.getElementById('cb_cosphi').value) || 1.0;
+        let consumerType = document.getElementById('cb_consumer_type').value;
         let lineType = document.getElementById('cb_line_type').value;
         let curve = document.getElementById('cb_curve').value;
-        let customSection = document.getElementById('cb_cable_section') ? document.getElementById('cb_cable_section').value : '1.5';
+        let deviceCount = parseInt(document.getElementById('cb_device_count').value) || 1;
+        let customSection = document.getElementById('cb_cable_section') ? document.getElementById('cb_cable_section').value : '0.75';
         let customMaterial = document.getElementById('cb_cable_material') ? document.getElementById('cb_cable_material').value : 'cu';
-        let U = phase === 1 ? 220 : 380;
+
+        // Supply profile
+        let supply = cbSupplyProfiles[supplyType];
+        let U;
+        if (supplyType === 'custom') {
+            U = parseFloat(document.getElementById('cb_custom_voltage').value);
+            if (isNaN(U) || U <= 0) { showToast('Введите напряжение питания'); return; }
+        } else {
+            U = supply.U;
+        }
+
+        // Consumer profile
+        let consumer = cbConsumerProfiles[consumerType];
+        let cosphi, inrush;
+        if (consumerType === 'custom') {
+            cosphi = parseFloat(document.getElementById('cb_custom_cosphi').value);
+            inrush = parseFloat(document.getElementById('cb_inrush_factor').value);
+            if (isNaN(cosphi) || cosphi <= 0 || cosphi > 1) { showToast('cos φ должен быть 0,1…1,0'); return; }
+            if (isNaN(inrush) || inrush < 1) { showToast('Кпуск ≥ 1,0'); return; }
+        } else {
+            cosphi = consumer.cosphi;
+            inrush = consumer.inrush;
+        }
+
+        // Calculate current
         let Icalc;
         if (loadType === 'power') {
             let P = parseFloat(document.getElementById('cb_power').value);
-            let unitMult = parseInt(document.getElementById('cb_power_unit').value);
+            let unitMult = parseFloat(document.getElementById('cb_power_unit').value);
             if (isNaN(P) || P <= 0) { showToast('Введите мощность'); return; }
-            P = P * unitMult;
+            P = P * unitMult * deviceCount;
             Icalc = P / (U * cosphi);
-            if (phase === 3) Icalc = Icalc / Math.sqrt(3);
         } else {
             Icalc = parseFloat(document.getElementById('cb_current').value);
             if (isNaN(Icalc) || Icalc <= 0) { showToast('Введите ток'); return; }
+            Icalc = Icalc * deviceCount;
         }
-        if (cosphi <= 0 || cosphi > 1) { showToast('cos φ должен быть 0,1…1,0'); return; }
-        let cable = getCbCableData(lineType, customSection, customMaterial);
-        let In_min = Icalc * 1.1;
-        let Ina = nearestCbStandard(In_min);
+
+        // Cable data
+        let cable = getCbCableDataKip(lineType, customSection, customMaterial);
+        let In_min = Icalc * 1.25; // Запас 25% для КИП
+        let Ina = nearestCbStandardKip(In_min);
+        let Ina_inrush = nearestCbStandardKip(Icalc * inrush / (curve === 'B' ? 3 : curve === 'C' ? 5 : curve === 'D' ? 10 : 2));
+        if (Ina_inrush > Ina) Ina = Ina_inrush;
+
         let warning = '';
         if (Ina > cable.data.Imax) {
-            warning = `⚠️ Выбранный автомат ${Ina} А превышает допустимый для кабеля ${cable.section} мм² (${cable.data.Imax} А). Увеличьте сечение кабеля.`;
+            warning = `Выбранный автомат ${Ina} А превышает допустимый ток для кабеля ${cable.section} мм² (${cable.data.Imax} А). Увеличьте сечение кабеля.`;
         }
+        if (Ina < 0.5) {
+            warning += (warning ? '<br>' : '') + `Расчётный ток ${formatNumber(Icalc)} А очень мал. Рекомендуется применять предохранители или защиту в составе БП.`;
+        }
+
         let Pmax = Ina * U * cosphi;
-        if (phase === 3) Pmax = Pmax * Math.sqrt(3);
-        let html = '<div class="converter-result-label-title">Результаты расчёта</div>';
-        html += `<div class="converter-result-item"><span class="converter-result-label">Расчётный ток нагрузки</span><span class="converter-result-value">${formatNumber(Icalc)} А</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Напряжение сети</span><span class="converter-result-value">${U} В (${phase === 1 ? 'однофазная' : 'трёхфазная'})</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">cos φ</span><span class="converter-result-value">${cosphi}</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Кабель</span><span class="converter-result-value">${cable.material === 'cu' ? 'медь' : 'алюминий'} ${cable.section} мм² · ${cable.data.Ik} А (допустимый)</span></div>`;
+        let I_inrush = Icalc * inrush;
+
+        let html = '<div class="converter-result-label-title">Результаты расчёта (КИП и А / АСУ ТП)</div>';
+        html += `<div class="converter-result-item"><span class="converter-result-label">Напряжение питания</span><span class="converter-result-value">${supplyType === 'custom' ? (document.getElementById('cb_custom_voltage_type').value === 'dc' ? '=' : '~') + U + ' В' : supply.desc}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Тип нагрузки</span><span class="converter-result-value">${consumer.desc}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">cos φ / Кпуск</span><span class="converter-result-value">${cosphi} / ${inrush}</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Расчётный ток Iр</span><span class="converter-result-value">${formatNumber(Icalc)} А</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Пусковой ток Iпуск</span><span class="converter-result-value">${formatNumber(I_inrush)} А</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Кабель</span><span class="converter-result-value">${cable.material === 'cu' ? 'медь' : 'алюминий'} ${cable.section} мм² · ${cable.data.Imax} А · ${cable.data.desc}</span></div>`;
         html += `<div class="converter-result-item"><span class="converter-result-label">Макс. автомат для кабеля</span><span class="converter-result-value">${cable.data.Imax} А</span></div>`;
         html += `<div class="converter-result-item"><span class="converter-result-label">Рекомендуемый автомат</span><span class="converter-result-value" style="color:#4ac771; font-size:18px;">${curve}${Ina}</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Макс. мощность по автомату</span><span class="converter-result-value">${formatNumber(Pmax / 1000)} кВт</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Макс. мощность</span><span class="converter-result-value">${formatNumber(Pmax)} Вт (${formatNumber(Pmax/1000)} кВт)</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Количество приборов</span><span class="converter-result-value">${deviceCount} шт.</span></div>`;
+        html += `<div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">I = P/(U·cos φ) · Кзапаса 1,25</span></div>`;
+
         if (warning) {
-            html += `<div class="warning-banner" style="margin:10px 0 0;"><div class="warning-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div class="warning-banner-content"><div class="warning-banner-title">Внимание!</div><div class="warning-banner-desc">${warning}</div></div></div>`;
+            html += `<div class="warning-banner" style="margin:10px 0 0;"><div class="warning-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div class="warning-banner-content"><div class="warning-banner-title">Рекомендации</div><div class="warning-banner-desc">${warning}</div></div></div>`;
         }
+
         document.getElementById('cbResults').innerHTML = html;
         document.getElementById('cbResults').style.display = 'block';
         setTimeout(() => document.getElementById('cbResults').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
     }
-
-    
-    // Сужающее устройство (диафрагма)
-    const opAlphaCoefficients = {
-        orifice: {
-            // Стандартная диафрагма по РД 50-411-83 / ГОСТ 26969-86
-            // α = A + B·m + C·m² + D·m³ (упрощённая аппроксимация)
-            // Для ReD ≥ 10⁵ и 0.05 ≤ m ≤ 0.64
-            A: 0.5959, B: 0.0312, C: -0.1840, D: 0.0390
-        },
-        nozzle: {
-            A: 0.9965, B: 0.0105, C: -0.0420, D: 0.0085
-        },
-        venturi: {
-            A: 0.9840, B: 0.0050, C: -0.0150, D: 0.0030
-        }
-    };
-    const opThermalExpansion = {
-        steel20: 11.9e-6,
-        steel12x18h10t: 16.6e-6,
-        steel15x5m: 11.5e-6,
-        brass: 18.9e-6,
-        bronze: 17.6e-6
-    };
-    function updateOpForm() {
-        let type = document.getElementById('op_medium_type').value;
-        document.getElementById('op_gas_params').style.display = type === 'gas' ? 'block' : 'none';
-    }
-    function calcOrificePlate() {
-        let medium = document.getElementById('op_medium_type').value;
-        let d20 = parseFloat(document.getElementById('op_d20').value);
-        let dUnit = document.getElementById('op_d_unit').value;
-        let pipeMat = document.getElementById('op_pipe_material').value;
-        let temp = parseFloat(document.getElementById('op_temp').value);
-        let flow = parseFloat(document.getElementById('op_flow').value);
-        let flowUnit = document.getElementById('op_flow_unit').value;
-        let flowMin = parseFloat(document.getElementById('op_flow_min').value);
-        let pressure = parseFloat(document.getElementById('op_pressure').value);
-        let rho = parseFloat(document.getElementById('op_density').value);
-        let nu_cSt = parseFloat(document.getElementById('op_viscosity').value);
-        let dp = parseFloat(document.getElementById('op_dp').value);
-        let dpUnit = document.getElementById('op_dp_unit').value;
-        let device = document.getElementById('op_device_type').value;
-        let plateMat = document.getElementById('op_plate_material').value;
-
-        if (isNaN(d20) || d20 <= 0) { showToast('Введите диаметр трубопровода'); return; }
-        if (isNaN(flow) || flow <= 0) { showToast('Введите расход'); return; }
-        if (isNaN(rho) || rho <= 0) { showToast('Введите плотность'); return; }
-        if (isNaN(dp) || dp <= 0) { showToast('Введите перепад давления'); return; }
-        if (isNaN(nu_cSt) || nu_cSt <= 0) { showToast('Введите вязкость'); return; }
-
-        // Convert D20 to meters
-        let D20_m = dUnit === 'mm' ? d20 / 1000 : d20;
-        // Convert flow to m³/s
-        let Q_m3s;
-        switch(flowUnit) {
-            case 'm3h': Q_m3s = flow / 3600; break;
-            case 'm3s': Q_m3s = flow; break;
-            case 'l_s': Q_m3s = flow / 1000; break;
-            case 'kg_h': Q_m3s = flow / (3600 * rho); break;
-            case 'kg_s': Q_m3s = flow / rho; break;
-            case 't_h': Q_m3s = flow * 1000 / (3600 * rho); break;
-            default: Q_m3s = flow / 3600;
-        }
-        // Convert dp to Pa
-        let dp_Pa;
-        switch(dpUnit) {
-            case 'kPa': dp_Pa = dp * 1000; break;
-            case 'Pa': dp_Pa = dp; break;
-            case 'MPa': dp_Pa = dp * 1e6; break;
-            case 'mmH2O': dp_Pa = dp * 9.80665; break;
-            case 'mmHg': dp_Pa = dp * 133.322; break;
-            case 'bar': dp_Pa = dp * 1e5; break;
-            default: dp_Pa = dp * 1000;
-        }
-
-        // Thermal expansion correction
-        let alpha_pipe = opThermalExpansion[pipeMat] || 11.9e-6;
-        let alpha_plate = opThermalExpansion[plateMat] || 16.6e-6;
-        let kt_pipe = 1 + alpha_pipe * (temp - 20);
-        let kt_plate = 1 + alpha_plate * (temp - 20);
-        let D = D20_m * kt_pipe;
-
-        // Iterative calculation of m (area ratio)
-        // Q = α · ε · (π·D²/4) · √(2·Δp/ρ) · m
-        // where m = (d/D)²
-        let coeff = opAlphaCoefficients[device];
-        let kappa = medium === 'gas' ? (parseFloat(document.getElementById('op_kappa').value) || 1.4) : 1.0;
-        let Z = medium === 'gas' ? (parseFloat(document.getElementById('op_z').value) || 1.0) : 1.0;
-
-        // Initial approximation
-        let m = 0.25;
-        let alpha, epsilon = 1.0;
-        let Q_calc;
-        let iter;
-        for (iter = 0; iter < 50; iter++) {
-            alpha = coeff.A + coeff.B * m + coeff.C * m * m + coeff.D * m * m * m;
-            // Expansion factor for gases
-            if (medium === 'gas') {
-                let tau = dp_Pa / (pressure * 1e6 + 101325); // relative pressure drop
-                epsilon = 1 - (0.41 + 0.35 * Math.pow(m, 1.5)) * tau / kappa;
-                if (epsilon < 0.9) epsilon = 0.9;
-            }
-            Q_calc = alpha * epsilon * (Math.PI * D * D / 4) * Math.sqrt(2 * dp_Pa / rho) * m;
-            let err = (Q_calc - Q_m3s) / Q_m3s;
-            if (Math.abs(err) < 0.0001) break;
-            m = m * (1 - err * 0.5);
-            if (m < 0.02) m = 0.02;
-            if (m > 0.70) m = 0.70;
-        }
-
-        let d = D * Math.sqrt(m);
-        let d20_calc = d / kt_plate;
-        let d_mm = d20_calc * 1000;
-        let ReD = (4 * Q_m3s * rho) / (Math.PI * D * nu_cSt * 1e-6 * rho); // Re = 4Q/(πDν)
-        let ReD_min = ReD * (flowMin / flow);
-
-        // Check limits
-        let warnings = [];
-        if (m < 0.05) warnings.push('Относительное отверстие m < 0,05 — ниже рекомендуемого диапазона');
-        if (m > 0.64) warnings.push('Относительное отверстие m > 0,64 — превышает рекомендуемый диапазон');
-        if (ReD < 1e5) warnings.push('ReD < 10⁵ — возможна зависимость α от Re (вне нормируемой области)');
-        if (d20_calc / D20_m > 0.8) warnings.push('d₂₀/D₂₀ > 0,8 — проверьте условия установки');
-        if (flowMin / flow < 0.3) warnings.push('Qₘᵢₙ/Q < 0,3 — возможна недостаточная точность на малых расходах');
-
-        let deviceNames = { orifice: 'Диафрагма стандартная', nozzle: 'Сопло стандартное', venturi: 'Труба Вентури' };
-        let html = '<div class="converter-result-label-title">Результаты расчёта (РД 50-411-83)</div>';
-        html += `<div class="converter-result-item"><span class="converter-result-label">Тип СУ</span><span class="converter-result-value">${deviceNames[device]}</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Диаметр трубы D₂₀</span><span class="converter-result-value">${formatNumber(d20)} ${dUnit}</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Рабочий диаметр D</span><span class="converter-result-value">${formatNumber(D * 1000)} мм</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Расход Q</span><span class="converter-result-value">${formatNumber(Q_m3s * 3600)} м³/ч</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Перепад Δp</span><span class="converter-result-value">${formatNumber(dp_Pa / 1000)} кПа</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Относительное отверстие m</span><span class="converter-result-value">${formatNumber(m)}</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Коэффициент расхода α</span><span class="converter-result-value">${formatNumber(alpha)}</span></div>`;
-        if (medium === 'gas') {
-            html += `<div class="converter-result-item"><span class="converter-result-label">Коэффициент расширения ε</span><span class="converter-result-value">${formatNumber(epsilon)}</span></div>`;
-        }
-        html += `<div class="converter-result-item"><span class="converter-result-label">Число ReD (ном.)</span><span class="converter-result-value">${formatNumber(ReD)}</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Число ReD (мин.)</span><span class="converter-result-value">${formatNumber(ReD_min)}</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Диаметр отверстия d₂₀</span><span class="converter-result-value" style="color:#4ac771; font-size:18px;">${formatNumber(d_mm)} мм</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Отношение d₂₀/D₂₀</span><span class="converter-result-value">${formatNumber(d20_calc / D20_m)}</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Итераций</span><span class="converter-result-value">${iter}</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">Q = α·ε·(πD²/4)·√(2Δp/ρ)·m</span></div>`;
-
-        if (warnings.length > 0) {
-            html += `<div class="warning-banner" style="margin:10px 0 0;"><div class="warning-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div class="warning-banner-content"><div class="warning-banner-title">Рекомендации</div><div class="warning-banner-desc">${warnings.join('<br>')}</div></div></div>`;
-        }
-
-        document.getElementById('opResults').innerHTML = html;
-        document.getElementById('opResults').style.display = 'block';
-        setTimeout(() => document.getElementById('opResults').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-    }
-
-    
-    // Сужающее устройство — Перепад давления (Δp)
-    function updateOpDpForm() {
-        let type = document.getElementById('op_dp_medium_type').value;
-        document.getElementById('op_dp_gas_params').style.display = type === 'gas' ? 'block' : 'none';
-    }
-    function updateOpFlowForm() {
-        let type = document.getElementById('op_flow_medium_type').value;
-        document.getElementById('op_flow_gas_params').style.display = type === 'gas' ? 'block' : 'none';
-    }
-    function getOpAlpha(m, device) {
-        let coeff = opAlphaCoefficients[device];
-        return coeff.A + coeff.B * m + coeff.C * m * m + coeff.D * m * m * m;
-    }
-    function getOpEpsilon(m, dp_Pa, pressure_abs, kappa, medium) {
-        if (medium !== 'gas') return 1.0;
-        let tau = dp_Pa / pressure_abs;
-        let eps = 1 - (0.41 + 0.35 * Math.pow(m, 1.5)) * tau / kappa;
-        return eps < 0.9 ? 0.9 : eps;
-    }
-    function convertOpFlowToM3s(flow, unit, rho) {
-        switch(unit) {
-            case 'm3h': return flow / 3600;
-            case 'm3s': return flow;
-            case 'l_s': return flow / 1000;
-            case 'kg_h': return flow / (3600 * rho);
-            case 'kg_s': return flow / rho;
-            case 't_h': return flow * 1000 / (3600 * rho);
-            default: return flow / 3600;
-        }
-    }
-    function convertOpDpToPa(dp, unit) {
-        switch(unit) {
-            case 'kPa': return dp * 1000;
-            case 'Pa': return dp;
-            case 'MPa': return dp * 1e6;
-            case 'mmH2O': return dp * 9.80665;
-            case 'mmHg': return dp * 133.322;
-            case 'bar': return dp * 1e5;
-            default: return dp * 1000;
-        }
-    }
-    function getOpThermalD(d20_mm, material, temp) {
-        let alpha = opThermalExpansion[material] || 11.9e-6;
-        return d20_mm / 1000 * (1 + alpha * (temp - 20));
-    }
-
-    // Расчёт перепада давления Δp по Q и d₂₀
-    function calcOrificeDp() {
-        let medium = document.getElementById('op_dp_medium_type').value;
-        let d20_mm = parseFloat(document.getElementById('op_dp_d20').value);
-        let pipeMat = document.getElementById('op_dp_pipe_material').value;
-        let temp = parseFloat(document.getElementById('op_dp_temp').value);
-        let flow = parseFloat(document.getElementById('op_dp_flow').value);
-        let flowUnit = document.getElementById('op_dp_flow_unit').value;
-        let d_plate_mm = parseFloat(document.getElementById('op_dp_d_plate').value);
-        let rho = parseFloat(document.getElementById('op_dp_density').value);
-        let nu_cSt = parseFloat(document.getElementById('op_dp_viscosity').value);
-        let device = document.getElementById('op_dp_device_type').value;
-        let plateMat = document.getElementById('op_dp_plate_material').value;
-        let pressure = parseFloat(document.getElementById('op_dp_pressure').value) || 0;
-
-        if (isNaN(d20_mm) || d20_mm <= 0) { showToast('Введите диаметр трубопровода'); return; }
-        if (isNaN(flow) || flow <= 0) { showToast('Введите расход'); return; }
-        if (isNaN(d_plate_mm) || d_plate_mm <= 0) { showToast('Введите диаметр диска'); return; }
-        if (isNaN(rho) || rho <= 0) { showToast('Введите плотность'); return; }
-        if (isNaN(nu_cSt) || nu_cSt <= 0) { showToast('Введите вязкость'); return; }
-        if (d_plate_mm >= d20_mm) { showToast('Диаметр диска должен быть меньше диаметра трубы'); return; }
-
-        let D = getOpThermalD(d20_mm, pipeMat, temp);
-        let d = d_plate_mm / 1000 * (1 + (opThermalExpansion[plateMat] || 16.6e-6) * (temp - 20));
-        let m = (d / D) * (d / D);
-        let Q_m3s = convertOpFlowToM3s(flow, flowUnit, rho);
-        let alpha = getOpAlpha(m, device);
-        let kappa = medium === 'gas' ? (parseFloat(document.getElementById('op_dp_kappa').value) || 1.4) : 1.0;
-        let Z = medium === 'gas' ? (parseFloat(document.getElementById('op_dp_z').value) || 1.0) : 1.0;
-        let pressure_abs = pressure * 1e6 + 101325;
-
-        // Initial epsilon estimate
-        let epsilon = getOpEpsilon(m, 25000, pressure_abs, kappa, medium);
-        let dp_Pa;
-        // Iterate for epsilon convergence
-        for (let iter = 0; iter < 20; iter++) {
-            let denom = alpha * epsilon * (Math.PI * D * D / 4) * Math.sqrt(2 / rho) * m;
-            dp_Pa = Math.pow(Q_m3s / denom, 2);
-            let eps_new = getOpEpsilon(m, dp_Pa, pressure_abs, kappa, medium);
-            if (Math.abs(eps_new - epsilon) < 0.0001) break;
-            epsilon = eps_new;
-        }
-
-        let ReD = (4 * Q_m3s) / (Math.PI * D * nu_cSt * 1e-6);
-        let dp_kPa = dp_Pa / 1000;
-        let dp_mmH2O = dp_Pa / 9.80665;
-
-        let warnings = [];
-        if (m < 0.05) warnings.push('m < 0,05 — ниже рекомендуемого диапазона');
-        if (m > 0.64) warnings.push('m > 0,64 — превышает рекомендуемый диапазон');
-        if (ReD < 1e5) warnings.push('ReD < 10⁵ — возможна зависимость α от Re');
-        if (dp_Pa > 0.25 * pressure_abs) warnings.push('Δp > 0,25·P — применение формулы ограничено');
-
-        let deviceNames = { orifice: 'Диафрагма стандартная', nozzle: 'Сопло стандартное', venturi: 'Труба Вентури' };
-        let html = '<div class="converter-result-label-title">Результаты расчёта Δp (РД 50-411-83)</div>';
-        html += `<div class="converter-result-item"><span class="converter-result-label">Тип СУ</span><span class="converter-result-value">${deviceNames[device]}</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Расход Q</span><span class="converter-result-value">${formatNumber(Q_m3s * 3600)} м³/ч</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Диаметр диска d₂₀</span><span class="converter-result-value">${formatNumber(d_plate_mm)} мм</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Относительное отверстие m</span><span class="converter-result-value">${formatNumber(m)}</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Коэффициент расхода α</span><span class="converter-result-value">${formatNumber(alpha)}</span></div>`;
-        if (medium === 'gas') {
-            html += `<div class="converter-result-item"><span class="converter-result-label">Коэффициент расширения ε</span><span class="converter-result-value">${formatNumber(epsilon)}</span></div>`;
-        }
-        html += `<div class="converter-result-item"><span class="converter-result-label">Число ReD</span><span class="converter-result-value">${formatNumber(ReD)}</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Перепад Δp</span><span class="converter-result-value" style="color:#4ac771; font-size:18px;">${formatNumber(dp_kPa)} кПа</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Перепад Δp</span><span class="converter-result-value">${formatNumber(dp_mmH2O)} мм вод.ст.</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Перепад Δp</span><span class="converter-result-value">${formatNumber(dp_Pa)} Па</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">Δp = ρ/2 · [Q/(α·ε·(πD²/4)·m)]²</span></div>`;
-
-        if (warnings.length > 0) {
-            html += `<div class="warning-banner" style="margin:10px 0 0;"><div class="warning-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div class="warning-banner-content"><div class="warning-banner-title">Рекомендации</div><div class="warning-banner-desc">${warnings.join('<br>')}</div></div></div>`;
-        }
-
-        document.getElementById('opResultsDp').innerHTML = html;
-        document.getElementById('opResultsDp').style.display = 'block';
-        setTimeout(() => document.getElementById('opResultsDp').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-    }
-
-    // Расчёт расхода Q по Δp и d₂₀
-    function calcOrificeFlow() {
-        let medium = document.getElementById('op_flow_medium_type').value;
-        let d20_mm = parseFloat(document.getElementById('op_flow_d20').value);
-        let pipeMat = document.getElementById('op_flow_pipe_material').value;
-        let temp = parseFloat(document.getElementById('op_flow_temp').value);
-        let dp = parseFloat(document.getElementById('op_flow_dp').value);
-        let dpUnit = document.getElementById('op_flow_dp_unit').value;
-        let d_plate_mm = parseFloat(document.getElementById('op_flow_d_plate').value);
-        let rho = parseFloat(document.getElementById('op_flow_density').value);
-        let nu_cSt = parseFloat(document.getElementById('op_flow_viscosity').value);
-        let device = document.getElementById('op_flow_device_type').value;
-        let plateMat = document.getElementById('op_flow_plate_material').value;
-        let pressure = parseFloat(document.getElementById('op_flow_pressure').value) || 0;
-
-        if (isNaN(d20_mm) || d20_mm <= 0) { showToast('Введите диаметр трубопровода'); return; }
-        if (isNaN(dp) || dp <= 0) { showToast('Введите перепад давления'); return; }
-        if (isNaN(d_plate_mm) || d_plate_mm <= 0) { showToast('Введите диаметр диска'); return; }
-        if (isNaN(rho) || rho <= 0) { showToast('Введите плотность'); return; }
-        if (isNaN(nu_cSt) || nu_cSt <= 0) { showToast('Введите вязкость'); return; }
-        if (d_plate_mm >= d20_mm) { showToast('Диаметр диска должен быть меньше диаметра трубы'); return; }
-
-        let D = getOpThermalD(d20_mm, pipeMat, temp);
-        let d = d_plate_mm / 1000 * (1 + (opThermalExpansion[plateMat] || 16.6e-6) * (temp - 20));
-        let m = (d / D) * (d / D);
-        let dp_Pa = convertOpDpToPa(dp, dpUnit);
-        let alpha = getOpAlpha(m, device);
-        let kappa = medium === 'gas' ? (parseFloat(document.getElementById('op_flow_kappa').value) || 1.4) : 1.0;
-        let Z = medium === 'gas' ? (parseFloat(document.getElementById('op_flow_z').value) || 1.0) : 1.0;
-        let pressure_abs = pressure * 1e6 + 101325;
-        let epsilon = getOpEpsilon(m, dp_Pa, pressure_abs, kappa, medium);
-
-        let Q_m3s = alpha * epsilon * (Math.PI * D * D / 4) * Math.sqrt(2 * dp_Pa / rho) * m;
-        let ReD = (4 * Q_m3s) / (Math.PI * D * nu_cSt * 1e-6);
-
-        let warnings = [];
-        if (m < 0.05) warnings.push('m < 0,05 — ниже рекомендуемого диапазона');
-        if (m > 0.64) warnings.push('m > 0,64 — превышает рекомендуемый диапазон');
-        if (ReD < 1e5) warnings.push('ReD < 10⁵ — возможна зависимость α от Re');
-        if (dp_Pa > 0.25 * pressure_abs) warnings.push('Δp > 0,25·P — применение формулы ограничено');
-
-        let deviceNames = { orifice: 'Диафрагма стандартная', nozzle: 'Сопло стандартное', venturi: 'Труба Вентури' };
-        let html = '<div class="converter-result-label-title">Результаты расчёта Q (РД 50-411-83)</div>';
-        html += `<div class="converter-result-item"><span class="converter-result-label">Тип СУ</span><span class="converter-result-value">${deviceNames[device]}</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Перепад Δp</span><span class="converter-result-value">${formatNumber(dp_Pa / 1000)} кПа</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Диаметр диска d₂₀</span><span class="converter-result-value">${formatNumber(d_plate_mm)} мм</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Относительное отверстие m</span><span class="converter-result-value">${formatNumber(m)}</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Коэффициент расхода α</span><span class="converter-result-value">${formatNumber(alpha)}</span></div>`;
-        if (medium === 'gas') {
-            html += `<div class="converter-result-item"><span class="converter-result-label">Коэффициент расширения ε</span><span class="converter-result-value">${formatNumber(epsilon)}</span></div>`;
-        }
-        html += `<div class="converter-result-item"><span class="converter-result-label">Число ReD</span><span class="converter-result-value">${formatNumber(ReD)}</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Расход Q</span><span class="converter-result-value" style="color:#4ac771; font-size:18px;">${formatNumber(Q_m3s * 3600)} м³/ч</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Расход Q</span><span class="converter-result-value">${formatNumber(Q_m3s)} м³/с</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Расход Q</span><span class="converter-result-value">${formatNumber(Q_m3s * 1000)} л/с</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Массовый расход</span><span class="converter-result-value">${formatNumber(Q_m3s * rho * 3600)} кг/ч</span></div>`;
-        html += `<div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">Q = α·ε·(πD²/4)·√(2Δp/ρ)·m</span></div>`;
-
-        if (warnings.length > 0) {
-            html += `<div class="warning-banner" style="margin:10px 0 0;"><div class="warning-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div class="warning-banner-content"><div class="warning-banner-title">Рекомендации</div><div class="warning-banner-desc">${warnings.join('<br>')}</div></div></div>`;
-        }
-
-        document.getElementById('opResultsFlow').innerHTML = html;
-        document.getElementById('opResultsFlow').style.display = 'block';
-        setTimeout(() => document.getElementById('opResultsFlow').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-    }
-
-    document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function(){
         setSignalDefaults();
         setLiquidDensity();
         updateBuoySignalUnit();
