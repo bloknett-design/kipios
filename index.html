@@ -76,11 +76,11 @@
     .header-subtitle { font-size: 9px; color: rgba(74, 143, 199, 0.6); letter-spacing: 4px; text-transform: uppercase; margin-top: 3px; font-weight: 500; }
     .header-btn {
         width: 38px; height: 38px; border-radius: 10px;
-        background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.08);
         display: flex; align-items: center; justify-content: center; cursor: pointer;
         transition: all 0.2s;
     }
-    .header-btn:active { transform: scale(0.92); background: rgba(255,255,255,0.1); }
+    .header-btn:active { transform: scale(0.92); background: rgba(255,255,255,0.15); }
     .header-btn svg { width: 18px; height: 18px; stroke: rgba(74, 143, 199, 0.7); fill: none; stroke-width: 2; stroke-linecap: round; }
     
     .nav-bar { 
@@ -92,21 +92,21 @@
     .nav-btn {
         display: inline-flex; align-items: center; justify-content: center; gap: 5px;
         padding: 6px 12px; color: rgba(180, 200, 220, 0.85); font-size: 13px; font-weight: 600;
-        cursor: pointer; border-radius: 7px; background: rgba(30, 42, 56, 0.85);
+        cursor: pointer; border-radius: 7px; background: rgba(30, 42, 56, 0.15);
         border: 1px solid rgba(74, 143, 199, 0.22); transition: all 0.2s;
         -webkit-user-select: none; user-select: none; pointer-events: auto; touch-action: manipulation;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     }
-    .nav-btn:active { transform: scale(0.96); background: rgba(40, 55, 72, 1); border-color: rgba(74, 143, 199, 0.4); }
+    .nav-btn:active { transform: scale(0.96); background: rgba(40, 55, 72, 0.15); border-color: rgba(74, 143, 199, 0.4); }
     .nav-btn svg { width: 13px; height: 13px; stroke: rgba(140, 170, 200, 0.7); fill: none; stroke-width: 2; stroke-linecap: round; pointer-events: none; }
     .nav-btn span { pointer-events: none; }
     .nav-btn-home { 
         color: rgba(200, 215, 230, 0.9);
-        background: rgba(35, 50, 68, 0.9);
+        background: rgba(35, 50, 68, 0.15);
         border-color: rgba(74, 143, 199, 0.35);
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     }
-    .nav-btn-home:active { background: rgba(45, 62, 82, 1); border-color: rgba(74, 143, 199, 0.5); }
+    .nav-btn-home:active { background: rgba(45, 62, 82, 0.15); border-color: rgba(74, 143, 199, 0.5); }
     .nav-separator { color: rgba(255,255,255,0.18); font-size: 16px; padding: 0 4px; font-weight: 300; }
     
     .content-header { padding: 14px 20px 10px; position: relative; z-index: 2; }
@@ -119,13 +119,13 @@
     .menu-btn {
         display: flex; align-items: center; justify-content: flex-start; position: relative;
         width: calc(100% - 32px); min-width: 0; padding: 14px 16px; margin: 5px 16px;
-        background: rgba(30, 42, 56, 0.45); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        background: rgba(30, 42, 56, 0.15); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         border: 1px solid rgba(74, 143, 199, 0.15); border-radius: 14px; cursor: pointer;
         overflow: hidden; -webkit-user-select: none; user-select: none;
         transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: auto;
         touch-action: manipulation; -webkit-tap-highlight-color: transparent;
     }
-    .menu-btn:active { transform: scale(0.97); background: rgba(22, 27, 34, 0.6); border-color: rgba(74, 143, 199, 0.25); }
+    .menu-btn:active { transform: scale(0.97); background: rgba(22, 27, 34, 0.15); border-color: rgba(74, 143, 199, 0.25); }
     .menu-btn-text { position: relative; z-index: 1; text-align: left; flex: 1; pointer-events: none; }
     .menu-btn-label { font-size: 15px; color: #e8e8e8; font-weight: 600; line-height: 1.25; }
     .menu-btn-sublabel { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 3px; line-height: 1.3; }
@@ -154,13 +154,13 @@
     .warning-banner-desc { font-size: 10px; color: rgba(255,255,255,0.3); line-height: 1.3; }
     
     .scale-form, .converter-form { 
-        background: rgba(30, 42, 56, 0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+        background: rgba(30, 42, 56, 0.15); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
         border: 1px solid rgba(74, 143, 199, 0.1); border-radius: 14px; margin: 8px 16px; padding: 14px; 
         position: relative; z-index: 2;
     }
     .scale-form-label, .form-label { color: rgba(255,255,255,0.35); font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; font-weight: 500; }
     .scale-field, .form-field {
-        width: 100%; background: rgba(23, 33, 43, 0.8); border: 1px solid rgba(74, 143, 199, 0.15);
+        width: 100%; background: rgba(23, 33, 43, 0.15); border: 1px solid rgba(74, 143, 199, 0.15);
         border-radius: 10px; padding: 12px 14px; color: #e8e8e8; font-size: 15px;
         font-family: 'Inter', sans-serif; outline: none; transition: all 0.2s; margin-bottom: 12px; pointer-events: auto;
         -webkit-appearance: none; appearance: none; height: 46px; box-sizing: border-box;
@@ -233,12 +233,12 @@
     .method-indicator { background: rgba(30, 42, 56, 0.6); backdrop-filter: blur(8px); margin: 10px 16px; padding: 12px 14px; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(74, 143, 199, 0.1); position: relative; z-index: 2; }
     
     .query-btn {
-        width: 100%; background: rgba(30, 42, 56, 0.7); border: 1px solid rgba(74, 143, 199, 0.15); border-radius: 10px;
+        width: 100%; background: rgba(30, 42, 56, 0.15); border: 1px solid rgba(74, 143, 199, 0.15); border-radius: 10px;
         padding: 10px; color: rgba(74, 143, 199, 0.9); font-size: 13px; cursor: pointer;
         display: flex; align-items: center; justify-content: center; gap: 5px;
         pointer-events: auto; touch-action: manipulation; -webkit-tap-highlight-color: transparent; transition: all 0.2s;
     }
-    .query-btn:active { background: rgba(22, 27, 34, 1); transform: scale(0.97); }
+    .query-btn:active { background: rgba(22, 27, 34, 0.15); transform: scale(0.97); }
     .query-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; pointer-events: none; }
     
     .toast {
@@ -345,6 +345,7 @@
     .greek-gamma { font-family: Georgia, 'Times New Roman', serif; font-style: italic; }
 
 </style>
+<base target="_blank">
 <base target="_blank">
 <base target="_blank">
 <base target="_blank">
