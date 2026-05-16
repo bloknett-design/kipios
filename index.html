@@ -13,27 +13,8 @@
 <link href="https://cdn.jsdelivr.net/npm/@fontsource/inter@4.5.15/index.min.css" rel="stylesheet">
 <style>
     * { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: linear-gradient(180deg, #1a2233 0%, #17212b 40%, #0e1621 100%); color: #e0e0e0; overflow-x: hidden; padding-bottom: 80px; min-height: 100vh; position: relative; }
-    .industrial-skyline {
-        position: fixed;
-        bottom: 70px;
-        left: 0;
-        right: 0;
-        z-index: 1;
-        pointer-events: none;
-        opacity: 0.12;
-        height: 180px;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 180' preserveAspectRatio='xMidYMax slice'%3E%3Cpath fill='%234a8fc7' d='M0,180 L0,140 L20,140 L20,120 L35,120 L35,100 L50,100 L50,80 L60,80 L60,60 L75,60 L75,40 L90,40 L90,20 L100,20 L100,50 L110,50 L110,30 L125,30 L125,55 L140,55 L140,35 L155,35 L155,60 L170,60 L170,45 L185,45 L185,70 L200,70 L200,50 L215,50 L215,75 L230,75 L230,55 L245,55 L245,80 L260,80 L260,60 L275,60 L275,85 L290,85 L290,65 L305,65 L305,90 L320,90 L320,70 L335,70 L335,95 L350,350 L350,75 L365,75 L365,100 L380,100 L380,80 L395,80 L395,105 L410,105 L410,85 L425,85 L425,110 L440,110 L440,90 L455,90 L455,115 L470,115 L470,95 L485,95 L485,120 L500,500 L500,100 L515,100 L515,125 L530,530 L530,105 L545,105 L545,130 L560,560 L560,110 L575,575 L575,135 L590,590 L590,115 L605,605 L605,140 L620,620 L620,120 L635,635 L635,145 L650,650 L650,125 L665,665 L665,150 L680,680 L680,130 L695,695 L695,155 L710,710 L710,135 L725,725 L725,160 L740,740 L740,140 L755,755 L755,165 L770,770 L770,145 L785,785 L785,170 L800,800 L800,150 L815,815 L815,175 L830,830 L830,155 L845,845 L845,180 L860,860 L860,160 L875,875 L875,180 L890,890 L890,165 L905,905 L905,180 L920,920 L920,170 L935,935 L935,180 L950,950 L950,175 L965,965 L965,180 L980,980 L980,170 L995,995 L995,180 L1010,1010 L1010,175 L1025,1025 L1025,180 L1040,1040 L1040,170 L1055,1055 L1055,180 L1070,1070 L1070,175 L1085,1085 L1085,180 L1100,1100 L1100,170 L1115,1115 L1115,180 L1130,1130 L1130,175 L1145,1145 L1145,180 L1160,1160 L1160,170 L1175,1175 L1175,180 L1190,1190 L1190,175 L1200,1200 L1200,180 Z'/%3E%3Cpath fill='%234a8fc7' opacity='0.5' d='M50,180 L50,130 L55,130 L55,110 L60,110 L60,90 L70,90 L70,70 L80,70 L80,50 L90,50 L90,30 L100,30 L100,60 L110,60 L110,40 L120,120 L120,70 L130,130 L130,50 L140,140 L140,80 L150,150 L150,60 L160,160 L160,90 L170,170 L170,70 L180,180 L180,100 L190,190 L190,80 L200,200 L200,110 L210,210 L210,90 L220,220 L220,120 L230,230 L230,100 L240,240 L240,130 L250,250 L250,110 L260,260 L260,140 L270,270 L270,120 L280,280 L280,150 L290,290 L290,130 L300,300 L300,160 L310,310 L310,140 L320,320 L320,170 L330,330 L330,150 L340,340 L340,180 L350,350 L350,160 L360,360 L360,180 L370,370 L370,170 L380,380 L380,180 L390,390 L390,175 L400,400 L400,180 L410,410 L410,170 L420,420 L420,180 L430,430 L430,175 L440,440 L440,180 L450,450 L450,170 L460,460 L460,180 L470,470 L470,175 L480,480 L480,180 L490,490 L490,170 L500,500 L500,180 L510,510 L510,175 L520,520 L520,180 L530,530 L530,170 L540,540 L540,180 L550,550 L550,175 L560,560 L560,180 L570,570 L570,170 L580,580 L580,180 L590,590 L590,175 L600,600 L600,180 L610,610 L610,170 L620,620 L620,180 L630,630 L630,175 L640,640 L640,180 L650,650 L650,170 L660,660 L660,180 L670,670 L670,175 L680,680 L680,180 L690,690 L690,170 L700,700 L700,180 L710,710 L710,175 L720,720 L720,180 L730,730 L730,170 L740,740 L740,180 L750,750 L750,175 L760,760 L760,180 L770,770 L770,170 L780,780 L780,180 L790,790 L790,175 L800,800 L800,180 L810,810 L810,170 L820,820 L820,180 L830,830 L830,175 L840,840 L840,180 L850,850 L850,170 L860,860 L860,180 L870,870 L870,175 L880,880 L880,180 L890,890 L890,170 L900,900 L900,180 L910,910 L910,175 L920,920 L920,180 L930,930 L930,170 L940,940 L940,180 L950,950 L950,175 L960,960 L960,180 L970,970 L970,170 L980,980 L980,180 L990,990 L990,175 L1000,1000 L1000,180 L1010,1010 L1010,170 L1020,1020 L1020,180 L1030,1030 L1030,175 L1040,1040 L1040,180 L1050,1050 L1050,170 L1060,1060 L1060,180 L1070,1070 L1070,175 L1080,1080 L1080,180 L1090,1090 L1090,170 L1100,1100 L1100,180 L1110,1110 L1110,175 L1120,1120 L1120,180 L1130,1130 L1130,170 L1140,1140 L1140,180 L1150,1150 L1150,175 L1160,1160 L1160,180 L1170,1170 L1170,170 L1180,1180 L1180,180 L1190,1190 L1190,175 L1200,1200 L1200,180 Z'/%3E%3C/svg%3E");
-        background-repeat: repeat-x;
-        background-position: bottom center;
-        background-size: 1200px 180px;
-    }
-    @media (max-width: 480px) {
-        .industrial-skyline { height: 120px; background-size: 800px 120px; bottom: 65px; }
-    }
-    @media (max-width: 400px) {
-        .industrial-skyline { height: 100px; background-size: 600px 100px; bottom: 60px; }
-    }
+    body { background: linear-gradient(180deg, #1a2233 0%, #17212b 40%, #0e1621 100%); color: #e0e0e0; overflow-x: hidden; padding-bottom: 60px; min-height: 100vh; position: relative; }
+
     
     .bg-network {
         position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; pointer-events: none; overflow: hidden;
@@ -261,7 +242,7 @@
     .toast.show { transform: translateY(0); opacity: 1; }
     .toast svg { width: 18px; height: 18px; stroke: #4ac771; fill: none; stroke-width: 2; stroke-linecap: round; }
     
-    .page-bottom-bg { position: relative; margin-top: 10px; padding: 12px 16px 20px; text-align: center; overflow: hidden; z-index: 2; background: rgba(23, 33, 43, 0.3); border-radius: 12px 12px 0 0; margin: 10px 8px 0; }
+    .page-bottom-bg { position: relative; margin-top: 6px; padding: 8px 12px 12px; text-align: center; overflow: hidden; z-index: 2; background: rgba(23, 33, 43, 0.3); border-radius: 10px 10px 0 0; margin: 6px 8px 0; }
     .page-bottom-bg::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at center, rgba(74,143,199,0.03) 0%, transparent 70%); z-index: 0; }
     .page-bottom-text { position: relative; z-index: 2; color: rgba(255,255,255,0.12); font-size: 9px; letter-spacing: 1px; }
     
@@ -305,8 +286,8 @@
     .bottom-nav-item:active .bottom-nav-label { color: rgba(74, 143, 199, 0.8); }
     
     @supports (padding-bottom: env(safe-area-inset-bottom)) {
-        .page-content { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
-        body { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
+        .page-content { padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+        body { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
     }
     @media (max-width: 480px) {
         .menu-btn { width: calc(100% - 24px); margin: 4px 12px; padding: 12px 14px; }
@@ -381,8 +362,6 @@
         </g>
     </svg>
 </div>
-
-<div class="industrial-skyline"></div>
 
 <div id="mainApp">
     <header class="app-header">
