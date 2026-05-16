@@ -337,6 +337,7 @@
 </style>
 <base target="_blank">
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
 
@@ -851,14 +852,24 @@ function roundNumber(n) { if (n===0) return '0'; let s=n.toPrecision(1); let v=p
         if(step<=0){step=10;}
         if(type==='rtd'){
             let rtdType=document.getElementById('temp_rtd_type').value;
-            let r0={pt10:10,pt50:50,pt100:100,pt500:500,pt1000:1000,cu50:50,cu100:100}[rtdType];
-            let isCu=rtdType.startsWith('cu');
-            let name={pt10:'Pt10',pt50:'Pt50',pt100:'Pt100',pt500:'Pt500',pt1000:'Pt1000',cu50:'Cu50',cu100:'Cu100'}[rtdType];
-            let html=`<div class="converter-result-label-title">Результаты расчёта (IEC 60751)</div>`;
-            html+=`<div class="converter-result-item"><span class="converter-result-label">Тип ТС</span><span class="converter-result-value">${name}</span></div>`;
+            let sensorData={
+                cu50_1428:{r0:50,alpha:0.00428,name:'Cu50 (50М)',nsc:'cu',formula:'R(t) = R₀(1 + 0,00428·t)'},
+                cu100_1428:{r0:100,alpha:0.00428,name:'Cu100 (100М)',nsc:'cu',formula:'R(t) = R₀(1 + 0,00428·t)'},
+                cu50_1426:{r0:50,alpha:0.00426,name:'Cu50 (50М)',nsc:'cu',formula:'R(t) = R₀(1 + 0,00426·t)'},
+                cu100_1426:{r0:100,alpha:0.00426,name:'Cu100 (100М)',nsc:'cu',formula:'R(t) = R₀(1 + 0,00426·t)'},
+                pt50_1391:{r0:50,name:'Pt50 (50П)',nsc:'pt1391',formula:'R(t) = R₀[1 + At + Bt²], A=3,96847·10⁻³, B=−5,84·10⁻⁷'},
+                pt100_1391:{r0:100,name:'Pt100 (100П)',nsc:'pt1391',formula:'R(t) = R₀[1 + At + Bt²], A=3,96847·10⁻³, B=−5,84·10⁻⁷'},
+                pt100_1385:{r0:100,name:'Pt100',nsc:'pt1385',formula:'R(t) = R₀[1 + At + Bt² + C(t−100)t³], IEC 60751 / ГОСТ 6651-2009'},
+                pt1000_1385:{r0:1000,name:'Pt1000',nsc:'pt1385',formula:'R(t) = R₀[1 + At + Bt² + C(t−100)t³], IEC 60751 / ГОСТ 6651-2009'}
+            };
+            let sd=sensorData[rtdType];
+            if(!sd){showToast('Неизвестный тип ТС');return;}
+            let isCu=sd.nsc==='cu';
+            let html=`<div class="converter-result-label-title">Результаты расчёта (ГОСТ 6651-2009)</div>`;
+            html+=`<div class="converter-result-item"><span class="converter-result-label">Тип ТС</span><span class="converter-result-value">${sd.name}</span></div>`;
             html+=`<div class="converter-result-item"><span class="converter-result-label">Диапазон</span><span class="converter-result-value">${formatNumber(tMin)} … ${formatNumber(tMax)} °C</span></div>`;
-            html+=`<div class="converter-result-item"><span class="converter-result-label">R₀ (при 0°C)</span><span class="converter-result-value">${r0} Ом</span></div>`;
-            html+=`<div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">${isCu?'R(t) = R₀(1 + α·t) — медный, α=0,00427':'R(t) = R₀[1 + At + Bt² + C(t−100)t³] — платиновый'}</span></div>`;
+            html+=`<div class="converter-result-item"><span class="converter-result-label">R₀ (при 0°C)</span><span class="converter-result-value">${sd.r0} Ом</span></div>`;
+            html+=`<div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">${sd.formula}</span></div>`;
             html+=`<div style="margin-top:14px;"><div class="converter-result-label-title">Таблица значений (шаг ${step}°C)</div>`;
             html+=`<div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.05);"><table style="min-width:100%;width:100%;border-collapse:collapse;"><thead><tr style="background:rgba(22,27,34,0.7);"><th style="padding:10px 12px;font-size:16px;color:#4a8fc7;text-align:left;">t, °C</th><th style="padding:10px 12px;font-size:16px;color:#4ac771;text-align:left;">R(t), Ом</th></tr></thead><tbody>`;
             let start=Math.ceil(tMin/step)*step;
@@ -866,13 +877,13 @@ function roundNumber(n) { if (n===0) return '0'; let s=n.toPrecision(1); let v=p
             if(start>tMax||end<tMin){start=tMin;end=tMax;}
             let row=0;
             for(let tc=start;tc<=end;tc+=step){
-                let rv=isCu?calcCuResistance(tc,r0):calcRtdResistance(tc,r0);
+                let rv=isCu?calcCuResistance(tc,sd.r0,sd.alpha):calcRtdResistance(tc,sd.r0,sd.nsc);
                 let bg=row%2?'rgba(22,27,34,0.4)':'rgba(13,17,23,0.4)';
                 html+=`<tr style="background:${bg};"><td style="padding:8px 12px;font-size:18px;color:rgba(255,255,255,0.4);">${tc}</td><td style="padding:8px 12px;font-size:18px;color:#4ac771;">${formatNumber(rv)}</td></tr>`;
                 row++;
             }
             if(row===0){
-                let rv=isCu?calcCuResistance(tMin,r0):calcRtdResistance(tMin,r0);
+                let rv=isCu?calcCuResistance(tMin,sd.r0,sd.alpha):calcRtdResistance(tMin,sd.r0,sd.nsc);
                 html+=`<tr style="background:rgba(13,17,23,0.4);"><td style="padding:8px 12px;font-size:18px;color:rgba(255,255,255,0.4);">${tMin}</td><td style="padding:8px 12px;font-size:18px;color:#4ac771;">${formatNumber(rv)}</td></tr>`;
             }
             html+=`</tbody></table></div></div>`;
@@ -907,13 +918,19 @@ function roundNumber(n) { if (n===0) return '0'; let s=n.toPrecision(1); let v=p
         resDiv.style.display='block';
         setTimeout(()=>resDiv.scrollIntoView({behavior:'smooth',block:'start'}),100);
     }
-    function calcRtdResistance(t,r0){
-        let A=3.9083e-3, B=-5.775e-7, C=-4.183e-12;
-        if(t>=0){ return r0*(1+A*t+B*t*t); }
-        else { return r0*(1+A*t+B*t*t+C*(t-100)*t*t*t); }
+    function calcRtdResistance(t,r0,nsc){
+        if(nsc==='pt1385'){
+            let A=3.9083e-3, B=-5.775e-7, C=-4.183e-12;
+            if(t>=0){ return r0*(1+A*t+B*t*t); }
+            else { return r0*(1+A*t+B*t*t+C*(t-100)*t*t*t); }
+        } else if(nsc==='pt1391'){
+            let A=3.96847e-3, B=-5.84e-7;
+            if(t>=0){ return r0*(1+A*t+B*t*t); }
+            else { return r0*(1+A*t+B*t*t); }
+        }
+        return r0;
     }
-    function calcCuResistance(t,r0){
-        let alpha=4.27e-3;
+    function calcCuResistance(t,r0,alpha){
         return r0*(1+alpha*t);
     }
     function calcTcVoltage(t,type){
@@ -1026,16 +1043,21 @@ function roundNumber(n) { if (n===0) return '0'; let s=n.toPrecision(1); let v=p
                 <div id="rtd_options">
                     <div class="scale-form-label" style="margin-top:12px;">Тип ТС</div>
                     <select id="temp_rtd_type" class="scale-field" autocomplete="off">
-                        <optgroup label="Платиновые (Pt)">
-                            <option value="pt10">Pt10 (10П)</option>
-                            <option value="pt50">Pt50 (50П)</option>
-                            <option value="pt100" selected>Pt100 (100П)</option>
-                            <option value="pt500">Pt500 (500П)</option>
-                            <option value="pt1000">Pt1000 (1000П)</option>
+                        <optgroup label="Cu — W₁₀₀ = 1,428, α = 0,00428 °С⁻¹">
+                            <option value="cu50_1428">Cu50 (50М)</option>
+                            <option value="cu100_1428">Cu100 (100М)</option>
                         </optgroup>
-                        <optgroup label="Медные (Cu)">
-                            <option value="cu50">Cu50 (50М)</option>
-                            <option value="cu100">Cu100 (100М)</option>
+                        <optgroup label="Cu — W₁₀₀ = 1,426, α = 0,00426 °С⁻¹">
+                            <option value="cu50_1426">Cu50 (50М)</option>
+                            <option value="cu100_1426">Cu100 (100М)</option>
+                        </optgroup>
+                        <optgroup label="Pt — W₁₀₀ = 1,391, α = 0,00391 °С⁻¹">
+                            <option value="pt50_1391">Pt50 (50П)</option>
+                            <option value="pt100_1391" selected>Pt100 (100П)</option>
+                        </optgroup>
+                        <optgroup label="Pt — W₁₀₀ = 1,385, α = 0,00385 °С⁻¹">
+                            <option value="pt100_1385">Pt100</option>
+                            <option value="pt1000_1385">Pt1000</option>
                         </optgroup>
                     </select>
                 </div>
