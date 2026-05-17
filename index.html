@@ -343,6 +343,46 @@
 
     .greek-gamma { font-family: Georgia, 'Times New Roman', serif; font-style: italic; }
 
+
+    /* Sidebar */
+    .sidebar-overlay {
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.5); z-index: 150; opacity: 0;
+        pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .sidebar-overlay.active { opacity: 1; pointer-events: auto; }
+    .sidebar {
+        position: fixed; top: 0; left: 0; bottom: 0; width: 280px; max-width: 85vw;
+        background: rgba(23, 33, 43, 0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border-right: 1px solid rgba(74, 143, 199, 0.15); z-index: 160;
+        transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex; flex-direction: column; overflow: hidden;
+    }
+    .sidebar.active { transform: translateX(0); }
+    .sidebar-header {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 16px 20px; border-bottom: 1px solid rgba(74, 143, 199, 0.15); height: 68px;
+    }
+    .sidebar-title {
+        font-size: 20px; font-weight: 700; color: #e0e0e0; letter-spacing: -0.3px;
+    }
+    .sidebar-content {
+        flex: 1; overflow-y: auto; padding: 12px 0; -webkit-overflow-scrolling: touch;
+    }
+    .sidebar-item {
+        display: flex; align-items: center; gap: 14px;
+        padding: 14px 20px; color: rgba(180, 200, 220, 0.9);
+        font-size: 14px; font-weight: 500; cursor: pointer;
+        transition: all 0.2s; border-left: 3px solid transparent;
+        -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+    }
+    .sidebar-item:active { background: rgba(74, 143, 199, 0.08); }
+    .sidebar-item:hover { background: rgba(74, 143, 199, 0.05); border-left-color: rgba(74, 143, 199, 0.4); }
+    .sidebar-item svg { flex-shrink: 0; }
+    @media (max-width: 400px) {
+        .sidebar { width: 260px; }
+        .sidebar-item { padding: 12px 16px; font-size: 13px; }
+    }
 </style>
 <base target="_blank">
 <base target="_blank">
@@ -378,6 +418,9 @@
     <header class="app-header">
         <div class="app-header-inner">
             <div class="header-left">
+<div class="header-btn" id="menuBtn" onclick="toggleSidebar()" style="margin-right:6px;">
+    <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:rgba(74,143,199,0.9);fill:none;stroke-width:2;stroke-linecap:round;"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</div>
 <img class="header-logo" src="logo.png" alt="КИП" style="width:40px;height:40px;border-radius:10px;box-shadow:0 2px 8px rgba(74,143,199,0.3);">
                 <div>
                     <div class="header-title">КИП ИОС</div>
@@ -1269,7 +1312,30 @@
         document.querySelectorAll('.bottom-nav-item').forEach((el, i) => { el.classList.toggle('active', i === idx); });
     }
     function goBack() { if (pageHistory.length) { let prev = pageHistory.pop(); navigateTo(prev, false); } else { navigateTo('dashboard', false); } }
-    function showToast(msg) { let t = document.getElementById('toast'); document.getElementById('toastMessage').textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2500); }
+    function toggleSidebar() {
+    let sidebar = document.getElementById('sidebar');
+    let overlay = document.getElementById('sidebarOverlay');
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
+}
+
+// Close sidebar when clicking outside
+document.addEventListener('click', function(e) {
+    let sidebar = document.getElementById('sidebar');
+    let overlay = document.getElementById('sidebarOverlay');
+    let menuBtn = document.getElementById('menuBtn');
+    if (!sidebar || !overlay) return;
+    if (sidebar.classList.contains('active')) {
+        let clickedSidebar = sidebar.contains(e.target);
+        let clickedMenuBtn = menuBtn && menuBtn.contains(e.target);
+        if (!clickedSidebar && !clickedMenuBtn) {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+    }
+});
+
+function showToast(msg) { let t = document.getElementById('toast'); document.getElementById('toastMessage').textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2500); }
 
     // ======================== КОНВЕРТЕРЫ (полные данные) ========================
     const unitData = {
@@ -2084,6 +2150,23 @@ function roundNumber(n) {
         if(appHeader && firstActive) appHeader.style.display = (firstActive.id === 'page-dashboard') ? 'block' : 'none';
     });
 </script>
+
+<!-- Sidebar -->
+<div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+<div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-title">Меню</div>
+        <div class="header-btn" onclick="toggleSidebar()" style="width:32px;height:32px;border-radius:8px;">
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:rgba(74,143,199,0.9);fill:none;stroke-width:2;stroke-linecap:round;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </div>
+    </div>
+    <div class="sidebar-content">
+        <div class="sidebar-item" onclick="location.reload(); toggleSidebar();">
+            <svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:rgba(140,170,200,0.7);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            <span>Обновить</span>
+        </div>
+    </div>
+</div>
 </body>
 </html></div>
         </div>
