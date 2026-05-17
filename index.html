@@ -109,13 +109,13 @@
     }
     .header-title {
         font-size: 36px; font-weight: 900; letter-spacing: 3px; margin-top: 8px;
-        background: linear-gradient(135deg, #4a8fc7, #7ab8e0, #c77ae0, #4ac771);
+        background: linear-gradient(135deg, #4a8fc7, #7ab8e0, #7ae0a0, #c77ae0, #4ac771);
         background-size: 300% 300%; -webkit-background-clip: text;
         -webkit-text-fill-color: transparent; background-clip: text;
-        animation: gradientShift 5s ease-in-out infinite;
+        animation: gradientShift 10s ease-in-out infinite;
     }
     @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-    .header-subtitle { font-size: 9px; color: rgba(74, 143, 199, 0.6); letter-spacing: 4px; text-transform: uppercase; margin-top: 4px; font-weight: 500; }
+    .header-subtitle { font-size: 9px; color: rgba(74, 143, 199, 0.6); letter-spacing: 4px; text-transform: uppercase; margin-top: -4px; font-weight: 500; }
     .header-btn {
         width: 38px; height: 38px; border-radius: 10px;
         background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.08);
@@ -589,8 +589,26 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        animation: gradientShift 5s ease-in-out infinite;
+        animation: gradientShift 10s ease-in-out infinite;
         font-weight: 500;
+    }
+
+    .logo-border-animated {
+        display: inline-block;
+        padding: 3px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #4a8fc7, #7ab8e0, #7ae0a0, #c77ae0, #4ac771);
+        background-size: 300% 300%;
+        animation: gradientShift 10s ease-in-out infinite;
+        line-height: 0;
+    }
+    .logo-border-animated img {
+        border-radius: 11px;
+        display: block;
+        background: var(--bg-primary);
+    }
+    [data-theme="light"] .logo-border-animated img {
+        background: var(--bg-primary);
     }
 </style>
 <base target="_blank">
@@ -630,7 +648,7 @@
 <div class="header-btn" id="menuBtn" onclick="toggleSidebar()" style="margin-right:6px;display:none;">
     <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:rgba(74,143,199,0.9);fill:none;stroke-width:2;stroke-linecap:round;"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
 </div>
-<img class="header-logo" src="logo.png" alt="КИП" style="width:40px;height:40px;border-radius:10px;box-shadow:0 2px 8px rgba(74,143,199,0.3);cursor:pointer;" onclick="event.stopPropagation(); toggleSidebar();">
+<div class="logo-border-animated"><img class="header-logo" src="logo.png" alt="КИП" style="width:40px;height:40px;border-radius:10px;cursor:pointer;" onclick="event.stopPropagation(); toggleSidebar();"></div>
                 <div>
                     <div class="header-title">КИП ИОС</div>
                     <div class="header-subtitle">Контроль · Измерения · Автоматизация</div>
