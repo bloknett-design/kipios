@@ -1282,7 +1282,53 @@
         volume: { units: { 'm3':{label:'м³',factor:1}, 'l':{label:'литр',factor:0.001}, 'ml':{label:'мл',factor:0.000001}, 'cm3':{label:'см³',factor:0.000001}, 'gal':{label:'галлон US',factor:0.00378541}, 'bbl':{label:'баррель',factor:0.158987}, 'ft3':{label:'куб. фут',factor:0.0283168}, 'dm3':{label:'дм³',factor:0.001} } }
     };
     function formatNumber(n) { if (n===0) return '0'; if (Math.abs(n)>=1e9||Math.abs(n)<0.00001&&n!==0) return n.toExponential(4); let d=Math.abs(n)>=100?2:Math.abs(n)>=1?4:6; return parseFloat(n.toFixed(d)).toString(); }
-function roundNumber(n) { if (n===0) return '0'; let s=n.toPrecision(1); let v=parseFloat(s); if (Math.abs(v)>=1||v===0) return v.toFixed(0); return v.toString(); }
+function roundNumber(n) {
+    if (n === 0) return '0';
+    let absN = Math.abs(n);
+    // Determine the order of magnitude
+    let order = Math.floor(Math.log10(absN));
+    // Scale the number so the most significant digit is in the ones place
+    let scaled = absN / Math.pow(10, order);
+    // Round to nearest 0.5 (JavaScript Math.round rounds half up)
+    let roundedScaled = Math.round(scaled * 2) / 2;
+    // Scale back
+    let result = roundedScaled * Math.pow(10, order);
+    // Preserve sign
+    if (n < 0) result = -result;
+    // Check if rounded_scaled is effectively an integer
+    let isScaledInteger = Math.abs(roundedScaled - Math.round(roundedScaled)) < 1e-10;
+    if (isScaledInteger) {
+        if (order >= 0) {
+            return Math.round(result).toString();
+        } else {
+            // For numbers < 1, format with appropriate decimal places
+            let decimalPlaces = Math.max(1, -order);
+            let s = result.toFixed(decimalPlaces);
+            // Remove trailing zeros
+            s = s.replace(/\.0+$/, '').replace(/(\.\d*[1-9])0+$/, '$1');
+            return s || '0';
+        }
+    } else {
+        // Half-integer in scaled domain
+        if (order >= 0) {
+            // Result is an integer (e.g., 7.5 * 1000 = 7500)
+            if (Math.abs(result - Math.round(result)) < 1e-10) {
+                return Math.round(result).toString();
+            } else {
+                // e.g. 2.5 with order=0 -> show as 2.5
+                let s = result.toString();
+                s = s.replace(/\.0+$/, '').replace(/(\.\d*[1-9])0+$/, '$1');
+                return s || '0';
+            }
+        } else {
+            // For half-integers with order < 0, need extra decimal place
+            let decimalPlaces = Math.max(1, -order + 1);
+            let s = result.toFixed(decimalPlaces);
+            s = s.replace(/\.0+$/, '').replace(/(\.\d*[1-9])0+$/, '$1');
+            return s || '0';
+        }
+    }
+}
     function convertUnits(cat) { if (cat==='temp') { convertTemp(); return; } let d=unitData[cat]; let val=parseFloat(document.getElementById(`conv-${cat}-input`).value); let from=document.getElementById(`conv-${cat}-unit`).value; let resDiv=document.getElementById(`conv-${cat}-results`); if(isNaN(val)) { resDiv.innerHTML='<p style="text-align:center;color:#c74a4a;font-size:14px;padding:16px;">Введите значение</p>'; return; } let base=val*d.units[from].factor; let html='<div class="converter-result-label-title">Результаты</div>'; let delay=0; for(let u in d.units){ if(u===from) continue; let v=base/d.units[u].factor; html+=`<div class="converter-result-item" style="animation-delay:${delay}ms"><span class="converter-result-label">${d.units[u].label}</span><span class="converter-result-value">${formatNumber(v)} <span style="color:rgba(255,255,255,0.25);font-weight:400;font-size:0.85em;">(${roundNumber(v)})</span></span></div>`; delay+=40; } resDiv.innerHTML=html; }
     function convertTemp() { let val=parseFloat(document.getElementById('conv-temp-input').value); let from=document.getElementById('conv-temp-unit').value; let resDiv=document.getElementById('conv-temp-results'); if(isNaN(val)) { resDiv.innerHTML='<p style="text-align:center;color:#c74a4a;font-size:14px;padding:16px;">Введите значение</p>'; return; } let c=from==='C'?val:from==='F'?(val-32)*5/9:from==='K'?val-273.15:from==='R'?val*1.25:(val-491.67)*5/9; let tU={'C':{label:'°C',fn:z=>z},'F':{label:'°F',fn:z=>z*9/5+32},'K':{label:'K',fn:z=>z+273.15},'R':{label:'°R',fn:z=>z*0.8},'Ra':{label:'°Ra',fn:z=>(z+273.15)*9/5}}; let html='<div class="converter-result-label-title">Результаты</div>'; let delay=0; for(let u in tU){ if(u===from) continue; let v=tU[u].fn(c); html+=`<div class="converter-result-item" style="animation-delay:${delay}ms"><span class="converter-result-label">${tU[u].label}</span><span class="converter-result-value">${formatNumber(v)} <span style="color:rgba(255,255,255,0.25);font-weight:400;font-size:0.85em;">(${roundNumber(v)})</span></span></div>`; delay+=40; } resDiv.innerHTML=html; }
 
