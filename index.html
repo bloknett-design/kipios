@@ -610,6 +610,19 @@
     [data-theme="light"] .logo-border-animated img {
         background: var(--bg-primary);
     }
+
+    [data-theme="light"] .converter-result-group table thead tr {
+        background: rgba(37, 99, 235, 0.08) !important;
+    }
+    [data-theme="light"] .converter-result-group table tbody tr:nth-child(odd) {
+        background: rgba(37, 99, 235, 0.03) !important;
+    }
+    [data-theme="light"] .converter-result-group table tbody tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.5) !important;
+    }
+    [data-theme="light"] .converter-result-group table td {
+        color: #1a1a2e !important;
+    }
 </style>
 <base target="_blank">
 </head>
@@ -713,6 +726,7 @@
             <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-flow-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" autocorrect="off" spellcheck="false"><div class="form-label">Единица измерения</div><select id="conv-flow-unit" class="form-field" autocomplete="off"><option value="m3h" selected>м³/ч</option><option value="m3s">м³/с</option><option value="l_min">л/мин</option><option value="l_s">л/с</option><option value="t_h">т/ч</option><option value="kg_s">кг/с</option><option value="kg_h">кг/ч</option></select></div>
             <button class="converter-convert-btn" onclick="convertUnits('flow')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-flow-results"></div>
+            <div class="converter-result-group" id="conv-flow-table" style="display:none;"></div>
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Конвертер расхода</div></div>
         </div>
 
@@ -725,6 +739,7 @@
             <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-mass-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" autocorrect="off" spellcheck="false"><div class="form-label">Единица измерения</div><select id="conv-mass-unit" class="form-field" autocomplete="off"><option value="kg" selected>кг</option><option value="g">г</option><option value="mg">мг</option><option value="t">т</option><option value="lb">фунт (lb)</option><option value="oz">унция (oz)</option></select></div>
             <button class="converter-convert-btn" onclick="convertUnits('mass')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-mass-results"></div>
+            <div class="converter-result-group" id="conv-mass-table" style="display:none;"></div>
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Конвертер массы</div></div>
         </div>
 
@@ -737,6 +752,7 @@
             <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-temp-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" autocorrect="off" spellcheck="false"><div class="form-label">Единица измерения</div><select id="conv-temp-unit" class="form-field" autocomplete="off"><option value="C" selected>°C (Цельсий)</option><option value="F">°F (Фаренгейт)</option><option value="K">K (Кельвин)</option><option value="R">°R (Реомюр)</option><option value="Ra">°Ra (Ранкин)</option></select></div>
             <button class="converter-convert-btn" onclick="convertTemp()"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-temp-results"></div>
+            <div class="converter-result-group" id="conv-temp-table" style="display:none;"></div>
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Конвертер температуры</div></div>
         </div>
 
@@ -749,6 +765,7 @@
             <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-length-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" autocorrect="off" spellcheck="false"><div class="form-label">Единица измерения</div><select id="conv-length-unit" class="form-field" autocomplete="off"><option value="m" selected>м</option><option value="km">км</option><option value="cm">см</option><option value="mm">мм</option><option value="um">мкм</option><option value="mi">миля</option><option value="ft">фут</option><option value="in">дюйм</option><option value="yd">ярд</option></select></div>
             <button class="converter-convert-btn" onclick="convertUnits('length')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-length-results"></div>
+            <div class="converter-result-group" id="conv-length-table" style="display:none;"></div>
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Конвертер длины</div></div>
         </div>
 
@@ -761,6 +778,7 @@
             <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-density-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" autocorrect="off" spellcheck="false"><div class="form-label">Единица измерения</div><select id="conv-density-unit" class="form-field" autocomplete="off"><option value="kg_m3" selected>кг/м³</option><option value="g_cm3">г/см³</option><option value="g_l">г/л</option><option value="kg_l">кг/л</option></select></div>
             <button class="converter-convert-btn" onclick="convertUnits('density')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-density-results"></div>
+            <div class="converter-result-group" id="conv-density-table" style="display:none;"></div>
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Конвертер плотности</div></div>
         </div>
 
@@ -773,6 +791,7 @@
             <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-time-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" autocorrect="off" spellcheck="false"><div class="form-label">Единица измерения</div><select id="conv-time-unit" class="form-field" autocomplete="off"><option value="s" selected>секунда</option><option value="ms">миллисекунда</option><option value="min">минута</option><option value="h">час</option><option value="d">сутки</option><option value="week">неделя</option><option value="month">месяц (30 дн.)</option><option value="year">год (365 дн.)</option></select></div>
             <button class="converter-convert-btn" onclick="convertUnits('time')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-time-results"></div>
+            <div class="converter-result-group" id="conv-time-table" style="display:none;"></div>
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Конвертер времени</div></div>
         </div>
 
@@ -785,6 +804,7 @@
             <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-volume-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" autocorrect="off" spellcheck="false"><div class="form-label">Единица измерения</div><select id="conv-volume-unit" class="form-field" autocomplete="off"><option value="m3" selected>м³</option><option value="l">литр</option><option value="ml">мл</option><option value="cm3">см³</option><option value="gal">галлон (US)</option><option value="bbl">баррель</option><option value="ft3">куб. фут</option><option value="dm3">дм³</option></select></div>
             <button class="converter-convert-btn" onclick="convertUnits('volume')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-volume-results"></div>
+            <div class="converter-result-group" id="conv-volume-table" style="display:none;"></div>
             <div class="page-bottom-bg"><div class="page-bottom-text">КИП ИОС · Конвертер объёма</div></div>
         </div>
 
@@ -1616,19 +1636,19 @@ function roundNumber(n) {
         }
     }
 }
-    function convertUnits(cat) { if (cat==='temp') { convertTemp(); return; } let d=unitData[cat]; let val=parseFloat(document.getElementById(`conv-${cat}-input`).value); let from=document.getElementById(`conv-${cat}-unit`).value; let resDiv=document.getElementById(`conv-${cat}-results`); let tableDiv=document.getElementById(`conv-${cat}-table`); if(tableDiv) tableDiv.style.display='none'; if(isNaN(val)) { resDiv.innerHTML='<p style="text-align:center;color:#c74a4a;font-size:14px;padding:16px;">Введите значение</p>'; return; } let base=val*d.units[from].factor; let html='<div class="converter-result-label-title">Результаты</div>'; let delay=0; for(let u in d.units){ if(u===from) continue; let v=base/d.units[u].factor; if(cat==='pressure'){ html+=`<div class="converter-result-item" style="animation-delay:${delay}ms;cursor:pointer;" onclick="showPressureTable('${from}','${u}',${base})"><span class="converter-result-label">${d.units[u].label}</span><span class="converter-result-value">${formatNumber(v)} <span style="color:rgba(255,255,255,0.25);font-weight:400;font-size:0.85em;">(${roundNumber(v)})</span></span></div>`; } else { html+=`<div class="converter-result-item" style="animation-delay:${delay}ms"><span class="converter-result-label">${d.units[u].label}</span><span class="converter-result-value">${formatNumber(v)} <span style="color:rgba(255,255,255,0.25);font-weight:400;font-size:0.85em;">(${roundNumber(v)})</span></span></div>`; } delay+=40; } resDiv.innerHTML=html; }
-    function convertTemp() { let val=parseFloat(document.getElementById('conv-temp-input').value); let from=document.getElementById('conv-temp-unit').value; let resDiv=document.getElementById('conv-temp-results'); if(isNaN(val)) { resDiv.innerHTML='<p style="text-align:center;color:#c74a4a;font-size:14px;padding:16px;">Введите значение</p>'; return; } let c=from==='C'?val:from==='F'?(val-32)*5/9:from==='K'?val-273.15:from==='R'?val*1.25:(val-491.67)*5/9; let tU={'C':{label:'°C',fn:z=>z},'F':{label:'°F',fn:z=>z*9/5+32},'K':{label:'K',fn:z=>z+273.15},'R':{label:'°R',fn:z=>z*0.8},'Ra':{label:'°Ra',fn:z=>(z+273.15)*9/5}}; let html='<div class="converter-result-label-title">Результаты</div>'; let delay=0; for(let u in tU){ if(u===from) continue; let v=tU[u].fn(c); html+=`<div class="converter-result-item" style="animation-delay:${delay}ms"><span class="converter-result-label">${tU[u].label}</span><span class="converter-result-value">${formatNumber(v)} <span style="color:rgba(255,255,255,0.25);font-weight:400;font-size:0.85em;">(${roundNumber(v)})</span></span></div>`; delay+=40; } resDiv.innerHTML=html; }
+    function convertUnits(cat) { if (cat==='temp') { convertTemp(); return; } let d=unitData[cat]; let val=parseFloat(document.getElementById(`conv-${cat}-input`).value); let from=document.getElementById(`conv-${cat}-unit`).value; let resDiv=document.getElementById(`conv-${cat}-results`); let tableDiv=document.getElementById(`conv-${cat}-table`); if(tableDiv) tableDiv.style.display='none'; if(isNaN(val)) { resDiv.innerHTML='<p style="text-align:center;color:#c74a4a;font-size:14px;padding:16px;">Введите значение</p>'; return; } let base=val*d.units[from].factor; let html='<div class="converter-result-label-title">Результаты</div>'; let delay=0; for(let u in d.units){ if(u===from) continue; let v=base/d.units[u].factor; html+=`<div class="converter-result-item" style="animation-delay:${delay}ms;cursor:pointer;" onclick="showConverterTable('${cat}','${from}','${u}',${base})"><span class="converter-result-label">${d.units[u].label}</span><span class="converter-result-value">${formatNumber(v)} <span style="color:rgba(255,255,255,0.25);font-weight:400;font-size:0.85em;">(${roundNumber(v)})</span></span></div>`; delay+=40; } resDiv.innerHTML=html; }
+    function convertTemp() { let val=parseFloat(document.getElementById('conv-temp-input').value); let from=document.getElementById('conv-temp-unit').value; let resDiv=document.getElementById('conv-temp-results'); let tableDiv=document.getElementById('conv-temp-table'); if(tableDiv) tableDiv.style.display='none'; if(isNaN(val)) { resDiv.innerHTML='<p style="text-align:center;color:#c74a4a;font-size:14px;padding:16px;">Введите значение</p>'; return; } let c=from==='C'?val:from==='F'?(val-32)*5/9:from==='K'?val-273.15:from==='R'?val*1.25:(val-491.67)*5/9; let tU={'C':{label:'°C',fn:z=>z},'F':{label:'°F',fn:z=>z*9/5+32},'K':{label:'K',fn:z=>z+273.15},'R':{label:'°R',fn:z=>z*0.8},'Ra':{label:'°Ra',fn:z=>(z+273.15)*9/5}}; let html='<div class="converter-result-label-title">Результаты</div>'; let delay=0; for(let u in tU){ if(u===from) continue; let v=tU[u].fn(c); html+=`<div class="converter-result-item" style="animation-delay:${delay}ms;cursor:pointer;" onclick="showTempTable('${from}','${u}',${c})"><span class="converter-result-label">${tU[u].label}</span><span class="converter-result-value">${formatNumber(v)} <span style="color:rgba(255,255,255,0.25);font-weight:400;font-size:0.85em;">(${roundNumber(v)})</span></span></div>`; delay+=40; } resDiv.innerHTML=html; }
 
     // Шкала-сигнал
     const sigUnitLabels={'4_20':'мА','0_20':'мА','0_5mA':'мА','0_10V':'В','1_5V':'В','0_5V':'В','bipolar_10':'В','20_100_kPa':'кПа','0_2_1_0_bar':'бар','3_15_psi':'psi','0_2_1_0_kgf_cm2':'кгс/см²','custom':'ед.'};
     
-function showPressureTable(fromUnit, toUnit, baseValue) {
-    let d = unitData.pressure;
+function showConverterTable(cat, fromUnit, toUnit, baseValue) {
+    let d = unitData[cat];
     let fromLabel = d.units[fromUnit].label;
     let toLabel = d.units[toUnit].label;
     let toFactor = d.units[toUnit].factor;
     let fromFactor = d.units[fromUnit].factor;
-    let tableDiv = document.getElementById('conv-pressure-table');
+    let tableDiv = document.getElementById('conv-' + cat + '-table');
 
     let html = '<div class="converter-result-label-title">Таблица перевода: ' + fromLabel + ' → ' + toLabel + ' (шаг 5%)</div>';
     html += '<div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(74,143,199,0.1);margin-top:8px;">';
@@ -1653,6 +1673,43 @@ function showPressureTable(fromUnit, toUnit, baseValue) {
     html += '</tbody></table></div>';
     html += '<div style="margin-top:8px;padding:8px 12px;background:rgba(13,17,23,0.4);border-radius:8px;font-size:12px;color:rgba(255,255,255,0.35);">';
     html += 'Базовое значение: <b style="color:#4a8fc7;">' + formatNumber(baseValue / fromFactor) + ' ' + fromLabel + '</b> = <b style="color:#4ac771;">' + formatNumber(baseValue / toFactor) + ' ' + toLabel + '</b>';
+    html += '</div>';
+
+    tableDiv.innerHTML = html;
+    tableDiv.style.display = 'block';
+    setTimeout(() => tableDiv.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+}
+
+function showTempTable(fromUnit, toUnit, baseCelsius) {
+    let tU = {'C':{label:'°C',fn:z=>z},'F':{label:'°F',fn:z=>z*9/5+32},'K':{label:'K',fn:z=>z+273.15},'R':{label:'°R',fn:z=>z*0.8},'Ra':{label:'°Ra',fn:z=>(z+273.15)*9/5}};
+    let fromLabel = tU[fromUnit].label;
+    let toLabel = tU[toUnit].label;
+    let tableDiv = document.getElementById('conv-temp-table');
+
+    let html = '<div class="converter-result-label-title">Таблица перевода: ' + fromLabel + ' → ' + toLabel + ' (шаг 5%)</div>';
+    html += '<div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(74,143,199,0.1);margin-top:8px;">';
+    html += '<table style="min-width:100%;width:100%;border-collapse:collapse;">';
+    html += '<thead><tr style="background:rgba(22,27,34,0.7);">';
+    html += '<th style="padding:10px 12px;font-size:14px;color:#4a8fc7;text-align:left;">' + fromLabel + '</th>';
+    html += '<th style="padding:10px 12px;font-size:14px;color:#4ac771;text-align:left;">' + toLabel + '</th>';
+    html += '<th style="padding:10px 12px;font-size:14px;color:rgba(255,255,255,0.4);text-align:left;">%</th>';
+    html += '</tr></thead><tbody>';
+
+    for (let pct = 0; pct <= 100; pct += 5) {
+        let cVal = baseCelsius * pct / 100;
+        let fromVal = tU[fromUnit].fn(cVal);
+        let toVal = tU[toUnit].fn(cVal);
+        let bg = (pct / 5) % 2 ? 'rgba(22,27,34,0.4)' : 'rgba(13,17,23,0.4)';
+        html += '<tr style="background:' + bg + ';">';
+        html += '<td style="padding:8px 12px;font-size:15px;color:#e0e0e0;">' + formatNumber(fromVal) + '</td>';
+        html += '<td style="padding:8px 12px;font-size:15px;color:#4ac771;">' + formatNumber(toVal) + '</td>';
+        html += '<td style="padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.4);">' + pct + '%</td>';
+        html += '</tr>';
+    }
+
+    html += '</tbody></table></div>';
+    html += '<div style="margin-top:8px;padding:8px 12px;background:rgba(13,17,23,0.4);border-radius:8px;font-size:12px;color:rgba(255,255,255,0.35);">';
+    html += 'Базовое значение: <b style="color:#4a8fc7;">' + formatNumber(tU[fromUnit].fn(baseCelsius)) + ' ' + fromLabel + '</b> = <b style="color:#4ac771;">' + formatNumber(tU[toUnit].fn(baseCelsius)) + ' ' + toLabel + '</b>';
     html += '</div>';
 
     tableDiv.innerHTML = html;
