@@ -20,16 +20,16 @@
         --text-secondary: rgba(180, 200, 220, 0.9);
         --accent-blue: #4a8fc7;
         --accent-green: #4ac771;
-        --card-bg: rgba(30, 42, 56, 0.15);
-        --card-border: rgba(74, 143, 199, 0.15);
-        --input-bg: rgba(23, 33, 43, 0.15);
-        --input-border: rgba(74, 143, 199, 0.15);
+        --card-bg: rgba(30, 42, 56, 0.55);
+        --card-border: rgba(74, 143, 199, 0.25);
+        --input-bg: rgba(23, 33, 43, 0.55);
+        --input-border: rgba(74, 143, 199, 0.25);
         --header-bg: rgba(23, 33, 43, 0.85);
         --nav-bg: rgba(23, 33, 43, 0.5);
         --bottom-nav-bg: rgba(23, 33, 43, 0.95);
         --sidebar-bg: rgba(23, 33, 43, 0.98);
-        --warning-bg: rgba(199, 150, 74, 0.08);
-        --warning-border: rgba(199, 150, 74, 0.15);
+        --warning-bg: rgba(199, 150, 74, 0.12);
+        --warning-border: rgba(199, 150, 74, 0.25);
         --warning-text: #c7964a;
     }
 
@@ -186,7 +186,7 @@
     
     .scale-form, .converter-form { 
         background: var(--card-bg); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-        border: 1px solid rgba(74, 143, 199, 0.1); border-radius: 14px; margin: 8px 16px; padding: 14px; 
+        border: 1px solid rgba(74, 143, 199, 0.2); border-radius: 14px; margin: 8px 16px; padding: 14px; 
         position: relative; z-index: 2;
     }
     .scale-form-label, .form-label { color: rgba(255,255,255,0.35); font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; font-weight: 500; }
@@ -222,7 +222,7 @@
     .converter-result-label-title { color: rgba(255,255,255,0.3); font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px; padding-left: 4px; font-weight: 500; }
     .converter-result-item {
         display: flex; justify-content: space-between; align-items: center;
-        padding: 10px 12px; background: rgba(30, 42, 56, 0.6); border: 1px solid rgba(74, 143, 199, 0.08);
+        padding: 10px 12px; background: rgba(30, 42, 56, 0.75); border: 1px solid rgba(74, 143, 199, 0.15);
         border-radius: 10px; margin-bottom: 5px; animation: slideIn 0.25s ease-out both;
     }
     .converter-result-item:last-child { margin-bottom: 0; }
@@ -232,12 +232,12 @@
     
     .buoy-select-container { display: flex; flex-direction: row; gap: 16px; padding: 20px 16px; justify-content: center; align-items: stretch; position: relative; z-index: 2; }
     .buoy-card {
-        flex: 1; background: rgba(30, 42, 56, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        flex: 1; background: rgba(30, 42, 56, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(74, 143, 199, 0.12); border-radius: 14px; cursor: pointer;
         transition: all 0.25s ease; overflow: hidden; position: relative;
         min-width: 0;
     }
-    .buoy-card:hover, .buoy-card:active { border-color: rgba(74, 143, 199, 0.28); background: rgba(30, 42, 56, 0.85); }
+    .buoy-card:hover, .buoy-card:active { border-color: rgba(74, 143, 199, 0.28); background: rgba(30, 42, 56, 0.9); }
     .buoy-card-inner { padding: 0; display: flex; flex-direction: column; height: 100%; }
     .buoy-illustration {
         display: flex; justify-content: center; align-items: center;
@@ -260,7 +260,7 @@
         line-height: 1.5;
     }
     
-    .method-indicator { background: rgba(30, 42, 56, 0.6); backdrop-filter: blur(8px); margin: 10px 16px; padding: 12px 14px; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(74, 143, 199, 0.1); position: relative; z-index: 2; }
+    .method-indicator { background: rgba(30, 42, 56, 0.75); backdrop-filter: blur(8px); margin: 10px 16px; padding: 12px 14px; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(74, 143, 199, 0.15); position: relative; z-index: 2; }
     
     .query-btn {
         width: 100%; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px;
@@ -643,7 +643,7 @@
 <div class="header-btn" id="menuBtn" onclick="toggleSidebar()" style="margin-right:6px;display:none;">
     <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:rgba(74,143,199,0.9);fill:none;stroke-width:2;stroke-linecap:round;"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
 </div>
-<div class="logo-border-animated"><img class="header-logo" src="logo.png" alt="КИП" style="width:40px;height:40px;border-radius:10px;cursor:pointer;" onclick="event.stopPropagation(); toggleSidebar();"></div>
+<img class="header-logo" src="logo.png" alt="КИП" style="width:48px;height:48px;border-radius:12px;cursor:pointer;" onclick="event.stopPropagation(); toggleSidebar();">
                 <div>
                     <div class="header-title">КИП и А</div>
                 </div>
