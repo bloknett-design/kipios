@@ -238,6 +238,10 @@
         min-width: 0;
     }
     .buoy-card:hover, .buoy-card:active { background: rgba(30, 42, 56, 0.9); }
+    .buoy-card-light { background: rgba(38, 52, 68, 0.85); }
+    .buoy-card-light:hover, .buoy-card-light:active { background: rgba(42, 58, 76, 0.95); }
+    .buoy-card-dark { background: rgba(20, 30, 42, 0.85); }
+    .buoy-card-dark:hover, .buoy-card-dark:active { background: rgba(24, 36, 50, 0.95); }
     .buoy-card-inner { padding: 0; display: flex; flex-direction: column; height: 100%; }
     .buoy-illustration {
         display: flex; justify-content: center; align-items: center;
@@ -1403,8 +1407,8 @@
             <div class="page-inline-header"><div class="page-inline-header-title">Калибровка буйкового уровнемера</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="buoy-select-container">
-                <div class="buoy-card" onclick="selectCalibMethod('with_buoy')"><div class="buoy-card-inner"><div class="buoy-illustration" style="background: rgba(23,33,43,0.5); display: flex; justify-content: center; align-items: center; min-height: 200px;"><img src="buoy_with.png" alt="С буйком" style="max-width: 100%; max-height: 200px; object-fit: contain; filter: sepia(0.3) hue-rotate(180deg) saturate(0.8); opacity: 0.9;"></div><div class="buoy-card-body"><div class="buoy-card-title">С буйком</div><div class="buoy-card-desc">Компенсационный метод калибровки<br><span class="formula-inline">m<sub>гири</sub> = m<sub>выт</sub> + m<sub>подвеса</sub></span></div></div></div></div>
-                <div class="buoy-card" onclick="selectCalibMethod('without_buoy')"><div class="buoy-card-inner"><div class="buoy-illustration" style="background: rgba(23,33,43,0.5); display: flex; justify-content: center; align-items: center; min-height: 200px;"><img src="buoy_without.png" alt="Без буйка" style="max-width: 100%; max-height: 200px; object-fit: contain; filter: sepia(0.3) hue-rotate(180deg) saturate(0.8); opacity: 0.9;"></div><div class="buoy-card-body"><div class="buoy-card-title">Без буйка</div><div class="buoy-card-desc">Имитация выталкивающей силы гирями<br><span class="formula-inline">m<sub>гири</sub> = m<sub>буйка</sub> − m<sub>выт</sub> + m<sub>подвеса</sub></span></div></div></div></div>
+                <div class="buoy-card buoy-card-light" onclick="selectCalibMethod('with_buoy')"><div class="buoy-card-inner"><div class="buoy-illustration" style="background: rgba(23,33,43,0.5); display: flex; justify-content: center; align-items: center; min-height: 200px;"><img src="buoy_with.png" alt="С буйком" style="max-width: 100%; max-height: 200px; object-fit: contain; filter: sepia(0.3) hue-rotate(180deg) saturate(0.8); opacity: 0.9;"></div><div class="buoy-card-body"><div class="buoy-card-title">С буйком</div><div class="buoy-card-desc">Компенсационный метод калибровки<br><span class="formula-inline">m<sub>гири</sub> = m<sub>выт</sub> + m<sub>подвеса</sub></span></div></div></div></div>
+                <div class="buoy-card buoy-card-dark" onclick="selectCalibMethod('without_buoy')"><div class="buoy-card-inner"><div class="buoy-illustration" style="background: rgba(23,33,43,0.5); display: flex; justify-content: center; align-items: center; min-height: 200px;"><img src="buoy_without.png" alt="Без буйка" style="max-width: 100%; max-height: 200px; object-fit: contain; filter: sepia(0.3) hue-rotate(180deg) saturate(0.8); opacity: 0.9;"></div><div class="buoy-card-body"><div class="buoy-card-title">Без буйка</div><div class="buoy-card-desc">Имитация выталкивающей силы гирями<br><span class="formula-inline">m<sub>гири</sub> = m<sub>буйка</sub> − m<sub>выт</sub> + m<sub>подвеса</sub></span></div></div></div></div>
             </div>
         </div>
 
