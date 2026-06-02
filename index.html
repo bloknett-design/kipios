@@ -752,7 +752,7 @@
         <div id="page-conv-pressure" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Давление</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-pressure-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-pressure-unit" class="form-field" autocomplete="off"><option value="Pa">Па</option><option value="kPa">кПа</option><option value="MPa" selected>МПа</option><option value="bar">бар</option><option value="mbar">мбар</option><option value="atm">атм</option><option value="kgf_cm2">кгс/см²</option><option value="mmHg">мм рт. ст.</option><option value="PSI">PSI</option><option value="mmH2O">мм вод. ст.</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-pressure-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-pressure-unit" class="form-field" autocomplete="off"><option value="Pa">Па</option><option value="kPa">кПа</option><option value="MPa" selected>МПа</option><option value="bar">бар</option><option value="mbar">мбар</option><option value="atm">атм</option><option value="kgf_cm2">кгс/см²</option><option value="mmHg">мм рт. ст.</option><option value="PSI">PSI</option><option value="mmH2O">мм вод. ст.</option></select></div>
             <button type="button" class="converter-convert-btn" onclick="convertUnits('pressure')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-pressure-results"></div>
             <div class="converter-result-group" id="conv-pressure-table" style="display:none;"></div>
@@ -762,7 +762,7 @@
         <div id="page-conv-flow" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Расход</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-flow-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-flow-unit" class="form-field" autocomplete="off"><option value="m3h" selected>м³/ч</option><option value="m3s">м³/с</option><option value="l_min">л/мин</option><option value="l_s">л/с</option><option value="t_h">т/ч</option><option value="kg_s">кг/с</option><option value="kg_h">кг/ч</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-flow-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-flow-unit" class="form-field" autocomplete="off"><option value="m3h" selected>м³/ч</option><option value="m3s">м³/с</option><option value="l_min">л/мин</option><option value="l_s">л/с</option><option value="t_h">т/ч</option><option value="kg_s">кг/с</option><option value="kg_h">кг/ч</option></select></div>
             <button type="button" class="converter-convert-btn" onclick="convertUnits('flow')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-flow-results"></div>
             <div class="converter-result-group" id="conv-flow-table" style="display:none;"></div>
@@ -772,7 +772,7 @@
         <div id="page-conv-mass" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Вес и масса</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-mass-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-mass-unit" class="form-field" autocomplete="off"><option value="kg" selected>кг</option><option value="g">г</option><option value="mg">мг</option><option value="t">т</option><option value="lb">фунт (lb)</option><option value="oz">унция (oz)</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-mass-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-mass-unit" class="form-field" autocomplete="off"><option value="kg" selected>кг</option><option value="g">г</option><option value="mg">мг</option><option value="t">т</option><option value="lb">фунт (lb)</option><option value="oz">унция (oz)</option></select></div>
             <button type="button" class="converter-convert-btn" onclick="convertUnits('mass')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-mass-results"></div>
             <div class="converter-result-group" id="conv-mass-table" style="display:none;"></div>
@@ -782,7 +782,7 @@
         <div id="page-conv-temp" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Температура</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-temp-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-temp-unit" class="form-field" autocomplete="off"><option value="C" selected>°C (Цельсий)</option><option value="F">°F (Фаренгейт)</option><option value="K">K (Кельвин)</option><option value="R">°R (Реомюр)</option><option value="Ra">°Ra (Ранкин)</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-temp-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-temp-unit" class="form-field" autocomplete="off"><option value="C" selected>°C (Цельсий)</option><option value="F">°F (Фаренгейт)</option><option value="K">K (Кельвин)</option><option value="R">°R (Реомюр)</option><option value="Ra">°Ra (Ранкин)</option></select></div>
             <button type="button" class="converter-convert-btn" onclick="convertTemp()"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-temp-results"></div>
             <div class="converter-result-group" id="conv-temp-table" style="display:none;"></div>
@@ -792,7 +792,7 @@
         <div id="page-conv-length" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Длина и расстояние</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-length-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-length-unit" class="form-field" autocomplete="off"><option value="m" selected>м</option><option value="km">км</option><option value="cm">см</option><option value="mm">мм</option><option value="um">мкм</option><option value="mi">миля</option><option value="ft">фут</option><option value="in">дюйм</option><option value="yd">ярд</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-length-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-length-unit" class="form-field" autocomplete="off"><option value="m" selected>м</option><option value="km">км</option><option value="cm">см</option><option value="mm">мм</option><option value="um">мкм</option><option value="mi">миля</option><option value="ft">фут</option><option value="in">дюйм</option><option value="yd">ярд</option></select></div>
             <button type="button" class="converter-convert-btn" onclick="convertUnits('length')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-length-results"></div>
             <div class="converter-result-group" id="conv-length-table" style="display:none;"></div>
@@ -802,7 +802,7 @@
         <div id="page-conv-density" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Плотность</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-density-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-density-unit" class="form-field" autocomplete="off"><option value="kg_m3" selected>кг/м³</option><option value="g_cm3">г/см³</option><option value="g_l">г/л</option><option value="kg_l">кг/л</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-density-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-density-unit" class="form-field" autocomplete="off"><option value="kg_m3" selected>кг/м³</option><option value="g_cm3">г/см³</option><option value="g_l">г/л</option><option value="kg_l">кг/л</option></select></div>
             <button type="button" class="converter-convert-btn" onclick="convertUnits('density')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-density-results"></div>
             <div class="converter-result-group" id="conv-density-table" style="display:none;"></div>
@@ -812,7 +812,7 @@
         <div id="page-conv-time" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Время</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-time-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-time-unit" class="form-field" autocomplete="off"><option value="s" selected>секунда</option><option value="ms">миллисекунда</option><option value="min">минута</option><option value="h">час</option><option value="d">сутки</option><option value="week">неделя</option><option value="month">месяц (30 дн.)</option><option value="year">год (365 дн.)</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-time-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-time-unit" class="form-field" autocomplete="off"><option value="s" selected>секунда</option><option value="ms">миллисекунда</option><option value="min">минута</option><option value="h">час</option><option value="d">сутки</option><option value="week">неделя</option><option value="month">месяц (30 дн.)</option><option value="year">год (365 дн.)</option></select></div>
             <button type="button" class="converter-convert-btn" onclick="convertUnits('time')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-time-results"></div>
             <div class="converter-result-group" id="conv-time-table" style="display:none;"></div>
@@ -822,7 +822,7 @@
         <div id="page-conv-volume" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Объём</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-volume-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-volume-unit" class="form-field" autocomplete="off"><option value="m3" selected>м³</option><option value="l">литр</option><option value="ml">мл</option><option value="cm3">см³</option><option value="gal">галлон (US)</option><option value="bbl">баррель</option><option value="ft3">куб. фут</option><option value="dm3">дм³</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="number" id="conv-volume-input" class="form-field" placeholder="Введите значение" step="any" autocomplete="off" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-volume-unit" class="form-field" autocomplete="off"><option value="m3" selected>м³</option><option value="l">литр</option><option value="ml">мл</option><option value="cm3">см³</option><option value="gal">галлон (US)</option><option value="bbl">баррель</option><option value="ft3">куб. фут</option><option value="dm3">дм³</option></select></div>
             <button type="button" class="converter-convert-btn" onclick="convertUnits('volume')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-volume-results"></div>
             <div class="converter-result-group" id="conv-volume-table" style="display:none;"></div>
@@ -833,11 +833,11 @@
             <div class="page-inline-header"><div class="page-inline-header-title">Шкала-сигнал</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="scale-form"><div class="scale-form-label">Тип шкалы</div><select id="scaleType" class="scale-field" autocomplete="off"><option value="linear" selected>Линейная</option><option value="quadratic">Квадратичная</option><option value="sqrt">Корнеизвлекающая</option></select><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Линейная: прямая зависимость · Квадратичная: сигнал ∝ (шкала)² · Корнеизвлекающая: сигнал ∝ √(шкала)</div></div>
-            <div class="scale-form"><div class="scale-form-label">Диапазон шкалы измерения</div><select id="scalePreset" class="scale-field" onchange="setScaleDefaults()" autocomplete="off"><option value="0_100" selected>0 – 100 %</option><option value="0_20">0 – 20 мА</option><option value="0_5mA">0 – 5 мА</option><option value="0_10V">0 – 10 В</option><option value="1_5V">1 – 5 В</option><option value="0_5V">0 – 5 В</option><option value="bipolar_10">-10 – +10 В</option><option value="20_100_kPa">20 – 100 кПа</option><option value="0_2_1_0_bar">0.2 – 1.0 бар</option><option value="3_15_psi">3 – 15 psi</option><option value="0_2_1_0_kgf_cm2">0.2 – 1.0 кгс/см²</option><option value="custom">Своё значение</option></select><div id="scaleCustomRange" style="margin-top:12px;"><input type="number" id="scaleMin" class="scale-field" placeholder="Минимум шкалы" value="0" step="any" style="margin-bottom:6px;" autocomplete="off" inputmode="decimal" enterkeyhint="next"><input type="number" id="scaleMax" class="scale-field" placeholder="Максимум шкалы" value="100" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><input type="text" id="scaleUnitName" class="scale-field" placeholder="Ед. измерения" value="%" style="margin-top:6px;" autocomplete="off" ></div></div>
+            <div class="scale-form"><div class="scale-form-label">Диапазон шкалы измерения</div><select id="scalePreset" class="scale-field" onchange="setScaleDefaults()" autocomplete="off"><option value="0_100" selected>0 – 100 %</option><option value="0_20">0 – 20 мА</option><option value="0_5mA">0 – 5 мА</option><option value="0_10V">0 – 10 В</option><option value="1_5V">1 – 5 В</option><option value="0_5V">0 – 5 В</option><option value="bipolar_10">-10 – +10 В</option><option value="20_100_kPa">20 – 100 кПа</option><option value="0_2_1_0_bar">0.2 – 1.0 бар</option><option value="3_15_psi">3 – 15 psi</option><option value="0_2_1_0_kgf_cm2">0.2 – 1.0 кгс/см²</option><option value="custom">Своё значение</option></select><div id="scaleCustomRange" style="margin-top:12px;"><input type="number" id="scaleMin" class="scale-field" placeholder="Минимум шкалы" value="0" step="any" style="margin-bottom:6px;" autocomplete="off" enterkeyhint="next"><input type="number" id="scaleMax" class="scale-field" placeholder="Максимум шкалы" value="100" step="any" autocomplete="off" enterkeyhint="next"><input type="text" id="scaleUnitName" class="scale-field" placeholder="Ед. измерения" value="%" style="margin-top:6px;" autocomplete="off" ></div></div>
             <div class="scale-form"><div class="scale-form-label">Тип выходного сигнала</div><select id="sigType" class="scale-field" onchange="setSignalDefaults()" autocomplete="off"><optgroup label="⚡ Электрические (токовые)"><option value="4_20" selected>4 – 20 мА</option><option value="0_20">0 – 20 мА</option><option value="0_5mA">0 – 5 мА</option></optgroup><optgroup label="⚡ Электрические (напряжения)"><option value="0_10V">0 – 10 В</option><option value="1_5V">1 – 5 В</option><option value="0_5V">0 – 5 В</option><option value="bipolar_10">-10 – +10 В</option></optgroup><optgroup label="💨 Пневматические"><option value="20_100_kPa">20 – 100 кПа</option><option value="0_2_1_0_bar">0.2 – 1.0 бар</option><option value="3_15_psi">3 – 15 psi</option><option value="0_2_1_0_kgf_cm2">0.2 – 1.0 кгс/см²</option></optgroup><optgroup label="🔧 Другие"><option value="custom">Своё значение</option></optgroup></select>
-            <div id="sigCustomRange" style="margin-top:8px;"><div class="scale-form-label">Диапазон сигнала</div><input type="number" id="sigMin" class="scale-field" placeholder="Минимум" step="any" style="margin-bottom:6px;" autocomplete="off" inputmode="decimal" enterkeyhint="next"><input type="number" id="sigMax" class="scale-field" placeholder="Максимум" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><input type="text" id="sigUnitCustom" class="scale-field" placeholder="Ед. измерения" value="мА" style="margin-top:6px;" autocomplete="off" ><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;" id="sigUnitLabel">мА</div></div></div>
+            <div id="sigCustomRange" style="margin-top:8px;"><div class="scale-form-label">Диапазон сигнала</div><input type="number" id="sigMin" class="scale-field" placeholder="Минимум" step="any" style="margin-bottom:6px;" autocomplete="off" enterkeyhint="next"><input type="number" id="sigMax" class="scale-field" placeholder="Максимум" step="any" autocomplete="off" enterkeyhint="next"><input type="text" id="sigUnitCustom" class="scale-field" placeholder="Ед. измерения" value="мА" style="margin-top:6px;" autocomplete="off" ><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;" id="sigUnitLabel">мА</div></div></div>
             <button type="button" class="scale-calc-btn" onclick="calcScaleSignal()"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/><line x1="8" y1="18" x2="16" y2="18"/></svg>Рассчитать</button>
-            <div id="scaleResultsArea" style="display:none;"><div class="scale-form"><div class="scale-form-label">Расчётные значения</div><div id="scaleTableContainer"></div></div><div class="scale-form"><div class="scale-form-label">Значение шкалы → сигнал</div><input type="number" id="queryScaleVal" class="scale-field" placeholder="Значение шкалы" step="any" style="margin-bottom:8px;" autocomplete="off" inputmode="decimal" enterkeyhint="next"><button type="button" class="query-btn" onclick="queryFromScale()"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Найти сигнал</button><div id="queryScaleResult" style="margin-top:8px;"></div></div><div class="scale-form"><div class="scale-form-label">Сигнал → значение шкалы</div><input type="number" id="querySigVal" class="scale-field" placeholder="Значение сигнала" step="any" style="margin-bottom:8px;" autocomplete="off" inputmode="decimal" enterkeyhint="next"><button type="button" class="query-btn" onclick="queryFromSignal()"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Найти значение</button><div id="querySigResult" style="margin-top:8px;"></div></div></div>
+            <div id="scaleResultsArea" style="display:none;"><div class="scale-form"><div class="scale-form-label">Расчётные значения</div><div id="scaleTableContainer"></div></div><div class="scale-form"><div class="scale-form-label">Значение шкалы → сигнал</div><input type="number" id="queryScaleVal" class="scale-field" placeholder="Значение шкалы" step="any" style="margin-bottom:8px;" autocomplete="off" enterkeyhint="next"><button type="button" class="query-btn" onclick="queryFromScale()"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Найти сигнал</button><div id="queryScaleResult" style="margin-top:8px;"></div></div><div class="scale-form"><div class="scale-form-label">Сигнал → значение шкалы</div><input type="number" id="querySigVal" class="scale-field" placeholder="Значение сигнала" step="any" style="margin-bottom:8px;" autocomplete="off" enterkeyhint="next"><button type="button" class="query-btn" onclick="queryFromSignal()"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Найти значение</button><div id="querySigResult" style="margin-top:8px;"></div></div></div>
         </div>
 
         <!-- ======================== АВТОМАТИЧЕСКИЙ ВЫКЛЮЧАТЕЛЬ ======================== -->
@@ -858,7 +858,7 @@
                 </select>
                 <div id="cb_custom_voltage_block" style="display:none; margin-top:12px;">
                     <div style="display:flex; gap:8px; align-items:stretch;">
-                        <input type="number" id="cb_custom_voltage" class="scale-field" style="flex:2; margin-bottom:0;" value="24" step="1" placeholder="U, В" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                        <input type="number" id="cb_custom_voltage" class="scale-field" style="flex:2; margin-bottom:0;" value="24" step="1" placeholder="U, В" autocomplete="off" enterkeyhint="next">
                         <select id="cb_custom_voltage_type" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
                             <option value="dc" selected>пост.</option>
                             <option value="ac">перем.</option>
@@ -878,7 +878,7 @@
             <div class="scale-form" id="cb_power_block">
                 <div class="scale-form-label">Мощность нагрузки (P)</div>
                 <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="cb_power" class="scale-field" style="flex:2; margin-bottom:0;" value="50" step="1" placeholder="Вт" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                    <input type="number" id="cb_power" class="scale-field" style="flex:2; margin-bottom:0;" value="50" step="1" placeholder="Вт" autocomplete="off" enterkeyhint="next">
                     <select id="cb_power_unit" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
                         <option value="1" selected>Вт</option>
                         <option value="0.001">мВт</option>
@@ -890,7 +890,7 @@
 
             <div class="scale-form" id="cb_current_block" style="display:none;">
                 <div class="scale-form-label">Ток нагрузки (I)</div>
-                <input type="number" id="cb_current" class="scale-field" value="2" step="0.01" placeholder="А" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                <input type="number" id="cb_current" class="scale-field" value="2" step="0.01" placeholder="А" autocomplete="off" enterkeyhint="next">
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Амперы</div>
             </div>
 
@@ -906,8 +906,8 @@
                 </select>
                 <div id="cb_custom_cosphi_block" style="display:none; margin-top:12px;">
                     <div style="display:flex; gap:8px; align-items:stretch;">
-                        <input type="number" id="cb_custom_cosphi" class="scale-field" style="flex:1; margin-bottom:0;" value="0.8" step="0.01" min="0.1" max="1.0" placeholder="cos φ" autocomplete="off" inputmode="decimal" enterkeyhint="next">
-                        <input type="number" id="cb_inrush_factor" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.1" min="1.0" placeholder="Kпуск" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                        <input type="number" id="cb_custom_cosphi" class="scale-field" style="flex:1; margin-bottom:0;" value="0.8" step="0.01" min="0.1" max="1.0" placeholder="cos φ" autocomplete="off" enterkeyhint="next">
+                        <input type="number" id="cb_inrush_factor" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.1" min="1.0" placeholder="Kпуск" autocomplete="off" enterkeyhint="next">
                     </div>
                     <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-top:4px;">cos φ · Коэффициент пускового тока (1,0 = без учёта)</div>
                 </div>
@@ -954,7 +954,7 @@
 
             <div class="scale-form">
                 <div class="scale-form-label">Количество потребителей (опционально)</div>
-                <input type="number" id="cb_device_count" class="scale-field" value="1" step="1" min="1" placeholder="шт." autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                <input type="number" id="cb_device_count" class="scale-field" value="1" step="1" min="1" placeholder="шт." autocomplete="off" enterkeyhint="next">
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Для расчёта суммарного тока группы приборов</div>
             </div>
 
@@ -1014,7 +1014,7 @@
             <div class="scale-form">
                 <div class="scale-form-label">Параметры трубопровода</div>
                 <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="op_dp_d20" class="scale-field" style="flex:2; margin-bottom:0;" value="100" step="1" placeholder="D₂₀, мм" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                    <input type="number" id="op_dp_d20" class="scale-field" style="flex:2; margin-bottom:0;" value="100" step="1" placeholder="D₂₀, мм" autocomplete="off" enterkeyhint="next">
                     <select id="op_dp_pipe_material" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
                         <option value="steel20" selected>Сталь 20</option>
                         <option value="steel12x18h10t">12Х18Н10Т</option>
@@ -1023,14 +1023,14 @@
                     </select>
                 </div>
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-bottom:8px;">Внутренний диаметр трубы при 20°C · Материал</div>
-                <input type="number" id="op_dp_temp" class="scale-field" value="20" step="1" placeholder="t, °C" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                <input type="number" id="op_dp_temp" class="scale-field" value="20" step="1" placeholder="t, °C" autocomplete="off" enterkeyhint="next">
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Рабочая температура, °C</div>
             </div>
 
             <div class="scale-form">
                 <div class="scale-form-label">Расход среды (Q)</div>
                 <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="op_dp_flow" class="scale-field" style="flex:2; margin-bottom:0;" value="50" step="0.1" placeholder="Q" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                    <input type="number" id="op_dp_flow" class="scale-field" style="flex:2; margin-bottom:0;" value="50" step="0.1" placeholder="Q" autocomplete="off" enterkeyhint="next">
                     <select id="op_dp_flow_unit" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
                         <option value="m3h" selected>м³/ч</option>
                         <option value="m3s">м³/с</option>
@@ -1045,25 +1045,25 @@
 
             <div class="scale-form">
                 <div class="scale-form-label">Диаметр диска (d₂₀)</div>
-                <input type="number" id="op_dp_d_plate" class="scale-field" value="50" step="0.1" placeholder="d₂₀, мм" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                <input type="number" id="op_dp_d_plate" class="scale-field" value="50" step="0.1" placeholder="d₂₀, мм" autocomplete="off" enterkeyhint="next">
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Диаметр отверстия диафрагмы при 20°C, мм</div>
             </div>
 
             <div class="scale-form">
                 <div class="scale-form-label">Параметры среды</div>
                 <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="op_dp_density" class="scale-field" style="flex:1; margin-bottom:0;" value="998" step="1" placeholder="ρ, кг/м³" autocomplete="off" inputmode="decimal" enterkeyhint="next">
-                    <input type="number" id="op_dp_viscosity" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="ν, сСт" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                    <input type="number" id="op_dp_density" class="scale-field" style="flex:1; margin-bottom:0;" value="998" step="1" placeholder="ρ, кг/м³" autocomplete="off" enterkeyhint="next">
+                    <input type="number" id="op_dp_viscosity" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="ν, сСт" autocomplete="off" enterkeyhint="next">
                 </div>
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-bottom:8px;">Плотность · Кинематическая вязкость (сСт = мм²/с)</div>
                 <div id="op_dp_gas_params" style="display:none;">
                     <div style="display:flex; gap:8px; align-items:stretch;">
-                        <input type="number" id="op_dp_kappa" class="scale-field" style="flex:1; margin-bottom:0;" value="1.4" step="0.01" placeholder="κ" autocomplete="off" inputmode="decimal" enterkeyhint="next">
-                        <input type="number" id="op_dp_z" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="Z" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                        <input type="number" id="op_dp_kappa" class="scale-field" style="flex:1; margin-bottom:0;" value="1.4" step="0.01" placeholder="κ" autocomplete="off" enterkeyhint="next">
+                        <input type="number" id="op_dp_z" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="Z" autocomplete="off" enterkeyhint="next">
                     </div>
                     <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Показатель адиабаты κ · Коэффициент сжимаемости Z</div>
                 </div>
-                <input type="number" id="op_dp_pressure" class="scale-field" style="margin-top:8px; margin-bottom:0;" value="0.1" step="0.01" placeholder="P, МПа" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                <input type="number" id="op_dp_pressure" class="scale-field" style="margin-top:8px; margin-bottom:0;" value="0.1" step="0.01" placeholder="P, МПа" autocomplete="off" enterkeyhint="next">
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Избыточное давление, МПа (для газов)</div>
             </div>
 
@@ -1107,7 +1107,7 @@
             <div class="scale-form">
                 <div class="scale-form-label">Параметры трубопровода</div>
                 <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="op_flow_d20" class="scale-field" style="flex:2; margin-bottom:0;" value="100" step="1" placeholder="D₂₀, мм" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                    <input type="number" id="op_flow_d20" class="scale-field" style="flex:2; margin-bottom:0;" value="100" step="1" placeholder="D₂₀, мм" autocomplete="off" enterkeyhint="next">
                     <select id="op_flow_pipe_material" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
                         <option value="steel20" selected>Сталь 20</option>
                         <option value="steel12x18h10t">12Х18Н10Т</option>
@@ -1116,14 +1116,14 @@
                     </select>
                 </div>
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-bottom:8px;">Внутренний диаметр трубы при 20°C · Материал</div>
-                <input type="number" id="op_flow_temp" class="scale-field" value="20" step="1" placeholder="t, °C" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                <input type="number" id="op_flow_temp" class="scale-field" value="20" step="1" placeholder="t, °C" autocomplete="off" enterkeyhint="next">
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Рабочая температура, °C</div>
             </div>
 
             <div class="scale-form">
                 <div class="scale-form-label">Перепад давления (Δp)</div>
                 <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="op_flow_dp" class="scale-field" style="flex:2; margin-bottom:0;" value="25" step="1" placeholder="Δp" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                    <input type="number" id="op_flow_dp" class="scale-field" style="flex:2; margin-bottom:0;" value="25" step="1" placeholder="Δp" autocomplete="off" enterkeyhint="next">
                     <select id="op_flow_dp_unit" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
                         <option value="kPa" selected>кПа</option>
                         <option value="Pa">Па</option>
@@ -1138,25 +1138,25 @@
 
             <div class="scale-form">
                 <div class="scale-form-label">Диаметр диска (d₂₀)</div>
-                <input type="number" id="op_flow_d_plate" class="scale-field" value="50" step="0.1" placeholder="d₂₀, мм" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                <input type="number" id="op_flow_d_plate" class="scale-field" value="50" step="0.1" placeholder="d₂₀, мм" autocomplete="off" enterkeyhint="next">
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Диаметр отверстия диафрагмы при 20°C, мм</div>
             </div>
 
             <div class="scale-form">
                 <div class="scale-form-label">Параметры среды</div>
                 <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="op_flow_density" class="scale-field" style="flex:1; margin-bottom:0;" value="998" step="1" placeholder="ρ, кг/м³" autocomplete="off" inputmode="decimal" enterkeyhint="next">
-                    <input type="number" id="op_flow_viscosity" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="ν, сСт" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                    <input type="number" id="op_flow_density" class="scale-field" style="flex:1; margin-bottom:0;" value="998" step="1" placeholder="ρ, кг/м³" autocomplete="off" enterkeyhint="next">
+                    <input type="number" id="op_flow_viscosity" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="ν, сСт" autocomplete="off" enterkeyhint="next">
                 </div>
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-bottom:8px;">Плотность · Кинематическая вязкость (сСт = мм²/с)</div>
                 <div id="op_flow_gas_params" style="display:none;">
                     <div style="display:flex; gap:8px; align-items:stretch;">
-                        <input type="number" id="op_flow_kappa" class="scale-field" style="flex:1; margin-bottom:0;" value="1.4" step="0.01" placeholder="κ" autocomplete="off" inputmode="decimal" enterkeyhint="next">
-                        <input type="number" id="op_flow_z" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="Z" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                        <input type="number" id="op_flow_kappa" class="scale-field" style="flex:1; margin-bottom:0;" value="1.4" step="0.01" placeholder="κ" autocomplete="off" enterkeyhint="next">
+                        <input type="number" id="op_flow_z" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="Z" autocomplete="off" enterkeyhint="next">
                     </div>
                     <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Показатель адиабаты κ · Коэффициент сжимаемости Z</div>
                 </div>
-                <input type="number" id="op_flow_pressure" class="scale-field" style="margin-top:8px; margin-bottom:0;" value="0.1" step="0.01" placeholder="P, МПа" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                <input type="number" id="op_flow_pressure" class="scale-field" style="margin-top:8px; margin-bottom:0;" value="0.1" step="0.01" placeholder="P, МПа" autocomplete="off" enterkeyhint="next">
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Избыточное давление, МПа (для газов)</div>
             </div>
 
@@ -1200,7 +1200,7 @@
             <div class="scale-form">
                 <div class="scale-form-label">Параметры трубопровода</div>
                 <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="op_d20" class="scale-field" style="flex:2; margin-bottom:0;" value="100" step="1" placeholder="D₂₀" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                    <input type="number" id="op_d20" class="scale-field" style="flex:2; margin-bottom:0;" value="100" step="1" placeholder="D₂₀" autocomplete="off" enterkeyhint="next">
                     <select id="op_d_unit" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
                         <option value="mm" selected>мм</option>
                         <option value="m">м</option>
@@ -1214,7 +1214,7 @@
                         <option value="steel15x5m">Сталь 15Х5М</option>
                         <option value="brass">Латунь</option>
                     </select>
-                    <input type="number" id="op_temp" class="scale-field" style="flex:1; margin-bottom:0;" value="20" step="1" placeholder="t, °C" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                    <input type="number" id="op_temp" class="scale-field" style="flex:1; margin-bottom:0;" value="20" step="1" placeholder="t, °C" autocomplete="off" enterkeyhint="next">
                 </div>
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Материал трубы · Рабочая температура, °C</div>
             </div>
@@ -1222,7 +1222,7 @@
             <div class="scale-form">
                 <div class="scale-form-label">Расход среды</div>
                 <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="op_flow" class="scale-field" style="flex:2; margin-bottom:0;" value="50" step="0.1" placeholder="Q" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                    <input type="number" id="op_flow" class="scale-field" style="flex:2; margin-bottom:0;" value="50" step="0.1" placeholder="Q" autocomplete="off" enterkeyhint="next">
                     <select id="op_flow_unit" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
                         <option value="m3h" selected>м³/ч</option>
                         <option value="m3s">м³/с</option>
@@ -1234,8 +1234,8 @@
                 </div>
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-bottom:8px;">Номинальный (максимальный) расход</div>
                 <div style="display:flex; gap:8px; align-items:stretch;">
-                    <input type="number" id="op_flow_min" class="scale-field" style="flex:1; margin-bottom:0;" value="15" step="0.1" placeholder="Qₘᵢₙ" autocomplete="off" inputmode="decimal" enterkeyhint="next">
-                    <input type="number" id="op_pressure" class="scale-field" style="flex:1; margin-bottom:0;" value="0.1" step="0.01" placeholder="P, МПа" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                    <input type="number" id="op_flow_min" class="scale-field" style="flex:1; margin-bottom:0;" value="15" step="0.1" placeholder="Qₘᵢₙ" autocomplete="off" enterkeyhint="next">
+                    <input type="number" id="op_pressure" class="scale-field" style="flex:1; margin-bottom:0;" value="0.1" step="0.01" placeholder="P, МПа" autocomplete="off" enterkeyhint="next">
                 </div>
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Минимальный расход · Избыточное давление, МПа</div>
             </div>
@@ -1243,14 +1243,14 @@
             <div class="scale-form">
                 <div class="scale-form-label">Параметры среды</div>
                 <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="op_density" class="scale-field" style="flex:1; margin-bottom:0;" value="998" step="1" placeholder="ρ, кг/м³" autocomplete="off" inputmode="decimal" enterkeyhint="next">
-                    <input type="number" id="op_viscosity" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="ν, сСт" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                    <input type="number" id="op_density" class="scale-field" style="flex:1; margin-bottom:0;" value="998" step="1" placeholder="ρ, кг/м³" autocomplete="off" enterkeyhint="next">
+                    <input type="number" id="op_viscosity" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="ν, сСт" autocomplete="off" enterkeyhint="next">
                 </div>
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px; margin-bottom:8px;">Плотность · Кинематическая вязкость (сСт = мм²/с)</div>
                 <div id="op_gas_params" style="display:none;">
                     <div style="display:flex; gap:8px; align-items:stretch;">
-                        <input type="number" id="op_kappa" class="scale-field" style="flex:1; margin-bottom:0;" value="1.4" step="0.01" placeholder="κ" autocomplete="off" inputmode="decimal" enterkeyhint="next">
-                        <input type="number" id="op_z" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="Z" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                        <input type="number" id="op_kappa" class="scale-field" style="flex:1; margin-bottom:0;" value="1.4" step="0.01" placeholder="κ" autocomplete="off" enterkeyhint="next">
+                        <input type="number" id="op_z" class="scale-field" style="flex:1; margin-bottom:0;" value="1.0" step="0.01" placeholder="Z" autocomplete="off" enterkeyhint="next">
                     </div>
                     <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Показатель адиабаты κ · Коэффициент сжимаемости Z</div>
                 </div>
@@ -1259,7 +1259,7 @@
             <div class="scale-form">
                 <div class="scale-form-label">Перепад давления</div>
                 <div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;">
-                    <input type="number" id="op_dp" class="scale-field" style="flex:2; margin-bottom:0;" value="25" step="1" placeholder="Δp" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                    <input type="number" id="op_dp" class="scale-field" style="flex:2; margin-bottom:0;" value="25" step="1" placeholder="Δp" autocomplete="off" enterkeyhint="next">
                     <select id="op_dp_unit" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
                         <option value="kPa" selected>кПа</option>
                         <option value="Pa">Па</option>
@@ -1363,9 +1363,9 @@
         <div id="page-error-pressure" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Датчик давления</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="scale-form"><div class="scale-form-label">Диапазон измерения</div><div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="number" id="pressure_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><input type="number" id="pressure_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="1.6" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"></div>
-            <div class="scale-form-label">Класс точности (%)</div><input type="number" id="pressure_accuracy_class" class="scale-field" value="0.5" step="0.01" placeholder="Напр. 0.5" autocomplete="off" inputmode="decimal" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Введите значение класса точности в % (например: 0.02, 0.1, 0.5, 1.0, 1.5, 2.5)</div>
-            <div class="scale-form-label">Текущее значение (опционально)</div><input type="number" id="pressure_current_value" class="scale-field" placeholder="опционально" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"></div>
+            <div class="scale-form"><div class="scale-form-label">Диапазон измерения</div><div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="number" id="pressure_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any" autocomplete="off" enterkeyhint="next"><input type="number" id="pressure_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="1.6" step="any" autocomplete="off" enterkeyhint="next"></div>
+            <div class="scale-form-label">Класс точности (%)</div><input type="number" id="pressure_accuracy_class" class="scale-field" value="0.5" step="0.01" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Введите значение класса точности в % (например: 0.02, 0.1, 0.5, 1.0, 1.5, 2.5)</div>
+            <div class="scale-form-label">Текущее значение (опционально)</div><input type="number" id="pressure_current_value" class="scale-field" placeholder="опционально" step="any" autocomplete="off" enterkeyhint="next"></div>
             <button type="button" class="converter-convert-btn" onclick="calcErrorPressure()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="errorPressureResults" class="converter-result-group" style="display:none;"></div>
         </div>
@@ -1387,7 +1387,7 @@
             <div class="scale-form"><div class="scale-form-label">Группа ТС</div><select id="rtd_group" class="scale-field" onchange="updateRtdTypeOptions()" autocomplete="off"><option value="Pt" selected>Платиновые (Pt)</option><option value="Cu">Медные (Cu)</option><option value="Ni">Никелевые (Ni)</option></select>
             <div class="scale-form-label">Тип ТС (НСХ)</div><select id="rtd_type" class="scale-field" onchange="updateRtdClassOptions()" autocomplete="off"><option value="pt10">Pt10 (10П)</option><option value="pt50">Pt50 (50П)</option><option value="pt100" selected>Pt100 (100П)</option><option value="pt500">Pt500 (500П)</option><option value="pt1000">Pt1000 (1000П)</option></select>
             <div class="scale-form-label">Класс допуска</div><select id="rtd_class" class="scale-field" autocomplete="off"><option value="AA">AA (1/3 B)</option><option value="A" selected>A</option><option value="B">B</option><option value="C">C</option></select>
-            <div class="scale-form-label">Температура (t), °C</div><input type="number" id="rtd_temperature" class="scale-field" value="100" step="any" placeholder="температура в °C" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+            <div class="scale-form-label">Температура (t), °C</div><input type="number" id="rtd_temperature" class="scale-field" value="100" step="any" placeholder="температура в °C" autocomplete="off" enterkeyhint="next">
             <div id="rtd_range_warning" style="color:#c7964a; font-size:11px; margin-top:4px; padding-left:4px; display:none;"></div></div>
             <button type="button" class="converter-convert-btn" onclick="calcRtdError()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="rtdResults" class="converter-result-group" style="display:none;"></div>
@@ -1399,7 +1399,7 @@
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="scale-form"><div class="scale-form-label">Тип термопары</div><select id="tc_type" class="scale-field" onchange="updateTcRanges()" autocomplete="off"><option value="K" selected>K (ТХА)</option><option value="J">J (ТЖК)</option><option value="T">T (ТМК)</option><option value="N">N (ТНН)</option><option value="E">E (ТХКн)</option><option value="R">R (ТПП)</option><option value="S">S (ТПП)</option><option value="B">B (ТПР)</option></select>
             <div class="scale-form-label">Класс точности</div><select id="tc_class" class="scale-field" onchange="updateTcRanges()" autocomplete="off"><option value="1">Класс 1</option><option value="2" selected>Класс 2</option><option value="3">Класс 3</option></select>
-            <div class="scale-form-label">Температура (t), °C</div><input type="number" id="tc_temperature" class="scale-field" value="100" step="any" placeholder="температура в °C" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+            <div class="scale-form-label">Температура (t), °C</div><input type="number" id="tc_temperature" class="scale-field" value="100" step="any" placeholder="температура в °C" autocomplete="off" enterkeyhint="next">
             <div id="tc_range_warning" style="color:#c7964a; font-size:11px; margin-top:4px; padding-left:4px; display:none;"></div></div>
             <button type="button" class="converter-convert-btn" onclick="calcTcError()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="tcResults" class="converter-result-group" style="display:none;"></div>
@@ -1409,9 +1409,9 @@
         <div id="page-error-flow" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Расходомер</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="scale-form"><div class="scale-form-label">Диапазон измерения</div><div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="number" id="flow_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><input type="number" id="flow_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="100" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"></div>
-            <div class="scale-form-label">Класс точности (%)</div><input type="number" id="flow_accuracy_class" class="scale-field" value="0.5" step="0.01" placeholder="Напр. 0.5" autocomplete="off" inputmode="decimal" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Введите значение класса точности в % (например: 0.2, 0.5, 1.0, 1.5, 2.0)</div>
-            <div class="scale-form-label">Текущее значение (опционально)</div><input type="number" id="flow_current_value" class="scale-field" placeholder="опционально" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"></div>
+            <div class="scale-form"><div class="scale-form-label">Диапазон измерения</div><div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="number" id="flow_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any" autocomplete="off" enterkeyhint="next"><input type="number" id="flow_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="100" step="any" autocomplete="off" enterkeyhint="next"></div>
+            <div class="scale-form-label">Класс точности (%)</div><input type="number" id="flow_accuracy_class" class="scale-field" value="0.5" step="0.01" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Введите значение класса точности в % (например: 0.2, 0.5, 1.0, 1.5, 2.0)</div>
+            <div class="scale-form-label">Текущее значение (опционально)</div><input type="number" id="flow_current_value" class="scale-field" placeholder="опционально" step="any" autocomplete="off" enterkeyhint="next"></div>
             <button type="button" class="converter-convert-btn" onclick="calcErrorFlow()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="errorFlowResults" class="converter-result-group" style="display:none;"></div>
         </div>
@@ -1420,9 +1420,9 @@
         <div id="page-error-level" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Уровнемер</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="scale-form"><div class="scale-form-label">Диапазон измерения</div><div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="number" id="level_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><input type="number" id="level_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="5000" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"></div>
-            <div class="scale-form-label">Класс точности (%)</div><input type="number" id="level_accuracy_class" class="scale-field" value="0.5" step="0.01" placeholder="Напр. 0.5" autocomplete="off" inputmode="decimal" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Введите значение класса точности в % (например: 0.1, 0.2, 0.5, 1.0)</div>
-            <div class="scale-form-label">Текущее значение (опционально)</div><input type="number" id="level_current_value" class="scale-field" placeholder="опционально" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"></div>
+            <div class="scale-form"><div class="scale-form-label">Диапазон измерения</div><div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="number" id="level_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any" autocomplete="off" enterkeyhint="next"><input type="number" id="level_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="5000" step="any" autocomplete="off" enterkeyhint="next"></div>
+            <div class="scale-form-label">Класс точности (%)</div><input type="number" id="level_accuracy_class" class="scale-field" value="0.5" step="0.01" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Введите значение класса точности в % (например: 0.1, 0.2, 0.5, 1.0)</div>
+            <div class="scale-form-label">Текущее значение (опционально)</div><input type="number" id="level_current_value" class="scale-field" placeholder="опционально" step="any" autocomplete="off" enterkeyhint="next"></div>
             <button type="button" class="converter-convert-btn" onclick="calcErrorLevel()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="errorLevelResults" class="converter-result-group" style="display:none;"></div>
         </div>
@@ -1431,9 +1431,9 @@
         <div id="page-error-generic" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Аналоговый преобразователь</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="scale-form"><div class="scale-form-label">Диапазон измерения</div><div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="number" id="generic_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><input type="number" id="generic_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="100" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"></div>
-            <div class="scale-form-label">Класс точности (%)</div><input type="number" id="generic_accuracy_class" class="scale-field" value="0.5" step="0.01" placeholder="Напр. 0.5" autocomplete="off" inputmode="decimal" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Введите значение класса точности в % (например: 0.05, 0.1, 0.2, 0.5, 1.0)</div>
-            <div class="scale-form-label">Текущее значение (опционально)</div><input type="number" id="generic_current_value" class="scale-field" placeholder="опционально" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"></div>
+            <div class="scale-form"><div class="scale-form-label">Диапазон измерения</div><div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="number" id="generic_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any" autocomplete="off" enterkeyhint="next"><input type="number" id="generic_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="100" step="any" autocomplete="off" enterkeyhint="next"></div>
+            <div class="scale-form-label">Класс точности (%)</div><input type="number" id="generic_accuracy_class" class="scale-field" value="0.5" step="0.01" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Введите значение класса точности в % (например: 0.05, 0.1, 0.2, 0.5, 1.0)</div>
+            <div class="scale-form-label">Текущее значение (опционально)</div><input type="number" id="generic_current_value" class="scale-field" placeholder="опционально" step="any" autocomplete="off" enterkeyhint="next"></div>
             <button type="button" class="converter-convert-btn" onclick="calcErrorGeneric()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="errorGenericResults" class="converter-result-group" style="display:none;"></div>
         </div>
@@ -1445,16 +1445,16 @@
             
             <div class="scale-form">
                 <div class="scale-form-label">Прибор 1</div>
-                <div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="number" id="kit_dev1_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><input type="number" id="kit_dev1_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="1.6" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"></div>
-                <div class="scale-form-label">Класс точности (%)</div><input type="number" id="kit_dev1_accuracy" class="scale-field" value="0.5" step="0.01" placeholder="Напр. 0.5" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                <div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="number" id="kit_dev1_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" step="any" autocomplete="off" enterkeyhint="next"><input type="number" id="kit_dev1_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="1.6" step="any" autocomplete="off" enterkeyhint="next"></div>
+                <div class="scale-form-label">Класс точности (%)</div><input type="number" id="kit_dev1_accuracy" class="scale-field" value="0.5" step="0.01" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next">
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px; margin-bottom: 12px;">Введите значение класса точности в %</div>
                 <div class="scale-form-label">Прибор 2</div>
-                <div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="number" id="kit_dev2_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="4" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><input type="number" id="kit_dev2_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="20" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"></div>
-                <div class="scale-form-label">Класс точности (%)</div><input type="number" id="kit_dev2_accuracy" class="scale-field" value="0.25" step="0.01" placeholder="Напр. 0.25" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                <div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="number" id="kit_dev2_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="4" step="any" autocomplete="off" enterkeyhint="next"><input type="number" id="kit_dev2_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="20" step="any" autocomplete="off" enterkeyhint="next"></div>
+                <div class="scale-form-label">Класс точности (%)</div><input type="number" id="kit_dev2_accuracy" class="scale-field" value="0.25" step="0.01" placeholder="Напр. 0.25" autocomplete="off" enterkeyhint="next">
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px; margin-bottom: 12px;">Введите значение класса точности в %</div>
                 <div class="scale-form-label">Прибор 3 (опционально)</div>
-                <div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="number" id="kit_dev3_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><input type="number" id="kit_dev3_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"></div>
-                <div class="scale-form-label">Класс точности (%)</div><input type="number" id="kit_dev3_accuracy" class="scale-field" step="0.01" placeholder="Напр. 0.1" autocomplete="off" inputmode="decimal" enterkeyhint="next">
+                <div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="number" id="kit_dev3_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" step="any" autocomplete="off" enterkeyhint="next"><input type="number" id="kit_dev3_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" step="any" autocomplete="off" enterkeyhint="next"></div>
+                <div class="scale-form-label">Класс точности (%)</div><input type="number" id="kit_dev3_accuracy" class="scale-field" step="0.01" placeholder="Напр. 0.1" autocomplete="off" enterkeyhint="next">
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Введите значение класса точности в %</div>
             </div>
             <button type="button" class="converter-convert-btn" onclick="calcErrorKit()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать суммарную погрешность</button>
@@ -1476,10 +1476,10 @@
         <div id="page-buoy-calc" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Буйковый уровнемер</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="scale-form"><div class="scale-form-label">Параметры буйка</div><div class="scale-form-label" style="margin-top:0;">Диаметр (D)</div><input type="number" id="buoy_diam" class="scale-field" value="50" step="1" placeholder="мм" autocomplete="off" inputmode="decimal" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">мм</div><div class="scale-form-label">Длина (L)</div><input type="number" id="buoy_length" class="scale-field" value="300" step="10" placeholder="мм" autocomplete="off" inputmode="decimal" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">мм</div><div id="buoyWeightContainer"><div class="scale-form-label">Вес буйка в воздухе</div><input type="number" id="buoy_weight_kg" class="scale-field" value="2.0" step="0.1" placeholder="кг" autocomplete="off" inputmode="decimal" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">⚖️ Масса буйка (кг)</div></div></div>
-            <div class="scale-form"><div class="scale-form-label">Параметры жидкости</div><div class="scale-form-label" style="margin-top:0;">Тип среды</div><div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;"><select id="liquid_preset" class="scale-field" style="flex:2; margin-bottom:0; font-size:15px;" onchange="setLiquidDensity()" autocomplete="off"><option value="998">Вода (20°C)</option><option value="926">Дивинилбензол C₆H₄(CH=CH₂)₂ (20°C)</option><option value="860">Диэтилбензол C₆H₄(CH₂CH₃)₂ (20°C)</option><option value="906">Стирол C₆H₅CH=CH₂ (20°C)</option><option value="1253">Дихлорэтан CH₂Cl-CH₂Cl (20°C)</option><option value="789">Этиловый спирт C₂H₅OH (20°C)</option><option value="1111.5">Этиленгликоль CH₂OH-CH₂OH (20°C)</option><option value="2130">Едкий натр NaOH (20°C)</option><option value="2530">Кальцинированная сода Na₂CO₃ (20°C)</option><option value="1890">Олеум H₂SO₄·SO₃ (20°C)</option><option value="1834">Серная кислота H₂SO₄ 96% (20°C)</option><option value="1683">Динитрофенол C₆H₃(NO₂)₂OH (20°C)</option><option value="1334">Перекись бензоила (C₆H₅)₂COO₂ (20°C)</option><option value="1450">Перекись водорода H₂O₂ 100% (20°C)</option><option value="custom">Своё значение</option></select><input type="number" id="liquid_density" class="scale-field" style="flex:1; margin-bottom:0;" value="998" step="10" placeholder="кг/м³" autocomplete="off" inputmode="decimal" enterkeyhint="next"></div><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">кг/м³</div></div>
-            <div class="scale-form"><div class="scale-form-label">Подвесная система</div><input type="number" id="suspension_mass" class="scale-field" value="0" step="1" placeholder="0" autocomplete="off" inputmode="decimal" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">⚙️ Масса тарелки/крюка, г</div></div>
-            <div class="scale-form"><div class="scale-form-label">Выходной сигнал</div><select id="buoy_signal_type" class="scale-field" onchange="updateBuoySignalUnit()" autocomplete="off"><optgroup label="⚡ Электрические (токовые)"><option value="4_20" selected>4 – 20 мА</option><option value="0_20">0 – 20 мА</option><option value="0_5mA">0 – 5 мА</option></optgroup><optgroup label="⚡ Электрические (напряжения)"><option value="0_10V">0 – 10 В</option><option value="1_5V">1 – 5 В</option><option value="0_5V">0 – 5 В</option><option value="bipolar_10">-10 – +10 В</option></optgroup><optgroup label="💨 Пневматические"><option value="20_100_kPa">20 – 100 кПа</option><option value="0_2_1_0_bar">0.2 – 1.0 бар</option><option value="3_15_psi">3 – 15 psi</option><option value="0_2_1_0_kgf_cm2">0.2 – 1.0 кгс/см²</option></optgroup><optgroup label="🔧 Другие"><option value="custom">Своё значение</option></optgroup></select><div id="customSignalRange" style="display:none; margin-top:12px;"><div style="display:flex; gap:8px;"><input type="number" id="signal_min_custom" class="scale-field" style="flex:1;" placeholder="Мин." step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"><input type="number" id="signal_max_custom" class="scale-field" style="flex:1;" placeholder="Макс." step="any" autocomplete="off" inputmode="decimal" enterkeyhint="next"></div><input type="text" id="signal_unit_custom" class="scale-field" style="margin-top:8px;" placeholder="Ед. измерения (например: мА, В, кПа)" value="мА" autocomplete="off" ></div><div id="signalUnitDisplay" style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:8px; padding-left:4px;">📊 Сигнал: 4-20 мА</div></div>
+            <div class="scale-form"><div class="scale-form-label">Параметры буйка</div><div class="scale-form-label" style="margin-top:0;">Диаметр (D)</div><input type="number" id="buoy_diam" class="scale-field" value="50" step="1" placeholder="мм" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">мм</div><div class="scale-form-label">Длина (L)</div><input type="number" id="buoy_length" class="scale-field" value="300" step="10" placeholder="мм" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">мм</div><div id="buoyWeightContainer"><div class="scale-form-label">Вес буйка в воздухе</div><input type="number" id="buoy_weight_kg" class="scale-field" value="2.0" step="0.1" placeholder="кг" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">⚖️ Масса буйка (кг)</div></div></div>
+            <div class="scale-form"><div class="scale-form-label">Параметры жидкости</div><div class="scale-form-label" style="margin-top:0;">Тип среды</div><div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;"><select id="liquid_preset" class="scale-field" style="flex:2; margin-bottom:0; font-size:15px;" onchange="setLiquidDensity()" autocomplete="off"><option value="998">Вода (20°C)</option><option value="926">Дивинилбензол C₆H₄(CH=CH₂)₂ (20°C)</option><option value="860">Диэтилбензол C₆H₄(CH₂CH₃)₂ (20°C)</option><option value="906">Стирол C₆H₅CH=CH₂ (20°C)</option><option value="1253">Дихлорэтан CH₂Cl-CH₂Cl (20°C)</option><option value="789">Этиловый спирт C₂H₅OH (20°C)</option><option value="1111.5">Этиленгликоль CH₂OH-CH₂OH (20°C)</option><option value="2130">Едкий натр NaOH (20°C)</option><option value="2530">Кальцинированная сода Na₂CO₃ (20°C)</option><option value="1890">Олеум H₂SO₄·SO₃ (20°C)</option><option value="1834">Серная кислота H₂SO₄ 96% (20°C)</option><option value="1683">Динитрофенол C₆H₃(NO₂)₂OH (20°C)</option><option value="1334">Перекись бензоила (C₆H₅)₂COO₂ (20°C)</option><option value="1450">Перекись водорода H₂O₂ 100% (20°C)</option><option value="custom">Своё значение</option></select><input type="number" id="liquid_density" class="scale-field" style="flex:1; margin-bottom:0;" value="998" step="10" placeholder="кг/м³" autocomplete="off" enterkeyhint="next"></div><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">кг/м³</div></div>
+            <div class="scale-form"><div class="scale-form-label">Подвесная система</div><input type="number" id="suspension_mass" class="scale-field" value="0" step="1" placeholder="0" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">⚙️ Масса тарелки/крюка, г</div></div>
+            <div class="scale-form"><div class="scale-form-label">Выходной сигнал</div><select id="buoy_signal_type" class="scale-field" onchange="updateBuoySignalUnit()" autocomplete="off"><optgroup label="⚡ Электрические (токовые)"><option value="4_20" selected>4 – 20 мА</option><option value="0_20">0 – 20 мА</option><option value="0_5mA">0 – 5 мА</option></optgroup><optgroup label="⚡ Электрические (напряжения)"><option value="0_10V">0 – 10 В</option><option value="1_5V">1 – 5 В</option><option value="0_5V">0 – 5 В</option><option value="bipolar_10">-10 – +10 В</option></optgroup><optgroup label="💨 Пневматические"><option value="20_100_kPa">20 – 100 кПа</option><option value="0_2_1_0_bar">0.2 – 1.0 бар</option><option value="3_15_psi">3 – 15 psi</option><option value="0_2_1_0_kgf_cm2">0.2 – 1.0 кгс/см²</option></optgroup><optgroup label="🔧 Другие"><option value="custom">Своё значение</option></optgroup></select><div id="customSignalRange" style="display:none; margin-top:12px;"><div style="display:flex; gap:8px;"><input type="number" id="signal_min_custom" class="scale-field" style="flex:1;" placeholder="Мин." step="any" autocomplete="off" enterkeyhint="next"><input type="number" id="signal_max_custom" class="scale-field" style="flex:1;" placeholder="Макс." step="any" autocomplete="off" enterkeyhint="next"></div><input type="text" id="signal_unit_custom" class="scale-field" style="margin-top:8px;" placeholder="Ед. измерения (например: мА, В, кПа)" value="мА" autocomplete="off" ></div><div id="signalUnitDisplay" style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:8px; padding-left:4px;">📊 Сигнал: 4-20 мА</div></div>
             <button type="button" class="converter-convert-btn" onclick="calculateBuoyCalibration()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать калибровку</button>
             <div id="buoyResults" class="converter-result-group" style="display:none;"><div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><div class="converter-result-label-title">Таблица калибровки (шаг 10%)</div><button type="button" class="query-btn" onclick="copyBuoyTable()" style="width:auto; padding:5px 10px; font-size:11px;"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Копировать</button></div><div id="buoyTableContainer" style="overflow-x:auto;"></div><div id="buoyInfo" style="margin-top:14px; padding:14px 18px; background:rgba(13,17,23,0.5); border-radius:10px; font-size:15px; color:rgba(255,255,255,0.35); line-height:1.6;"></div></div>
         </div>
@@ -2557,9 +2557,9 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
                     </select>
                 </div>
                 <div class="scale-form-label" style="margin-top:12px;">Диапазон измерения (°C)</div>
-                <div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="number" id="temp_sensor_min" class="scale-field" style="flex: 1; margin-bottom: 0;" value="0" step="any" placeholder="min °C" autocomplete="off" inputmode="decimal" enterkeyhint="next"><input type="number" id="temp_sensor_max" class="scale-field" style="flex: 1; margin-bottom: 0;" value="100" step="any" placeholder="max °C" autocomplete="off" inputmode="decimal" enterkeyhint="next"></div>
+                <div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="number" id="temp_sensor_min" class="scale-field" style="flex: 1; margin-bottom: 0;" value="0" step="any" placeholder="min °C" autocomplete="off" enterkeyhint="next"><input type="number" id="temp_sensor_max" class="scale-field" style="flex: 1; margin-bottom: 0;" value="100" step="any" placeholder="max °C" autocomplete="off" enterkeyhint="next"></div>
                 <div class="scale-form-label">Шаг таблицы (°C)</div>
-                <input type="number" id="temp_sensor_step" class="scale-field" value="10" step="1" placeholder="10" autocomplete="off" inputmode="decimal" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">Шаг расчёта таблицы в градусах Цельсия</div>
+                <input type="number" id="temp_sensor_step" class="scale-field" value="10" step="1" placeholder="10" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">Шаг расчёта таблицы в градусах Цельсия</div>
                             </div>
             <button type="button" class="converter-convert-btn" onclick="calcTempSensor()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать</button>
             <div id="tempSensorResults" class="converter-result-group" style="display:none;"></div>
