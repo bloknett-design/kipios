@@ -616,16 +616,8 @@
         background: rgba(255, 255, 255, 0.6);
         border-color: rgba(37, 99, 235, 0.15);
     }
-    [data-theme="light"] #buoyInfo {
-        color: rgba(40, 50, 70, 0.6) !important;
-    }
     [data-theme="light"] .page-inline-header-title {
         color: #1a1a2e;
-    }
-    [data-theme="light"] .scale-calc-btn,
-    [data-theme="light"] .converter-convert-btn {
-        background: linear-gradient(135deg, #2563eb, #3b82f6);
-        box-shadow: 0 3px 12px rgba(37, 99, 235, 0.25);
     }
     [data-theme="light"] .menu-btn-arrow {
         color: rgba(0, 0, 0, 0.15);
@@ -657,35 +649,81 @@
         background: radial-gradient(ellipse at center, transparent 40%, rgba(232, 236, 241, 0.85) 95%);
     }
 
+    /* Light theme: comprehensive text/background visibility fixes */
 
+    /* Override ALL inline rgba(255,255,255,...) colors on ANY element */
+    [data-theme="light"] [style*="color:rgba(255,255,255"],
+    [data-theme="light"] [style*="color: rgba(255,255,255"],
+    [data-theme="light"] [style*="color:rgba(255, 255, 255"],
+    [data-theme="light"] [style*="color: rgba(255, 255, 255"] {
+        color: rgba(40, 50, 70, 0.5) !important;
+    }
 
-    [data-theme="light"] .converter-result-item {
-        background: rgba(220, 230, 245, 0.6);
-        border-color: rgba(37, 99, 235, 0.1);
-    }
-    [data-theme="light"] .converter-result-group table thead tr {
-        background: rgba(37, 99, 235, 0.08) !important;
-    }
-    [data-theme="light"] .converter-result-group table tbody tr:nth-child(odd) {
-        background: rgba(37, 99, 235, 0.03) !important;
-    }
-    [data-theme="light"] .converter-result-group table tbody tr:nth-child(even) {
-        background: rgba(255, 255, 255, 0.5) !important;
-    }
-    [data-theme="light"] .converter-result-group table td {
+    /* Override inline #e0e0e0 / #e8e8e8 colors on ANY element */
+    [data-theme="light"] [style*="color:#e0e0e0"],
+    [data-theme="light"] [style*="color: #e0e0e0"],
+    [data-theme="light"] [style*="color:#e8e8e8"] {
         color: #1a1a2e !important;
     }
 
-    /* Light theme: inline hint text visibility fix */
-    [data-theme="light"] div[style*="color:rgba(255,255,255,0.25)"],
-    [data-theme="light"] div[style*="color: rgba(255,255,255,0.25)"],
-    [data-theme="light"] div[style*="color:rgba(255, 255, 255, 0.25)"] {
-        color: rgba(40, 50, 70, 0.45) !important;
+    /* Fix dark backgrounds in JS-generated tables and info boxes */
+    [data-theme="light"] [style*="background:rgba(13,17,23"],
+    [data-theme="light"] [style*="background:rgba(22,27,34"],
+    [data-theme="light"] [style*="background:rgba(30,42,56"] {
+        background: rgba(220, 230, 245, 0.35) !important;
     }
+
+    /* Fix inline border colors with white */
+    [data-theme="light"] [style*="border:1px solid rgba(255,255,255"],
+    [data-theme="light"] [style*="border-bottom:1px solid rgba(255,255,255"] {
+        border-color: rgba(37, 99, 235, 0.1) !important;
+    }
+
+    /* Table header rows: override dark inline background */
+    [data-theme="light"] .converter-result-group table thead tr[style],
+    [data-theme="light"] .scale-form table thead tr[style] {
+        background: rgba(37, 99, 235, 0.08) !important;
+    }
+
+    /* Table body rows: light alternating backgrounds */
+    [data-theme="light"] .converter-result-group table tbody tr[style],
+    [data-theme="light"] .scale-form table tbody tr[style] {
+        background: rgba(37, 99, 235, 0.03) !important;
+    }
+    [data-theme="light"] .converter-result-group table tbody tr:nth-child(even)[style],
+    [data-theme="light"] .scale-form table tbody tr:nth-child(even)[style] {
+        background: rgba(255, 255, 255, 0.5) !important;
+    }
+
+    /* buoyInfo dark box: override inline dark background and light text */
+    [data-theme="light"] #buoyInfo {
+        background: rgba(220, 230, 245, 0.5) !important;
+        color: rgba(30, 40, 60, 0.7) !important;
+    }
+
+    /* signalUnitDisplay hint text */
+    [data-theme="light"] #signalUnitDisplay {
+        color: rgba(40, 50, 70, 0.5) !important;
+    }
+
+    /* Fix SVG strokes with white color (library arrows, etc.) */
+    [data-theme="light"] svg[style*="stroke:rgba(255,255,255"],
+    [data-theme="light"] svg[style*="stroke: rgba(255,255,255"] {
+        stroke: rgba(40, 50, 70, 0.25) !important;
+    }
+
+    /* Library page menu-btn-arrow SVG override */
+    [data-theme="light"] .menu-btn-arrow svg {
+        stroke: rgba(0, 0, 0, 0.15) !important;
+    }
+
+    /* Converter result items */
     [data-theme="light"] .converter-result-item {
         background: rgba(220, 230, 245, 0.6);
         border-color: rgba(37, 99, 235, 0.1);
     }
+
+    /* Buttons */
     [data-theme="light"] .scale-calc-btn,
     [data-theme="light"] .converter-convert-btn {
         background: linear-gradient(135deg, #2563eb, #3b82f6);
