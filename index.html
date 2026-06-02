@@ -249,24 +249,28 @@
         flex: 1; min-height: 0;
     }
     .buoy-illustration {
-        width: 33.333%; aspect-ratio: 1 / 1;
+        width: 50%; aspect-ratio: 1 / 1;
         display: flex; justify-content: center; align-items: center;
-        background: rgba(23, 33, 43, 0.5); padding: 10px;
+        background: transparent; padding: 0;
         flex-shrink: 0;
+        border: none;
     }
     .buoy-illustration img {
-        width: 100%; height: 100%; object-fit: contain;
-        filter: sepia(0.3) hue-rotate(180deg) saturate(0.8); opacity: 0.9;
+        width: 100%; height: 100%; object-fit: cover; opacity: 0.9;
     }
     .buoy-illustration svg { width: 100%; height: 100%; }
     .buoy-card-body {
-        flex: 1; display: flex; align-items: center; justify-content: center;
-        padding: 12px 14px; text-align: center; min-width: 0;
+        flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        padding: 14px 16px; text-align: center; min-width: 0; gap: 4px;
     }
     .buoy-card-title {
-        font-size: 20px; font-weight: 700; color: rgba(224, 224, 224, 0.95);
+        font-size: 26px; font-weight: 700; color: rgba(224, 224, 224, 0.95);
         letter-spacing: 0.3px; line-height: 1.3;
         overflow-wrap: break-word; word-break: break-word;
+    }
+    .buoy-card-desc {
+        font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.4; font-weight: 500;
+        margin-top: 2px;
     }
     .buoy-card-divider {
         height: 1px; background: rgba(74, 143, 199, 0.18); margin: 0;
@@ -278,7 +282,8 @@
         flex-shrink: 0;
     }
     .buoy-card-formula .formula-inline {
-        font-size: 15px; margin-top: 0; line-height: 1.35;
+        font-size: 17px; margin-top: 0; line-height: 1.35;
+        color: rgba(170, 210, 245, 0.95); font-weight: 700;
     }
     .formula-inline {
         display: block;
@@ -363,10 +368,11 @@
         .nav-btn { padding: 9px 14px; font-size: 13px; }
         .form-field, .scale-field { padding: 11px 12px; font-size: 14px; }
         .warning-banner { margin: 8px 12px 0; padding: 10px 12px; }
-        .buoy-card-title { font-size: 18px; }
+        .buoy-card-title { font-size: 22px; }
+        .buoy-card-desc { font-size: 12px; }
         .buoy-card-body { padding: 10px 12px; }
         .buoy-card-formula { padding: 6px 12px; }
-        .buoy-card-formula .formula-inline { font-size: 13px; }
+        .buoy-card-formula .formula-inline { font-size: 15px; }
         .header-title { font-size: 28px; letter-spacing: 2px; }
     }
     @media (max-width: 400px) {
@@ -379,10 +385,11 @@
         .form-field, .scale-field { padding: 10px 10px; font-size: 13px; }
         .bottom-nav-item { min-width: 52px; padding: 5px 2px; }
         .bottom-nav-label { font-size: 10px; }
-        .buoy-card-title { font-size: 16px; }
+        .buoy-card-title { font-size: 20px; }
+        .buoy-card-desc { font-size: 11px; }
         .buoy-card-body { padding: 8px 10px; }
         .buoy-card-formula { padding: 5px 10px; }
-        .buoy-card-formula .formula-inline { font-size: 12px; }
+        .buoy-card-formula .formula-inline { font-size: 13px; }
         .buoy-select-container { flex-direction: column; padding: 6px 12px; gap: 8px; }
         .header-title { font-size: 22px; letter-spacing: 1px; }
     }
@@ -533,11 +540,14 @@
     [data-theme="light"] .buoy-card-formula {
         background: rgba(37, 99, 235, 0.06);
     }
+    [data-theme="light"] .buoy-card-formula .formula-inline {
+        color: rgba(20, 60, 140, 0.95);
+    }
     [data-theme="light"] .buoy-illustration {
-        background: rgba(37, 99, 235, 0.06);
+        background: transparent;
     }
     [data-theme="light"] .buoy-illustration img {
-        filter: sepia(0.15) hue-rotate(10deg) saturate(0.9); opacity: 0.95;
+        opacity: 0.95;
     }
     [data-theme="light"] .buoy-card-light { background: rgba(220, 230, 245, 0.85); border-color: rgba(37, 99, 235, 0.15); }
     [data-theme="light"] .buoy-card-light:hover, [data-theme="light"] .buoy-card-light:active { background: rgba(210, 222, 240, 0.95); }
@@ -1457,8 +1467,8 @@
             <div class="page-inline-header"><div class="page-inline-header-title">Калибровка буйкового уровнемера</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="buoy-select-container">
-                <div class="buoy-card buoy-card-light" onclick="selectCalibMethod('with_buoy')"><div class="buoy-card-inner"><div class="buoy-card-top"><div class="buoy-illustration"><img src="buoy_with.png" alt="С буйком"></div><div class="buoy-card-body"><div class="buoy-card-title">С буйком</div></div></div><div class="buoy-card-divider"></div><div class="buoy-card-formula"><span class="formula-inline">m<sub>гири</sub> = m<sub>выт</sub> + m<sub>подвеса</sub></span></div></div></div>
-                <div class="buoy-card buoy-card-dark" onclick="selectCalibMethod('without_buoy')"><div class="buoy-card-inner"><div class="buoy-card-top"><div class="buoy-illustration"><img src="buoy_without.png" alt="Без буйка"></div><div class="buoy-card-body"><div class="buoy-card-title">Без буйка</div></div></div><div class="buoy-card-divider"></div><div class="buoy-card-formula"><span class="formula-inline">m<sub>гири</sub> = m<sub>буйка</sub> − m<sub>выт</sub> + m<sub>подвеса</sub></span></div></div></div>
+                <div class="buoy-card buoy-card-light" onclick="selectCalibMethod('with_buoy')"><div class="buoy-card-inner"><div class="buoy-card-top"><div class="buoy-illustration"><img id="buoy-with-img" src="buoy_with_black.png" alt="С буйком"></div><div class="buoy-card-body"><div class="buoy-card-title">С буйком</div><div class="buoy-card-desc">Компенсационный метод калибровки</div></div></div><div class="buoy-card-divider"></div><div class="buoy-card-formula"><span class="formula-inline">m<sub>гири</sub> = m<sub>выт</sub> + m<sub>подвеса</sub></span></div></div></div>
+                <div class="buoy-card buoy-card-dark" onclick="selectCalibMethod('without_buoy')"><div class="buoy-card-inner"><div class="buoy-card-top"><div class="buoy-illustration"><img id="buoy-without-img" src="buoy_without_black.png" alt="Без буйка"></div><div class="buoy-card-body"><div class="buoy-card-title">Без буйка</div><div class="buoy-card-desc">Имитация выталкивающей силы гирями</div></div></div><div class="buoy-card-divider"></div><div class="buoy-card-formula"><span class="formula-inline">m<sub>гири</sub> = m<sub>буйка</sub> − m<sub>выт</sub> + m<sub>подвеса</sub></span></div></div></div>
             </div>
         </div>
 
@@ -2427,6 +2437,7 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('app-theme', newTheme);
         updateThemeLabel();
+        updateBuoyImages();
     }
 
     function updateThemeLabel() {
@@ -2437,11 +2448,20 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
         }
     }
 
+    function updateBuoyImages() {
+        var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        var buoyWithImg = document.getElementById('buoy-with-img');
+        var buoyWithoutImg = document.getElementById('buoy-without-img');
+        if (buoyWithImg) buoyWithImg.src = isLight ? 'buoy_with.png' : 'buoy_with_black.png';
+        if (buoyWithoutImg) buoyWithoutImg.src = isLight ? 'buoy_without.png' : 'buoy_without_black.png';
+    }
+
     // Apply saved theme on load
     (function() {
         let savedTheme = localStorage.getItem('app-theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
         updateThemeLabel();
+        updateBuoyImages();
     })();
 
     // Auto-detect system color scheme preference
@@ -2457,6 +2477,7 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
             if (!localStorage.getItem('app-theme')) {
                 document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
                 if (typeof updateThemeLabel === 'function') updateThemeLabel();
+                if (typeof updateBuoyImages === 'function') updateBuoyImages();
             }
         });
     })();
