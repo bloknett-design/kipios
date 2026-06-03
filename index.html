@@ -730,6 +730,204 @@
         box-shadow: 0 3px 12px rgba(37, 99, 235, 0.25);
     }
 
+    /* ===== Minesweeper Game Styles ===== */
+    .ms-container { padding: 10px 16px; position: relative; z-index: 2; }
+    .ms-header {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 10px 14px; margin-bottom: 10px;
+        background: var(--card-bg); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+        border: 1px solid var(--card-border); border-radius: 14px;
+    }
+    .ms-counter {
+        display: flex; align-items: center; gap: 6px;
+        font-size: 16px; font-weight: 700; color: #c7964a;
+        font-family: 'Inter', monospace; min-width: 50px;
+    }
+    .ms-counter svg { width: 16px; height: 16px; stroke: #c7964a; fill: none; stroke-width: 2; }
+    .ms-face-btn {
+        width: 44px; height: 44px; border-radius: 10px;
+        background: rgba(255,255,255,0.08); border: 1px solid rgba(74,143,199,0.2);
+        display: flex; align-items: center; justify-content: center; cursor: pointer;
+        font-size: 22px; transition: all 0.2s; touch-action: manipulation;
+    }
+    .ms-face-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.15); }
+    .ms-timer {
+        display: flex; align-items: center; gap: 6px;
+        font-size: 16px; font-weight: 700; color: #4a8fc7;
+        font-family: 'Inter', monospace; min-width: 50px; justify-content: flex-end;
+    }
+    .ms-timer svg { width: 16px; height: 16px; stroke: #4a8fc7; fill: none; stroke-width: 2; }
+    .ms-difficulty {
+        display: flex; gap: 6px; margin-bottom: 10px;
+    }
+    .ms-diff-btn {
+        flex: 1; padding: 8px 4px; border-radius: 10px;
+        background: var(--card-bg); border: 1px solid var(--card-border);
+        color: rgba(255,255,255,0.5); font-size: 12px; font-weight: 600;
+        cursor: pointer; transition: all 0.2s; text-align: center;
+        touch-action: manipulation; font-family: 'Inter', sans-serif;
+    }
+    .ms-diff-btn.active {
+        background: rgba(74,143,199,0.15); border-color: rgba(74,143,199,0.5);
+        color: #4a8fc7;
+    }
+    .ms-diff-btn:active { transform: scale(0.95); }
+    .ms-board {
+        display: inline-grid; gap: 2px; padding: 8px;
+        background: rgba(14,22,33,0.6); border: 1px solid rgba(74,143,199,0.2);
+        border-radius: 12px; margin: 0 auto; touch-action: manipulation;
+        -webkit-user-select: none; user-select: none;
+    }
+    .ms-board-center { display: flex; justify-content: center; }
+    .ms-cell {
+        width: 32px; height: 32px; border-radius: 4px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 14px; font-weight: 700; cursor: pointer;
+        transition: all 0.1s; position: relative;
+        touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+    }
+    .ms-cell-hidden {
+        background: rgba(30,42,56,0.7);
+        border: 1px solid rgba(74,143,199,0.25);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 1px 2px rgba(0,0,0,0.2);
+        background-image: linear-gradient(rgba(74,143,199,0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(74,143,199,0.1) 1px, transparent 1px);
+        background-size: 8px 8px, 8px 8px;
+    }
+    .ms-cell-hidden:hover {
+        background: rgba(40,55,72,0.8);
+        border-color: rgba(74,143,199,0.4);
+    }
+    .ms-cell-hidden:active {
+        background: rgba(50,65,82,0.9);
+        transform: scale(0.92);
+    }
+    .ms-cell-revealed {
+        background: rgba(14,22,33,0.4);
+        border: 1px solid rgba(74,143,199,0.08);
+    }
+    .ms-cell-flagged {
+        background: rgba(30,42,56,0.7);
+        border: 1px solid rgba(199,150,74,0.4);
+    }
+    .ms-cell-mine {
+        background: rgba(199,74,74,0.2);
+        border: 1px solid rgba(199,74,74,0.4);
+    }
+    .ms-cell-mine-hit {
+        background: rgba(199,74,74,0.4);
+        border: 1px solid rgba(199,74,74,0.6);
+    }
+    .ms-num-1 { color: #4a8fc7; }
+    .ms-num-2 { color: #4ac771; }
+    .ms-num-3 { color: #c74a4a; }
+    .ms-num-4 { color: #7a4ac7; }
+    .ms-num-5 { color: #c7964a; }
+    .ms-num-6 { color: #4ac7c7; }
+    .ms-num-7 { color: #c74a96; }
+    .ms-num-8 { color: rgba(255,255,255,0.4); }
+    .ms-flag-icon { color: #c7964a; font-size: 14px; }
+    .ms-mine-icon { color: #c74a4a; font-size: 16px; }
+    .ms-game-over-overlay {
+        position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(14,22,33,0.85); backdrop-filter: blur(4px);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        border-radius: 12px; z-index: 5;
+    }
+    .ms-game-over-text {
+        font-size: 22px; font-weight: 700; margin-bottom: 8px;
+    }
+    .ms-game-over-sub {
+        font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 16px;
+    }
+    /* ===== Secret Minesweeper Button ===== */
+    .menu-btn-secret {
+        max-height: 0; opacity: 0; margin: 0 !important; padding: 0 !important;
+        overflow: hidden; border: none !important;
+        transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s ease, margin 0.4s ease, padding 0.4s ease, border 0.4s ease;
+    }
+    .menu-btn-secret.revealed {
+        max-height: 80px; opacity: 1;
+        margin: 4px 0 !important; padding: 12px 16px !important;
+        border: 1px solid rgba(199,150,74,0.35) !important;
+        animation: secretRevealGlow 1.5s ease-out;
+    }
+    @keyframes secretRevealGlow {
+        0% { box-shadow: 0 0 0 0 rgba(199,150,74,0.6); }
+        50% { box-shadow: 0 0 20px 4px rgba(199,150,74,0.3); }
+        100% { box-shadow: none; }
+    }
+    .header-title {
+        cursor: default; user-select: none; -webkit-user-select: none;
+        transition: color 0.2s;
+    }
+    .header-title.hint-pulse {
+        color: #c7964a !important;
+        transition: color 0.15s;
+    }
+    .ms-restart-btn {
+        padding: 10px 24px; border-radius: 10px;
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
+        border: none; color: #fff; font-size: 14px; font-weight: 600;
+        cursor: pointer; transition: all 0.2s;
+        font-family: 'Inter', sans-serif; touch-action: manipulation;
+        box-shadow: 0 3px 12px rgba(37,99,235,0.25);
+    }
+    .ms-restart-btn:active { transform: scale(0.95); opacity: 0.9; }
+    .ms-hint {
+        margin-top: 10px; padding: 8px 12px;
+        background: rgba(30,42,56,0.5); border-radius: 8px;
+        font-size: 11px; color: rgba(255,255,255,0.3);
+        text-align: center; line-height: 1.4;
+    }
+    [data-theme="light"] .ms-cell-hidden {
+        background: rgba(200,215,235,0.7);
+        border-color: rgba(37,99,235,0.2);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 2px rgba(0,0,0,0.08);
+        background-image: linear-gradient(rgba(37,99,235,0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(37,99,235,0.08) 1px, transparent 1px);
+        background-size: 8px 8px, 8px 8px;
+    }
+    [data-theme="light"] .ms-cell-hidden:hover {
+        background: rgba(180,200,225,0.8);
+        border-color: rgba(37,99,235,0.35);
+    }
+    [data-theme="light"] .ms-cell-revealed {
+        background: rgba(232,236,241,0.5);
+        border-color: rgba(37,99,235,0.08);
+    }
+    [data-theme="light"] .ms-cell-flagged {
+        background: rgba(200,215,235,0.7);
+        border-color: rgba(234,179,8,0.4);
+    }
+    [data-theme="light"] .ms-num-1 { color: #2563eb; }
+    [data-theme="light"] .ms-num-2 { color: #16a34a; }
+    [data-theme="light"] .ms-num-3 { color: #dc2626; }
+    [data-theme="light"] .ms-num-4 { color: #7c3aed; }
+    [data-theme="light"] .ms-num-5 { color: #a16207; }
+    [data-theme="light"] .ms-num-6 { color: #0891b2; }
+    [data-theme="light"] .ms-num-7 { color: #be185d; }
+    [data-theme="light"] .ms-num-8 { color: rgba(40,50,70,0.4); }
+    [data-theme="light"] .ms-flag-icon { color: #a16207; }
+    [data-theme="light"] .ms-mine-icon { color: #dc2626; }
+    [data-theme="light"] .ms-header { background: rgba(255,255,255,0.7); border-color: rgba(37,99,235,0.15); }
+    [data-theme="light"] .ms-counter { color: #a16207; }
+    [data-theme="light"] .ms-counter svg { stroke: #a16207; }
+    [data-theme="light"] .ms-timer { color: #2563eb; }
+    [data-theme="light"] .ms-timer svg { stroke: #2563eb; }
+    [data-theme="light"] .ms-board { background: rgba(220,230,245,0.4); border-color: rgba(37,99,235,0.15); }
+    [data-theme="light"] .ms-diff-btn { background: rgba(255,255,255,0.6); border-color: rgba(37,99,235,0.15); color: rgba(40,50,70,0.6); }
+    [data-theme="light"] .ms-diff-btn.active { background: rgba(37,99,235,0.1); border-color: rgba(37,99,235,0.4); color: #2563eb; }
+    [data-theme="light"] .ms-game-over-overlay { background: rgba(232,236,241,0.9); }
+    [data-theme="light"] .ms-game-over-text { color: #1a1a2e; }
+    [data-theme="light"] .ms-hint { background: rgba(220,230,245,0.5); color: rgba(40,50,70,0.5); }
+    [data-theme="light"] .ms-face-btn { background: rgba(255,255,255,0.5); border-color: rgba(37,99,235,0.2); }
+
+    @media (max-width: 400px) {
+        .ms-cell { width: 28px; height: 28px; font-size: 12px; }
+        .ms-board { gap: 1px; padding: 6px; }
+    }
+
     /* Prefers-reduced-motion: disable animations */
     @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after {
@@ -806,6 +1004,34 @@
                 <div class="menu-btn" onclick="navigateTo('circuit-breaker')"><div class="menu-btn-text"><div class="menu-btn-label">Автоматический выключатель</div><div class="menu-btn-sublabel">Расчёт по мощности, току, сечению кабеля</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('orifice-select')"><div class="menu-btn-text"><div class="menu-btn-label">Сужающее устройство</div><div class="menu-btn-sublabel">Расчёт диафрагмы по расходу и перепаду</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('library')"><div class="menu-btn-text"><div class="menu-btn-label">Библиотека КИП и А</div><div class="menu-btn-sublabel">Документация, схемы, инструкции</div></div><i class="menu-btn-arrow">›</i></div>
+                <div class="menu-btn menu-btn-secret" id="minesweeperBtn" onclick="navigateTo('minesweeper')" style="border-color:rgba(199,150,74,0.35);"><div class="menu-btn-text"><div class="menu-btn-label" style="color:#c7964a;">Игра сапёр</div><div class="menu-btn-sublabel">Классическая игра в стиле сайта</div></div><i class="menu-btn-arrow" style="color:rgba(199,150,74,0.3);">›</i></div>
+            </div>
+        </div>
+
+        <!-- ======================== ИГРА САПЁР ======================== -->
+        <div id="page-minesweeper" class="page-content">
+            <div class="page-inline-header"><div class="page-inline-header-title">Сапёр</div></div>
+            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
+            <div class="ms-container">
+                <div class="ms-difficulty">
+                    <div class="ms-diff-btn active" onclick="msSetDifficulty('easy')">Легко 9x9</div>
+                    <div class="ms-diff-btn" onclick="msSetDifficulty('medium')">Средне 12x12</div>
+                    <div class="ms-diff-btn" onclick="msSetDifficulty('hard')">Сложно 16x16</div>
+                </div>
+                <div class="ms-header">
+                    <div class="ms-counter"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/></svg><span id="msMineCount">10</span></div>
+                    <div class="ms-face-btn" id="msFaceBtn" onclick="msInit()">😊</div>
+                    <div class="ms-timer"><span id="msTimer">000</span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                </div>
+                <div class="ms-board-center" style="position:relative;">
+                    <div class="ms-board" id="msBoard"></div>
+                    <div class="ms-game-over-overlay" id="msOverlay" style="display:none;">
+                        <div class="ms-game-over-text" id="msGameOverText"></div>
+                        <div class="ms-game-over-sub" id="msGameOverSub"></div>
+                        <button class="ms-restart-btn" onclick="msInit()">Новая игра</button>
+                    </div>
+                </div>
+                <div class="ms-hint">Нажмите — открыть клетку · Долгое нажатие — поставить флаг</div>
             </div>
         </div>
 
@@ -1568,10 +1794,263 @@
 <div id="toast" class="toast"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg><span id="toastMessage"></span></div>
 
 <script>
+    // ======================== ИГРА САПЁР ========================
+    let msCols = 9, msRows = 9, msMines = 10;
+    let msBoard = [], msRevealed = [], msFlagged = [], msGameOver = false, msFirstClick = true;
+    let msTimerInterval = null, msSeconds = 0;
+    let msLongPressTimer = null, msLongPressFired = false;
+
+    const msDifficulties = {
+        easy: { cols: 9, rows: 9, mines: 10 },
+        medium: { cols: 12, rows: 12, mines: 30 },
+        hard: { cols: 16, rows: 16, mines: 55 }
+    };
+
+    function msSetDifficulty(diff) {
+        const d = msDifficulties[diff];
+        msCols = d.cols; msRows = d.rows; msMines = d.mines;
+        document.querySelectorAll('.ms-diff-btn').forEach((b, i) => {
+            b.classList.toggle('active', ['easy','medium','hard'][i] === diff);
+        });
+        msInit();
+    }
+
+    function msInit() {
+        msBoard = []; msRevealed = []; msFlagged = [];
+        msGameOver = false; msFirstClick = true; msSeconds = 0;
+        if (msTimerInterval) { clearInterval(msTimerInterval); msTimerInterval = null; }
+        document.getElementById('msTimer').textContent = '000';
+        document.getElementById('msMineCount').textContent = msMines;
+        document.getElementById('msFaceBtn').textContent = '😊';
+        document.getElementById('msOverlay').style.display = 'none';
+
+        for (let r = 0; r < msRows; r++) {
+            msBoard[r] = []; msRevealed[r] = []; msFlagged[r] = [];
+            for (let c = 0; c < msCols; c++) {
+                msBoard[r][c] = 0; msRevealed[r][c] = false; msFlagged[r][c] = false;
+            }
+        }
+        msRender();
+    }
+
+    function msPlaceMines(safeR, safeC) {
+        let placed = 0;
+        while (placed < msMines) {
+            let r = Math.floor(Math.random() * msRows);
+            let c = Math.floor(Math.random() * msCols);
+            if (msBoard[r][c] === -1) continue;
+            if (Math.abs(r - safeR) <= 1 && Math.abs(c - safeC) <= 1) continue;
+            msBoard[r][c] = -1;
+            placed++;
+        }
+        for (let r = 0; r < msRows; r++) {
+            for (let c = 0; c < msCols; c++) {
+                if (msBoard[r][c] === -1) continue;
+                let count = 0;
+                for (let dr = -1; dr <= 1; dr++) {
+                    for (let dc = -1; dc <= 1; dc++) {
+                        let nr = r + dr, nc = c + dc;
+                        if (nr >= 0 && nr < msRows && nc >= 0 && nc < msCols && msBoard[nr][nc] === -1) count++;
+                    }
+                }
+                msBoard[r][c] = count;
+            }
+        }
+    }
+
+    function msRender() {
+        let board = document.getElementById('msBoard');
+        board.style.gridTemplateColumns = `repeat(${msCols}, 32px)`;
+        board.innerHTML = '';
+        for (let r = 0; r < msRows; r++) {
+            for (let c = 0; c < msCols; c++) {
+                let cell = document.createElement('div');
+                cell.className = 'ms-cell';
+                cell.dataset.r = r; cell.dataset.c = c;
+
+                if (msRevealed[r][c]) {
+                    cell.classList.add('ms-cell-revealed');
+                    if (msBoard[r][c] === -1) {
+                        cell.classList.add(msGameOver ? 'ms-cell-mine-hit' : 'ms-cell-mine');
+                        cell.innerHTML = '<span class="ms-mine-icon">●</span>';
+                    } else if (msBoard[r][c] > 0) {
+                        cell.classList.add('ms-num-' + msBoard[r][c]);
+                        cell.textContent = msBoard[r][c];
+                    }
+                } else if (msFlagged[r][c]) {
+                    cell.classList.add('ms-cell-hidden', 'ms-cell-flagged');
+                    cell.innerHTML = '<span class="ms-flag-icon">⚑</span>';
+                } else {
+                    cell.classList.add('ms-cell-hidden');
+                }
+
+                // Touch events for mobile
+                cell.addEventListener('touchstart', function(e) {
+                    msLongPressFired = false;
+                    msLongPressTimer = setTimeout(() => {
+                        msLongPressFired = true;
+                        msToggleFlag(r, c);
+                        if (navigator.vibrate) navigator.vibrate(30);
+                    }, 400);
+                }, { passive: true });
+                cell.addEventListener('touchend', function(e) {
+                    if (msLongPressTimer) { clearTimeout(msLongPressTimer); msLongPressTimer = null; }
+                    if (!msLongPressFired && !msGameOver) {
+                        msReveal(r, c);
+                    }
+                    e.preventDefault();
+                });
+                cell.addEventListener('touchmove', function() {
+                    if (msLongPressTimer) { clearTimeout(msLongPressTimer); msLongPressTimer = null; }
+                }, { passive: true });
+
+                // Mouse events for desktop
+                cell.addEventListener('click', function(e) {
+                    if (msGameOver) return;
+                    msReveal(r, c);
+                });
+                cell.addEventListener('contextmenu', function(e) {
+                    e.preventDefault();
+                    if (msGameOver) return;
+                    msToggleFlag(r, c);
+                });
+
+                board.appendChild(cell);
+            }
+        }
+        // Adjust cell size for smaller screens
+        if (msCols > 12 && window.innerWidth < 420) {
+            board.style.gridTemplateColumns = `repeat(${msCols}, 22px)`;
+            board.querySelectorAll('.ms-cell').forEach(c => { c.style.width = '22px'; c.style.height = '22px'; c.style.fontSize = '11px'; });
+        } else if (msCols > 9 && window.innerWidth < 420) {
+            board.style.gridTemplateColumns = `repeat(${msCols}, 26px)`;
+            board.querySelectorAll('.ms-cell').forEach(c => { c.style.width = '26px'; c.style.height = '26px'; c.style.fontSize = '12px'; });
+        }
+    }
+
+    function msReveal(r, c) {
+        if (msGameOver || msRevealed[r][c] || msFlagged[r][c]) return;
+        if (msFirstClick) {
+            msFirstClick = false;
+            msPlaceMines(r, c);
+            msTimerInterval = setInterval(() => {
+                msSeconds++;
+                document.getElementById('msTimer').textContent = String(msSeconds).padStart(3, '0');
+            }, 1000);
+        }
+        msRevealed[r][c] = true;
+        if (msBoard[r][c] === -1) {
+            msGameOver = true;
+            msRevealAllMines();
+            document.getElementById('msFaceBtn').textContent = '😵';
+            if (msTimerInterval) { clearInterval(msTimerInterval); msTimerInterval = null; }
+            msShowOverlay(false);
+        } else if (msBoard[r][c] === 0) {
+            msFloodReveal(r, c);
+        }
+        msRender();
+        msCheckWin();
+    }
+
+    function msFloodReveal(r, c) {
+        for (let dr = -1; dr <= 1; dr++) {
+            for (let dc = -1; dc <= 1; dc++) {
+                let nr = r + dr, nc = c + dc;
+                if (nr >= 0 && nr < msRows && nc >= 0 && nc < msCols && !msRevealed[nr][nc] && !msFlagged[nr][nc]) {
+                    msRevealed[nr][nc] = true;
+                    if (msBoard[nr][nc] === 0) msFloodReveal(nr, nc);
+                }
+            }
+        }
+    }
+
+    function msToggleFlag(r, c) {
+        if (msGameOver || msRevealed[r][c]) return;
+        msFlagged[r][c] = !msFlagged[r][c];
+        let flagCount = msFlagged.flat().filter(Boolean).length;
+        document.getElementById('msMineCount').textContent = Math.max(0, msMines - flagCount);
+        msRender();
+        msCheckWin();
+    }
+
+    function msRevealAllMines() {
+        for (let r = 0; r < msRows; r++) {
+            for (let c = 0; c < msCols; c++) {
+                if (msBoard[r][c] === -1) msRevealed[r][c] = true;
+            }
+        }
+    }
+
+    function msCheckWin() {
+        if (msGameOver) return;
+        let hiddenCount = 0;
+        for (let r = 0; r < msRows; r++) {
+            for (let c = 0; c < msCols; c++) {
+                if (!msRevealed[r][c]) hiddenCount++;
+            }
+        }
+        if (hiddenCount === msMines) {
+            msGameOver = true;
+            document.getElementById('msFaceBtn').textContent = '😎';
+            if (msTimerInterval) { clearInterval(msTimerInterval); msTimerInterval = null; }
+            // Auto-flag all mines
+            for (let r = 0; r < msRows; r++) {
+                for (let c = 0; c < msCols; c++) {
+                    if (msBoard[r][c] === -1) msFlagged[r][c] = true;
+                }
+            }
+            document.getElementById('msMineCount').textContent = '0';
+            msRender();
+            msShowOverlay(true);
+        }
+    }
+
+    function msShowOverlay(won) {
+        let overlay = document.getElementById('msOverlay');
+        let text = document.getElementById('msGameOverText');
+        let sub = document.getElementById('msGameOverSub');
+        if (won) {
+            text.textContent = '🎉 Победа!';
+            text.style.color = '#4ac771';
+            sub.textContent = 'Время: ' + msSeconds + ' сек';
+        } else {
+            text.textContent = '💥 Взрыв!';
+            text.style.color = '#c74a4a';
+            sub.textContent = 'Попробуйте ещё раз';
+        }
+        overlay.style.display = 'flex';
+    }
+
+    // ===== СЕКРЕТНАЯ КНОПКА САПЁР =====
+    let secretTapCount = 0;
+    let secretTapTimer = null;
+    const SECRET_TAP_THRESHOLD = 5;
+    document.querySelector('.header-title').addEventListener('click', function() {
+        secretTapCount++;
+        this.classList.add('hint-pulse');
+        setTimeout(() => this.classList.remove('hint-pulse'), 200);
+        clearTimeout(secretTapTimer);
+        secretTapTimer = setTimeout(() => { secretTapCount = 0; }, 1500);
+        if (secretTapCount >= SECRET_TAP_THRESHOLD) {
+            secretTapCount = 0;
+            clearTimeout(secretTapTimer);
+            let btn = document.getElementById('minesweeperBtn');
+            if (btn.classList.contains('revealed')) {
+                btn.classList.remove('revealed');
+                if (navigator.vibrate) navigator.vibrate([30,30,30]);
+            } else {
+                btn.classList.add('revealed');
+                if (navigator.vibrate) navigator.vibrate([50,50,100]);
+                btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    });
+
     // ИСТОРИЯ И НАВИГАЦИЯ
     let pageHistory = [];
     function navigateTo(page, addToHistory=true) {
         if (page === 'library') { navigateTo('library-internal'); return; }
+        if (page === 'minesweeper') { setTimeout(() => { if (typeof msInit === 'function') msInit(); }, 50); }
         let active = document.querySelector('.page-content.active');
         if (active && addToHistory) { let id = active.id.replace('page-', ''); if (id !== page) pageHistory.push(id); }
         document.querySelectorAll('.page-content').forEach(el => { el.classList.remove('active', 'visible'); });
