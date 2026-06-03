@@ -1,25 +1,25 @@
 {
- "name ":  "КИП ИОС ",
- "short_name ":  "КИП ",
- "start_url ":  "./index.html ",
- "display ":  "standalone ",
- "background_color ":  "#1a1d20 ",
- "theme_color ":  "#1a1d20 ",
- "icons ": [
+  "name": "КИПиА",
+  "short_name": "КИПиА",
+  "description": "Справочник и калькулятор контрольно-измерительных приборов и автоматики",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1a2233",
+  "theme_color": "#1a2233",
+  "lang": "ru",
+  "icons": [
     {
-        "src ":  "icon.png ",
-        "sizes ":  "512x512 ",
-        "type ":  "image/png "
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-        "src ":  "buoy_with.png ",
-        "sizes ":  "192x192 ",
-        "type ":  "image/png "
-    },
-    {
-        "src ":  "buoy_without.png ",
-        "sizes ":  "192x192 ",
-        "type ":  "image/png "
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-]
+  ]
 }
