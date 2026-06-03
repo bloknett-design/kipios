@@ -858,8 +858,8 @@
         100% { box-shadow: none; }
     }
     .header-title {
-        cursor: default; user-select: none; -webkit-user-select: none;
-        transition: color 0.2s;
+        cursor: pointer; user-select: none; -webkit-user-select: none;
+        transition: color 0.2s; touch-action: manipulation;
     }
     .header-title.hint-pulse {
         color: #c7964a !important;
@@ -1004,7 +1004,7 @@
                 <div class="menu-btn" onclick="navigateTo('circuit-breaker')"><div class="menu-btn-text"><div class="menu-btn-label">Автоматический выключатель</div><div class="menu-btn-sublabel">Расчёт по мощности, току, сечению кабеля</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('orifice-select')"><div class="menu-btn-text"><div class="menu-btn-label">Сужающее устройство</div><div class="menu-btn-sublabel">Расчёт диафрагмы по расходу и перепаду</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('library')"><div class="menu-btn-text"><div class="menu-btn-label">Библиотека КИП и А</div><div class="menu-btn-sublabel">Документация, схемы, инструкции</div></div><i class="menu-btn-arrow">›</i></div>
-                <div class="menu-btn menu-btn-secret revealed" id="minesweeperBtn" onclick="navigateTo('minesweeper')" style="border-color:rgba(199,150,74,0.35);"><div class="menu-btn-text"><div class="menu-btn-label" style="color:#c7964a;">Игра сапёр</div><div class="menu-btn-sublabel">Классическая игра в стиле сайта</div></div><i class="menu-btn-arrow" style="color:rgba(199,150,74,0.3);">›</i></div>
+                <div class="menu-btn menu-btn-secret" id="minesweeperBtn" onclick="navigateTo('minesweeper')"><div class="menu-btn-text"><div class="menu-btn-label">Игра сапёр</div><div class="menu-btn-sublabel">Классическая игра в стиле сайта</div></div><i class="menu-btn-arrow">›</i></div>
             </div>
         </div>
 
@@ -2025,10 +2025,12 @@
     let secretTapCount = 0;
     let secretTapTimer = null;
     const SECRET_TAP_THRESHOLD = 5;
-    document.querySelector('.header-title').addEventListener('click', function() {
+    let secretLastTouchTime = 0;
+    function handleSecretTap() {
         secretTapCount++;
-        this.classList.add('hint-pulse');
-        setTimeout(() => this.classList.remove('hint-pulse'), 200);
+        let title = document.querySelector('.header-title');
+        title.classList.add('hint-pulse');
+        setTimeout(() => title.classList.remove('hint-pulse'), 200);
         clearTimeout(secretTapTimer);
         secretTapTimer = setTimeout(() => { secretTapCount = 0; }, 1500);
         if (secretTapCount >= SECRET_TAP_THRESHOLD) {
@@ -2044,6 +2046,15 @@
                 btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }
+    }
+    document.querySelector('.header-title').addEventListener('touchend', function(e) {
+        e.preventDefault();
+        secretLastTouchTime = Date.now();
+        handleSecretTap();
+    });
+    document.querySelector('.header-title').addEventListener('click', function() {
+        if (Date.now() - secretLastTouchTime < 500) return;
+        handleSecretTap();
     });
 
     // ИСТОРИЯ И НАВИГАЦИЯ
