@@ -8,6 +8,9 @@
 <meta name="theme-color" content="#1a2233" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f0f2f5" media="(prefers-color-scheme: light)">
 <meta name="apple-mobile-web-app-title" content="КИПиА">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <link rel="apple-touch-icon" href="icon.png">
 <link rel="manifest" href="manifest.json">
 <title>КИПиА</title>
@@ -3164,8 +3167,16 @@ if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
         navigator.serviceWorker.register('./sw.js').then(function(reg) {
             console.log('SW registered:', reg.scope);
+            // Проверять обновления SW каждые 30 минут
+            setInterval(function() { reg.update(); }, 30 * 60 * 1000);
         }).catch(function(err) {
             console.log('SW registration failed:', err);
+        });
+
+        // Автообновление страницы при активации нового Service Worker
+        navigator.serviceWorker.addEventListener('controllerchange', function() {
+            // Новый SW взял контроль — перезагружаем для загрузки свежих файлов
+            window.location.reload();
         });
     });
 }
