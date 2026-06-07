@@ -730,6 +730,218 @@
         box-shadow: 0 3px 12px rgba(37, 99, 235, 0.25);
     }
 
+    /* ===== Minesweeper Game Styles ===== */
+    .ms-container { padding: 10px 16px; position: relative; z-index: 2; }
+    .ms-header {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 8px 12px; margin-bottom: 10px;
+        background: var(--card-bg); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+        border: 1px solid var(--card-border); border-radius: 14px;
+        gap: 8px;
+    }
+    .ms-left {
+        display: flex; align-items: center; gap: 8px; flex-shrink: 1; min-width: 0;
+    }
+    .ms-counter {
+        display: flex; align-items: center; gap: 5px;
+        font-size: 15px; font-weight: 700; color: #c7964a;
+        font-family: 'Inter', monospace; min-width: 40px;
+    }
+    .ms-counter svg { width: 15px; height: 15px; stroke: #c7964a; fill: none; stroke-width: 2; }
+    .ms-face-btn {
+        width: 38px; height: 38px; border-radius: 10px;
+        background: rgba(255,255,255,0.08); border: 1px solid rgba(74,143,199,0.2);
+        display: flex; align-items: center; justify-content: center; cursor: pointer;
+        font-size: 20px; transition: all 0.2s; touch-action: manipulation;
+    }
+    .ms-face-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.15); }
+    .ms-timer {
+        display: flex; align-items: center; gap: 5px;
+        font-size: 15px; font-weight: 700; color: #4a8fc7;
+        font-family: 'Inter', monospace; min-width: 40px;
+    }
+    .ms-timer svg { width: 15px; height: 15px; stroke: #4a8fc7; fill: none; stroke-width: 2; }
+    .ms-diff-select {
+        background: var(--input-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 10px;
+        color: #4a8fc7; font-size: 13px; font-weight: 600;
+        font-family: 'Inter', sans-serif;
+        padding: 8px 24px 8px 8px;
+        cursor: pointer; outline: none;
+        -webkit-appearance: none; appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%234a8fc7'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 8px center;
+        background-size: 10px 6px;
+        touch-action: manipulation;
+        min-height: 38px;
+        flex-shrink: 0;
+    }
+    .ms-diff-select:focus { border-color: rgba(74,143,199,0.5); box-shadow: 0 0 0 3px rgba(74,143,199,0.12); }
+    .ms-diff-select option {
+        font-size: 13px; padding: 6px 8px;
+        background: #1a2233; color: #e0e0e0;
+    }
+    .ms-board {
+        display: inline-grid; gap: 2px; padding: 8px;
+        background: rgba(14,22,33,0.6); border: 1px solid rgba(74,143,199,0.2);
+        border-radius: 12px; margin: 0 auto; touch-action: none;
+        -webkit-user-select: none; user-select: none;
+        -webkit-touch-callout: none;
+        max-width: 100%;
+    }
+    .ms-board-center { display: flex; justify-content: flex-start; }
+    .ms-board-scroll-spacer {
+        width: 36px; flex-shrink: 0;
+        touch-action: pan-y; -webkit-touch-callout: none;
+    }
+    .ms-cell {
+        border-radius: 4px;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 700; cursor: pointer;
+        transition: all 0.1s; position: relative;
+        touch-action: none; -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+    }
+    .ms-cell-hidden {
+        background: rgba(30,42,56,0.7);
+        border: 1px solid rgba(74,143,199,0.25);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 1px 2px rgba(0,0,0,0.2);
+        background-image: linear-gradient(rgba(74,143,199,0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(74,143,199,0.1) 1px, transparent 1px);
+        background-size: 8px 8px, 8px 8px;
+    }
+    .ms-cell-hidden:hover {
+        background: rgba(40,55,72,0.8);
+        border-color: rgba(74,143,199,0.4);
+    }
+    .ms-cell-hidden:active {
+        background: rgba(50,65,82,0.9);
+        transform: scale(0.92);
+    }
+    .ms-cell-revealed {
+        background: rgba(14,22,33,0.4);
+        border: 1px solid rgba(74,143,199,0.08);
+    }
+    .ms-cell-flagged {
+        background: rgba(30,42,56,0.7);
+        border: 1px solid rgba(199,150,74,0.4);
+    }
+    .ms-cell-mine {
+        background: rgba(199,74,74,0.2);
+        border: 1px solid rgba(199,74,74,0.4);
+    }
+    .ms-cell-mine-hit {
+        background: rgba(199,74,74,0.4);
+        border: 1px solid rgba(199,74,74,0.6);
+    }
+    .ms-num-1 { color: #4a8fc7; }
+    .ms-num-2 { color: #4ac771; }
+    .ms-num-3 { color: #c74a4a; }
+    .ms-num-4 { color: #7a4ac7; }
+    .ms-num-5 { color: #c7964a; }
+    .ms-num-6 { color: #4ac7c7; }
+    .ms-num-7 { color: #c74a96; }
+    .ms-num-8 { color: rgba(255,255,255,0.4); }
+    .ms-flag-icon { color: #c7964a; }
+    .ms-mine-icon { color: #c74a4a; }
+    .ms-game-over-overlay {
+        position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(14,22,33,0.85); backdrop-filter: blur(4px);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        border-radius: 12px; z-index: 5;
+    }
+    .ms-game-over-text {
+        font-size: 22px; font-weight: 700; margin-bottom: 8px;
+    }
+    .ms-game-over-sub {
+        font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 16px;
+    }
+    /* ===== Secret Minesweeper Button ===== */
+    .menu-btn-secret {
+        display: none;
+    }
+    .menu-btn-secret.revealed {
+        display: flex;
+        animation: secretRevealGlow 1.5s ease-out;
+    }
+    @keyframes secretRevealGlow {
+        0% { box-shadow: 0 0 0 0 rgba(199,150,74,0.6); }
+        50% { box-shadow: 0 0 20px 4px rgba(199,150,74,0.3); }
+        100% { box-shadow: none; }
+    }
+    .header-title {
+        cursor: pointer; user-select: none; -webkit-user-select: none;
+        -webkit-touch-callout: none; touch-action: manipulation;
+        transition: color 0.2s;
+    }
+    .header-title.hint-pulse {
+        color: #c7964a !important;
+        transition: color 0.15s;
+    }
+    .ms-restart-btn {
+        padding: 10px 24px; border-radius: 10px;
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
+        border: none; color: #fff; font-size: 14px; font-weight: 600;
+        cursor: pointer; transition: all 0.2s;
+        font-family: 'Inter', sans-serif; touch-action: manipulation;
+        box-shadow: 0 3px 12px rgba(37,99,235,0.25);
+    }
+    .ms-restart-btn:active { transform: scale(0.95); opacity: 0.9; }
+    .ms-hint {
+        margin-top: 10px; padding: 8px 12px;
+        background: rgba(30,42,56,0.5); border-radius: 8px;
+        font-size: 11px; color: rgba(255,255,255,0.3);
+        text-align: center; line-height: 1.4;
+    }
+    [data-theme="light"] .ms-cell-hidden {
+        background: rgba(200,215,235,0.7);
+        border-color: rgba(37,99,235,0.2);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 2px rgba(0,0,0,0.08);
+        background-image: linear-gradient(rgba(37,99,235,0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(37,99,235,0.08) 1px, transparent 1px);
+        background-size: 8px 8px, 8px 8px;
+    }
+    [data-theme="light"] .ms-cell-hidden:hover {
+        background: rgba(180,200,225,0.8);
+        border-color: rgba(37,99,235,0.35);
+    }
+    [data-theme="light"] .ms-cell-revealed {
+        background: rgba(232,236,241,0.5);
+        border-color: rgba(37,99,235,0.08);
+    }
+    [data-theme="light"] .ms-cell-flagged {
+        background: rgba(200,215,235,0.7);
+        border-color: rgba(234,179,8,0.4);
+    }
+    [data-theme="light"] .ms-num-1 { color: #2563eb; }
+    [data-theme="light"] .ms-num-2 { color: #16a34a; }
+    [data-theme="light"] .ms-num-3 { color: #dc2626; }
+    [data-theme="light"] .ms-num-4 { color: #7c3aed; }
+    [data-theme="light"] .ms-num-5 { color: #a16207; }
+    [data-theme="light"] .ms-num-6 { color: #0891b2; }
+    [data-theme="light"] .ms-num-7 { color: #be185d; }
+    [data-theme="light"] .ms-num-8 { color: rgba(40,50,70,0.4); }
+    [data-theme="light"] .ms-flag-icon { color: #a16207; }
+    [data-theme="light"] .ms-mine-icon { color: #dc2626; }
+    [data-theme="light"] .ms-header { background: rgba(255,255,255,0.7); border-color: rgba(37,99,235,0.15); }
+    [data-theme="light"] .ms-counter { color: #a16207; }
+    [data-theme="light"] .ms-counter svg { stroke: #a16207; }
+    [data-theme="light"] .ms-timer { color: #2563eb; }
+    [data-theme="light"] .ms-timer svg { stroke: #2563eb; }
+    [data-theme="light"] .ms-board { background: rgba(220,230,245,0.4); border-color: rgba(37,99,235,0.15); }
+    [data-theme="light"] .ms-diff-select { background-color: rgba(255,255,255,0.8); border-color: rgba(37,99,235,0.2); color: #2563eb; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%232563eb'/%3E%3C/svg%3E"); }
+    [data-theme="light"] .ms-diff-select option { background: #fff; color: #1a1a2e; }
+    [data-theme="light"] .ms-game-over-overlay { background: rgba(232,236,241,0.9); }
+    [data-theme="light"] .ms-game-over-text { color: #1a1a2e; }
+    [data-theme="light"] .ms-hint { background: rgba(220,230,245,0.5); color: rgba(40,50,70,0.5); }
+    [data-theme="light"] .ms-face-btn { background: rgba(255,255,255,0.5); border-color: rgba(37,99,235,0.2); }
+
+    @media (max-width: 400px) {
+        .ms-board { padding: 4px; }
+    }
+
     /* Prefers-reduced-motion: disable animations */
     @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after {
@@ -784,7 +996,7 @@
 <div class="header-btn" id="menuBtn" onclick="toggleSidebar()" style="margin-right:6px;display:none;">
     <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:rgba(74,143,199,0.9);fill:none;stroke-width:2;stroke-linecap:round;"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
 </div>
-<img class="header-logo" src="logo.png" alt="КИП" style="width:48px;height:48px;border-radius:12px;cursor:pointer;" onclick="event.stopPropagation(); toggleSidebar();">
+<img class="header-logo" id="headerLogo" src="logo_black.png" alt="КИП" style="width:48px;height:48px;border-radius:12px;cursor:pointer;" onclick="event.stopPropagation(); toggleSidebar();">
                 <div>
                     <div class="header-title">КИПиА</div>
                 </div>
@@ -806,6 +1018,39 @@
                 <div class="menu-btn" onclick="navigateTo('circuit-breaker')"><div class="menu-btn-text"><div class="menu-btn-label">Автоматический выключатель</div><div class="menu-btn-sublabel">Расчёт по мощности, току, сечению кабеля</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('orifice-select')"><div class="menu-btn-text"><div class="menu-btn-label">Сужающее устройство</div><div class="menu-btn-sublabel">Расчёт диафрагмы по расходу и перепаду</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('library')"><div class="menu-btn-text"><div class="menu-btn-label">Библиотека КИП и А</div><div class="menu-btn-sublabel">Документация, схемы, инструкции</div></div><i class="menu-btn-arrow">›</i></div>
+                <div class="menu-btn menu-btn-secret" id="minesweeperBtn" onclick="navigateTo('minesweeper')" style="border-color:rgba(199,150,74,0.35);"><div class="menu-btn-text"><div class="menu-btn-label" style="color:#c7964a;">Сапёр</div></div></div>
+            </div>
+        </div>
+
+        <!-- ======================== ИГРА САПЁР ======================== -->
+        <div id="page-minesweeper" class="page-content">
+            <div class="page-inline-header"><div class="page-inline-header-title">Сапёр</div></div>
+            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
+            <div class="ms-container">
+                <div class="ms-header">
+                    <div class="ms-left">
+                        <div class="ms-counter"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/></svg><span id="msMineCount">10</span></div>
+                        <div class="ms-face-btn" id="msFaceBtn" onclick="msInit()">😊</div>
+                        <div class="ms-timer"><span id="msTimer">000</span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                    </div>
+                    <select class="ms-diff-select" id="msDiffSelect" onchange="msSetDifficulty(this.value)">
+                        <option value="easy" selected>9x9</option>
+                        <option value="medium">9x16</option>
+                        <option value="hard">9x28</option>
+                    </select>
+                </div>
+                <div style="display:flex;">
+                    <div class="ms-board-center" style="position:relative; flex-shrink:0;">
+                        <div class="ms-board" id="msBoard"></div>
+                        <div class="ms-game-over-overlay" id="msOverlay" style="display:none;">
+                            <div class="ms-game-over-text" id="msGameOverText"></div>
+                            <div class="ms-game-over-sub" id="msGameOverSub"></div>
+                            <button class="ms-restart-btn" onclick="msInit()">Новая игра</button>
+                        </div>
+                    </div>
+                    <div class="ms-board-scroll-spacer"></div>
+                </div>
+                <div class="ms-hint">Нажмите — открыть клетку · Долгое нажатие — поставить флаг</div>
             </div>
         </div>
 
@@ -1380,7 +1625,7 @@
 
             <div class="content-header" style="padding: 14px 20px 10px;">
                 <h2 style="color: #e0e0e0; font-size: 22px; font-weight: 700; letter-spacing: -0.3px;">Разделы библиотеки</h2>
-                <p style="color: rgba(255,255,255,0.35); font-size: 12px; margin-top: 5px;">Переход к папкам OneDrive</p>
+                <p style="color: rgba(255,255,255,0.35); font-size: 12px; margin-top: 5px;">Ссылки на облачные папки с документацией</p>
             </div>
 
             <div class="menu-btn-row">
@@ -1568,10 +1813,304 @@
 <div id="toast" class="toast"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg><span id="toastMessage"></span></div>
 
 <script>
+    // ======================== ИГРА САПЁР ========================
+    let msCols = 9, msRows = 9, msMines = 10;
+    let msBoard = [], msRevealed = [], msFlagged = [], msGameOver = false, msFirstClick = true;
+    let msTimerInterval = null, msSeconds = 0;
+    let msLongPressTimer = null, msLongPressFired = false;
+
+    const msDifficulties = {
+        easy: { cols: 9, rows: 9, mines: 10 },
+        medium: { cols: 9, rows: 16, mines: 25 },
+        hard: { cols: 9, rows: 28, mines: 45 }
+    };
+
+    function msSetDifficulty(diff) {
+        const d = msDifficulties[diff];
+        if (!d) return;
+        msCols = d.cols; msRows = d.rows; msMines = d.mines;
+        const sel = document.getElementById('msDiffSelect');
+        if (sel) sel.value = diff;
+        msInit();
+    }
+
+    function msInit() {
+        msBoard = []; msRevealed = []; msFlagged = [];
+        msGameOver = false; msFirstClick = true; msSeconds = 0;
+        if (msTimerInterval) { clearInterval(msTimerInterval); msTimerInterval = null; }
+        document.getElementById('msTimer').textContent = '000';
+        document.getElementById('msMineCount').textContent = msMines;
+        document.getElementById('msFaceBtn').textContent = '😊';
+        document.getElementById('msOverlay').style.display = 'none';
+
+        for (let r = 0; r < msRows; r++) {
+            msBoard[r] = []; msRevealed[r] = []; msFlagged[r] = [];
+            for (let c = 0; c < msCols; c++) {
+                msBoard[r][c] = 0; msRevealed[r][c] = false; msFlagged[r][c] = false;
+            }
+        }
+        msRender();
+    }
+
+    function msPlaceMines(safeR, safeC) {
+        let placed = 0;
+        while (placed < msMines) {
+            let r = Math.floor(Math.random() * msRows);
+            let c = Math.floor(Math.random() * msCols);
+            if (msBoard[r][c] === -1) continue;
+            if (Math.abs(r - safeR) <= 1 && Math.abs(c - safeC) <= 1) continue;
+            msBoard[r][c] = -1;
+            placed++;
+        }
+        for (let r = 0; r < msRows; r++) {
+            for (let c = 0; c < msCols; c++) {
+                if (msBoard[r][c] === -1) continue;
+                let count = 0;
+                for (let dr = -1; dr <= 1; dr++) {
+                    for (let dc = -1; dc <= 1; dc++) {
+                        let nr = r + dr, nc = c + dc;
+                        if (nr >= 0 && nr < msRows && nc >= 0 && nc < msCols && msBoard[nr][nc] === -1) count++;
+                    }
+                }
+                msBoard[r][c] = count;
+            }
+        }
+    }
+
+    function msCalcCellSize() {
+        const containerPad = 32;  // ms-container: padding 10px*2 + margin
+        const boardPad = window.innerWidth <= 400 ? 8 : 16; // ms-board padding 4px*2 or 8px*2
+        const gapSize = window.innerWidth <= 400 ? 1 : 2;
+        const scrollSpace = 36;   // scroll-spacer width for touch scrolling
+        const availW = window.innerWidth - containerPad - boardPad - scrollSpace;
+        const cellSz = Math.floor((availW - (msCols - 1) * gapSize) / msCols);
+        return Math.max(cellSz, 20); // minimum 20px for tappability
+    }
+
+    function msRender() {
+        let board = document.getElementById('msBoard');
+        const cellSize = msCalcCellSize();
+        const fontSize = cellSize <= 24 ? 10 : cellSize <= 28 ? 12 : 14;
+        const gapSize = window.innerWidth <= 400 ? 1 : 2;
+        board.style.gridTemplateColumns = `repeat(${msCols}, ${cellSize}px)`;
+        board.style.gap = gapSize + 'px';
+        board.innerHTML = '';
+        for (let r = 0; r < msRows; r++) {
+            for (let c = 0; c < msCols; c++) {
+                let cell = document.createElement('div');
+                cell.className = 'ms-cell';
+                cell.dataset.r = r; cell.dataset.c = c;
+                cell.style.width = cellSize + 'px';
+                cell.style.height = cellSize + 'px';
+                cell.style.fontSize = fontSize + 'px';
+
+                if (msRevealed[r][c]) {
+                    cell.classList.add('ms-cell-revealed');
+                    if (msBoard[r][c] === -1) {
+                        cell.classList.add(msGameOver ? 'ms-cell-mine-hit' : 'ms-cell-mine');
+                        cell.innerHTML = '<span class="ms-mine-icon" style="font-size:' + Math.round(cellSize * 0.55) + 'px">●</span>';
+                    } else if (msBoard[r][c] > 0) {
+                        cell.classList.add('ms-num-' + msBoard[r][c]);
+                        cell.textContent = msBoard[r][c];
+                    }
+                } else if (msFlagged[r][c]) {
+                    cell.classList.add('ms-cell-hidden', 'ms-cell-flagged');
+                    cell.innerHTML = '<span class="ms-flag-icon" style="font-size:' + Math.round(cellSize * 0.5) + 'px">⚑</span>';
+                } else {
+                    cell.classList.add('ms-cell-hidden');
+                }
+
+                // Unified pointer handling for mobile + desktop
+                let msCellTouchFired = false;
+                let msCellTouchTimer = null;
+
+                cell.addEventListener('touchstart', function(e) {
+                    msLongPressFired = false;
+                    msCellTouchFired = true;
+                    msLongPressTimer = setTimeout(() => {
+                        msLongPressFired = true;
+                        msToggleFlag(r, c);
+                        if (navigator.vibrate) navigator.vibrate(30);
+                    }, 400);
+                }, { passive: true });
+
+                cell.addEventListener('touchend', function(e) {
+                    if (msLongPressTimer) { clearTimeout(msLongPressTimer); msLongPressTimer = null; }
+                    if (!msLongPressFired && !msGameOver) {
+                        msReveal(r, c);
+                    }
+                    e.preventDefault(); // prevent subsequent click event on mobile
+                });
+
+                cell.addEventListener('touchmove', function() {
+                    if (msLongPressTimer) { clearTimeout(msLongPressTimer); msLongPressTimer = null; }
+                    msCellTouchFired = false;
+                }, { passive: true });
+
+                // Mouse click for desktop — skip if touch already handled
+                cell.addEventListener('click', function(e) {
+                    if (msCellTouchFired) { msCellTouchFired = false; return; }
+                    if (msGameOver) return;
+                    msReveal(r, c);
+                });
+
+                cell.addEventListener('contextmenu', function(e) {
+                    e.preventDefault();
+                    if (msGameOver) return;
+                    msToggleFlag(r, c);
+                });
+
+                board.appendChild(cell);
+            }
+        }
+    }
+
+    // Recalculate cell sizes on resize/orientation change
+    window.addEventListener('resize', function() {
+        if (document.getElementById('page-minesweeper').classList.contains('active')) {
+            msRender();
+        }
+    });
+
+    function msReveal(r, c) {
+        if (msGameOver || msRevealed[r][c] || msFlagged[r][c]) return;
+        if (msFirstClick) {
+            msFirstClick = false;
+            msPlaceMines(r, c);
+            msTimerInterval = setInterval(() => {
+                msSeconds++;
+                document.getElementById('msTimer').textContent = String(msSeconds).padStart(3, '0');
+            }, 1000);
+        }
+        msRevealed[r][c] = true;
+        if (msBoard[r][c] === -1) {
+            msGameOver = true;
+            msRevealAllMines();
+            document.getElementById('msFaceBtn').textContent = '😵';
+            if (msTimerInterval) { clearInterval(msTimerInterval); msTimerInterval = null; }
+            msShowOverlay(false);
+        } else if (msBoard[r][c] === 0) {
+            msFloodReveal(r, c);
+        }
+        msRender();
+        msCheckWin();
+    }
+
+    function msFloodReveal(r, c) {
+        for (let dr = -1; dr <= 1; dr++) {
+            for (let dc = -1; dc <= 1; dc++) {
+                let nr = r + dr, nc = c + dc;
+                if (nr >= 0 && nr < msRows && nc >= 0 && nc < msCols && !msRevealed[nr][nc] && !msFlagged[nr][nc]) {
+                    msRevealed[nr][nc] = true;
+                    if (msBoard[nr][nc] === 0) msFloodReveal(nr, nc);
+                }
+            }
+        }
+    }
+
+    function msToggleFlag(r, c) {
+        if (msGameOver || msRevealed[r][c]) return;
+        msFlagged[r][c] = !msFlagged[r][c];
+        let flagCount = msFlagged.flat().filter(Boolean).length;
+        document.getElementById('msMineCount').textContent = Math.max(0, msMines - flagCount);
+        msRender();
+        msCheckWin();
+    }
+
+    function msRevealAllMines() {
+        for (let r = 0; r < msRows; r++) {
+            for (let c = 0; c < msCols; c++) {
+                if (msBoard[r][c] === -1) msRevealed[r][c] = true;
+            }
+        }
+    }
+
+    function msCheckWin() {
+        if (msGameOver) return;
+        let hiddenCount = 0;
+        for (let r = 0; r < msRows; r++) {
+            for (let c = 0; c < msCols; c++) {
+                if (!msRevealed[r][c]) hiddenCount++;
+            }
+        }
+        if (hiddenCount === msMines) {
+            msGameOver = true;
+            document.getElementById('msFaceBtn').textContent = '😎';
+            if (msTimerInterval) { clearInterval(msTimerInterval); msTimerInterval = null; }
+            // Auto-flag all mines
+            for (let r = 0; r < msRows; r++) {
+                for (let c = 0; c < msCols; c++) {
+                    if (msBoard[r][c] === -1) msFlagged[r][c] = true;
+                }
+            }
+            document.getElementById('msMineCount').textContent = '0';
+            msRender();
+            msShowOverlay(true);
+        }
+    }
+
+    function msShowOverlay(won) {
+        let overlay = document.getElementById('msOverlay');
+        let text = document.getElementById('msGameOverText');
+        let sub = document.getElementById('msGameOverSub');
+        if (won) {
+            text.textContent = '🎉 Победа!';
+            text.style.color = '#4ac771';
+            sub.textContent = 'Время: ' + msSeconds + ' сек';
+        } else {
+            text.textContent = '💥 Взрыв!';
+            text.style.color = '#c74a4a';
+            sub.textContent = 'Попробуйте ещё раз';
+        }
+        overlay.style.display = 'flex';
+    }
+
+    // ===== СЕКРЕТНАЯ КНОПКА САПЁР =====
+    let secretTapCount = 0;
+    let secretTapTimer = null;
+    const SECRET_TAP_THRESHOLD = 2;
+    let secretTouchHandled = false;
+    function secretTapHandler() {
+        secretTapCount++;
+        document.querySelector('.header-title').classList.add('hint-pulse');
+        setTimeout(() => document.querySelector('.header-title').classList.remove('hint-pulse'), 200);
+        clearTimeout(secretTapTimer);
+        secretTapTimer = setTimeout(() => { secretTapCount = 0; }, 1500);
+        if (secretTapCount >= SECRET_TAP_THRESHOLD) {
+            secretTapCount = 0;
+            clearTimeout(secretTapTimer);
+            let btn = document.getElementById('minesweeperBtn');
+            if (btn.classList.contains('revealed')) {
+                btn.classList.remove('revealed');
+                if (navigator.vibrate) navigator.vibrate([30,30,30]);
+            } else {
+                btn.classList.add('revealed');
+                if (navigator.vibrate) navigator.vibrate([50,50,100]);
+                btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    }
+    // Register both touch and click for the header title
+    (function() {
+        let headerEl = document.querySelector('.header-title');
+        if (!headerEl) return;
+        let touchFired = false;
+        headerEl.addEventListener('touchend', function(e) {
+            touchFired = true;
+            secretTapHandler();
+            e.preventDefault();
+        });
+        headerEl.addEventListener('click', function() {
+            if (touchFired) { touchFired = false; return; }
+            secretTapHandler();
+        });
+    })();
+
     // ИСТОРИЯ И НАВИГАЦИЯ
     let pageHistory = [];
     function navigateTo(page, addToHistory=true) {
         if (page === 'library') { navigateTo('library-internal'); return; }
+        if (page === 'minesweeper') { setTimeout(() => { if (typeof msInit === 'function') msInit(); }, 50); }
         let active = document.querySelector('.page-content.active');
         if (active && addToHistory) { let id = active.id.replace('page-', ''); if (id !== page) pageHistory.push(id); }
         document.querySelectorAll('.page-content').forEach(el => { el.classList.remove('active', 'visible'); });
@@ -1629,48 +2168,18 @@ function showToast(msg) { let t = document.getElementById('toast'); document.get
 function roundNumber(n) {
     if (n === 0) return '0';
     let absN = Math.abs(n);
-    // Determine the order of magnitude
+    if (absN >= 1e9 || (absN < 0.00001 && n !== 0)) return n.toExponential(1);
+    // Round to 2 significant figures: keep first 2 digits, rest zeros
     let order = Math.floor(Math.log10(absN));
-    // Scale the number so the most significant digit is in the ones place
-    let scaled = absN / Math.pow(10, order);
-    // Round to nearest 0.5 (JavaScript Math.round rounds half up)
-    let roundedScaled = Math.round(scaled * 2) / 2;
-    // Scale back
-    let result = roundedScaled * Math.pow(10, order);
-    // Preserve sign
-    if (n < 0) result = -result;
-    // Check if rounded_scaled is effectively an integer
-    let isScaledInteger = Math.abs(roundedScaled - Math.round(roundedScaled)) < 1e-10;
-    if (isScaledInteger) {
-        if (order >= 0) {
-            return Math.round(result).toString();
-        } else {
-            // For numbers < 1, format with appropriate decimal places
-            let decimalPlaces = Math.max(1, -order);
-            let s = result.toFixed(decimalPlaces);
-            // Remove trailing zeros
-            s = s.replace(/\.0+$/, '').replace(/(\.\d*[1-9])0+$/, '$1');
-            return s || '0';
-        }
+    let dp = 1 - order; // decimal places needed for 2 sig figs
+    if (dp < 0) {
+        // Round to nearest 10^(-dp) for large numbers
+        let factor = Math.pow(10, -dp);
+        let result = Math.round(n / factor) * factor;
+        return result.toString();
     } else {
-        // Half-integer in scaled domain
-        if (order >= 0) {
-            // Result is an integer (e.g., 7.5 * 1000 = 7500)
-            if (Math.abs(result - Math.round(result)) < 1e-10) {
-                return Math.round(result).toString();
-            } else {
-                // e.g. 2.5 with order=0 -> show as 2.5
-                let s = result.toString();
-                s = s.replace(/\.0+$/, '').replace(/(\.\d*[1-9])0+$/, '$1');
-                return s || '0';
-            }
-        } else {
-            // For half-integers with order < 0, need extra decimal place
-            let decimalPlaces = Math.max(1, -order + 1);
-            let s = result.toFixed(decimalPlaces);
-            s = s.replace(/\.0+$/, '').replace(/(\.\d*[1-9])0+$/, '$1');
-            return s || '0';
-        }
+        let result = parseFloat(n.toFixed(dp));
+        return result.toString();
     }
 }
     function convertUnits(cat) { if (cat==='temp') { convertTemp(); return; } let d=unitData[cat]; let val=parseFloat(document.getElementById(`conv-${cat}-input`).value); let from=document.getElementById(`conv-${cat}-unit`).value; let resDiv=document.getElementById(`conv-${cat}-results`); let tableDiv=document.getElementById(`conv-${cat}-table`); if(tableDiv) tableDiv.style.display='none'; if(isNaN(val)) { resDiv.innerHTML='<p style="text-align:center;color:#c74a4a;font-size:14px;padding:16px;">Введите значение</p>'; return; } let base=val*d.units[from].factor; let html='<div class="converter-result-label-title">Результаты</div>'; let delay=0; for(let u in d.units){ if(u===from) continue; let v=base/d.units[u].factor; html+=`<div class="converter-result-item" style="animation-delay:${delay}ms;cursor:pointer;" onclick="showConverterTable('${cat}','${from}','${u}',${base})"><span class="converter-result-label">${d.units[u].label}</span><span class="converter-result-value">${formatNumber(v)} <span style="color:rgba(255,255,255,0.25);font-weight:400;font-size:0.85em;">(${roundNumber(v)})</span></span></div>`; delay+=40; } resDiv.innerHTML=html; }
@@ -2515,6 +3024,7 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
         localStorage.setItem('app-theme', newTheme);
         updateThemeLabel();
         updateBuoyImages();
+        updateLogoImage();
     }
 
     function updateThemeLabel() {
@@ -2533,12 +3043,19 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
         if (buoyWithoutImg) buoyWithoutImg.src = isLight ? 'buoy_without.png' : 'buoy_without_black.png';
     }
 
+    function updateLogoImage() {
+        var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        var logo = document.getElementById('headerLogo');
+        if (logo) logo.src = isLight ? 'logo.png' : 'logo_black.png';
+    }
+
     // Apply saved theme on load
     (function() {
         let savedTheme = localStorage.getItem('app-theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
         updateThemeLabel();
         updateBuoyImages();
+        updateLogoImage();
     })();
 
     // Auto-detect system color scheme preference
@@ -2555,6 +3072,7 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
                 document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
                 if (typeof updateThemeLabel === 'function') updateThemeLabel();
                 if (typeof updateBuoyImages === 'function') updateBuoyImages();
+                if (typeof updateLogoImage === 'function') updateLogoImage();
             }
         });
     })();
