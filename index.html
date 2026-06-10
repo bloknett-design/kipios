@@ -442,7 +442,8 @@
 
 
 
-    .greek-gamma { font-family: Georgia, 'Times New Roman', serif; font-style: italic; }
+    .greek-gamma { font-family: Georgia, 'Times New Roman', serif; font-style: italic; text-transform: none; }
+    .greek-delta { font-family: Georgia, 'Times New Roman', serif; font-style: italic; text-transform: none; }
 
 
     /* Sidebar */
@@ -1015,7 +1016,7 @@
             <div class="menu-btn-row">
                 <div class="menu-btn" onclick="navigateTo('converter')"><div class="menu-btn-text"><div class="menu-btn-label">Конвертер единиц</div><div class="menu-btn-sublabel">Давление, расход, температура и др.</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('scale-signal')"><div class="menu-btn-text"><div class="menu-btn-label">Шкала-сигнал</div><div class="menu-btn-sublabel">Расчёт диапазонов шкалы и сигнала</div></div><i class="menu-btn-arrow">›</i></div>
-                <div class="menu-btn" onclick="navigateTo('error-select')"><div class="menu-btn-text"><div class="menu-btn-label">Расчёт погрешности</div><div class="menu-btn-sublabel">Класс точности, приведённая погрешность</div></div><i class="menu-btn-arrow">›</i></div>
+                <div class="menu-btn" onclick="navigateTo('error-select')"><div class="menu-btn-text"><div class="menu-btn-label">Расчёт погрешности</div><div class="menu-btn-sublabel">ГОСТ 8.401-80, ГОСТ OIML R 76-1-2011, ТС, ТП</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('buoy-select')"><div class="menu-btn-text"><div class="menu-btn-label">Буйковый уровнемер</div><div class="menu-btn-sublabel">Калибровка, выталкивающая сила</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('temp-sensors')"><div class="menu-btn-text"><div class="menu-btn-label">Датчики температуры</div><div class="menu-btn-sublabel">Расчёт R и мВ по температуре (°C)</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('circuit-breaker')"><div class="menu-btn-text"><div class="menu-btn-label">Автоматический выключатель</div><div class="menu-btn-sublabel">Расчёт по мощности, току, сечению кабеля</div></div><i class="menu-btn-arrow">›</i></div>
@@ -1675,33 +1676,51 @@
             <div class="page-inline-header"><div class="page-inline-header-title">Расчёт погрешности</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="menu-btn-row">
-                <div class="menu-btn" onclick="navigateTo('error-pressure')"><div class="menu-btn-text"><div class="menu-btn-label">Датчик давления</div><div class="menu-btn-sublabel">МПа, бар, кПа</div></div><i class="menu-btn-arrow">›</i></div>
-                <div class="menu-btn" onclick="navigateTo('error-temp-select')"><div class="menu-btn-text"><div class="menu-btn-label">Датчик температуры</div><div class="menu-btn-sublabel">ТС, ТП, °C</div></div><i class="menu-btn-arrow">›</i></div>
-                <div class="menu-btn" onclick="navigateTo('error-flow')"><div class="menu-btn-text"><div class="menu-btn-label">Расходомер</div><div class="menu-btn-sublabel">м³/ч, л/мин, т/ч</div></div><i class="menu-btn-arrow">›</i></div>
-                <div class="menu-btn" onclick="navigateTo('error-level')"><div class="menu-btn-text"><div class="menu-btn-label">Уровнемер</div><div class="menu-btn-sublabel">мм, %, радар, ультразвук</div></div><i class="menu-btn-arrow">›</i></div>
-                <div class="menu-btn" onclick="navigateTo('error-generic')"><div class="menu-btn-text"><div class="menu-btn-label">Аналоговый преобразователь</div><div class="menu-btn-sublabel">Общий случай, 4-20 мА</div></div><i class="menu-btn-arrow">›</i></div>
-                <div class="menu-btn" onclick="navigateTo('error-kit')"><div class="menu-btn-text"><div class="menu-btn-label">Комплект приборов</div><div class="menu-btn-sublabel">Суммарная погрешность измерительного канала</div></div><i class="menu-btn-arrow">›</i></div>
+                <div class="menu-btn" onclick="navigateTo('error-temp-rtd')"><div class="menu-btn-text"><div class="menu-btn-label">Термопреобразователи сопротивления (ТС)</div><div class="menu-btn-sublabel">ГОСТ 6651-2009</div></div><i class="menu-btn-arrow">›</i></div>
+                <div class="menu-btn" onclick="navigateTo('error-temp-tc')"><div class="menu-btn-text"><div class="menu-btn-label">Термопары (ТП)</div><div class="menu-btn-sublabel">ГОСТ Р 8.585-2001</div></div><i class="menu-btn-arrow">›</i></div>
+                <div class="menu-btn" onclick="navigateTo('error-pressure')"><div class="menu-btn-text"><div class="menu-btn-label">Датчики давления</div><div class="menu-btn-sublabel">ГОСТ 8.401-80</div></div><i class="menu-btn-arrow">›</i></div>
+                <div class="menu-btn" onclick="navigateTo('error-flow')"><div class="menu-btn-text"><div class="menu-btn-label">Расходомеры</div><div class="menu-btn-sublabel">ГОСТ 8.401-80</div></div><i class="menu-btn-arrow">›</i></div>
+                <div class="menu-btn" onclick="navigateTo('error-level')"><div class="menu-btn-text"><div class="menu-btn-label">Уровнемеры</div><div class="menu-btn-sublabel">ГОСТ 8.401-80</div></div><i class="menu-btn-arrow">›</i></div>
             </div>
         </div>
 
         <!-- Датчик давления -->
         <div id="page-error-pressure" class="page-content">
-            <div class="page-inline-header"><div class="page-inline-header-title">Датчик давления</div></div>
+            <div class="page-inline-header"><div class="page-inline-header-title">Датчики давления — ГОСТ 8.401-80</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="scale-form"><div class="scale-form-label">Диапазон измерения</div><div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="text" inputmode="text" id="pressure_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="pressure_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="1.6" autocomplete="off" enterkeyhint="next"></div>
-            <div class="scale-form-label">Класс точности (%)</div><input type="text" inputmode="text" id="pressure_accuracy_class" class="scale-field" value="0.5" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Введите значение класса точности в % (например: 0.02, 0.1, 0.5, 1.0, 1.5, 2.5)</div>
-            <div class="scale-form-label">Текущее значение (опционально)</div><input type="text" inputmode="text" id="pressure_current_value" class="scale-field" placeholder="опционально" autocomplete="off" enterkeyhint="next"></div>
-            <button type="button" class="converter-convert-btn" onclick="calcErrorPressure()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
-            <div id="errorPressureResults" class="converter-result-group" style="display:none;"></div>
-        </div>
-
-        <!-- Датчик температуры - выбор -->
-        <div id="page-error-temp-select" class="page-content">
-            <div class="page-inline-header"><div class="page-inline-header-title">Датчик температуры</div></div>
-    <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="menu-btn-row">
-                <div class="menu-btn" onclick="navigateTo('error-temp-rtd')"><div class="menu-btn-text"><div class="menu-btn-label">Термопреобразователи сопротивления (ТС)</div><div class="menu-btn-sublabel">Pt (10П, 50П, 100П, 500П, 1000П) — Cu (10М, 50М, 100М) — Ni (50Н, 100Н, 120Н, 500Н, 1000Н)</div></div><i class="menu-btn-arrow">›</i></div>
-                <div class="menu-btn" onclick="navigateTo('error-temp-tc')"><div class="menu-btn-text"><div class="menu-btn-label">Термопары (ТП)</div><div class="menu-btn-sublabel">K, J, T, N, E, R, S, B — ГОСТ Р 8.585-2001</div></div><i class="menu-btn-arrow">›</i></div>
+            <div class="scale-form">
+                <input type="hidden" id="ep_class_form" value="number">
+                <div class="scale-form-label">Класс точности <span class="greek-gamma">γ</span> (%)</div>
+                <select id="ep_class_val" class="scale-field" onchange="toggleEpCustomClass()" autocomplete="off">
+                    <option value="0.05">0,05</option>
+                    <option value="0.06">0,06</option>
+                    <option value="0.1">0,1</option>
+                    <option value="0.15">0,15</option>
+                    <option value="0.2">0,2</option>
+                    <option value="0.25">0,25</option>
+                    <option value="0.5" selected>0,5</option>
+                    <option value="1.0">1,0</option>
+                    <option value="1.5">1,5</option>
+                    <option value="2.5">2,5</option>
+                    <option value="4.0">4,0</option>
+                    <option value="custom">Своё значение...</option>
+                </select>
+                <div id="ep_class_val_custom_wrap" style="display:none;">
+                    <div class="scale-form-label">Своё значение класса точности <span class="greek-gamma">γ</span> (%)</div>
+                    <input type="text" inputmode="decimal" id="ep_class_val_custom" class="scale-field" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next">
+                </div>
+                <div class="scale-form-label">Диапазон измерения (ед.изм.)</div><div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;"><input type="text" inputmode="decimal" id="ep_xmin" class="scale-field" style="flex:1;" placeholder="НПИ" value="0" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="decimal" id="ep_xmax" class="scale-field" style="flex:1;" placeholder="ВПИ" value="10" autocomplete="off" enterkeyhint="next"></div>
+            </div>
+            <button type="button" class="converter-convert-btn" onclick="calcPressureError()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
+            <div id="ep_results" class="converter-result-group" style="display:none;"></div>
+            <div id="ep_notes" class="scale-form" style="margin-top:10px;display:block;">
+                <div style="font-size:13px;font-weight:600;color:rgba(74,143,199,0.9);margin-bottom:8px;">Справочная информация</div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;">
+                    <p style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.65);">Приведённая погрешность</b> (<span class="greek-gamma">γ</span>) — отношение абсолютной погрешности к нормирующему значению Xн, выраженное в процентах. Класс точности датчика давления, обозначенный числом (без дополнительных символов), указывает именно приведённую погрешность.</p>
+                    <p style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.65);">Нормирующее значение Xн:</b> при односторонней шкале (НПИ ≥ 0) Xн = ВПИ; при двусторонней шкале Xн = |ВПИ| + |НПИ|.</p>
+                    <p style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.65);">Расчёт:</b> Δ = ±(<span class="greek-gamma">γ</span>/100) · Xн, где <span class="greek-gamma">γ</span> — класс точности (%), Xн — нормирующее значение. Рассчитанная абсолютная погрешность выражается в тех же единицах измерения, что и измеряемая величина (МПа, кПа, бар, кгс/см² и т.д.).</p>
+                    <p><b style="color:rgba(255,255,255,0.65);">Нормативный документ:</b> ГОСТ 8.401-80 «ГСИ. Классы точности средств измерений. Общие требования».</p>
+                </div>
             </div>
         </div>
 
@@ -1709,13 +1728,24 @@
         <div id="page-error-temp-rtd" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Термопреобразователи сопротивления</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="scale-form"><div class="scale-form-label">Группа ТС</div><select id="rtd_group" class="scale-field" onchange="updateRtdTypeOptions()" autocomplete="off"><option value="Pt" selected>Платиновые (Pt)</option><option value="Cu">Медные (Cu)</option><option value="Ni">Никелевые (Ni)</option></select>
-            <div class="scale-form-label">Тип ТС (НСХ)</div><select id="rtd_type" class="scale-field" onchange="updateRtdClassOptions()" autocomplete="off"><option value="pt10">Pt10 (10П)</option><option value="pt50">Pt50 (50П)</option><option value="pt100" selected>Pt100 (100П)</option><option value="pt500">Pt500 (500П)</option><option value="pt1000">Pt1000 (1000П)</option></select>
-            <div class="scale-form-label">Класс допуска</div><select id="rtd_class" class="scale-field" autocomplete="off"><option value="AA">AA (1/3 B)</option><option value="A" selected>A</option><option value="B">B</option><option value="C">C</option></select>
+            <div class="scale-form"><div class="scale-form-label">Группа ТС</div><select id="rtd_group" class="scale-field" onchange="updateRtdTypeOptions()" autocomplete="off"><option value="Pt">Платиновые (Pt)</option><option value="Cu" selected>Медные (Cu)</option><option value="Ni">Никелевые (Ni)</option></select>
+            <div class="scale-form-label">Тип ТС (НСХ)</div><select id="rtd_type" class="scale-field" onchange="updateRtdClassOptions()" autocomplete="off"><option value="cu10">Cu10 (10М)</option><option value="cu50" selected>Cu50 (50М)</option><option value="cu100">Cu100 (100М)</option></select>
+            <div class="scale-form-label">Класс допуска</div><select id="rtd_class" class="scale-field" autocomplete="off"><option value="A">A</option><option value="B" selected>B</option></select>
             <div class="scale-form-label">Температура (t), °C</div><input type="text" inputmode="text" id="rtd_temperature" class="scale-field" value="100" placeholder="температура в °C" autocomplete="off" enterkeyhint="next">
             <div id="rtd_range_warning" style="color:#c7964a; font-size:11px; margin-top:4px; padding-left:4px; display:none;"></div></div>
             <button type="button" class="converter-convert-btn" onclick="calcRtdError()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="rtdResults" class="converter-result-group" style="display:none;"></div>
+            <div style="margin:14px 16px 10px;padding:14px 16px;background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--card-border);border-radius:14px;position:relative;z-index:2;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#4a8fc7;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span style="font-size:14px;font-weight:700;color:#e0e0e0;letter-spacing:-0.2px;">Справочная информация</span></div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;">
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">ГОСТ 6651-2009</b> — Термопреобразователи сопротивления из платины, меди и никеля. Общие технические требования и методы испытаний.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Формула погрешности:</b> Δ = ±(a + b·|t|) °C, где a — постоянная, b — коэффициент, t — температура.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Медные ТС (Cu):</b> НСХ 50М (Cu50), 100М (Cu100). Диапазон: −50…+180 °C. Температурный коэффициент α = 0,00428 °C⁻¹ (или 0,00426 °C⁻¹).</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Платиновые ТС (Pt):</b> НСХ 10П, 50П, 100П, 500П, 1000П. Диапазон: −196…+600 °C (зависит от класса). α = 0,00385 °C⁻¹.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Никелевые ТС (Ni):</b> НСХ 50Н, 100Н, 120Н, 500Н, 1000Н. Диапазон: −60…+180 °C. α = 0,00617 °C⁻¹.</div>
+                    <div><b style="color:rgba(255,255,255,0.7);">Классы допуска:</b> AA (только Pt), A, B, C (только Pt). Для медных ТС доступны классы A и B.</div>
+                </div>
+            </div>
         </div>
 
         <!-- Термопары -->
@@ -1728,63 +1758,94 @@
             <div id="tc_range_warning" style="color:#c7964a; font-size:11px; margin-top:4px; padding-left:4px; display:none;"></div></div>
             <button type="button" class="converter-convert-btn" onclick="calcTcError()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="tcResults" class="converter-result-group" style="display:none;"></div>
+            <div class="scale-form" style="margin-top:10px;display:block;">
+                <div style="font-size:13px;font-weight:600;color:rgba(74,143,199,0.9);margin-bottom:8px;">Справочная информация</div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;">
+                    <p style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.65);">Предел допускаемой погрешности</b> термопары определяется классом точности и температурным диапазоном. В зависимости от диапазона применяется одна из двух формул: постоянная (Δ = ±C °C) или линейная (Δ = ±a·|t| °C), где t — температура рабочего спая.</p>
+                    <p style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.65);">Классы точности:</b> класс 1 — наивысшая точность, класс 2 — стандартная, класс 3 — пониженная. Не все классы доступны для каждого типа термопары и температурного диапазона.</p>
+                    <p style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.65);">Типы термопар:</b> K (ТХА — хромель-алюмель), J (ТЖК — железо-константан), T (ТМК — медь-константан), N (ТНН — никросил-нисил), E (ТХКн — хромель-константан), R и S (ТПП — платинородий-платина), B (ТПР — платинородий-платинородий).</p>
+                    <p><b style="color:rgba(255,255,255,0.65);">Нормативный документ:</b> ГОСТ Р 8.585-2001 «ГСИ. Термопары. Номинальные статические характеристики преобразования».</p>
+                </div>
+            </div>
         </div>
-
-        <!-- Расходомер -->
         <div id="page-error-flow" class="page-content">
-            <div class="page-inline-header"><div class="page-inline-header-title">Расходомер</div></div>
+            <div class="page-inline-header"><div class="page-inline-header-title">Расходомеры — ГОСТ 8.401-80</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="scale-form"><div class="scale-form-label">Диапазон измерения</div><div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="text" inputmode="text" id="flow_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="flow_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="100" autocomplete="off" enterkeyhint="next"></div>
-            <div class="scale-form-label">Класс точности (%)</div><input type="text" inputmode="text" id="flow_accuracy_class" class="scale-field" value="0.5" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Введите значение класса точности в % (например: 0.2, 0.5, 1.0, 1.5, 2.0)</div>
-            <div class="scale-form-label">Текущее значение (опционально)</div><input type="text" inputmode="text" id="flow_current_value" class="scale-field" placeholder="опционально" autocomplete="off" enterkeyhint="next"></div>
-            <button type="button" class="converter-convert-btn" onclick="calcErrorFlow()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
-            <div id="errorFlowResults" class="converter-result-group" style="display:none;"></div>
+            <div class="scale-form">
+                <input type="hidden" id="ef_class_form" value="circle">
+                <div class="scale-form-label">Класс точности <span class="greek-delta">δ</span> (%)</div>
+                <select id="ef_class_val" class="scale-field" onchange="toggleEfCustomClass()" autocomplete="off">
+                    <option value="0.1">0,1</option>
+                    <option value="0.15">0,15</option>
+                    <option value="0.2">0,2</option>
+                    <option value="0.25">0,25</option>
+                    <option value="0.5">0,5</option>
+                    <option value="1.0" selected>1,0</option>
+                    <option value="1.5">1,5</option>
+                    <option value="2.0">2,0</option>
+                    <option value="2.5">2,5</option>
+                    <option value="4.0">4,0</option>
+                    <option value="custom">Своё значение...</option>
+                </select>
+                <div id="ef_class_val_custom_wrap" style="display:none;">
+                    <div class="scale-form-label">Своё значение класса точности <span class="greek-delta">δ</span> (%)</div>
+                    <input type="text" inputmode="decimal" id="ef_class_val_custom" class="scale-field" placeholder="Напр. 1.0" autocomplete="off" enterkeyhint="next">
+                </div>
+                <div class="scale-form-label">Текущее значение X (ед.изм.)</div><input type="text" inputmode="decimal" id="ef_x_current" class="scale-field" placeholder="обязательно" autocomplete="off" enterkeyhint="next">
+            </div>
+            <button type="button" class="converter-convert-btn" onclick="calcFlowmeterError()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
+            <div id="ef_results" class="converter-result-group" style="display:none;"></div>
+            <div class="scale-form" style="margin-top:10px;display:block;">
+                <div style="font-size:13px;font-weight:600;color:rgba(74,143,199,0.9);margin-bottom:8px;">Справочная информация</div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;">
+                    <p style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.65);">Относительная погрешность</b> (<span class="greek-delta">δ</span>) — отношение абсолютной погрешности к текущему измеренному значению X, выраженное в процентах. Класс точности расходомера, обозначенный числом в кружке, указывает именно относительную погрешность.</p>
+                    <p style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.65);">Расчёт:</b> Δ = ±(<span class="greek-delta">δ</span>/100) · |X|, где <span class="greek-delta">δ</span> — класс точности (%), X — текущее измеренное значение. Рассчитанная абсолютная погрешность выражается в тех же единицах измерения, что и измеряемая величина (м³/ч, л/ч, кг/ч и т.д.).</p>
+                    <p><b style="color:rgba(255,255,255,0.65);">Нормативный документ:</b> ГОСТ 8.401-80 «ГСИ. Классы точности средств измерений. Общие требования».</p>
+                </div>
+            </div>
         </div>
 
         <!-- Уровнемер -->
         <div id="page-error-level" class="page-content">
-            <div class="page-inline-header"><div class="page-inline-header-title">Уровнемер</div></div>
+            <div class="page-inline-header"><div class="page-inline-header-title">Уровнемеры — ГОСТ 8.401-80</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="scale-form"><div class="scale-form-label">Диапазон измерения</div><div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="text" inputmode="text" id="level_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="level_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="5000" autocomplete="off" enterkeyhint="next"></div>
-            <div class="scale-form-label">Класс точности (%)</div><input type="text" inputmode="text" id="level_accuracy_class" class="scale-field" value="0.5" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Введите значение класса точности в % (например: 0.1, 0.2, 0.5, 1.0)</div>
-            <div class="scale-form-label">Текущее значение (опционально)</div><input type="text" inputmode="text" id="level_current_value" class="scale-field" placeholder="опционально" autocomplete="off" enterkeyhint="next"></div>
-            <button type="button" class="converter-convert-btn" onclick="calcErrorLevel()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
-            <div id="errorLevelResults" class="converter-result-group" style="display:none;"></div>
-        </div>
-
-        <!-- Аналоговый преобразователь -->
-        <div id="page-error-generic" class="page-content">
-            <div class="page-inline-header"><div class="page-inline-header-title">Аналоговый преобразователь</div></div>
-    <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="scale-form"><div class="scale-form-label">Диапазон измерения</div><div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="text" inputmode="text" id="generic_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="generic_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="100" autocomplete="off" enterkeyhint="next"></div>
-            <div class="scale-form-label">Класс точности (%)</div><input type="text" inputmode="text" id="generic_accuracy_class" class="scale-field" value="0.5" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Введите значение класса точности в % (например: 0.05, 0.1, 0.2, 0.5, 1.0)</div>
-            <div class="scale-form-label">Текущее значение (опционально)</div><input type="text" inputmode="text" id="generic_current_value" class="scale-field" placeholder="опционально" autocomplete="off" enterkeyhint="next"></div>
-            <button type="button" class="converter-convert-btn" onclick="calcErrorGeneric()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
-            <div id="errorGenericResults" class="converter-result-group" style="display:none;"></div>
-        </div>
-
-        <!-- Комплект приборов -->
-        <div id="page-error-kit" class="page-content">
-            <div class="page-inline-header"><div class="page-inline-header-title">Комплект приборов</div></div>
-            <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            
             <div class="scale-form">
-                <div class="scale-form-label">Прибор 1</div>
-                <div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="text" inputmode="text" id="kit_dev1_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="0" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="kit_dev1_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="1.6" autocomplete="off" enterkeyhint="next"></div>
-                <div class="scale-form-label">Класс точности (%)</div><input type="text" inputmode="text" id="kit_dev1_accuracy" class="scale-field" value="0.5" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next">
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px; margin-bottom: 12px;">Введите значение класса точности в %</div>
-                <div class="scale-form-label">Прибор 2</div>
-                <div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="text" inputmode="text" id="kit_dev2_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" value="4" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="kit_dev2_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" value="20" autocomplete="off" enterkeyhint="next"></div>
-                <div class="scale-form-label">Класс точности (%)</div><input type="text" inputmode="text" id="kit_dev2_accuracy" class="scale-field" value="0.25" placeholder="Напр. 0.25" autocomplete="off" enterkeyhint="next">
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px; margin-bottom: 12px;">Введите значение класса точности в %</div>
-                <div class="scale-form-label">Прибор 3 (опционально)</div>
-                <div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="text" inputmode="text" id="kit_dev3_range_min" class="scale-field" style="flex: 1;" placeholder="НПИ" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="kit_dev3_range_max" class="scale-field" style="flex: 1;" placeholder="ВПИ" autocomplete="off" enterkeyhint="next"></div>
-                <div class="scale-form-label">Класс точности (%)</div><input type="text" inputmode="text" id="kit_dev3_accuracy" class="scale-field" placeholder="Напр. 0.1" autocomplete="off" enterkeyhint="next">
-                <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Введите значение класса точности в %</div>
+                <input type="hidden" id="el_class_form" value="number">
+                <div class="scale-form-label">Класс точности <span class="greek-gamma">γ</span> (%)</div>
+                <select id="el_class_val" class="scale-field" onchange="toggleElCustomClass()" autocomplete="off">
+                    <option value="0.05">0,05</option>
+                    <option value="0.1">0,1</option>
+                    <option value="0.15">0,15</option>
+                    <option value="0.2">0,2</option>
+                    <option value="0.25">0,25</option>
+                    <option value="0.5" selected>0,5</option>
+                    <option value="1.0">1,0</option>
+                    <option value="1.5">1,5</option>
+                    <option value="2.5">2,5</option>
+                    <option value="4.0">4,0</option>
+                    <option value="custom">Своё значение...</option>
+                </select>
+                <div id="el_class_val_custom_wrap" style="display:none;">
+                    <div class="scale-form-label">Своё значение класса точности <span class="greek-gamma">γ</span> (%)</div>
+                    <input type="text" inputmode="decimal" id="el_class_val_custom" class="scale-field" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next">
+                </div>
+                <div class="scale-form-label">Диапазон измерения (ед.изм.)</div><div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;"><input type="text" inputmode="decimal" id="el_xmin" class="scale-field" style="flex:1;" placeholder="НПИ" value="0" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="decimal" id="el_xmax" class="scale-field" style="flex:1;" placeholder="ВПИ" value="100" autocomplete="off" enterkeyhint="next"></div>
             </div>
-            <button type="button" class="converter-convert-btn" onclick="calcErrorKit()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать суммарную погрешность</button>
-            <div id="errorKitResults" class="converter-result-group" style="display:none;"></div>
+            <button type="button" class="converter-convert-btn" onclick="calcLevelError()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
+            <div id="el_results" class="converter-result-group" style="display:none;"></div>
+            <div class="scale-form" style="margin-top:10px;display:block;">
+                <div style="font-size:13px;font-weight:600;color:rgba(74,143,199,0.9);margin-bottom:8px;">Справочная информация</div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;">
+                    <p style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.65);">Приведённая погрешность</b> (<span class="greek-gamma">γ</span>) — отношение абсолютной погрешности к нормирующему значению Xн, выраженное в процентах. Класс точности уровнемера, обозначенный числом (без дополнительных символов), указывает именно приведённую погрешность.</p>
+                    <p style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.65);">Нормирующее значение Xн:</b> при односторонней шкале (НПИ ≥ 0) Xн = ВПИ; при двусторонней шкале Xн = |ВПИ| + |НПИ|.</p>
+                    <p style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.65);">Расчёт:</b> Δ = ±(<span class="greek-gamma">γ</span>/100) · Xн, где <span class="greek-gamma">γ</span> — класс точности (%), Xн — нормирующее значение. Рассчитанная абсолютная погрешность выражается в тех же единицах измерения, что и измеряемая величина (мм, см, м, % и т.д.).</p>
+                    <p><b style="color:rgba(255,255,255,0.65);">Нормативный документ:</b> ГОСТ 8.401-80 «ГСИ. Классы точности средств измерений. Общие требования».</p>
+                </div>
+            </div>
         </div>
+
+
+
 
         <!-- ======================== БУЙКОВЫЙ УРОВНЕМЕР ======================== -->
         <!-- Выбор метода -->
@@ -1806,7 +1867,7 @@
             <div class="scale-form"><div class="scale-form-label">Подвесная система</div><input type="text" inputmode="text" id="suspension_mass" class="scale-field" value="0" placeholder="0" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;"> Масса тарелки/крюка, г</div></div>
             <div class="scale-form"><div class="scale-form-label">Выходной сигнал</div><select id="buoy_signal_type" class="scale-field" onchange="updateBuoySignalUnit()" autocomplete="off"><optgroup label=" Электрические (токовые)"><option value="4_20">4 – 20 мА</option><option value="0_20">0 – 20 мА</option><option value="0_5mA">0 – 5 мА</option></optgroup><optgroup label=" Электрические (напряжения)"><option value="0_10V">0 – 10 В</option><option value="1_5V">1 – 5 В</option><option value="0_5V">0 – 5 В</option><option value="bipolar_10">-10 – +10 В</option></optgroup><optgroup label=" Пневматические"><option value="20_100_kPa">20 – 100 кПа</option><option value="0_2_1_0_bar">0.2 – 1.0 бар</option><option value="3_15_psi">3 – 15 psi</option><option value="0_2_1_0_kgf_cm2" selected>0.2 – 1.0 кгс/см²</option></optgroup><optgroup label=" Другие"><option value="custom">Своё значение</option></optgroup></select><div id="customSignalRange" style="display:none; margin-top:12px;"><div style="display:flex; gap:8px;"><input type="text" inputmode="text" id="signal_min_custom" class="scale-field" style="flex:1;" placeholder="Мин." autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="signal_max_custom" class="scale-field" style="flex:1;" placeholder="Макс." autocomplete="off" enterkeyhint="next"></div><input type="text" inputmode="text" id="signal_unit_custom" class="scale-field" style="margin-top:8px;" placeholder="Ед. измерения (например: мА, В, кПа)" value="мА" autocomplete="off" ></div><div id="signalUnitDisplay" style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:8px; padding-left:4px;"> Сигнал: 0.2-1.0 кгс/см²</div></div>
             <button type="button" class="converter-convert-btn" onclick="calculateBuoyCalibration()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать калибровку</button>
-            <div id="buoyResults" class="converter-result-group" style="display:none;"><div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><div class="converter-result-label-title">Таблица калибровки (шаг 10%)</div><button type="button" class="query-btn" onclick="copyBuoyTable()" style="width:auto; padding:5px 10px; font-size:11px;"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Копировать</button></div><div id="buoyTableContainer" style="overflow-x:auto;"></div><div id="buoyInfo" style="margin-top:14px; padding:14px 18px; background:rgba(13,17,23,0.5); border-radius:10px; font-size:15px; color:rgba(255,255,255,0.35); line-height:1.6;"></div></div>
+            <div id="buoyResults" class="converter-result-group" style="display:none;"><div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><div class="converter-result-label-title">Таблица калибровки (шаг 10%)</div><button type="button" class="query-btn" onclick="copyBuoyTable()" style="width:auto; padding:5px 10px; font-size:11px;"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Копировать</button></div><div id="buoyTableContainer" style="overflow-x:auto;"></div><div id="buoyInfo" style="margin-top:14px; padding:14px 18px; background:rgba(13,17,23,0.5); border-radius:10px; font-size:15px; color:rgba(255,255,255,0.35); line-height:1.6;"></div><div id="buoyCustomCalcPanel" style="display:none;"><div class="converter-result-label-title" style="margin-top:16px;">Расчёт произвольных значений</div><div class="scale-form" style="margin-top:8px;"><div style="color:rgba(255,255,255,0.25); font-size:11px; margin-bottom:10px; line-height:1.4;">Введите значение в любое поле — два других рассчитаются автоматически</div><div class="scale-form-label">Уровень (%)</div><input type="text" inputmode="decimal" id="buoyCustomLevel" class="scale-field" placeholder="Например: 37.5" oninput="calcBuoyFromLevel()" autocomplete="off"><div class="scale-form-label">Масса гирь (г)</div><input type="text" inputmode="decimal" id="buoyCustomMass" class="scale-field" placeholder="Например: 542.3" oninput="calcBuoyFromMass()" autocomplete="off"><div class="scale-form-label">Сигнал (<span id="buoyCustomSigUnit">мА</span>)</div><input type="text" inputmode="decimal" id="buoyCustomSignal" class="scale-field" placeholder="Например: 9.6" oninput="calcBuoyFromSignal()" autocomplete="off"></div></div></div>
         </div>
     </div>
 </div>
@@ -2272,10 +2333,201 @@ function setSignalDefaults() { let type=document.getElementById('sigType').value
     function queryFromSignal(){ let smin=parseFloat(document.getElementById('scaleMin').value), smax=parseFloat(document.getElementById('scaleMax').value), gmin=parseFloat(document.getElementById('sigMin').value), gmax=parseFloat(document.getElementById('sigMax').value), scaleType=document.getElementById('scaleType').value, q=parseFloat(document.getElementById('querySigVal').value), unit=document.getElementById('scaleUnitName').value||'ед.', sigRange=getSignalRangeAndUnit(document.getElementById('sigType').value), sigUnit=sigRange.unit, res=document.getElementById('querySigResult'); if(isNaN(q)){res.innerHTML='<p style="color:#c74a4a;font-size:12px;">Введите значение</p>';return;} let p=(q-gmin)/(gmax-gmin); let val_lin; if(scaleType==='quadratic'){ val_lin=Math.sqrt(p); } else if(scaleType==='sqrt'){ val_lin=p*p; } else { val_lin=p; } let val=smin+(smax-smin)*val_lin; res.innerHTML=`<div style="padding:8px 10px;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:rgba(255,255,255,0.4);">Сигнал: <b>${formatNumber(q)} ${sigUnit}</b> (${(p*100).toFixed(2)}%)</span></div><div style="padding:8px 10px;background:rgba(13,17,23,0.4);border-radius:8px;margin-top:5px;"><span style="color:rgba(255,255,255,0.4);">→ Шкала: <b style="color:#4ac771;">${formatNumber(val)} ${unit}</b></span></div>`; }
 
     // Расчёт погрешности для всех типов
-    function calcErrorPressure(){ let min=parseFloat(document.getElementById('pressure_range_min').value), max=parseFloat(document.getElementById('pressure_range_max').value), cls=parseFloat(document.getElementById('pressure_accuracy_class').value), cur=parseFloat(document.getElementById('pressure_current_value').value); if(isNaN(min)||isNaN(max)||isNaN(cls)){showToast('Заполните диапазон и класс точности');return;} if(min>=max){showToast('НПИ должен быть меньше ВПИ');return;} if(cls<=0){showToast('Класс точности должен быть положительным');return;} let xNorm = (min===0 || min*max<0) ? (Math.abs(max)+Math.abs(min)) : Math.abs(max); let absErr=(cls/100)*xNorm; let formulaText = 'Δ = (<span class="greek-gamma">&gamma;</span>/100)·Xₙ = ('+cls+'/100)·'+formatNumber(xNorm)+' = ±'+formatNumber(absErr)+' ед.'; let html='<div class="converter-result-label-title">Результаты расчёта (ГОСТ 8.401-80)</div><div class="converter-result-item"><span class="converter-result-label">Класс точности (<span class="greek-gamma">&gamma;</span>)</span><span class="converter-result-value">'+cls+' %</span></div><div class="converter-result-item"><span class="converter-result-label">Нормирующее значение (Xₙ)</span><span class="converter-result-value">'+formatNumber(xNorm)+' ед.</span></div><div class="converter-result-item"><span class="converter-result-label">Абсолютная погрешность (±Δ)</span><span class="converter-result-value">± '+formatNumber(absErr)+' ед.</span></div><div class="converter-result-item"><span class="converter-result-label">Формула расчёта</span><span class="converter-result-value">'+formulaText+'</span></div>'; if(!isNaN(cur)&&cur!==0){ let rel=(absErr/Math.abs(cur))*100; html+=`<div class="converter-result-item"><span class="converter-result-label">Относительная погрешность (δ)</span><span class="converter-result-value">± ${formatNumber(rel)} %</span></div>`; } html+=`<div class="converter-result-item"><span class="converter-result-label">Диапазон измерения</span><span class="converter-result-value">${formatNumber(min)} … ${formatNumber(max)}</span></div>`; document.getElementById('errorPressureResults').innerHTML=html; document.getElementById('errorPressureResults').style.display='block'; setTimeout(()=>document.getElementById('errorPressureResults').scrollIntoView({behavior:'smooth',block:'start'}),100); }
-    function calcErrorFlow(){ let min=parseFloat(document.getElementById('flow_range_min').value), max=parseFloat(document.getElementById('flow_range_max').value), cls=parseFloat(document.getElementById('flow_accuracy_class').value), cur=parseFloat(document.getElementById('flow_current_value').value); if(isNaN(min)||isNaN(max)||isNaN(cls)){showToast('Заполните диапазон и класс точности');return;} if(min>=max){showToast('НПИ должен быть меньше ВПИ');return;} if(cls<=0){showToast('Класс точности должен быть положительным');return;} let xNorm = (min===0 || min*max<0) ? (Math.abs(max)+Math.abs(min)) : Math.abs(max); let absErr=(cls/100)*xNorm; let formulaText = 'Δ = (<span class="greek-gamma">&gamma;</span>/100)·Xₙ = ('+cls+'/100)·'+formatNumber(xNorm)+' = ±'+formatNumber(absErr)+' ед.'; let html='<div class="converter-result-label-title">Результаты расчёта (ГОСТ 8.401-80)</div><div class="converter-result-item"><span class="converter-result-label">Класс точности (<span class="greek-gamma">&gamma;</span>)</span><span class="converter-result-value">'+cls+' %</span></div><div class="converter-result-item"><span class="converter-result-label">Нормирующее значение (Xₙ)</span><span class="converter-result-value">'+formatNumber(xNorm)+' ед.</span></div><div class="converter-result-item"><span class="converter-result-label">Абсолютная погрешность (±Δ)</span><span class="converter-result-value">± '+formatNumber(absErr)+' ед.</span></div><div class="converter-result-item"><span class="converter-result-label">Формула расчёта</span><span class="converter-result-value">'+formulaText+'</span></div>'; if(!isNaN(cur)&&cur!==0){ let rel=(absErr/Math.abs(cur))*100; html+=`<div class="converter-result-item"><span class="converter-result-label">Относительная погрешность (δ)</span><span class="converter-result-value">± ${formatNumber(rel)} %</span></div>`; } html+=`<div class="converter-result-item"><span class="converter-result-label">Диапазон измерения</span><span class="converter-result-value">${formatNumber(min)} … ${formatNumber(max)}</span></div>`; document.getElementById('errorFlowResults').innerHTML=html; document.getElementById('errorFlowResults').style.display='block'; setTimeout(()=>document.getElementById('errorFlowResults').scrollIntoView({behavior:'smooth',block:'start'}),100); }
-    function calcErrorLevel(){ let min=parseFloat(document.getElementById('level_range_min').value), max=parseFloat(document.getElementById('level_range_max').value), cls=parseFloat(document.getElementById('level_accuracy_class').value), cur=parseFloat(document.getElementById('level_current_value').value); if(isNaN(min)||isNaN(max)||isNaN(cls)){showToast('Заполните диапазон и класс точности');return;} if(min>=max){showToast('НПИ должен быть меньше ВПИ');return;} if(cls<=0){showToast('Класс точности должен быть положительным');return;} let xNorm = (min===0 || min*max<0) ? (Math.abs(max)+Math.abs(min)) : Math.abs(max); let absErr=(cls/100)*xNorm; let formulaText = 'Δ = (<span class="greek-gamma">&gamma;</span>/100)·Xₙ = ('+cls+'/100)·'+formatNumber(xNorm)+' = ±'+formatNumber(absErr)+' ед.'; let html='<div class="converter-result-label-title">Результаты расчёта (ГОСТ 8.401-80)</div><div class="converter-result-item"><span class="converter-result-label">Класс точности (<span class="greek-gamma">&gamma;</span>)</span><span class="converter-result-value">'+cls+' %</span></div><div class="converter-result-item"><span class="converter-result-label">Нормирующее значение (Xₙ)</span><span class="converter-result-value">'+formatNumber(xNorm)+' ед.</span></div><div class="converter-result-item"><span class="converter-result-label">Абсолютная погрешность (±Δ)</span><span class="converter-result-value">± '+formatNumber(absErr)+' ед.</span></div><div class="converter-result-item"><span class="converter-result-label">Формула расчёта</span><span class="converter-result-value">'+formulaText+'</span></div>'; if(!isNaN(cur)&&cur!==0){ let rel=(absErr/Math.abs(cur))*100; html+=`<div class="converter-result-item"><span class="converter-result-label">Относительная погрешность (δ)</span><span class="converter-result-value">± ${formatNumber(rel)} %</span></div>`; } html+=`<div class="converter-result-item"><span class="converter-result-label">Диапазон измерения</span><span class="converter-result-value">${formatNumber(min)} … ${formatNumber(max)}</span></div>`; document.getElementById('errorLevelResults').innerHTML=html; document.getElementById('errorLevelResults').style.display='block'; setTimeout(()=>document.getElementById('errorLevelResults').scrollIntoView({behavior:'smooth',block:'start'}),100); }
-    function calcErrorGeneric(){ let min=parseFloat(document.getElementById('generic_range_min').value), max=parseFloat(document.getElementById('generic_range_max').value), cls=parseFloat(document.getElementById('generic_accuracy_class').value), cur=parseFloat(document.getElementById('generic_current_value').value); if(isNaN(min)||isNaN(max)||isNaN(cls)){showToast('Заполните диапазон и класс точности');return;} if(min>=max){showToast('НПИ должен быть меньше ВПИ');return;} if(cls<=0){showToast('Класс точности должен быть положительным');return;} let xNorm = (min===0 || min*max<0) ? (Math.abs(max)+Math.abs(min)) : Math.abs(max); let absErr=(cls/100)*xNorm; let formulaText = 'Δ = (<span class="greek-gamma">&gamma;</span>/100)·Xₙ = ('+cls+'/100)·'+formatNumber(xNorm)+' = ±'+formatNumber(absErr)+' ед.'; let html='<div class="converter-result-label-title">Результаты расчёта (ГОСТ 8.401-80)</div><div class="converter-result-item"><span class="converter-result-label">Класс точности (<span class="greek-gamma">&gamma;</span>)</span><span class="converter-result-value">'+cls+' %</span></div><div class="converter-result-item"><span class="converter-result-label">Нормирующее значение (Xₙ)</span><span class="converter-result-value">'+formatNumber(xNorm)+' ед.</span></div><div class="converter-result-item"><span class="converter-result-label">Абсолютная погрешность (±Δ)</span><span class="converter-result-value">± '+formatNumber(absErr)+' ед.</span></div><div class="converter-result-item"><span class="converter-result-label">Формула расчёта</span><span class="converter-result-value">'+formulaText+'</span></div>'; if(!isNaN(cur)&&cur!==0){ let rel=(absErr/Math.abs(cur))*100; html+=`<div class="converter-result-item"><span class="converter-result-label">Относительная погрешность (δ)</span><span class="converter-result-value">± ${formatNumber(rel)} %</span></div>`; } html+=`<div class="converter-result-item"><span class="converter-result-label">Диапазон измерения</span><span class="converter-result-value">${formatNumber(min)} … ${formatNumber(max)}</span></div>`; document.getElementById('errorGenericResults').innerHTML=html; document.getElementById('errorGenericResults').style.display='block'; setTimeout(()=>document.getElementById('errorGenericResults').scrollIntoView({behavior:'smooth',block:'start'}),100); }
+    function toggleErrorClassFields(prefix) {
+        let form = document.getElementById(prefix + 'class_form').value;
+        let groups = ['group_simple', 'group_underline', 'group_circle', 'group_fraction'];
+        groups.forEach(g => {
+            let el = document.getElementById(prefix + g);
+            if (el) el.style.display = 'none';
+        });
+        let showMap = {
+            'number': 'group_simple',
+            'underline': 'group_underline',
+            'circle': 'group_circle',
+            'fraction': 'group_fraction'
+        };
+        let showEl = document.getElementById(prefix + showMap[form]);
+        if (showEl) showEl.style.display = 'block';
+        let infoEl = document.getElementById(prefix + 'class_info');
+        if (infoEl) {
+            if (form === 'number') infoEl.innerHTML = 'Xн = ВПИ (или |ВПИ|+|НПИ| при двусторонней шкале)';
+            else if (form === 'underline') infoEl.innerHTML = 'Xн = длина шкалы (в единицах измерения)';
+            else if (form === 'circle') infoEl.innerHTML = 'Относительная погрешность постоянна во всём диапазоне';
+            else if (form === 'fraction') infoEl.innerHTML = 'c/d — аддитивная/мультипликативная составляющие относительной погрешности';
+        }
+    }
+
+    // Переключение видимости поля "Своё значение" для датчиков давления
+    function toggleEpCustomClass() {
+        let sel = document.getElementById('ep_class_val');
+        let wrap = document.getElementById('ep_class_val_custom_wrap');
+        if (sel.value === 'custom') {
+            wrap.style.display = 'block';
+        } else {
+            wrap.style.display = 'none';
+        }
+    }
+
+    // Специальная функция расчёта погрешности для датчиков давления (только приведённая погрешность)
+    function calcPressureError() {
+        let prefix = 'ep_';
+        let clsVal = document.getElementById(prefix + 'class_val').value;
+        let cls;
+        if (clsVal === 'custom') {
+            cls = parseFloat(document.getElementById(prefix + 'class_val_custom').value);
+        } else {
+            cls = parseFloat(clsVal);
+        }
+        let xmin = parseFloat(document.getElementById(prefix + 'xmin').value);
+        let xmax = parseFloat(document.getElementById(prefix + 'xmax').value);
+        if (isNaN(cls) || cls <= 0) { showToast('Введите класс точности'); return; }
+        if (isNaN(xmin) || isNaN(xmax)) { showToast('Введите диапазон измерения'); return; }
+        if (xmin >= xmax) { showToast('НПИ должен быть меньше ВПИ'); return; }
+        let xNorm = (xmin === 0 || xmin * xmax < 0) ? (Math.abs(xmax) + Math.abs(xmin)) : Math.abs(xmax);
+        let absErr = (cls / 100) * xNorm;
+        let formulaHTML = 'Δ = ±(<span class="greek-gamma">γ</span>/100)·Xн = ±(' + cls + '/100)·' + formatNumber(xNorm) + ' = ±' + formatNumber(absErr);
+
+        let html = '<div class="converter-result-label-title">Результаты расчёта (ГОСТ 8.401-80)</div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Класс точности</span><span class="converter-result-value"><span class="greek-gamma">γ</span> = ' + cls + '% (приведённая)</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Нормирующее значение (Xн)</span><span class="converter-result-value">' + formatNumber(xNorm) + '</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Абсолютная погрешность (±Δ)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(absErr) + ' ед.изм.</span></div>';
+        html += '<div class="converter-result-item" style="flex-direction:column;align-items:flex-start;gap:4px;"><span class="converter-result-label">Формула расчёта</span><span style="font-size:13px;color:rgba(140,180,210,0.9);line-height:1.5;">' + formulaHTML + ' ед.изм.</span></div>';
+        document.getElementById(prefix + 'results').innerHTML = html;
+        document.getElementById(prefix + 'results').style.display = 'block';
+        setTimeout(() => document.getElementById(prefix + 'results').scrollIntoView({behavior:'smooth',block:'start'}), 100);
+    }
+
+    function toggleElCustomClass() {
+        let sel = document.getElementById('el_class_val');
+        let wrap = document.getElementById('el_class_val_custom_wrap');
+        wrap.style.display = sel.value === 'custom' ? 'block' : 'none';
+    }
+
+    // Специальная функция расчёта погрешности для уровнемеров (только приведённая погрешность)
+    function calcLevelError() {
+        let prefix = 'el_';
+        let clsVal = document.getElementById(prefix + 'class_val').value;
+        let cls;
+        if (clsVal === 'custom') {
+            cls = parseFloat(document.getElementById(prefix + 'class_val_custom').value);
+        } else {
+            cls = parseFloat(clsVal);
+        }
+        let xmin = parseFloat(document.getElementById(prefix + 'xmin').value);
+        let xmax = parseFloat(document.getElementById(prefix + 'xmax').value);
+        if (isNaN(cls) || cls <= 0) { showToast('Введите класс точности'); return; }
+        if (isNaN(xmin) || isNaN(xmax)) { showToast('Введите диапазон измерения'); return; }
+        if (xmin >= xmax) { showToast('НПИ должен быть меньше ВПИ'); return; }
+        let xNorm = (xmin === 0 || xmin * xmax < 0) ? (Math.abs(xmax) + Math.abs(xmin)) : Math.abs(xmax);
+        let absErr = (cls / 100) * xNorm;
+        let formulaHTML = 'Δ = ±(<span class="greek-gamma">γ</span>/100)·Xн = ±(' + cls + '/100)·' + formatNumber(xNorm) + ' = ±' + formatNumber(absErr);
+
+        let html = '<div class="converter-result-label-title">Результаты расчёта (ГОСТ 8.401-80)</div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Класс точности</span><span class="converter-result-value"><span class="greek-gamma">γ</span> = ' + cls + '% (приведённая)</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Нормирующее значение (Xн)</span><span class="converter-result-value">' + formatNumber(xNorm) + '</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Абсолютная погрешность (±Δ)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(absErr) + ' ед.изм.</span></div>';
+        html += '<div class="converter-result-item" style="flex-direction:column;align-items:flex-start;gap:4px;"><span class="converter-result-label">Формула расчёта</span><span style="font-size:13px;color:rgba(140,180,210,0.9);line-height:1.5;">' + formulaHTML + ' ед.изм.</span></div>';
+        document.getElementById(prefix + 'results').innerHTML = html;
+        document.getElementById(prefix + 'results').style.display = 'block';
+        setTimeout(() => document.getElementById(prefix + 'results').scrollIntoView({behavior:'smooth',block:'start'}), 100);
+    }
+
+    function toggleEfCustomClass() {
+        let sel = document.getElementById('ef_class_val');
+        let wrap = document.getElementById('ef_class_val_custom_wrap');
+        wrap.style.display = sel.value === 'custom' ? 'block' : 'none';
+    }
+
+    // Специальная функция расчёта погрешности для расходомеров (только относительная погрешность)
+    function calcFlowmeterError() {
+        let prefix = 'ef_';
+        let clsVal = document.getElementById(prefix + 'class_val').value;
+        let cls;
+        if (clsVal === 'custom') {
+            cls = parseFloat(document.getElementById(prefix + 'class_val_custom').value);
+        } else {
+            cls = parseFloat(clsVal);
+        }
+        let xCurrent = parseFloat(document.getElementById(prefix + 'x_current').value);
+        if (isNaN(cls) || cls <= 0) { showToast('Введите класс точности'); return; }
+        if (isNaN(xCurrent) || xCurrent === 0) { showToast('Введите текущее значение (X ≠ 0)'); return; }
+        let absErr = (cls / 100) * Math.abs(xCurrent);
+        let formulaHTML = 'Δ = ±(<span class="greek-delta">δ</span>/100)·|X| = ±(' + cls + '/100)·' + formatNumber(Math.abs(xCurrent)) + ' = ±' + formatNumber(absErr);
+
+        let html = '<div class="converter-result-label-title">Результаты расчёта (ГОСТ 8.401-80)</div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Класс точности</span><span class="converter-result-value"><span class="greek-delta">δ</span> = ' + cls + '% (относительная)</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Текущее значение (X)</span><span class="converter-result-value">' + formatNumber(xCurrent) + '</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Абсолютная погрешность (±Δ)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(absErr) + ' ед.изм.</span></div>';
+        html += '<div class="converter-result-item" style="flex-direction:column;align-items:flex-start;gap:4px;"><span class="converter-result-label">Формула расчёта</span><span style="font-size:13px;color:rgba(140,180,210,0.9);line-height:1.5;">' + formulaHTML + ' ед.изм.</span></div>';
+        document.getElementById(prefix + 'results').innerHTML = html;
+        document.getElementById(prefix + 'results').style.display = 'block';
+        setTimeout(() => document.getElementById(prefix + 'results').scrollIntoView({behavior:'smooth',block:'start'}), 100);
+    }
+
+    function calcErrorGOST(prefix) {
+        let form = document.getElementById(prefix + 'class_form').value;
+        let absErr, relErr, formulaHTML, xNorm, xCurrent;
+        if (form === 'number') {
+            let cls = parseFloat(document.getElementById(prefix + 'class_val').value);
+            let xmin = parseFloat(document.getElementById(prefix + 'xmin').value);
+            let xmax = parseFloat(document.getElementById(prefix + 'xmax').value);
+            xCurrent = parseFloat(document.getElementById(prefix + 'x_current').value);
+            if (isNaN(cls) || cls <= 0) { showToast('Введите класс точности'); return; }
+            if (isNaN(xmin) || isNaN(xmax)) { showToast('Введите диапазон измерения'); return; }
+            if (xmin >= xmax) { showToast('НПИ должен быть меньше ВПИ'); return; }
+            xNorm = (xmin === 0 || xmin * xmax < 0) ? (Math.abs(xmax) + Math.abs(xmin)) : Math.abs(xmax);
+            absErr = (cls / 100) * xNorm;
+            formulaHTML = 'Δ = ±(<span class="greek-gamma">γ</span>/100)·Xн = ±(' + cls + '/100)·' + formatNumber(xNorm) + ' = ±' + formatNumber(absErr);
+            if (!isNaN(xCurrent) && xCurrent !== 0) {
+                relErr = (absErr / Math.abs(xCurrent)) * 100;
+                formulaHTML += '<br>δ = ±(Δ/|X|)·100 = ±(' + formatNumber(absErr) + '/' + formatNumber(Math.abs(xCurrent)) + ')·100 = ±' + formatNumber(relErr) + '%';
+            }
+        } else if (form === 'underline') {
+            let cls = parseFloat(document.getElementById(prefix + 'class_val_u').value);
+            xNorm = parseFloat(document.getElementById(prefix + 'xn_scale').value);
+            xCurrent = parseFloat(document.getElementById(prefix + 'x_current_u').value);
+            if (isNaN(cls) || cls <= 0) { showToast('Введите класс точности'); return; }
+            if (isNaN(xNorm) || xNorm <= 0) { showToast('Введите длину шкалы'); return; }
+            absErr = (cls / 100) * xNorm;
+            formulaHTML = 'Δ = ±(<span class="greek-gamma">γ</span>/100)·Xн = ±(' + cls + '/100)·' + formatNumber(xNorm) + ' = ±' + formatNumber(absErr);
+            if (!isNaN(xCurrent) && xCurrent !== 0) {
+                relErr = (absErr / Math.abs(xCurrent)) * 100;
+                formulaHTML += '<br>δ = ±(Δ/|X|)·100 = ±' + formatNumber(relErr) + '%';
+            }
+        } else if (form === 'circle') {
+            let cls = parseFloat(document.getElementById(prefix + 'class_val_c').value);
+            xCurrent = parseFloat(document.getElementById(prefix + 'x_current_c').value);
+            if (isNaN(cls) || cls <= 0) { showToast('Введите класс точности'); return; }
+            if (isNaN(xCurrent) || xCurrent === 0) { showToast('Введите текущее значение (X≠0)'); return; }
+            relErr = cls;
+            absErr = (cls / 100) * Math.abs(xCurrent);
+            formulaHTML = 'Δ = ±(δ/100)·|X| = ±(' + cls + '/100)·' + formatNumber(Math.abs(xCurrent)) + ' = ±' + formatNumber(absErr);
+            formulaHTML += '<br>δ = ±' + cls + '% (постоянная)';
+        } else if (form === 'fraction') {
+            let c = parseFloat(document.getElementById(prefix + 'c_val').value);
+            let d = parseFloat(document.getElementById(prefix + 'd_val').value);
+            let xmax = parseFloat(document.getElementById(prefix + 'xmax_f').value);
+            xCurrent = parseFloat(document.getElementById(prefix + 'x_current_f').value);
+            if (isNaN(c) || isNaN(d) || c <= 0 || d <= 0) { showToast('Введите c и d'); return; }
+            if (isNaN(xmax) || xmax <= 0) { showToast('Введите ВПИ'); return; }
+            if (isNaN(xCurrent) || xCurrent === 0) { showToast('Введите текущее значение (X≠0)'); return; }
+            relErr = c + d * (Math.abs(xmax / xCurrent) - 1);
+            absErr = (relErr / 100) * Math.abs(xCurrent);
+            formulaHTML = 'δ = ±[c + d·(|Xmax/X| − 1)] = ±[' + c + ' + ' + d + '·(|' + formatNumber(xmax) + '/' + formatNumber(Math.abs(xCurrent)) + '| − 1)] = ±' + formatNumber(relErr) + '%';
+            formulaHTML += '<br>Δ = ±(δ/100)·|X| = ±' + formatNumber(absErr);
+        }
+        let formNames = {'number': 'число', 'underline': 'число с подчёркиванием', 'circle': 'число в кружке', 'fraction': 'дробь c/d'};
+        let html = '<div class="converter-result-label-title">Результаты расчёта (ГОСТ 8.401-80)</div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Форма класса точности</span><span class="converter-result-value">' + formNames[form] + '</span></div>';
+        if (xNorm !== undefined) html += '<div class="converter-result-item"><span class="converter-result-label">Нормирующее значение (Xн)</span><span class="converter-result-value">' + formatNumber(xNorm) + '</span></div>';
+        let absUnit = (form === 'circle') ? ' ед.изм.' : '';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Абсолютная погрешность (±Δ)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(absErr) + absUnit + '</span></div>';
+        if (relErr !== undefined) html += '<div class="converter-result-item"><span class="converter-result-label">Относительная погрешность (±δ)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(relErr) + ' %</span></div>';
+        html += '<div class="converter-result-item" style="flex-direction:column;align-items:flex-start;gap:4px;"><span class="converter-result-label">Формула расчёта</span><span style="font-size:13px;color:rgba(140,180,210,0.9);line-height:1.5;">' + formulaHTML + absUnit + '</span></div>';
+        document.getElementById(prefix + 'results').innerHTML = html;
+        document.getElementById(prefix + 'results').style.display = 'block';
+        setTimeout(() => document.getElementById(prefix + 'results').scrollIntoView({behavior:'smooth',block:'start'}), 100);
+    }
 
     // ТС и ТП (полные данные)
     const rtdData = {
@@ -2284,18 +2536,18 @@ function setSignalDefaults() { let type=document.getElementById('sigType').value
         'pt100': { name:'Pt100 (100П)', group:'Pt', r0:100, nsc:'100П', classAA:{formula:{const:0.10,coeff:0.0017},range:[-50,250]}, classA:{formula:{const:0.15,coeff:0.0020},range:[-100,450]}, classB:{formula:{const:0.30,coeff:0.0050},range:[-196,600]}, classC:{formula:{const:0.60,coeff:0.0100},range:[-196,600]} },
         'pt500': { name:'Pt500 (500П)', group:'Pt', r0:500, nsc:'500П', classAA:null, classA:{formula:{const:0.15,coeff:0.0020},range:[-200,600]}, classB:{formula:{const:0.30,coeff:0.0050},range:[-200,600]}, classC:{formula:{const:0.60,coeff:0.0100},range:[-200,600]} },
         'pt1000': { name:'Pt1000 (1000П)', group:'Pt', r0:1000, nsc:'1000П', classAA:null, classA:{formula:{const:0.15,coeff:0.0020},range:[-200,600]}, classB:{formula:{const:0.30,coeff:0.0050},range:[-200,600]}, classC:{formula:{const:0.60,coeff:0.0100},range:[-200,600]} },
-        'cu10': { name:'Cu10 (10М)', group:'Cu', r0:10, nsc:'10М', classAA:null, classA:null, classB:{formula:{const:0.30,coeff:0.0050},range:[-50,150]}, classC:null },
-        'cu50': { name:'Cu50 (50М)', group:'Cu', r0:50, nsc:'50М', classAA:null, classA:{formula:{const:0.15,coeff:0.0020},range:[-50,150]}, classB:{formula:{const:0.30,coeff:0.0050},range:[-50,150]}, classC:null },
-        'cu100': { name:'Cu100 (100М)', group:'Cu', r0:100, nsc:'100М', classAA:null, classA:{formula:{const:0.15,coeff:0.0020},range:[-50,150]}, classB:{formula:{const:0.30,coeff:0.0050},range:[-50,150]}, classC:null },
+        'cu10': { name:'Cu10 (10М)', group:'Cu', r0:10, nsc:'10М', classAA:null, classA:null, classB:{formula:{const:0.30,coeff:0.0050},range:[-50,180]}, classC:null },
+        'cu50': { name:'Cu50 (50М)', group:'Cu', r0:50, nsc:'50М', classAA:null, classA:{formula:{const:0.15,coeff:0.0020},range:[-50,180]}, classB:{formula:{const:0.30,coeff:0.0050},range:[-50,180]}, classC:null },
+        'cu100': { name:'Cu100 (100М)', group:'Cu', r0:100, nsc:'100М', classAA:null, classA:{formula:{const:0.15,coeff:0.0020},range:[-50,180]}, classB:{formula:{const:0.30,coeff:0.0050},range:[-50,180]}, classC:null },
         'ni50': { name:'Ni50 (50Н)', group:'Ni', r0:50, nsc:'50Н', classAA:null, classA:{formula:{const:0.15,coeff:0.0020},range:[-60,180]}, classB:{formula:{const:0.30,coeff:0.0050},range:[-60,180]}, classC:null },
         'ni100': { name:'Ni100 (100Н)', group:'Ni', r0:100, nsc:'100Н', classAA:null, classA:{formula:{const:0.15,coeff:0.0020},range:[-60,180]}, classB:{formula:{const:0.30,coeff:0.0050},range:[-60,180]}, classC:null },
         'ni120': { name:'Ni120 (120Н)', group:'Ni', r0:120, nsc:'120Н', classAA:null, classA:{formula:{const:0.15,coeff:0.0020},range:[-60,180]}, classB:{formula:{const:0.30,coeff:0.0050},range:[-60,180]}, classC:null },
         'ni500': { name:'Ni500 (500Н)', group:'Ni', r0:500, nsc:'500Н', classAA:null, classA:{formula:{const:0.15,coeff:0.0020},range:[-60,180]}, classB:{formula:{const:0.30,coeff:0.0050},range:[-60,180]}, classC:null },
         'ni1000': { name:'Ni1000 (1000Н)', group:'Ni', r0:1000, nsc:'1000Н', classAA:null, classA:{formula:{const:0.15,coeff:0.0020},range:[-60,180]}, classB:{formula:{const:0.30,coeff:0.0050},range:[-60,180]}, classC:null }
     };
-    function updateRtdTypeOptions(){ let g=document.getElementById('rtd_group').value; let typeSel=document.getElementById('rtd_type'); let classSel=document.getElementById('rtd_class'); let opts=''; if(g==='Pt'){ opts='<option value="pt10">Pt10 (10П)</option><option value="pt50">Pt50 (50П)</option><option value="pt100" selected>Pt100 (100П)</option><option value="pt500">Pt500 (500П)</option><option value="pt1000">Pt1000 (1000П)</option>'; classSel.innerHTML='<option value="AA">AA (1/3 B)</option><option value="A" selected>A</option><option value="B">B</option><option value="C">C</option>'; } else if(g==='Cu'){ opts='<option value="cu10">Cu10 (10М)</option><option value="cu50">Cu50 (50М)</option><option value="cu100" selected>Cu100 (100М)</option>'; classSel.innerHTML='<option value="A">A</option><option value="B" selected>B</option>'; } else if(g==='Ni'){ opts='<option value="ni50">Ni50 (50Н)</option><option value="ni100">Ni100 (100Н)</option><option value="ni120">Ni120 (120Н)</option><option value="ni500">Ni500 (500Н)</option><option value="ni1000" selected>Ni1000 (1000Н)</option>'; classSel.innerHTML='<option value="A">A</option><option value="B" selected>B</option>'; } typeSel.innerHTML=opts; updateRtdClassOptions(); }
+    function updateRtdTypeOptions(){ let g=document.getElementById('rtd_group').value; let typeSel=document.getElementById('rtd_type'); let classSel=document.getElementById('rtd_class'); let opts=''; if(g==='Pt'){ opts='<option value="pt10">Pt10 (10П)</option><option value="pt50">Pt50 (50П)</option><option value="pt100" selected>Pt100 (100П)</option><option value="pt500">Pt500 (500П)</option><option value="pt1000">Pt1000 (1000П)</option>'; classSel.innerHTML='<option value="AA">AA (1/3 B)</option><option value="A" selected>A</option><option value="B">B</option><option value="C">C</option>'; } else if(g==='Cu'){ opts='<option value="cu10">Cu10 (10М)</option><option value="cu50" selected>Cu50 (50М)</option><option value="cu100">Cu100 (100М)</option>'; classSel.innerHTML='<option value="A">A</option><option value="B" selected>B</option>'; } else if(g==='Ni'){ opts='<option value="ni50">Ni50 (50Н)</option><option value="ni100">Ni100 (100Н)</option><option value="ni120">Ni120 (120Н)</option><option value="ni500">Ni500 (500Н)</option><option value="ni1000" selected>Ni1000 (1000Н)</option>'; classSel.innerHTML='<option value="A">A</option><option value="B" selected>B</option>'; } typeSel.innerHTML=opts; updateRtdClassOptions(); }
     function updateRtdClassOptions(){ let type=document.getElementById('rtd_type').value; let d=rtdData[type]; let classSel=document.getElementById('rtd_class'); if(!d)return; for(let i=0;i<classSel.options.length;i++){ let opt=classSel.options[i]; let key='class'+opt.value.toUpperCase(); let avail=!!d[key]; opt.disabled=!avail; if(!avail&&opt.selected){ for(let j=0;j<classSel.options.length;j++){ if(!classSel.options[j].disabled){ classSel.options[j].selected=true; break; } } } } }
-    function calcRtdError(){ let type=document.getElementById('rtd_type').value; let cls=document.getElementById('rtd_class').value.toLowerCase(); let t=parseFloat(document.getElementById('rtd_temperature').value); let warn=document.getElementById('rtd_range_warning'); if(isNaN(t)){showToast('Введите температуру');return;} let d=rtdData[type]; if(!d){showToast('Некорректный тип ТС');return;} let data=d['class'+cls.toUpperCase()]; if(!data){showToast(`Класс ${cls.toUpperCase()} не определён`);return;} let absT=Math.abs(t); let err=data.formula.const+data.formula.coeff*absT; let rng=data.range; if(t<rng[0]||t>rng[1]){ warn.style.display='block'; warn.innerHTML=` Температура ${t}°C вне диапазона [${rng[0]}…${rng[1]}]°C`; }else warn.style.display='none'; let groupNames={Pt:'Платиновый (Pt)',Cu:'Медный (Cu)',Ni:'Никелевый (Ni)'}; let html=`<div class="converter-result-label-title">Результаты (ГОСТ 6651-2009)</div><div class="converter-result-item"><span class="converter-result-label">Тип ТС</span><span class="converter-result-value">${d.name}</span></div><div class="converter-result-item"><span class="converter-result-label">Материал</span><span class="converter-result-value">${groupNames[d.group]}</span></div><div class="converter-result-item"><span class="converter-result-label">R₀ (0°C)</span><span class="converter-result-value">${d.r0} Ом</span></div><div class="converter-result-item"><span class="converter-result-label">Класс допуска</span><span class="converter-result-value">${cls.toUpperCase()}</span></div><div class="converter-result-item"><span class="converter-result-label">Предел погрешности</span><span class="converter-result-value">± ${formatNumber(err)} °C</span></div><div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">Δ = ±(${data.formula.const} + ${data.formula.coeff}·|t|) °C</span></div><div class="converter-result-item"><span class="converter-result-label">Диапазон</span><span class="converter-result-value">${rng[0]} … ${rng[1]} °C</span></div>`; document.getElementById('rtdResults').innerHTML=html; document.getElementById('rtdResults').style.display='block'; setTimeout(()=>document.getElementById('rtdResults').scrollIntoView({behavior:'smooth',block:'start'}),100); }
+    function calcRtdError(){ let type=document.getElementById('rtd_type').value; let cls=document.getElementById('rtd_class').value.toLowerCase(); let t=parseFloat(document.getElementById('rtd_temperature').value); let warn=document.getElementById('rtd_range_warning'); if(isNaN(t)){showToast('Введите температуру');return;} let d=rtdData[type]; if(!d){showToast('Некорректный тип ТС');return;} let data=d['class'+cls.toUpperCase()]; if(!data){showToast(`Класс ${cls.toUpperCase()} не определён`);return;} let absT=Math.abs(t); let err=data.formula.const+data.formula.coeff*absT; let rng=data.range; if(t<rng[0]||t>rng[1]){ warn.style.display='block'; warn.innerHTML=` Температура ${t}°C вне диапазона [${rng[0]}…${rng[1]}]°C`; }else warn.style.display='none'; let groupNames={Pt:'Платиновый (Pt)',Cu:'Медный (Cu)',Ni:'Никелевый (Ni)'}; let html=`<div class="converter-result-label-title">Результаты (ГОСТ 6651-2009)</div><div class="converter-result-item"><span class="converter-result-label">Тип ТС</span><span class="converter-result-value">${d.name}</span></div><div class="converter-result-item"><span class="converter-result-label">Материал</span><span class="converter-result-value">${groupNames[d.group]}</span></div><div class="converter-result-item"><span class="converter-result-label">R₀ (0°C)</span><span class="converter-result-value">${d.r0} Ом</span></div><div class="converter-result-item"><span class="converter-result-label">Класс допуска</span><span class="converter-result-value">${cls.toUpperCase()}</span></div><div class="converter-result-item"><span class="converter-result-label">Предел погрешности</span><span class="converter-result-value" style="color:#4ac771;">± ${formatNumber(err)} °C</span></div><div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">Δ = ±(${data.formula.const} + ${data.formula.coeff}·|t|) °C</span></div><div class="converter-result-item"><span class="converter-result-label">Диапазон</span><span class="converter-result-value">${rng[0]} … ${rng[1]} °C</span></div>`; document.getElementById('rtdResults').innerHTML=html; document.getElementById('rtdResults').style.display='block'; setTimeout(()=>document.getElementById('rtdResults').scrollIntoView({behavior:'smooth',block:'start'}),100); }
 
     const tcData={
         'K':{name:'K (ТХА)',ranges:{class1:[[-40,375,'const',1.5],[375,1000,'linear',0.004]],class2:[[-40,333,'const',2.5],[333,1300,'linear',0.0075]],class3:[[-250,-167,'linear',0.015],[-167,40,'const',2.5]]}},
@@ -2308,7 +2560,344 @@ function setSignalDefaults() { let type=document.getElementById('sigType').value
         'B':{name:'B (ТПР 30/6%)',ranges:{class1:null,class2:[[600,1700,'linear',0.005]],class3:[[600,800,'const',4.0],[800,1700,'linear',0.005]]}}
     };
     function updateTcRanges(){ let type=document.getElementById('tc_type').value; let cls=document.getElementById('tc_class').value; let warn=document.getElementById('tc_range_warning'); if(tcData[type] && tcData[type].ranges['class'+cls]) warn.style.display='none'; }
-    function calcTcError(){ let type=document.getElementById('tc_type').value; let cls=document.getElementById('tc_class').value; let t=parseFloat(document.getElementById('tc_temperature').value); let warn=document.getElementById('tc_range_warning'); if(isNaN(t)){showToast('Введите температуру');return;} let data=tcData[type]; if(!data){showToast('Некорректный тип термопары');return;} let classData=data.ranges['class'+cls]; if(!classData){showToast(`Класс ${cls} не определён`);return;} let absT=Math.abs(t); let err=null, formula='', valid=''; for(let i=0;i<classData.length;i++){ let r=classData[i]; if(t>=r[0]&&t<=r[1]){ if(r[2]==='const'){ err=r[3]; formula=`Δ = ±${r[3]} °C`; } else if(r[2]==='linear'){ err=r[3]*absT; formula=`Δ = ±(${r[3]}·|t|) °C`; } else if(r[2]==='linear2'){ let p=r[3]; err=p[0]+p[1]*(t-1100); formula=`Δ = ±[${p[0]} + ${p[1]}·(t−1100)] °C`; } valid=`${r[0]} … ${r[1]} °C`; break; } } if(err===null||isNaN(err)){ warn.style.display='block'; warn.innerHTML=` Температура ${t}°C вне допустимого диапазона для данного класса`; return; } else warn.style.display='none'; let html=`<div class="converter-result-label-title">Результаты (ГОСТ Р 8.585-2001)</div><div class="converter-result-item"><span class="converter-result-label">Тип термопары</span><span class="converter-result-value">${data.name}</span></div><div class="converter-result-item"><span class="converter-result-label">Класс точности (<span class="greek-gamma">&gamma;</span>)</span><span class="converter-result-value">${cls}</span></div><div class="converter-result-item"><span class="converter-result-label">Предел погрешности</span><span class="converter-result-value">± ${formatNumber(err)} °C</span></div><div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">${formula}</span></div><div class="converter-result-item"><span class="converter-result-label">Диапазон</span><span class="converter-result-value">${valid}</span></div>`; document.getElementById('tcResults').innerHTML=html; document.getElementById('tcResults').style.display='block'; setTimeout(()=>document.getElementById('tcResults').scrollIntoView({behavior:'smooth',block:'start'}),100); }
+    function calcTcError(){ let type=document.getElementById('tc_type').value; let cls=document.getElementById('tc_class').value; let t=parseFloat(document.getElementById('tc_temperature').value); let warn=document.getElementById('tc_range_warning'); if(isNaN(t)){showToast('Введите температуру');return;} let data=tcData[type]; if(!data){showToast('Некорректный тип термопары');return;} let classData=data.ranges['class'+cls]; if(!classData){showToast(`Класс ${cls} не определён`);return;} let absT=Math.abs(t); let err=null, formula='', valid=''; for(let i=0;i<classData.length;i++){ let r=classData[i]; if(t>=r[0]&&t<=r[1]){ if(r[2]==='const'){ err=r[3]; formula=`Δ = ±${r[3]} °C`; } else if(r[2]==='linear'){ err=r[3]*absT; formula=`Δ = ±(${r[3]}·|t|) °C`; } else if(r[2]==='linear2'){ let p=r[3]; err=p[0]+p[1]*(t-1100); formula=`Δ = ±[${p[0]} + ${p[1]}·(t−1100)] °C`; } valid=`${r[0]} … ${r[1]} °C`; break; } } if(err===null||isNaN(err)){ warn.style.display='block'; warn.innerHTML=` Температура ${t}°C вне допустимого диапазона для данного класса`; return; } else warn.style.display='none'; let html=`<div class="converter-result-label-title">Результаты (ГОСТ Р 8.585-2001)</div><div class="converter-result-item"><span class="converter-result-label">Тип термопары</span><span class="converter-result-value">${data.name}</span></div><div class="converter-result-item"><span class="converter-result-label">Класс точности (<span class="greek-gamma">&gamma;</span>)</span><span class="converter-result-value">${cls}</span></div><div class="converter-result-item"><span class="converter-result-label">Предел погрешности</span><span class="converter-result-value" style="color:#4ac771;">± ${formatNumber(err)} °C</span></div><div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">${formula}</span></div><div class="converter-result-item"><span class="converter-result-label">Диапазон</span><span class="converter-result-value">${valid}</span></div>`; document.getElementById('tcResults').innerHTML=html; document.getElementById('tcResults').style.display='block'; setTimeout(()=>document.getElementById('tcResults').scrollIntoView({behavior:'smooth',block:'start'}),100); }
+
+    // Весы — расчёт погрешности
+    function toggleScaleTypeFields() {
+        let type = document.getElementById('ws_type').value;
+        document.getElementById('ws_mech_group').style.display = type === 'mechanical' ? 'block' : 'none';
+        document.getElementById('ws_elc_group').style.display = type === 'electronic_lc' ? 'block' : 'none';
+        document.getElementById('ws_els_group').style.display = type === 'electronic_simple' ? 'block' : 'none';
+    }
+
+    function wsUnitFactor(unit) {
+        let factors = {'mg':0.001, 'g':1, 'kg':1000, 't':1000000};
+        return factors[unit] || 1;
+    }
+    function wsUnitLabel(unit) {
+        let labels = {'mg':'мг', 'g':'г', 'kg':'кг', 't':'т'};
+        return labels[unit] || unit;
+    }
+
+    function calcScaleError() {
+        let type = document.getElementById('ws_type').value;
+        if (type === 'mechanical') {
+            calcMechScaleError();
+        } else if (type === 'electronic_lc') {
+            calcElcScaleError();
+        } else {
+            calcElsScaleError();
+        }
+    }
+
+    // Пределы погрешности по ГОСТ OIML R 76-1-2011 (таблица 3)
+    // mpe = ±e при 0 < m ≤ 500e; ±2e при 500e < m ≤ 2000e; ±3e при 2000e < m ≤ Max
+    // Для класса I: mpe = ±e при 0 < m ≤ 50000e; ±2e при 50000e < m ≤ 200000e; ±3e при 200000e < m
+    function getOimlMpe(oimlClass, loadInE) {
+        // loadInE = нагрузка, выраженная в числе поверочных делений e
+        if (loadInE <= 0) return 0;
+        if (oimlClass === 'I') {
+            if (loadInE <= 50000) return 1;
+            if (loadInE <= 200000) return 2;
+            return 3;
+        } else if (oimlClass === 'II') {
+            if (loadInE <= 5000) return 1;
+            if (loadInE <= 20000) return 2;
+            return 3;
+        } else if (oimlClass === 'III') {
+            if (loadInE <= 500) return 1;
+            if (loadInE <= 2000) return 2;
+            return 3;
+        } else { // IIII
+            if (loadInE <= 50) return 1;
+            if (loadInE <= 200) return 2;
+            return 3;
+        }
+    }
+
+    function calcMechScaleError() {
+        let oimlClass = document.getElementById('ws_mech_oiml_class').value;
+        let n = parseFloat(document.getElementById('ws_mech_n').value);
+        let e = parseFloat(document.getElementById('ws_mech_e').value);
+        let eUnit = document.getElementById('ws_mech_e_unit').value;
+        let maxVal = parseFloat(document.getElementById('ws_mech_max').value);
+        let maxUnit = document.getElementById('ws_mech_max_unit').value;
+        let loadVal = document.getElementById('ws_mech_load').value;
+        let loadUnit = document.getElementById('ws_mech_load_unit').value;
+
+        if (isNaN(n) || n <= 0) { showToast('Введите число поверочных делений'); return; }
+        if (isNaN(e) || e <= 0) { showToast('Введите цену поверочного деления'); return; }
+        if (isNaN(maxVal) || maxVal <= 0) { showToast('Введите НПВ'); return; }
+
+        let eInGrams = e * wsUnitFactor(eUnit);
+        let maxInGrams = maxVal * wsUnitFactor(maxUnit);
+        let unitLabel = wsUnitLabel(eUnit);
+
+        let html = '<div class="converter-result-label-title">Результаты расчёта (механические весы)</div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Класс точности</span><span class="converter-result-value">' + oimlClass + ' (ГОСТ OIML R 76-1-2011)</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">НПВ (Max)</span><span class="converter-result-value">' + formatNumber(maxVal) + ' ' + wsUnitLabel(maxUnit) + '</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Число поверочных делений (n)</span><span class="converter-result-value">' + formatNumber(n) + '</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Цена поверочного деления (e)</span><span class="converter-result-value">' + formatNumber(e) + ' ' + unitLabel + '</span></div>';
+
+        // Таблица пределов погрешности по диапазонам
+        let classNames = {'I':'I (специальный)', 'II':'II (высокий)', 'III':'III (средний)', 'IIII':'IIII (обычный)'};
+        html += '<div style="margin-top:8px;overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.05);"><table style="min-width:100%;width:100%;border-collapse:collapse;">';
+        html += '<thead><tr style="background:rgba(22,27,34,0.7);"><th style="padding:10px 12px;font-size:13px;color:#4a8fc7;text-align:left;">Диапазон нагрузки</th><th style="padding:10px 12px;font-size:13px;color:#4a8fc7;text-align:left;">МПЕ (±)</th></tr></thead><tbody>';
+
+        let ranges = [];
+        if (oimlClass === 'I') {
+            ranges = [[0, 50000, 1], [50000, 200000, 2], [200000, n, 3]];
+        } else if (oimlClass === 'II') {
+            ranges = [[0, 5000, 1], [5000, 20000, 2], [20000, n, 3]];
+        } else if (oimlClass === 'III') {
+            ranges = [[0, 500, 1], [500, 2000, 2], [2000, n, 3]];
+        } else {
+            ranges = [[0, 50, 1], [50, 200, 2], [200, n, 3]];
+        }
+
+        for (let i = 0; i < ranges.length; i++) {
+            let r = ranges[i];
+            let upperE = Math.min(r[1], n);
+            if (r[0] >= n) continue;
+            let lowerMass = r[0] * e;
+            let upperMass = upperE * e;
+            let mpe = r[2] * e;
+            let bg = i % 2 ? 'rgba(22,27,34,0.4)' : 'rgba(13,17,23,0.4)';
+            html += '<tr style="background:' + bg + ';"><td style="padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.6);">от ' + formatNumber(lowerMass) + ' до ' + formatNumber(upperMass) + ' ' + unitLabel + '</td><td style="padding:8px 12px;font-size:14px;color:#4ac771;">± ' + formatNumber(mpe) + ' ' + unitLabel + ' (' + r[2] + 'e)</td></tr>';
+        }
+        html += '</tbody></table></div>';
+
+        // Расчёт для конкретной нагрузки
+        if (loadVal !== '' && !isNaN(parseFloat(loadVal))) {
+            let loadInGrams = parseFloat(loadVal) * wsUnitFactor(loadUnit);
+            let loadInE = loadInGrams / eInGrams;
+            let mpeMultiplier = getOimlMpe(oimlClass, loadInE);
+            let mpeValue = mpeMultiplier * e;
+            let mpeInLoadUnit = mpeValue / wsUnitFactor(loadUnit);
+            let relErr = loadInGrams > 0 ? (mpeValue / loadInGrams) * 100 : undefined;
+
+            html += '<div style="margin-top:10px;padding:10px 12px;background:rgba(13,17,23,0.4);border-radius:10px;border:1px solid rgba(74,199,113,0.15);">';
+            html += '<div style="font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:6px;">При нагрузке ' + formatNumber(parseFloat(loadVal)) + ' ' + wsUnitLabel(loadUnit) + '</div>';
+            html += '<div class="converter-result-item" style="margin:0 0 4px;padding:8px 0;border:none;"><span class="converter-result-label">МПЕ (абсолютная)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(mpeInLoadUnit) + ' ' + wsUnitLabel(loadUnit) + '</span></div>';
+            if (relErr !== undefined) {
+                html += '<div class="converter-result-item" style="margin:0;padding:8px 0;border:none;"><span class="converter-result-label">Относительная погрешность</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(relErr) + ' %</span></div>';
+            }
+            html += '</div>';
+        }
+
+        document.getElementById('ws_results').innerHTML = html;
+        document.getElementById('ws_results').style.display = 'block';
+        setTimeout(() => document.getElementById('ws_results').scrollIntoView({behavior:'smooth',block:'start'}), 100);
+    }
+
+    function calcElcScaleError() {
+        let lcClass = document.getElementById('ws_lc_class').value;
+        let lcN = parseFloat(document.getElementById('ws_lc_n').value);
+        let lcE = parseFloat(document.getElementById('ws_lc_e').value);
+        let lcCount = parseInt(document.getElementById('ws_lc_count').value);
+        let jboxErr = parseFloat(document.getElementById('ws_jbox_err').value);
+        let jboxErrUnit = document.getElementById('ws_jbox_err_unit').value;
+        let jboxSigMax = parseFloat(document.getElementById('ws_jbox_sig_max').value);
+        let moduleClass = parseFloat(document.getElementById('ws_module_class').value);
+        let moduleSigMin = parseFloat(document.getElementById('ws_module_sig_min').value);
+        let moduleSigMax = parseFloat(document.getElementById('ws_module_sig_max').value);
+        let maxVal = parseFloat(document.getElementById('ws_elc_max').value);
+        let maxUnit = document.getElementById('ws_elc_max_unit').value;
+        let loadVal = document.getElementById('ws_elc_load').value;
+        let loadUnit = document.getElementById('ws_elc_load_unit').value;
+
+        if (isNaN(lcN) || lcN <= 0) { showToast('Введите число поверочных делений тензодатчика'); return; }
+        if (isNaN(lcE) || lcE <= 0) { showToast('Введите цену поверочного деления тензодатчика'); return; }
+        if (isNaN(jboxErr) || jboxErr < 0) { showToast('Введите погрешность БК'); return; }
+        if (isNaN(jboxSigMax) || jboxSigMax <= 0) { showToast('Введите выходной сигнал БК при Max'); return; }
+        if (isNaN(moduleClass) || moduleClass <= 0) { showToast('Введите класс точности модуля ввода'); return; }
+        if (isNaN(moduleSigMin) || isNaN(moduleSigMax) || moduleSigMin >= moduleSigMax) { showToast('Введите корректный диапазон входного сигнала модуля'); return; }
+        if (isNaN(maxVal) || maxVal <= 0) { showToast('Введите НПВ'); return; }
+
+        let maxInGrams = maxVal * wsUnitFactor(maxUnit);
+
+        // 1. Погрешность тензодатчика(ов) по OIML R 60
+        // Для нагрузки Max: mpe_LC = mpe_multiplier * e_LC
+        // При нескольких датчиках: каждый несёт долю нагрузки, погрешность складывается геометрически
+        let lcMpeMultiplier = getOimlMpeR60(lcClass, lcN);
+        let lcMpePerUnit = lcMpeMultiplier * lcE; // в единицах измерения тензодатчика (мВ или ед.)
+        // Погрешность датчика в мВ (считаем e_LC в мВ — это цена деления в единицах выходного сигнала)
+        // Для тензодатчиков e обычно указывается в единицах массы, пересчитываем через чувствительность
+        // Примем, что lcE — это цена деления в единицах массы (г, кг и т.д.)
+        // Но для расчёта по цепи нужно пересчитать в мВ
+        // Упрощённый подход: максимальная погрешность в единицах массы
+        // Пересчёт в мВ через пропорцию: при Max → jboxSigMax мВ
+        let lcMpeInMV = (lcMpePerUnit / maxVal) * jboxSigMax; // мВ при полной нагрузке
+        if (lcCount > 1) {
+            // При нескольких датчиках каждый нагружен долей Max, погрешность суммируется геометрически
+            lcMpeInMV = lcMpeInMV * Math.sqrt(lcCount);
+        }
+
+        // 2. Погрешность БК
+        let jboxAbsMV;
+        if (jboxErrUnit === 'pct') {
+            jboxAbsMV = (jboxErr / 100) * jboxSigMax;
+        } else {
+            jboxAbsMV = jboxErr;
+        }
+
+        // 3. Погрешность модуля ввода АСУТП
+        let moduleRange = moduleSigMax - moduleSigMin;
+        let moduleAbsMV = (moduleClass / 100) * moduleRange;
+
+        // Суммарная погрешность (геометрическое суммирование с K=1.1, P=0.95)
+        let totalAbsMV = 1.1 * Math.sqrt(lcMpeInMV * lcMpeInMV + jboxAbsMV * jboxAbsMV + moduleAbsMV * moduleAbsMV);
+
+        // Пересчёт суммарной погрешности из мВ в единицы массы
+        let totalAbsMass = (totalAbsMV / jboxSigMax) * maxVal;
+
+        let html = '<div class="converter-result-label-title">Результаты расчёта (электронные весы на тензодатчиках)</div>';
+
+        // Составляющие
+        html += '<div class="converter-result-item"><span class="converter-result-label">Класс тензодатчика (OIML R 60)</span><span class="converter-result-value">' + lcClass + '</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">n<sub>LC</sub> (число поверочных делений)</span><span class="converter-result-value">' + formatNumber(lcN) + '</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Количество тензодатчиков</span><span class="converter-result-value">' + lcCount + '</span></div>';
+
+        html += '<div style="margin-top:8px;padding:6px 0;font-size:12px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.5px;">Составляющие погрешности (в мВ)</div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Погрешность тензодатчика(ов)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(lcMpeInMV) + ' мВ</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Погрешность балансировочной коробки</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(jboxAbsMV) + ' мВ</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Погрешность модуля ввода АСУТП</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(moduleAbsMV) + ' мВ</span></div>';
+
+        html += '<div style="margin-top:8px;padding:6px 0;font-size:12px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.5px;">Суммарная погрешность</div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Суммарная абс. погрешность (мВ)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(totalAbsMV) + ' мВ</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Суммарная абс. погрешность (масса)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(totalAbsMass) + ' ' + wsUnitLabel(maxUnit) + '</span></div>';
+
+        let totalRelPct = (totalAbsMass / maxVal) * 100;
+        html += '<div class="converter-result-item"><span class="converter-result-label">Относительная погрешность при Max</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(totalRelPct) + ' %</span></div>';
+
+        html += '<div class="converter-result-item" style="flex-direction:column;align-items:flex-start;gap:4px;"><span class="converter-result-label">Формула расчёта</span><span style="font-size:13px;color:rgba(140,180,210,0.9);line-height:1.5;">Δ<sub>Σ</sub> = K·√(Δ<sub>LC</sub>² + Δ<sub>БК</sub>² + Δ<sub>мод</sub>²), K=1.1, P=0.95<br>Δ<sub>масса</sub> = (Δ<sub>Σ</sub>(мВ) / U<sub>max</sub>) · Max</span></div>';
+
+        // Расчёт для конкретной нагрузки
+        if (loadVal !== '' && !isNaN(parseFloat(loadVal))) {
+            let loadNum = parseFloat(loadVal);
+            let loadInGrams = loadNum * wsUnitFactor(loadUnit);
+            let ratio = loadInGrams / maxInGrams;
+            if (ratio <= 0 || ratio > 1) {
+                html += '<div style="margin-top:8px;padding:8px 12px;background:rgba(199,150,74,0.1);border-radius:8px;font-size:12px;color:#c7964a;">Нагрузка вне диапазона взвешивания</div>';
+            } else {
+                let loadAbsMV = 1.1 * Math.sqrt(
+                    Math.pow(lcMpeInMV * ratio, 2) +
+                    Math.pow(jboxAbsMV, 2) +
+                    Math.pow(moduleAbsMV, 2)
+                );
+                let loadAbsMass = (loadAbsMV / jboxSigMax) * maxVal;
+                let loadRelPct = (loadAbsMass / loadNum) * 100;
+
+                html += '<div style="margin-top:10px;padding:10px 12px;background:rgba(13,17,23,0.4);border-radius:10px;border:1px solid rgba(74,199,113,0.15);">';
+                html += '<div style="font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:6px;">При нагрузке ' + formatNumber(loadNum) + ' ' + wsUnitLabel(loadUnit) + '</div>';
+                html += '<div class="converter-result-item" style="margin:0 0 4px;padding:8px 0;border:none;"><span class="converter-result-label">Абсолютная погрешность</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(loadAbsMass) + ' ' + wsUnitLabel(maxUnit) + '</span></div>';
+                html += '<div class="converter-result-item" style="margin:0;padding:8px 0;border:none;"><span class="converter-result-label">Относительная погрешность</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(loadRelPct) + ' %</span></div>';
+                html += '</div>';
+            }
+        }
+
+        document.getElementById('ws_results').innerHTML = html;
+        document.getElementById('ws_results').style.display = 'block';
+        setTimeout(() => document.getElementById('ws_results').scrollIntoView({behavior:'smooth',block:'start'}), 100);
+    }
+
+    // Пределы погрешности по OIML R 60 для тензодатчиков
+    function getOimlMpeR60(lcClass, nLC) {
+        // Возвращает множитель MPE относительно e
+        // Упрощённая модель: для класса B при nLC=3000 → MPE ≈ 1e при Max
+        // Точнее: по OIML R 60, предел погрешности зависит от нагрузки
+        // Для упрощения берём максимальный предел (при Max)
+        if (lcClass === 'A') {
+            if (nLC <= 50000) return 0.7;
+            if (nLC <= 100000) return 1.0;
+            return 1.5;
+        } else if (lcClass === 'B') {
+            if (nLC <= 5000) return 0.7;
+            if (nLC <= 10000) return 1.0;
+            return 1.5;
+        } else if (lcClass === 'C') {
+            if (nLC <= 2500) return 0.7;
+            if (nLC <= 5000) return 1.0;
+            return 1.5;
+        } else { // D
+            if (nLC <= 1000) return 0.7;
+            if (nLC <= 2000) return 1.0;
+            return 1.5;
+        }
+    }
+
+    function calcElsScaleError() {
+        let oimlClass = document.getElementById('ws_els_oiml_class').value;
+        let n = parseFloat(document.getElementById('ws_els_n').value);
+        let e = parseFloat(document.getElementById('ws_els_e').value);
+        let eUnit = document.getElementById('ws_els_e_unit').value;
+        let maxVal = parseFloat(document.getElementById('ws_els_max').value);
+        let maxUnit = document.getElementById('ws_els_max_unit').value;
+        let loadVal = document.getElementById('ws_els_load').value;
+        let loadUnit = document.getElementById('ws_els_load_unit').value;
+
+        if (isNaN(n) || n <= 0) { showToast('Введите число поверочных делений'); return; }
+        if (isNaN(e) || e <= 0) { showToast('Введите цену поверочного деления'); return; }
+        if (isNaN(maxVal) || maxVal <= 0) { showToast('Введите НПВ'); return; }
+
+        let eInGrams = e * wsUnitFactor(eUnit);
+        let maxInGrams = maxVal * wsUnitFactor(maxUnit);
+        let unitLabel = wsUnitLabel(eUnit);
+
+        let html = '<div class="converter-result-label-title">Результаты расчёта (электронные весы автономные)</div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Класс точности</span><span class="converter-result-value">' + oimlClass + ' (ГОСТ OIML R 76-1-2011)</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">НПВ (Max)</span><span class="converter-result-value">' + formatNumber(maxVal) + ' ' + wsUnitLabel(maxUnit) + '</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Число поверочных делений (n)</span><span class="converter-result-value">' + formatNumber(n) + '</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Цена поверочного деления (e)</span><span class="converter-result-value">' + formatNumber(e) + ' ' + unitLabel + '</span></div>';
+
+        // Таблица пределов погрешности
+        html += '<div style="margin-top:8px;overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.05);"><table style="min-width:100%;width:100%;border-collapse:collapse;">';
+        html += '<thead><tr style="background:rgba(22,27,34,0.7);"><th style="padding:10px 12px;font-size:13px;color:#4a8fc7;text-align:left;">Диапазон нагрузки</th><th style="padding:10px 12px;font-size:13px;color:#4a8fc7;text-align:left;">МПЕ (±)</th></tr></thead><tbody>';
+
+        let ranges = [];
+        if (oimlClass === 'I') {
+            ranges = [[0, 50000, 1], [50000, 200000, 2], [200000, n, 3]];
+        } else if (oimlClass === 'II') {
+            ranges = [[0, 5000, 1], [5000, 20000, 2], [20000, n, 3]];
+        } else if (oimlClass === 'III') {
+            ranges = [[0, 500, 1], [500, 2000, 2], [2000, n, 3]];
+        } else {
+            ranges = [[0, 50, 1], [50, 200, 2], [200, n, 3]];
+        }
+
+        for (let i = 0; i < ranges.length; i++) {
+            let r = ranges[i];
+            let upperE = Math.min(r[1], n);
+            if (r[0] >= n) continue;
+            let lowerMass = r[0] * e;
+            let upperMass = upperE * e;
+            let mpe = r[2] * e;
+            let bg = i % 2 ? 'rgba(22,27,34,0.4)' : 'rgba(13,17,23,0.4)';
+            html += '<tr style="background:' + bg + ';"><td style="padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.6);">от ' + formatNumber(lowerMass) + ' до ' + formatNumber(upperMass) + ' ' + unitLabel + '</td><td style="padding:8px 12px;font-size:14px;color:#4ac771;">± ' + formatNumber(mpe) + ' ' + unitLabel + ' (' + r[2] + 'e)</td></tr>';
+        }
+        html += '</tbody></table></div>';
+
+        if (loadVal !== '' && !isNaN(parseFloat(loadVal))) {
+            let loadInGrams = parseFloat(loadVal) * wsUnitFactor(loadUnit);
+            let loadInE = loadInGrams / eInGrams;
+            let mpeMultiplier = getOimlMpe(oimlClass, loadInE);
+            let mpeValue = mpeMultiplier * e;
+            let mpeInLoadUnit = mpeValue / wsUnitFactor(loadUnit);
+            let relErr = loadInGrams > 0 ? (mpeValue / loadInGrams) * 100 : undefined;
+
+            html += '<div style="margin-top:10px;padding:10px 12px;background:rgba(13,17,23,0.4);border-radius:10px;border:1px solid rgba(74,199,113,0.15);">';
+            html += '<div style="font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:6px;">При нагрузке ' + formatNumber(parseFloat(loadVal)) + ' ' + wsUnitLabel(loadUnit) + '</div>';
+            html += '<div class="converter-result-item" style="margin:0 0 4px;padding:8px 0;border:none;"><span class="converter-result-label">МПЕ (абсолютная)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(mpeInLoadUnit) + ' ' + wsUnitLabel(loadUnit) + '</span></div>';
+            if (relErr !== undefined) {
+                html += '<div class="converter-result-item" style="margin:0;padding:8px 0;border:none;"><span class="converter-result-label">Относительная погрешность</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(relErr) + ' %</span></div>';
+            }
+            html += '</div>';
+        }
+
+        document.getElementById('ws_results').innerHTML = html;
+        document.getElementById('ws_results').style.display = 'block';
+        setTimeout(() => document.getElementById('ws_results').scrollIntoView({behavior:'smooth',block:'start'}), 100);
+    }
 
     // Буйковый уровнемер
     const G = 9.80665;
@@ -2321,44 +2910,221 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
     function calcBuoyVolume(d,l){ let r=(d/1000)/2, l_m=l/1000; return Math.PI*r*r*l_m; }
     function calcBuoyancyMass(pct,d,l,rho){ let l_m=l/1000, sub=(pct/100)*l_m; if(sub<=0)return 0; if(sub>l_m)sub=l_m; let r=(d/1000)/2; return Math.PI*r*r*sub*rho; }
     function formatBuoyNumber(n){ if(n===0)return '0'; if(Math.abs(n)<0.0001)return n.toExponential(4); let d=Math.abs(n)>=100?2:Math.abs(n)>=1?3:4; return parseFloat(n.toFixed(d)).toString(); }
+    let lastBuoyParams = null;
+
+    function clearBuoyCustomFields(exceptId) {
+        if (exceptId !== 'buoyCustomLevel') document.getElementById('buoyCustomLevel').value = '';
+        if (exceptId !== 'buoyCustomMass') document.getElementById('buoyCustomMass').value = '';
+        if (exceptId !== 'buoyCustomSignal') document.getElementById('buoyCustomSignal').value = '';
+    }
+
+    function calcBuoyFromLevel() {
+        if (!lastBuoyParams) return;
+        let p = lastBuoyParams;
+        let pctVal = parseFloat(document.getElementById('buoyCustomLevel').value);
+        if (isNaN(pctVal)) { clearBuoyCustomFields('buoyCustomLevel'); return; }
+        let clampedPct = Math.max(0, Math.min(100, pctVal));
+        let m_buoy = calcBuoyancyMass(clampedPct, p.d, p.l, p.rho);
+        let mass_kg = p.method === 'without_buoy' ? p.w - m_buoy + p.m_s : m_buoy + p.m_s;
+        let sig = calculateBuoySignalValue(clampedPct, p.st);
+        document.getElementById('buoyCustomMass').value = formatBuoyNumber(mass_kg * 1000);
+        document.getElementById('buoyCustomSignal').value = formatBuoyNumber(sig.value);
+    }
+
+    function calcBuoyFromMass() {
+        if (!lastBuoyParams) return;
+        let p = lastBuoyParams;
+        let massVal = parseFloat(document.getElementById('buoyCustomMass').value);
+        if (isNaN(massVal)) { clearBuoyCustomFields('buoyCustomMass'); return; }
+        let mass_kg = massVal / 1000;
+        let m_buoy;
+        if (p.method === 'without_buoy') {
+            m_buoy = p.w + p.m_s - mass_kg;
+        } else {
+            m_buoy = mass_kg - p.m_s;
+        }
+        let r_m = (p.d / 1000) / 2;
+        let l_m = p.l / 1000;
+        let denom = Math.PI * r_m * r_m * l_m * p.rho;
+        if (denom === 0) return;
+        let pct = (m_buoy / denom) * 100;
+        pct = Math.max(0, Math.min(100, pct));
+        let sig = calculateBuoySignalValue(pct, p.st);
+        document.getElementById('buoyCustomLevel').value = formatBuoyNumber(pct);
+        document.getElementById('buoyCustomSignal').value = formatBuoyNumber(sig.value);
+    }
+
+    function calcBuoyFromSignal() {
+        if (!lastBuoyParams) return;
+        let p = lastBuoyParams;
+        let sigVal = parseFloat(document.getElementById('buoyCustomSignal').value);
+        if (isNaN(sigVal)) { clearBuoyCustomFields('buoyCustomSignal'); return; }
+        let sigRange = getBuoySignalRangeAndUnit(p.st);
+        let rangeDiff = sigRange.max - sigRange.min;
+        if (rangeDiff === 0) return;
+        let pct = ((sigVal - sigRange.min) / rangeDiff) * 100;
+        pct = Math.max(0, Math.min(100, pct));
+        let m_buoy = calcBuoyancyMass(pct, p.d, p.l, p.rho);
+        let mass_kg = p.method === 'without_buoy' ? p.w - m_buoy + p.m_s : m_buoy + p.m_s;
+        document.getElementById('buoyCustomLevel').value = formatBuoyNumber(pct);
+        document.getElementById('buoyCustomMass').value = formatBuoyNumber(mass_kg * 1000);
+    }
+
     function copyBuoyTable(){ let t=document.getElementById('buoyTableContainer'); if(!t)return; let rows=t.querySelectorAll('tr'), data=[]; for(let i=0;i<rows.length;i++){ let cells=rows[i].querySelectorAll('th,td'), row=[]; for(let j=0;j<cells.length;j++) row.push(cells[j].innerText); data.push(row.join('\t')); } navigator.clipboard.writeText(data.join('\n')).then(()=>showToast('Таблица скопирована')).catch(()=>showToast('Ошибка копирования')); }
-    function calculateBuoyCalibration(){ let d=parseFloat(document.getElementById('buoy_diam').value); let l=parseFloat(document.getElementById('buoy_length').value); let w=parseFloat(document.getElementById('buoy_weight_kg').value); let rho=parseFloat(document.getElementById('liquid_density').value); let m_s=parseFloat(document.getElementById('suspension_mass').value) / 1000; let st=document.getElementById('buoy_signal_type').value; let method=getSelectedCalibMethod(); if(isNaN(d)||d<=0){showToast('Введите диаметр');return;} if(isNaN(l)||l<=0){showToast('Введите длину');return;} if(method==='without_buoy'&&(isNaN(w)||w<=0)){showToast('Введите вес буйка');return;} if(isNaN(rho)||rho<=0){showToast('Введите плотность жидкости');return;} if(isNaN(m_s)||m_s<0){showToast('Введите массу подвеса');return;} let sigRange=getBuoySignalRangeAndUnit(st); if(st==='custom'&&(isNaN(sigRange.min)||isNaN(sigRange.max))){showToast('Введите диапазон сигнала');return;} let vol=calcBuoyVolume(d,l); let results=[]; for(let p=0;p<=100;p+=10){ let m_buoy=calcBuoyancyMass(p,d,l,rho); let mass_kg=method==='without_buoy'? w - m_buoy + m_s : m_buoy + m_s; let sig=calculateBuoySignalValue(p,st); results.push({pct:p, mass_kg:mass_kg, signal:sig.value, sigUnit:sig.unit}); } let html='<div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.05);"><table style="min-width:100%;width:100%;border-collapse:collapse;"><thead><tr style="background:rgba(22,27,34,0.7);"><th style="padding:10px 12px;font-size:13px;color:#4a8fc7;">Уровень (%)</th><th style="padding:10px 12px;font-size:13px;color:#4ac771;">Масса гирь (г)</th><th style="padding:10px 12px;font-size:13px;color:#4a8fc7;">Сигнал ('+results[0].sigUnit+')</th></tr></thead><tbody>'; for(let i=0;i<results.length;i++){ let r=results[i]; let bg=i%2?'rgba(22,27,34,0.4)':'rgba(13,17,23,0.4)'; html+=`<tr style="background:${bg};"><td style="padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.4);">${r.pct}</td><td style="padding:8px 12px;font-size:14px;color:#4ac771;">${formatBuoyNumber(r.mass_kg*1000)}</td><td style="padding:8px 12px;font-size:14px;color:#5b9bd5;">${formatBuoyNumber(r.signal)}</td></tr>`; } html+='</tbody></table></div>'; let methodName=method==='without_buoy'?'Без буйка':'С буйком'; let formulaText=method==='without_buoy'?'m_гири = m_буйка − m_выт + m_подвеса':'m_гири = m_выт + m_подвеса'; let infoHtml=`<strong>${methodName}</strong><br> ${formulaText}<br>`; if(method==='without_buoy') infoHtml+=` Вес буйка: ${formatBuoyNumber(w)} кг<br>`; infoHtml+=` Плотность: ${formatBuoyNumber(rho)} кг/м³<br> Объём: ${formatBuoyNumber(vol*1e6)} см³<br> Масса гирь: ${formatBuoyNumber(results[results.length-1].mass_kg*1000)} г (100%)<br> Сигнал: ${sigRange.label}`; document.getElementById('buoyTableContainer').innerHTML=html; document.getElementById('buoyInfo').innerHTML=infoHtml; document.getElementById('buoyResults').style.display='block'; setTimeout(()=>document.getElementById('buoyResults').scrollIntoView({behavior:'smooth',block:'start'}),100); }
+    function calculateBuoyCalibration(){ let d=parseFloat(document.getElementById('buoy_diam').value); let l=parseFloat(document.getElementById('buoy_length').value); let w=parseFloat(document.getElementById('buoy_weight_kg').value); let rho=parseFloat(document.getElementById('liquid_density').value); let m_s=parseFloat(document.getElementById('suspension_mass').value) / 1000; let st=document.getElementById('buoy_signal_type').value; let method=getSelectedCalibMethod(); if(isNaN(d)||d<=0){showToast('Введите диаметр');return;} if(isNaN(l)||l<=0){showToast('Введите длину');return;} if(method==='without_buoy'&&(isNaN(w)||w<=0)){showToast('Введите вес буйка');return;} if(isNaN(rho)||rho<=0){showToast('Введите плотность жидкости');return;} if(isNaN(m_s)||m_s<0){showToast('Введите массу подвеса');return;} let sigRange=getBuoySignalRangeAndUnit(st); if(st==='custom'&&(isNaN(sigRange.min)||isNaN(sigRange.max))){showToast('Введите диапазон сигнала');return;} let vol=calcBuoyVolume(d,l); let results=[]; for(let p=0;p<=100;p+=10){ let m_buoy=calcBuoyancyMass(p,d,l,rho); let mass_kg=method==='without_buoy'? w - m_buoy + m_s : m_buoy + m_s; let sig=calculateBuoySignalValue(p,st); results.push({pct:p, mass_kg:mass_kg, signal:sig.value, sigUnit:sig.unit}); } let html='<div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.05);"><table style="min-width:100%;width:100%;border-collapse:collapse;"><thead><tr style="background:rgba(22,27,34,0.7);"><th style="padding:10px 12px;font-size:13px;color:#4a8fc7;">Уровень (%)</th><th style="padding:10px 12px;font-size:13px;color:#4ac771;">Масса гирь (г)</th><th style="padding:10px 12px;font-size:13px;color:#4a8fc7;">Сигнал ('+results[0].sigUnit+')</th></tr></thead><tbody>'; for(let i=0;i<results.length;i++){ let r=results[i]; let bg=i%2?'rgba(22,27,34,0.4)':'rgba(13,17,23,0.4)'; html+=`<tr style="background:${bg};"><td style="padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.4);">${r.pct}</td><td style="padding:8px 12px;font-size:14px;color:#4ac771;">${formatBuoyNumber(r.mass_kg*1000)}</td><td style="padding:8px 12px;font-size:14px;color:#5b9bd5;">${formatBuoyNumber(r.signal)}</td></tr>`; } html+='</tbody></table></div>'; let methodName=method==='without_buoy'?'Без буйка':'С буйком'; let formulaText=method==='without_buoy'?'m_гири = m_буйка − m_выт + m_подвеса':'m_гири = m_выт + m_подвеса'; let infoHtml=`<strong>${methodName}</strong><br> ${formulaText}<br>`; if(method==='without_buoy') infoHtml+=` Вес буйка: ${formatBuoyNumber(w)} кг<br>`; infoHtml+=` Плотность: ${formatBuoyNumber(rho)} кг/м³<br> Объём: ${formatBuoyNumber(vol*1e6)} см³<br> Масса гирь: ${formatBuoyNumber(results[results.length-1].mass_kg*1000)} г (100%)<br> Сигнал: ${sigRange.label}`; document.getElementById('buoyTableContainer').innerHTML=html; document.getElementById('buoyInfo').innerHTML=infoHtml; lastBuoyParams={d:d,l:l,w:w,rho:rho,m_s:m_s,st:st,method:method}; let sigUnitEl=document.getElementById('buoyCustomSigUnit'); if(sigUnitEl) sigUnitEl.innerText=results[0].sigUnit; document.getElementById('buoyCustomLevel').value=''; document.getElementById('buoyCustomMass').value=''; document.getElementById('buoyCustomSignal').value=''; document.getElementById('buoyCustomCalcPanel').style.display='block'; document.getElementById('buoyResults').style.display='block'; setTimeout(()=>document.getElementById('buoyResults').scrollIntoView({behavior:'smooth',block:'start'}),100); }
     function selectCalibMethod(m){ localStorage.setItem('buoy_calib_method',m); navigateTo('buoy-calc'); }
     function getSelectedCalibMethod(){ let m=localStorage.getItem('buoy_calib_method'); return (m==='with_buoy'||m==='without_buoy')?m:'with_buoy'; }
     function setCalibMethodOnForm(){ let m=getSelectedCalibMethod(); let ind=document.getElementById('selectedMethodText'); if(ind) ind.innerText=m==='with_buoy'?'С буйком':'Без буйка'; updateBuoyCalcTitle(); let wCont=document.getElementById('buoyWeightContainer'); if(wCont) wCont.style.display=m==='with_buoy'?'none':'block'; }
     function updateBuoyCalcTitle(){ let m=getSelectedCalibMethod(); let t=document.getElementById('buoyCalcTitle'); if(t) t.innerText=m==='with_buoy'?'Калибровка: с буйком':'Калибровка: без буйка'; }
 
-    function calcErrorKit(){
-        let devices = [];
-        for(let i=1;i<=3;i++){
-            let min=parseFloat(document.getElementById('kit_dev'+i+'_range_min').value);
-            let max=parseFloat(document.getElementById('kit_dev'+i+'_range_max').value);
-            let cls=parseFloat(document.getElementById('kit_dev'+i+'_accuracy').value);
-            if(isNaN(min)||isNaN(max)||isNaN(cls)){
-                if(i<3){showToast('Заполните все поля для прибора '+i);return;}
-                else continue;
-            }
-            if(min>=max){showToast('НПИ должен быть меньше ВПИ (прибор '+i+')');return;}
-            if(cls<=0){showToast('Класс точности должен быть положительным (прибор '+i+')');return;}
-            let xNorm = (min===0 || min*max<0) ? (Math.abs(max)+Math.abs(min)) : Math.abs(max);
-            let absErr=(cls/100)*xNorm;
-            devices.push({num:i,min:min,max:max,cls:cls,xNorm:xNorm,absErr:absErr});
-        }
-        if(devices.length===0){showToast('Введите данные хотя бы одного прибора');return;}
-        let totalAbs = 0;
-        for(let d of devices) totalAbs += d.absErr*d.absErr;
-        totalAbs = Math.sqrt(totalAbs);
-        let html='<div class="converter-result-label-title">Результаты расчёта (ГОСТ 8.401-80)</div>';
-        for(let d of devices){
-            html+=`<div class="converter-result-item"><span class="converter-result-label">Прибор ${d.num}: абс. погрешность</span><span class="converter-result-value">± ${formatNumber(d.absErr)} ед.</span></div>`;
-            html+=`<div class="converter-result-item"><span class="converter-result-label">Прибор ${d.num}: диапазон</span><span class="converter-result-value">${formatNumber(d.min)} … ${formatNumber(d.max)}</span></div>`;
-        }
-        html+=`<div class="converter-result-item"><span class="converter-result-label">Суммарная абс. погрешность (±Δ<sub>Σ</sub>)</span><span class="converter-result-value">± ${formatNumber(totalAbs)} ед.</span></div>`;
-        html+=`<div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">Δ<sub>Σ</sub> = √(Δ₁² + Δ₂² + … + Δₙ²)</span></div>`;
-        document.getElementById('errorKitResults').innerHTML=html;
-        document.getElementById('errorKitResults').style.display='block';
-        setTimeout(()=>document.getElementById('errorKitResults').scrollIntoView({behavior:'smooth',block:'start'}),100);
+    let kitDeviceCount = 0;
+
+    function addKitDevice(name, form, cls, xmin, xmax, xn, xcur, cval, dval) {
+        kitDeviceCount++;
+        let idx = kitDeviceCount;
+        let p = 'kd_' + idx + '_';
+        name = name || '';
+        form = form || 'number';
+        cls = cls || '0.5';
+        xmin = xmin !== undefined ? xmin : '0';
+        xmax = xmax !== undefined ? xmax : '';
+        xn = xn || '';
+        xcur = xcur || '';
+        cval = cval || '0.02';
+        dval = dval || '0.01';
+        let div = document.createElement('div');
+        div.className = 'scale-form';
+        div.id = 'kit_dev_' + idx;
+        div.style.marginBottom = '6px';
+        div.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><div class="scale-form-label" style="margin:0;">Прибор ' + idx + '</div><button type="button" onclick="removeKitDevice(' + idx + ')" style="background:rgba(199,74,74,0.15);border:1px solid rgba(199,74,74,0.3);color:#c74a4a;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-family:Inter,sans-serif;min-height:32px;">Удалить</button></div>'
+            + '<div class="scale-form-label">Название/тип прибора</div><input type="text" inputmode="text" id="' + p + 'name" class="scale-field" placeholder="Напр. Датчик давления" value="' + name + '" autocomplete="off" enterkeyhint="next">'
+            + '<div class="scale-form-label">Форма выражения</div><select id="' + p + 'class_form" class="scale-field" onchange="toggleKitDevFields(' + idx + ')" autocomplete="off">'
+            + '<option value="number"' + (form === 'number' ? ' selected' : '') + '>Число (например 0.5)</option>'
+            + '<option value="underline"' + (form === 'underline' ? ' selected' : '') + '>Число с подчёркиванием</option>'
+            + '<option value="circle"' + (form === 'circle' ? ' selected' : '') + '>Число в кружке</option>'
+            + '<option value="fraction"' + (form === 'fraction' ? ' selected' : '') + '>Дробь c/d</option></select>'
+            + '<div id="' + p + 'group_simple"' + (form !== 'number' ? ' style="display:none;"' : '') + '>'
+            + '<div class="scale-form-label">Класс точности γ (%)</div><input type="text" inputmode="decimal" id="' + p + 'class_val" class="scale-field" value="' + cls + '" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next">'
+            + '<div class="scale-form-label">Диапазон измерения</div><div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;"><input type="text" inputmode="decimal" id="' + p + 'xmin" class="scale-field" style="flex:1;" placeholder="НПИ" value="' + xmin + '" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="decimal" id="' + p + 'xmax" class="scale-field" style="flex:1;" placeholder="ВПИ" value="' + xmax + '" autocomplete="off" enterkeyhint="next"></div>'
+            + '<div class="scale-form-label">Текущее значение X (опционально)</div><input type="text" inputmode="decimal" id="' + p + 'x_current" class="scale-field" placeholder="опционально" value="' + xcur + '" autocomplete="off" enterkeyhint="next"></div>'
+            + '<div id="' + p + 'group_underline"' + (form !== 'underline' ? ' style="display:none;"' : '') + '>'
+            + '<div class="scale-form-label">Класс точности γ (%)</div><input type="text" inputmode="decimal" id="' + p + 'class_val_u" class="scale-field" value="' + cls + '" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next">'
+            + '<div class="scale-form-label">Длина шкалы Xн</div><input type="text" inputmode="decimal" id="' + p + 'xn_scale" class="scale-field" placeholder="В ед. шкалы" value="' + xn + '" autocomplete="off" enterkeyhint="next">'
+            + '<div class="scale-form-label">Текущее значение X (опционально)</div><input type="text" inputmode="decimal" id="' + p + 'x_current_u" class="scale-field" placeholder="опционально" value="' + xcur + '" autocomplete="off" enterkeyhint="next"></div>'
+            + '<div id="' + p + 'group_circle"' + (form !== 'circle' ? ' style="display:none;"' : '') + '>'
+            + '<div class="scale-form-label">Класс точности δ (%)</div><input type="text" inputmode="decimal" id="' + p + 'class_val_c" class="scale-field" value="' + cls + '" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next">'
+            + '<div class="scale-form-label">Текущее значение X</div><input type="text" inputmode="decimal" id="' + p + 'x_current_c" class="scale-field" placeholder="обязательно" value="' + xcur + '" autocomplete="off" enterkeyhint="next"></div>'
+            + '<div id="' + p + 'group_fraction"' + (form !== 'fraction' ? ' style="display:none;"' : '') + '>'
+            + '<div class="scale-form-label">c (числитель, %)</div><input type="text" inputmode="decimal" id="' + p + 'c_val" class="scale-field" value="' + cval + '" placeholder="Напр. 0.02" autocomplete="off" enterkeyhint="next">'
+            + '<div class="scale-form-label">d (знаменатель, %)</div><input type="text" inputmode="decimal" id="' + p + 'd_val" class="scale-field" value="' + dval + '" placeholder="Напр. 0.01" autocomplete="off" enterkeyhint="next">'
+            + '<div class="scale-form-label">ВПИ (Xmax)</div><input type="text" inputmode="decimal" id="' + p + 'xmax_f" class="scale-field" placeholder="ВПИ" value="' + xmax + '" autocomplete="off" enterkeyhint="next">'
+            + '<div class="scale-form-label">Текущее значение X</div><input type="text" inputmode="decimal" id="' + p + 'x_current_f" class="scale-field" placeholder="обязательно" value="' + xcur + '" autocomplete="off" enterkeyhint="next"></div>'
+            + '<div id="' + p + 'abs_result" style="display:none;margin-top:8px;padding:8px 12px;background:rgba(74,199,113,0.08);border:1px solid rgba(74,199,113,0.2);border-radius:8px;font-size:13px;color:#4ac771;"></div>';
+        document.getElementById('kit_device_list').appendChild(div);
     }
+
+    function removeKitDevice(idx) {
+        let el = document.getElementById('kit_dev_' + idx);
+        if (el) el.remove();
+    }
+
+    function toggleKitDevFields(idx) {
+        let p = 'kd_' + idx + '_';
+        let form = document.getElementById(p + 'class_form').value;
+        let groups = ['group_simple', 'group_underline', 'group_circle', 'group_fraction'];
+        groups.forEach(g => {
+            let el = document.getElementById(p + g);
+            if (el) el.style.display = 'none';
+        });
+        let showMap = {'number': 'group_simple', 'underline': 'group_underline', 'circle': 'group_circle', 'fraction': 'group_fraction'};
+        let showEl = document.getElementById(p + showMap[form]);
+        if (showEl) showEl.style.display = 'block';
+    }
+
+    function calcKitDeviceError(idx) {
+        let p = 'kd_' + idx + '_';
+        let devEl = document.getElementById('kit_dev_' + idx);
+        if (!devEl) return null;
+        let form = document.getElementById(p + 'class_form').value;
+        let absErr, relErr, xNorm;
+        try {
+            if (form === 'number') {
+                let cls = parseFloat(document.getElementById(p + 'class_val').value);
+                let xmin = parseFloat(document.getElementById(p + 'xmin').value);
+                let xmax = parseFloat(document.getElementById(p + 'xmax').value);
+                if (isNaN(cls) || cls <= 0 || isNaN(xmin) || isNaN(xmax) || xmin >= xmax) return null;
+                xNorm = (xmin === 0 || xmin * xmax < 0) ? (Math.abs(xmax) + Math.abs(xmin)) : Math.abs(xmax);
+                absErr = (cls / 100) * xNorm;
+            } else if (form === 'underline') {
+                let cls = parseFloat(document.getElementById(p + 'class_val_u').value);
+                xNorm = parseFloat(document.getElementById(p + 'xn_scale').value);
+                if (isNaN(cls) || cls <= 0 || isNaN(xNorm) || xNorm <= 0) return null;
+                absErr = (cls / 100) * xNorm;
+            } else if (form === 'circle') {
+                let cls = parseFloat(document.getElementById(p + 'class_val_c').value);
+                let xcur = parseFloat(document.getElementById(p + 'x_current_c').value);
+                if (isNaN(cls) || cls <= 0 || isNaN(xcur) || xcur === 0) return null;
+                absErr = (cls / 100) * Math.abs(xcur);
+            } else if (form === 'fraction') {
+                let c = parseFloat(document.getElementById(p + 'c_val').value);
+                let d = parseFloat(document.getElementById(p + 'd_val').value);
+                let xmax = parseFloat(document.getElementById(p + 'xmax_f').value);
+                let xcur = parseFloat(document.getElementById(p + 'x_current_f').value);
+                if (isNaN(c) || isNaN(d) || c <= 0 || d <= 0 || isNaN(xmax) || xmax <= 0 || isNaN(xcur) || xcur === 0) return null;
+                relErr = c + d * (Math.abs(xmax / xcur) - 1);
+                absErr = (relErr / 100) * Math.abs(xcur);
+            }
+        } catch(e) { return null; }
+        let nameEl = document.getElementById(p + 'name');
+        let name = nameEl ? nameEl.value : ('Прибор ' + idx);
+        let resEl = document.getElementById(p + 'abs_result');
+        if (resEl && absErr !== undefined) {
+            resEl.innerHTML = '±Δ = ' + formatNumber(absErr);
+            resEl.style.display = 'block';
+        }
+        return {idx: idx, name: name, absErr: absErr, form: form};
+    }
+
+    function calcErrorKit() {
+        let devs = [];
+        let container = document.getElementById('kit_device_list');
+        let forms = container.querySelectorAll('[id^="kit_dev_"]');
+        let allIdxs = [];
+        forms.forEach(f => {
+            let m = f.id.match(/kit_dev_(\d+)/);
+            if (m) allIdxs.push(parseInt(m[1]));
+        });
+        for (let idx of allIdxs) {
+            let result = calcKitDeviceError(idx);
+            if (result) devs.push(result);
+        }
+        if (devs.length === 0) { showToast('Добавьте хотя бы один прибор и заполните данные'); return; }
+        let method = document.getElementById('kit_method').value;
+        let totalAbs;
+        let formulaText;
+        if (method === 'geometric') {
+            let sumSq = 0;
+            for (let d of devs) sumSq += d.absErr * d.absErr;
+            totalAbs = 1.1 * Math.sqrt(sumSq);
+            formulaText = 'Δ<sub>Σ</sub> = K·√(Δ₁² + Δ₂² + … + Δₙ²), K=1.1, P=0.95';
+        } else {
+            totalAbs = 0;
+            for (let d of devs) totalAbs += d.absErr;
+            formulaText = 'Δ<sub>Σ</sub> = Δ₁ + Δ₂ + … + Δₙ (арифметическое)';
+        }
+        let html = '<div class="converter-result-label-title">Результаты расчёта (комплект ИК)</div>';
+        for (let d of devs) {
+            html += '<div class="converter-result-item"><span class="converter-result-label">' + (d.name || 'Прибор ' + d.idx) + ': ±Δ</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(d.absErr) + '</span></div>';
+        }
+        html += '<div class="converter-result-item"><span class="converter-result-label">Суммарная абс. погрешность (±Δ<sub>Σ</sub>)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(totalAbs) + '</span></div>';
+        html += '<div class="converter-result-item" style="flex-direction:column;align-items:flex-start;gap:4px;"><span class="converter-result-label">Формула</span><span style="font-size:13px;color:rgba(140,180,210,0.9);line-height:1.5;">' + formulaText + '</span></div>';
+        document.getElementById('errorKitResults').innerHTML = html;
+        document.getElementById('errorKitResults').style.display = 'block';
+        setTimeout(() => document.getElementById('errorKitResults').scrollIntoView({behavior:'smooth',block:'start'}), 100);
+    }
+
+    // Initialize kit page with 2 default devices
+    (function(){ addKitDevice('Датчик давления', 'number', '0.5', '0', '1.6'); addKitDevice('Преобразователь 4-20 мА', 'number', '0.25', '4', '20'); })();
 
     function updateTempSensorOptions(){
         let type=document.getElementById('temp_sensor_type').value;
