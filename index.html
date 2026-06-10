@@ -194,6 +194,11 @@
         border: 1px solid rgba(74, 143, 199, 0.2); border-radius: 14px; margin: 8px 16px; padding: 14px; 
         position: relative; z-index: 2;
     }
+    .kit-dev-form { padding: 10px 12px !important; margin: 4px 16px !important; border-radius: 10px !important; }
+    .kit-dev-form .scale-form-label { font-size: 10px; margin-bottom: 3px; }
+    .kit-dev-form .scale-field { height: 38px !important; padding: 8px 10px !important; margin-bottom: 8px !important; font-size: 13px !important; border-radius: 8px !important; }
+    .kit-dev-form select.scale-field { min-height: 38px !important; font-size: 12px !important; }
+    .kit-dev-custom-input { margin-top: 4px !important; }
     .scale-form-label, .form-label { color: rgba(255,255,255,0.35); font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; font-weight: 500; }
     .scale-field, .form-field {
         width: 100%; background: var(--input-bg); border: 1px solid var(--card-border);
@@ -395,6 +400,8 @@
         .nav-btn { padding: 9px 14px; font-size: 13px; }
         .form-field, .scale-field { padding: 11px 12px; font-size: 14px; }
         select.scale-field, select.form-field { font-size: 12px; min-height: 44px; }
+        .kit-dev-form .scale-field { height: 36px !important; padding: 7px 10px !important; font-size: 12px !important; }
+        .kit-dev-form select.scale-field { min-height: 36px !important; font-size: 11px !important; }
         select.scale-field option, select.form-field option { font-size: 12px; }
         .warning-banner { margin: 8px 12px 0; padding: 10px 12px; }
         .buoy-card-title { font-size: 22px; }
@@ -413,6 +420,8 @@
         .nav-btn svg { width: 12px; height: 12px; }
         .form-field, .scale-field { padding: 10px 10px; font-size: 13px; }
         select.scale-field, select.form-field { font-size: 11px; min-height: 42px; }
+        .kit-dev-form .scale-field { height: 34px !important; padding: 6px 8px !important; font-size: 11px !important; }
+        .kit-dev-form select.scale-field { min-height: 34px !important; font-size: 10px !important; }
         select.scale-field option, select.form-field option { font-size: 11px; }
         .bottom-nav-item { min-width: 52px; padding: 5px 2px; }
         .bottom-nav-label { font-size: 10px; }
@@ -1683,7 +1692,7 @@
                 <div class="menu-btn" onclick="navigateTo('error-level')"><div class="menu-btn-text"><div class="menu-btn-label">Уровнемеры</div><div class="menu-btn-sublabel">ГОСТ 8.401-80</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('error-scale')"><div class="menu-btn-text"><div class="menu-btn-label">Весы (механические и электронные)</div><div class="menu-btn-sublabel">ГОСТ 8.401-80, ГОСТ OIML R 76-1-2011, тензодатчики</div></div><i class="menu-btn-arrow">›</i></div>
                 <div class="menu-btn" onclick="navigateTo('error-generic')" style="border-color:rgba(199,150,74,0.35);"><div class="menu-btn-text"><div class="menu-btn-label" style="color:#c7964a;">Расчёт по классу точности</div><div class="menu-btn-sublabel">ГОСТ 8.401-80 — формы выражения класса точности</div></div><i class="menu-btn-arrow" style="color:rgba(199,150,74,0.4);">›</i></div>
-                <div class="menu-btn" onclick="navigateTo('error-kit')" style="border-color:rgba(199,150,74,0.35);"><div class="menu-btn-text"><div class="menu-btn-label" style="color:#c7964a;">Комплект приборов</div><div class="menu-btn-sublabel">Суммарная погрешность измерительного канала</div></div><i class="menu-btn-arrow" style="color:rgba(199,150,74,0.4);">›</i></div>
+                <div class="menu-btn" onclick="navigateTo('error-kit')" style="border-color:rgba(199,150,74,0.35);"><div class="menu-btn-text"><div class="menu-btn-label" style="color:#c7964a;">Комплект приборов</div><div class="menu-btn-sublabel">Суммарная погрешность комплекта</div></div><i class="menu-btn-arrow" style="color:rgba(199,150,74,0.4);">›</i></div>
             </div>
         </div>
 
@@ -1905,7 +1914,7 @@
             <div class="page-inline-header"><div class="page-inline-header-title">Приведённая погрешность (<span class="greek-gamma">γ</span>) — число с подчёркиванием</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="scale-form">
-                <div style="text-align:center;margin-bottom:12px;"><span style="font-family:Georgia,'Times New Roman',serif;font-size:28px;font-weight:700;color:rgba(74,143,199,0.9);text-decoration:underline;">0,5</span></div>
+                <div style="text-align:center;margin-bottom:12px;"><span style="font-family:Georgia,'Times New Roman',serif;font-size:28px;font-weight:700;color:rgba(74,143,199,0.9);border-bottom:2px solid rgba(74,143,199,0.9);padding-bottom:2px;">0,5</span></div>
                 <div class="scale-form-label">Класс точности <span class="greek-gamma">γ</span> (%)</div>
                 <select id="egu_class_val" class="scale-field" onchange="toggleEguCustomClass()" autocomplete="off">
                     <option value="0.05">0,05</option>
@@ -1926,7 +1935,7 @@
                     <input type="text" inputmode="decimal" id="egu_class_val_custom" class="scale-field" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next">
                 </div>
                 <div class="scale-form-label">Нормирующее значение Xн (ед.изм.)</div><input type="text" inputmode="decimal" id="egu_xn_scale" class="scale-field" placeholder="Длина шкалы" autocomplete="off" enterkeyhint="next">
-                <div class="scale-form-label">Текущее значение X (ед.изм., опционально)</div><input type="text" inputmode="decimal" id="egu_x_current" class="scale-field" placeholder="опционально" autocomplete="off" enterkeyhint="next">
+
             </div>
             <button type="button" class="converter-convert-btn" onclick="calcGenericUnderline()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="egu_results" class="converter-result-group" style="display:none;"></div>
@@ -1934,7 +1943,7 @@
                 <div style="font-size:13px;font-weight:600;color:rgba(74,143,199,0.9);margin-bottom:8px;">Справочная информация</div>
                 <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;">
                     <p style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.65);">Приведённая погрешность</b> (<span class="greek-gamma">γ</span>) с подчёркиванием — означает, что нормирующее значение Xн принимается равным длине шкалы (а не ВПИ). Применяется для приборов с существенно нелинейной шкалой (омметры, измерители сопротивления изоляции и т.п.).</p>
-                    <p style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.65);">Расчёт:</b> Δ = ±(<span class="greek-gamma">γ</span>/100) · Xн, где Xн — длина шкалы в единицах измерения. Если задано текущее значение X, дополнительно рассчитывается относительная погрешность <span class="greek-delta">δ</span> = ±(Δ/|X|) · 100.</p>
+                    <p style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.65);">Расчёт:</b> Δ = ±(<span class="greek-gamma">γ</span>/100) · Xн, где Xн — длина шкалы в единицах измерения.</p>
                     <p style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.65);">Примеры применения:</b> омметры, мегаомметры, измерители сопротивления изоляции — приборы с существенно нелинейной (гиперболической) шкалой, где деления сжаты в начале и растянуты в конце. Подчёркивание класса точности означает, что за нормирующее значение принята длина всей шкалы, а не верхний предел. Также встречается у некоторых типов измерителей влажности и pH-метров с нелинейной градуировкой.</p>
                     <p><b style="color:rgba(255,255,255,0.65);">Нормативный документ:</b> ГОСТ 8.401-80 «ГСИ. Классы точности средств измерений. Общие требования».</p>
                 </div>
@@ -2022,8 +2031,8 @@
                     <div class="scale-form-label">Своё значение d (%)</div>
                     <input type="text" inputmode="decimal" id="egf_d_val_custom" class="scale-field" placeholder="Напр. 0.01" autocomplete="off" enterkeyhint="next">
                 </div>
-                <div class="scale-form-label">ВПИ (Xmax, ед.изм.)</div><input type="text" inputmode="decimal" id="egf_xmax" class="scale-field" placeholder="ВПИ" value="100" autocomplete="off" enterkeyhint="next">
-                <div class="scale-form-label">Текущее значение X (ед.изм.)</div><input type="text" inputmode="decimal" id="egf_x_current" class="scale-field" placeholder="обязательно" autocomplete="off" enterkeyhint="next">
+                <div class="scale-form-label">ВПИ (Xmax, ед.изм.)</div><input type="text" inputmode="decimal" id="egf_xmax" class="scale-field" placeholder="ВПИ" value="100" autocomplete="off" enterkeyhint="next" oninput="syncEgfXcurrent()">
+                <div class="scale-form-label">Текущее значение X (ед.изм.)</div><input type="text" inputmode="decimal" id="egf_x_current" class="scale-field" placeholder="обязательно" value="100" autocomplete="off" enterkeyhint="next" oninput="this.dataset.userEdited='1'">
             </div>
             <button type="button" class="converter-convert-btn" onclick="calcGenericFraction()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="egf_results" class="converter-result-group" style="display:none;"></div>
@@ -2213,21 +2222,37 @@
 
         <!-- Комплект приборов -->
         <div id="page-error-kit" class="page-content">
-            <div class="page-inline-header"><div class="page-inline-header-title">Комплект приборов (ИК)</div></div>
+            <div class="page-inline-header"><div class="page-inline-header-title">Комплект приборов</div></div>
             <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div id="kit_device_list"></div>
             <div style="padding:0 16px;position:relative;z-index:2;">
                 <button type="button" class="query-btn" onclick="addKitDevice()" style="margin-bottom:8px;"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Добавить прибор</button>
+                <div id="kit_add_limit_msg" style="display:none;font-size:12px;color:rgba(199,150,74,0.8);margin-top:-4px;margin-bottom:8px;">Максимум 5 приборов</div>
             </div>
             <div class="scale-form" style="margin-top:4px;">
                 <div class="scale-form-label">Метод суммирования</div>
                 <select id="kit_method" class="scale-field" autocomplete="off">
+                    <option value="geometric_plain" selected>Геометрическое суммирование (без коэффициента)</option>
                     <option value="geometric">Геометрическое суммирование (К=1.1, P=0.95)</option>
                     <option value="arithmetic">Арифметическое суммирование</option>
                 </select>
             </div>
             <button type="button" class="converter-convert-btn" onclick="calcErrorKit()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать суммарную погрешность</button>
             <div id="errorKitResults" class="converter-result-group" style="display:none;"></div>
+            <div style="margin:14px 16px 10px;padding:14px 16px;background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--card-border);border-radius:14px;position:relative;z-index:2;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#4a8fc7;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span style="font-size:14px;font-weight:700;color:#e0e0e0;letter-spacing:-0.2px;">Справочная информация</span></div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;">
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Комплект приборов</b> — при измерении одной величины последовательно соединёнными средствами измерений (например, датчик + нормирующий преобразователь + вторичный прибор) суммарная погрешность определяется комбинацией погрешностей каждого прибора в комплекте.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Абсолютная погрешность (±Δ)</b> — выражается в единицах измеряемой величины. Задаётся непосредственно, без пересчёта. Для данного прибора Δ = const во всём диапазоне.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Относительная погрешность (<span class="greek-delta">δ</span>, %)</b> — отношение абсолютной погрешности к текущему значению измеряемой величины X. Расчёт: Δ = ±(<span class="greek-delta">δ</span>/100) · |X|. Возрастает при уменьшении X, поэтому наименьшая в верхней части диапазона.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Приведённая погрешность (<span class="greek-gamma">γ</span>, %)</b> — отношение абсолютной погрешности к нормирующему значению Xн. Расчёт: Δ = ±(<span class="greek-gamma">γ</span>/100) · Xн. Нормирующее значение: при НПИ ≥ 0 — Xн = ВПИ; при двусторонней шкале — Xн = |ВПИ| + |НПИ|. Класс точности, обозначенный числом без дополнительных символов, соответствует приведённой погрешности.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Геометрическое суммирование (без коэффициента):</b> Δ<sub>Σ</sub> = √(Δ₁² + Δ₂² + … + Δₙ²). Суммирование некоррелированных погрешностей по правилу квадратного корня без дополнительного коэффициента. Используется, когда погрешности приборов независимы и рассматриваются как случайные величины с равной значимостью. Даёт наименьшую оценку суммарной погрешности среди всех методов.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Геометрическое суммирование (K=1,1, P=0,95):</b> Δ<sub>Σ</sub> = K · √(Δ₁² + Δ₂² + … + Δₙ²), где K = 1,1 при доверительной вероятности P = 0,95. Применяется при числе приборов более 3, когда погрешности независимы (некоррелированы). Коэффициент K учитывает отличие доверительной вероятности от P=1 и даёт более реалистичную оценку, чем арифметическое суммирование.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Арифметическое суммирование:</b> Δ<sub>Σ</sub> = Δ₁ + Δ₂ + … + Δₙ. Используется при малом числе приборов (2–3), когда погрешности могут быть коррелированы, или для получения максимально возможной (наихудшей) оценки суммарной погрешности.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Ряды классов точности (ГОСТ 8.401-80):</b> 0,02; 0,05; 0,1; 0,15; 0,2; 0,25; 0,4; 0,5; 0,6; 1,0; 1,5; 2,0; 2,5; 4,0; 5,0; 6,0 — для приведённой и относительной погрешностей допускается использовать только значения из этого ряда.</div>
+                    <div><b style="color:rgba(255,255,255,0.7);">Нормативный документ:</b> ГОСТ 8.401-80 «ГСИ. Классы точности средств измерений. Общие требования»; РМГ 115-2019 «ГСИ. Калибровка средств измерений. Алгоритмы обработки результатов измерений и оценки неопределённости».</div>
+                </div>
+            </div>
         </div>
 
         <!-- ======================== БУЙКОВЫЙ УРОВНЕМЕР ======================== -->
@@ -2960,7 +2985,6 @@ function setSignalDefaults() { let type=document.getElementById('sigType').value
             cls = parseFloat(clsVal);
         }
         let xNorm = parseFloat(document.getElementById('egu_xn_scale').value);
-        let xCurrent = parseFloat(document.getElementById('egu_x_current').value);
         if (isNaN(cls) || cls <= 0) { showToast('Введите класс точности'); return; }
         if (isNaN(xNorm) || xNorm <= 0) { showToast('Введите нормирующее значение'); return; }
         let absErr = (cls / 100) * xNorm;
@@ -2969,11 +2993,6 @@ function setSignalDefaults() { let type=document.getElementById('sigType').value
         html += '<div class="converter-result-item"><span class="converter-result-label">Класс точности</span><span class="converter-result-value"><span class="greek-gamma">γ</span> = ' + cls + '% (приведённая, Xн = длина шкалы)</span></div>';
         html += '<div class="converter-result-item"><span class="converter-result-label">Нормирующее значение (Xн)</span><span class="converter-result-value">' + formatNumber(xNorm) + '</span></div>';
         html += '<div class="converter-result-item"><span class="converter-result-label">Абсолютная погрешность (±Δ)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(absErr) + ' ед.изм.</span></div>';
-        if (!isNaN(xCurrent) && xCurrent !== 0) {
-            let relErr = (absErr / Math.abs(xCurrent)) * 100;
-            formulaHTML += '<br><span class="greek-delta">δ</span> = ±(Δ/|X|)·100 = ±' + formatNumber(relErr) + '%';
-            html += '<div class="converter-result-item"><span class="converter-result-label">Относительная погрешность (±<span class="greek-delta">δ</span>)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(relErr) + ' %</span></div>';
-        }
         html += '<div class="converter-result-item" style="flex-direction:column;align-items:flex-start;gap:4px;"><span class="converter-result-label">Формула расчёта</span><span style="font-size:13px;color:rgba(140,180,210,0.9);line-height:1.5;">' + formulaHTML + ' ед.изм.</span></div>';
         document.getElementById('egu_results').innerHTML = html;
         document.getElementById('egu_results').style.display = 'block';
@@ -3021,6 +3040,14 @@ function setSignalDefaults() { let type=document.getElementById('sigType').value
         let sel = document.getElementById('egf_d_val');
         let wrap = document.getElementById('egf_d_val_custom_wrap');
         wrap.style.display = sel.value === 'custom_d' ? 'block' : 'none';
+    }
+
+    function syncEgfXcurrent() {
+        let xmaxEl = document.getElementById('egf_xmax');
+        let xcurEl = document.getElementById('egf_x_current');
+        if (xcurEl && !xcurEl.dataset.userEdited) {
+            xcurEl.value = xmaxEl.value;
+        }
     }
 
     function calcGenericFraction() {
@@ -3504,66 +3531,125 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
 
     let kitDeviceCount = 0;
 
-    function addKitDevice(name, form, cls, xmin, xmax, xn, xcur, cval, dval) {
+    function addKitDevice(form, cls, xmin, xmax) {
+        let container = document.getElementById('kit_device_list');
+        let existing = container.querySelectorAll('[id^="kit_dev_"]');
+        if (existing.length >= 5) {
+            document.getElementById('kit_add_limit_msg').style.display = 'block';
+            return;
+        }
         kitDeviceCount++;
         let idx = kitDeviceCount;
+        let visualNum = existing.length + 1;
         let p = 'kd_' + idx + '_';
-        name = name || '';
         form = form || 'number';
         cls = cls || '0.5';
         xmin = xmin !== undefined ? xmin : '0';
         xmax = xmax !== undefined ? xmax : '';
-        xn = xn || '';
-        xcur = xcur || '';
-        cval = cval || '0.02';
-        dval = dval || '0.01';
         let div = document.createElement('div');
-        div.className = 'scale-form';
+        div.className = 'scale-form kit-dev-form';
         div.id = 'kit_dev_' + idx;
         div.style.marginBottom = '6px';
-        div.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><div class="scale-form-label" style="margin:0;">Прибор ' + idx + '</div><button type="button" onclick="removeKitDevice(' + idx + ')" style="background:rgba(199,74,74,0.15);border:1px solid rgba(199,74,74,0.3);color:#c74a4a;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-family:Inter,sans-serif;min-height:32px;">Удалить</button></div>'
-            + '<div class="scale-form-label">Название/тип прибора</div><input type="text" inputmode="text" id="' + p + 'name" class="scale-field" placeholder="Напр. Датчик давления" value="' + name + '" autocomplete="off" enterkeyhint="next">'
-            + '<div class="scale-form-label">Форма выражения</div><select id="' + p + 'class_form" class="scale-field" onchange="toggleKitDevFields(' + idx + ')" autocomplete="off">'
-            + '<option value="number"' + (form === 'number' ? ' selected' : '') + '>Число (например 0.5)</option>'
-            + '<option value="underline"' + (form === 'underline' ? ' selected' : '') + '>Число с подчёркиванием</option>'
-            + '<option value="circle"' + (form === 'circle' ? ' selected' : '') + '>Число в кружке</option>'
-            + '<option value="fraction"' + (form === 'fraction' ? ' selected' : '') + '>Дробь c/d</option></select>'
+        div.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;"><div style="font-size:13px;font-weight:600;color:rgba(74,143,199,0.9);margin:0;">Прибор ' + visualNum + '</div><button type="button" onclick="removeKitDevice(' + idx + ')" style="background:rgba(199,74,74,0.15);border:1px solid rgba(199,74,74,0.3);color:#c74a4a;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;font-family:Inter,sans-serif;min-height:28px;">Удалить</button></div>'
+            + '<div style="display:flex;gap:6px;align-items:flex-end;"><div style="flex:1.2;"><div class="scale-form-label">Выбор погрешности</div><select id="' + p + 'class_form" class="scale-field" style="margin-bottom:0;" onchange="toggleKitDevFields(' + idx + ')" autocomplete="off">'
+            + '<option value="absolute"' + (form === 'absolute' ? ' selected' : '') + '>Абсолютная (ед.изм.)</option>'
+            + '<option value="circle"' + (form === 'circle' ? ' selected' : '') + '>Относительная (%)</option>'
+            + '<option value="number"' + (form === 'number' ? ' selected' : '') + '>Приведённая (к.т.) (%)</option></select></div>'
+            + '<div id="' + p + 'cls_simple_wrap" style="flex:0.8;' + (form !== 'number' ? 'display:none;' : '') + '"><div class="scale-form-label"><span class="greek-gamma">γ</span> (%)</div><select id="' + p + 'class_val" class="scale-field" style="margin-bottom:0;" onchange="toggleKitDevCustom(' + idx + ',\'number\')" autocomplete="off">'
+            + '<option value="0.05"' + (cls === '0.05' ? ' selected' : '') + '>0,05</option>'
+            + '<option value="0.06"' + (cls === '0.06' ? ' selected' : '') + '>0,06</option>'
+            + '<option value="0.1"' + (cls === '0.1' ? ' selected' : '') + '>0,1</option>'
+            + '<option value="0.15"' + (cls === '0.15' ? ' selected' : '') + '>0,15</option>'
+            + '<option value="0.2"' + (cls === '0.2' ? ' selected' : '') + '>0,2</option>'
+            + '<option value="0.25"' + (cls === '0.25' ? ' selected' : '') + '>0,25</option>'
+            + '<option value="0.5"' + (cls === '0.5' ? ' selected' : '') + '>0,5</option>'
+            + '<option value="1.0"' + (cls === '1.0' ? ' selected' : '') + '>1,0</option>'
+            + '<option value="1.5"' + (cls === '1.5' ? ' selected' : '') + '>1,5</option>'
+            + '<option value="2.5"' + (cls === '2.5' ? ' selected' : '') + '>2,5</option>'
+            + '<option value="4.0"' + (cls === '4.0' ? ' selected' : '') + '>4,0</option>'
+            + '<option value="custom">Своё...</option></select>'
+            + '<input type="text" inputmode="decimal" id="' + p + 'class_val_custom" class="scale-field kit-dev-custom-input" style="margin-bottom:0;display:none;" placeholder="γ %" autocomplete="off" enterkeyhint="next"></div>'
+            + '<div id="' + p + 'cls_circle_wrap" style="flex:0.8;' + (form !== 'circle' ? 'display:none;' : '') + '"><div class="scale-form-label"><span class="greek-delta">δ</span> (%)</div><select id="' + p + 'class_val_c" class="scale-field" style="margin-bottom:0;" onchange="toggleKitDevCustom(' + idx + ',\'circle\')" autocomplete="off">'
+            + '<option value="0.1"' + (cls === '0.1' ? ' selected' : '') + '>0,1</option>'
+            + '<option value="0.15"' + (cls === '0.15' ? ' selected' : '') + '>0,15</option>'
+            + '<option value="0.2"' + (cls === '0.2' ? ' selected' : '') + '>0,2</option>'
+            + '<option value="0.25"' + (cls === '0.25' ? ' selected' : '') + '>0,25</option>'
+            + '<option value="0.5"' + (cls === '0.5' ? ' selected' : '') + '>0,5</option>'
+            + '<option value="1.0"' + (cls === '1.0' ? ' selected' : '') + '>1,0</option>'
+            + '<option value="1.5"' + (cls === '1.5' ? ' selected' : '') + '>1,5</option>'
+            + '<option value="2.0"' + (cls === '2.0' ? ' selected' : '') + '>2,0</option>'
+            + '<option value="2.5"' + (cls === '2.5' ? ' selected' : '') + '>2,5</option>'
+            + '<option value="4.0"' + (cls === '4.0' ? ' selected' : '') + '>4,0</option>'
+            + '<option value="custom">Своё...</option></select>'
+            + '<input type="text" inputmode="decimal" id="' + p + 'class_val_c_custom" class="scale-field kit-dev-custom-input" style="margin-bottom:0;display:none;" placeholder="δ %" autocomplete="off" enterkeyhint="next"></div>'
+            + '<div id="' + p + 'cls_absolute_wrap" style="flex:0.8;' + (form !== 'absolute' ? 'display:none;' : '') + '"><div class="scale-form-label" style="text-transform:none;">±Δ (ед.изм.)</div><input type="text" inputmode="decimal" id="' + p + 'abs_val" class="scale-field" style="margin-bottom:0;" value="" placeholder="±Δ" autocomplete="off" enterkeyhint="next"></div>'
+            + '</div>'
             + '<div id="' + p + 'group_simple"' + (form !== 'number' ? ' style="display:none;"' : '') + '>'
-            + '<div class="scale-form-label">Класс точности γ (%)</div><input type="text" inputmode="decimal" id="' + p + 'class_val" class="scale-field" value="' + cls + '" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next">'
-            + '<div class="scale-form-label">Диапазон измерения</div><div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;"><input type="text" inputmode="decimal" id="' + p + 'xmin" class="scale-field" style="flex:1;" placeholder="НПИ" value="' + xmin + '" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="decimal" id="' + p + 'xmax" class="scale-field" style="flex:1;" placeholder="ВПИ" value="' + xmax + '" autocomplete="off" enterkeyhint="next"></div>'
-            + '<div class="scale-form-label">Текущее значение X (опционально)</div><input type="text" inputmode="decimal" id="' + p + 'x_current" class="scale-field" placeholder="опционально" value="' + xcur + '" autocomplete="off" enterkeyhint="next"></div>'
-            + '<div id="' + p + 'group_underline"' + (form !== 'underline' ? ' style="display:none;"' : '') + '>'
-            + '<div class="scale-form-label">Класс точности γ (%)</div><input type="text" inputmode="decimal" id="' + p + 'class_val_u" class="scale-field" value="' + cls + '" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next">'
-            + '<div class="scale-form-label">Длина шкалы Xн</div><input type="text" inputmode="decimal" id="' + p + 'xn_scale" class="scale-field" placeholder="В ед. шкалы" value="' + xn + '" autocomplete="off" enterkeyhint="next">'
-            + '<div class="scale-form-label">Текущее значение X (опционально)</div><input type="text" inputmode="decimal" id="' + p + 'x_current_u" class="scale-field" placeholder="опционально" value="' + xcur + '" autocomplete="off" enterkeyhint="next"></div>'
+            + '<div class="scale-form-label">Диапазон измерения</div><div style="display:flex;gap:8px;align-items:stretch;"><input type="text" inputmode="decimal" id="' + p + 'xmin" class="scale-field" style="flex:1;" placeholder="НПИ" value="' + xmin + '" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="decimal" id="' + p + 'xmax" class="scale-field" style="flex:1;" placeholder="ВПИ" value="' + xmax + '" autocomplete="off" enterkeyhint="next"></div></div>'
             + '<div id="' + p + 'group_circle"' + (form !== 'circle' ? ' style="display:none;"' : '') + '>'
-            + '<div class="scale-form-label">Класс точности δ (%)</div><input type="text" inputmode="decimal" id="' + p + 'class_val_c" class="scale-field" value="' + cls + '" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next">'
-            + '<div class="scale-form-label">Текущее значение X</div><input type="text" inputmode="decimal" id="' + p + 'x_current_c" class="scale-field" placeholder="обязательно" value="' + xcur + '" autocomplete="off" enterkeyhint="next"></div>'
-            + '<div id="' + p + 'group_fraction"' + (form !== 'fraction' ? ' style="display:none;"' : '') + '>'
-            + '<div class="scale-form-label">c (числитель, %)</div><input type="text" inputmode="decimal" id="' + p + 'c_val" class="scale-field" value="' + cval + '" placeholder="Напр. 0.02" autocomplete="off" enterkeyhint="next">'
-            + '<div class="scale-form-label">d (знаменатель, %)</div><input type="text" inputmode="decimal" id="' + p + 'd_val" class="scale-field" value="' + dval + '" placeholder="Напр. 0.01" autocomplete="off" enterkeyhint="next">'
-            + '<div class="scale-form-label">ВПИ (Xmax)</div><input type="text" inputmode="decimal" id="' + p + 'xmax_f" class="scale-field" placeholder="ВПИ" value="' + xmax + '" autocomplete="off" enterkeyhint="next">'
-            + '<div class="scale-form-label">Текущее значение X</div><input type="text" inputmode="decimal" id="' + p + 'x_current_f" class="scale-field" placeholder="обязательно" value="' + xcur + '" autocomplete="off" enterkeyhint="next"></div>'
-            + '<div id="' + p + 'abs_result" style="display:none;margin-top:8px;padding:8px 12px;background:rgba(74,199,113,0.08);border:1px solid rgba(74,199,113,0.2);border-radius:8px;font-size:13px;color:#4ac771;"></div>';
+            + '<div class="scale-form-label">Текущее значение X</div><input type="text" inputmode="decimal" id="' + p + 'x_current_c" class="scale-field" placeholder="обязательно" autocomplete="off" enterkeyhint="next"></div>'
+            + '<div id="' + p + 'group_absolute"' + (form !== 'absolute' ? ' style="display:none;"' : '') + '></div>'
+            + '<div id="' + p + 'abs_result" style="display:none;margin-top:8px;padding:8px 12px;background:rgba(74,143,199,0.08);border:1px solid rgba(74,143,199,0.2);border-radius:8px;font-size:13px;color:#4a8fc7;"></div>';
         document.getElementById('kit_device_list').appendChild(div);
+        renumberKitDevices();
+        updateKitLimitMsg();
     }
 
     function removeKitDevice(idx) {
         let el = document.getElementById('kit_dev_' + idx);
         if (el) el.remove();
+        renumberKitDevices();
+        updateKitLimitMsg();
+    }
+
+    function renumberKitDevices() {
+        let container = document.getElementById('kit_device_list');
+        let devs = container.querySelectorAll('[id^="kit_dev_"]');
+        devs.forEach((el, i) => {
+            let row = el.firstElementChild;
+            if (row) { let label = row.firstElementChild; if (label) label.textContent = 'Прибор ' + (i + 1); }
+        });
+    }
+
+    function updateKitLimitMsg() {
+        let container = document.getElementById('kit_device_list');
+        let existing = container.querySelectorAll('[id^="kit_dev_"]');
+        let msg = document.getElementById('kit_add_limit_msg');
+        if (msg) msg.style.display = existing.length >= 5 ? 'block' : 'none';
     }
 
     function toggleKitDevFields(idx) {
         let p = 'kd_' + idx + '_';
         let form = document.getElementById(p + 'class_form').value;
-        let groups = ['group_simple', 'group_underline', 'group_circle', 'group_fraction'];
+        let groups = ['group_simple', 'group_circle', 'group_absolute'];
         groups.forEach(g => {
             let el = document.getElementById(p + g);
             if (el) el.style.display = 'none';
         });
-        let showMap = {'number': 'group_simple', 'underline': 'group_underline', 'circle': 'group_circle', 'fraction': 'group_fraction'};
+        let clsWraps = ['cls_simple_wrap', 'cls_circle_wrap', 'cls_absolute_wrap'];
+        clsWraps.forEach(w => {
+            let el = document.getElementById(p + w);
+            if (el) el.style.display = 'none';
+        });
+        let showMap = {'number': 'group_simple', 'circle': 'group_circle', 'absolute': 'group_absolute'};
+        let clsMap = {'number': 'cls_simple_wrap', 'circle': 'cls_circle_wrap', 'absolute': 'cls_absolute_wrap'};
         let showEl = document.getElementById(p + showMap[form]);
         if (showEl) showEl.style.display = 'block';
+        let clsEl = document.getElementById(p + clsMap[form]);
+        if (clsEl) clsEl.style.display = 'block';
+    }
+
+    function toggleKitDevCustom(idx, type) {
+        let p = 'kd_' + idx + '_';
+        if (type === 'number') {
+            let sel = document.getElementById(p + 'class_val');
+            let inp = document.getElementById(p + 'class_val_custom');
+            if (sel && inp) inp.style.display = sel.value === 'custom' ? 'block' : 'none';
+        } else if (type === 'circle') {
+            let sel = document.getElementById(p + 'class_val_c');
+            let inp = document.getElementById(p + 'class_val_c_custom');
+            if (sel && inp) inp.style.display = sel.value === 'custom' ? 'block' : 'none';
+        }
     }
 
     function calcKitDeviceError(idx) {
@@ -3571,37 +3657,29 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
         let devEl = document.getElementById('kit_dev_' + idx);
         if (!devEl) return null;
         let form = document.getElementById(p + 'class_form').value;
-        let absErr, relErr, xNorm;
+        let absErr, xNorm;
         try {
             if (form === 'number') {
-                let cls = parseFloat(document.getElementById(p + 'class_val').value);
+                let clsVal = document.getElementById(p + 'class_val').value;
+                let cls = clsVal === 'custom' ? parseFloat(document.getElementById(p + 'class_val_custom').value) : parseFloat(clsVal);
                 let xmin = parseFloat(document.getElementById(p + 'xmin').value);
                 let xmax = parseFloat(document.getElementById(p + 'xmax').value);
                 if (isNaN(cls) || cls <= 0 || isNaN(xmin) || isNaN(xmax) || xmin >= xmax) return null;
                 xNorm = (xmin === 0 || xmin * xmax < 0) ? (Math.abs(xmax) + Math.abs(xmin)) : Math.abs(xmax);
                 absErr = (cls / 100) * xNorm;
-            } else if (form === 'underline') {
-                let cls = parseFloat(document.getElementById(p + 'class_val_u').value);
-                xNorm = parseFloat(document.getElementById(p + 'xn_scale').value);
-                if (isNaN(cls) || cls <= 0 || isNaN(xNorm) || xNorm <= 0) return null;
-                absErr = (cls / 100) * xNorm;
             } else if (form === 'circle') {
-                let cls = parseFloat(document.getElementById(p + 'class_val_c').value);
+                let clsVal = document.getElementById(p + 'class_val_c').value;
+                let cls = clsVal === 'custom' ? parseFloat(document.getElementById(p + 'class_val_c_custom').value) : parseFloat(clsVal);
                 let xcur = parseFloat(document.getElementById(p + 'x_current_c').value);
                 if (isNaN(cls) || cls <= 0 || isNaN(xcur) || xcur === 0) return null;
                 absErr = (cls / 100) * Math.abs(xcur);
-            } else if (form === 'fraction') {
-                let c = parseFloat(document.getElementById(p + 'c_val').value);
-                let d = parseFloat(document.getElementById(p + 'd_val').value);
-                let xmax = parseFloat(document.getElementById(p + 'xmax_f').value);
-                let xcur = parseFloat(document.getElementById(p + 'x_current_f').value);
-                if (isNaN(c) || isNaN(d) || c <= 0 || d <= 0 || isNaN(xmax) || xmax <= 0 || isNaN(xcur) || xcur === 0) return null;
-                relErr = c + d * (Math.abs(xmax / xcur) - 1);
-                absErr = (relErr / 100) * Math.abs(xcur);
+            } else if (form === 'absolute') {
+                let val = parseFloat(document.getElementById(p + 'abs_val').value);
+                if (isNaN(val) || val <= 0) return null;
+                absErr = val;
             }
         } catch(e) { return null; }
-        let nameEl = document.getElementById(p + 'name');
-        let name = nameEl ? nameEl.value : ('Прибор ' + idx);
+        let name = 'Прибор ' + idx;
         let resEl = document.getElementById(p + 'abs_result');
         if (resEl && absErr !== undefined) {
             resEl.innerHTML = '±Δ = ' + formatNumber(absErr);
@@ -3615,19 +3693,24 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
         let container = document.getElementById('kit_device_list');
         let forms = container.querySelectorAll('[id^="kit_dev_"]');
         let allIdxs = [];
-        forms.forEach(f => {
+        forms.forEach((f, i) => {
             let m = f.id.match(/kit_dev_(\d+)/);
-            if (m) allIdxs.push(parseInt(m[1]));
+            if (m) allIdxs.push({idx: parseInt(m[1]), visualNum: i + 1});
         });
-        for (let idx of allIdxs) {
-            let result = calcKitDeviceError(idx);
-            if (result) devs.push(result);
+        for (let item of allIdxs) {
+            let result = calcKitDeviceError(item.idx);
+            if (result) { result.name = 'Прибор ' + item.visualNum; devs.push(result); }
         }
         if (devs.length === 0) { showToast('Добавьте хотя бы один прибор и заполните данные'); return; }
         let method = document.getElementById('kit_method').value;
         let totalAbs;
         let formulaText;
-        if (method === 'geometric') {
+        if (method === 'geometric_plain') {
+            let sumSq = 0;
+            for (let d of devs) sumSq += d.absErr * d.absErr;
+            totalAbs = Math.sqrt(sumSq);
+            formulaText = 'Δ<sub>Σ</sub> = √(Δ₁² + Δ₂² + … + Δₙ²)';
+        } else if (method === 'geometric') {
             let sumSq = 0;
             for (let d of devs) sumSq += d.absErr * d.absErr;
             totalAbs = 1.1 * Math.sqrt(sumSq);
@@ -3637,9 +3720,9 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
             for (let d of devs) totalAbs += d.absErr;
             formulaText = 'Δ<sub>Σ</sub> = Δ₁ + Δ₂ + … + Δₙ (арифметическое)';
         }
-        let html = '<div class="converter-result-label-title">Результаты расчёта (комплект ИК)</div>';
+        let html = '<div class="converter-result-label-title">Результаты расчёта (комплект приборов)</div>';
         for (let d of devs) {
-            html += '<div class="converter-result-item"><span class="converter-result-label">' + (d.name || 'Прибор ' + d.idx) + ': ±Δ</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(d.absErr) + '</span></div>';
+            html += '<div class="converter-result-item"><span class="converter-result-label">' + (d.name || 'Прибор ' + d.idx) + ': ±Δ</span><span class="converter-result-value" style="color:#4a8fc7;">± ' + formatNumber(d.absErr) + '</span></div>';
         }
         html += '<div class="converter-result-item"><span class="converter-result-label">Суммарная абс. погрешность (±Δ<sub>Σ</sub>)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(totalAbs) + '</span></div>';
         html += '<div class="converter-result-item" style="flex-direction:column;align-items:flex-start;gap:4px;"><span class="converter-result-label">Формула</span><span style="font-size:13px;color:rgba(140,180,210,0.9);line-height:1.5;">' + formulaText + '</span></div>';
@@ -3649,7 +3732,7 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
     }
 
     // Initialize kit page with 2 default devices
-    (function(){ addKitDevice('Датчик давления', 'number', '0.5', '0', '1.6'); addKitDevice('Преобразователь 4-20 мА', 'number', '0.25', '4', '20'); })();
+    (function(){ addKitDevice('number', '0.5', '0', '1.6'); addKitDevice('number', '0.25', '4', '20'); })();
 
     function updateTempSensorOptions(){
         let type=document.getElementById('temp_sensor_type').value;
