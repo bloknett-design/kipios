@@ -3780,7 +3780,7 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
         if(document.getElementById('tc_type')) updateTcRanges();
         setCalibMethodOnForm();
         let firstActive=document.querySelector('.page-content.active');
-        if(firstActive) { requestAnimationFrame(()=>firstActive.classList.add('visible')); updateBottomNavActive(firstActive.id.replace('page-','')); }
+        if(firstActive) { requestAnimationFrame(()=>{ requestAnimationFrame(()=>firstActive.classList.add('visible')); }); updateBottomNavActive(firstActive.id.replace('page-','')); }
         let appHeader = document.querySelector('.app-header');
         if(appHeader && firstActive) appHeader.style.display = (firstActive.id === 'page-dashboard') ? 'block' : 'none';
     });
