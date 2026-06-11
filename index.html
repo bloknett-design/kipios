@@ -101,14 +101,32 @@
         gap: 10px;
     }
     .header-title {
-        font-family: 'Jura', sans-serif; font-size: 44px; font-weight: 600; letter-spacing: 4px; margin-top: 0;
-        background: linear-gradient(135deg, #4a8fc7, #7ab8e0, #7ae0a0, #c77ae0, #4ac771);
-        background-size: 300% 300%; -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent; background-clip: text;
-        animation: gradientShift 10s ease-in-out infinite;
-        overflow-wrap: break-word; word-break: break-word; min-width: 0;
+        cursor: pointer; user-select: none; -webkit-user-select: none;
+        -webkit-touch-callout: none; touch-action: manipulation;
+        display: flex; align-items: center; justify-content: center;
+        margin-top: 0; min-width: 0;
     }
-    @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    .header-title svg.led-display {
+        height: 44px; width: auto;
+        transform: skewX(-9deg);
+        filter: drop-shadow(0 0 5px rgba(74,143,199,0.5)) drop-shadow(0 0 12px rgba(74,143,199,0.2));
+        animation: segmentGlow 3s ease-in-out infinite;
+    }
+    .led-seg-on {
+        fill: url(#ledGradient);
+    }
+    .led-seg-off {
+        fill: rgba(120, 160, 200, 0.06);
+    }
+    [data-theme="light"] .led-seg-on { fill: url(#ledGradient); }
+    [data-theme="light"] .led-seg-off { fill: rgba(37, 99, 235, 0.06); }
+    [data-theme="light"] .header-title svg.led-display {
+        filter: drop-shadow(0 0 5px rgba(37,99,235,0.45)) drop-shadow(0 0 12px rgba(37,99,235,0.18));
+    }
+    @keyframes segmentGlow {
+        0%, 100% { filter: drop-shadow(0 0 5px rgba(74,143,199,0.5)) drop-shadow(0 0 12px rgba(74,143,199,0.2)); }
+        50% { filter: drop-shadow(0 0 9px rgba(74,143,199,0.7)) drop-shadow(0 0 18px rgba(74,143,199,0.3)); }
+    }
 
     .header-btn {
         min-width: 44px; min-height: 44px; width: 44px; height: 44px; border-radius: 10px;
@@ -196,44 +214,43 @@
     }
     .kit-dev-form { padding: 10px 12px !important; margin: 4px 16px !important; border-radius: 10px !important; }
     .kit-dev-form .scale-form-label { font-size: 10px; margin-bottom: 3px; }
-    .kit-dev-form .scale-field { height: 38px !important; padding: 8px 10px !important; margin-bottom: 8px !important; font-size: 13px !important; border-radius: 8px !important; }
-    .kit-dev-form select.scale-field { min-height: 38px !important; font-size: 12px !important; }
+    .kit-dev-form .scale-field { height: 36px !important; padding: 6px 10px !important; margin-bottom: 8px !important; font-size: 12px !important; border-radius: 8px !important; }
+    .kit-dev-form select.scale-field { min-height: 36px !important; height: 36px !important; font-size: 12px !important; }
     .kit-dev-custom-input { margin-top: 4px !important; }
     .scale-form-label, .form-label { color: rgba(255,255,255,0.35); font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; font-weight: 500; }
     .scale-field, .form-field {
         width: 100%; background: var(--input-bg); border: 1px solid var(--card-border);
-        border-radius: 10px; padding: 12px 14px; color: #e8e8e8; font-size: 15px;
+        border-radius: 10px; padding: 10px 14px; color: #e8e8e8; font-size: 15px;
         font-family: 'Inter', sans-serif; outline: none; transition: all 0.2s; margin-bottom: 12px; pointer-events: auto;
-        -webkit-appearance: none; appearance: none; height: 46px; box-sizing: border-box;
+        -webkit-appearance: none; appearance: none; height: 42px; box-sizing: border-box;
     }
     select.scale-field, select.form-field {
         background-repeat: no-repeat;
-        background-position: right 12px center;
-        padding-right: 32px;
-        font-size: 13px;
-        line-height: 1.3;
-        white-space: normal;
-        overflow-wrap: break-word;
-        word-break: break-word;
-        height: auto;
-        min-height: 46px;
+        background-position: right 10px center;
+        padding-right: 28px;
+        font-size: 12px;
+        line-height: 1.2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 42px;
+        min-height: 42px;
         padding-top: 10px;
         padding-bottom: 10px;
     }
-    select.scale-field option, select.form-field option,
-    select.scale-field optgroup, select.form-field optgroup {
-        font-size: 13px;
-        line-height: 1.5;
-        padding: 6px 8px;
-        white-space: normal;
-        overflow-wrap: break-word;
-        word-break: break-word;
+    select.scale-field option, select.form-field option, select.ms-diff-select option {
+        font-size: 12px;
+        line-height: 1.2;
+        padding: 3px 6px;
+        white-space: nowrap;
     }
     select.scale-field optgroup, select.form-field optgroup {
         font-weight: 700;
-        font-size: 12px;
+        font-size: 11px;
         color: rgba(74, 143, 199, 0.8);
-        padding: 8px 4px 4px;
+        padding: 4px 4px 2px;
+        white-space: nowrap;
+        overflow: visible;
     }
     .scale-field:last-child, .form-field:last-child { margin-bottom: 0; }
     .scale-field:focus, .form-field:focus { border-color: rgba(74, 143, 199, 0.5); box-shadow: 0 0 0 3px rgba(74, 143, 199, 0.12); }
@@ -398,18 +415,18 @@
         #page-dashboard .menu-btn-label { font-size: 18px; }
         #page-dashboard .menu-btn-sublabel { font-size: 12px; }
         .nav-btn { padding: 9px 14px; font-size: 13px; }
-        .form-field, .scale-field { padding: 11px 12px; font-size: 14px; }
-        select.scale-field, select.form-field { font-size: 12px; min-height: 44px; }
-        .kit-dev-form .scale-field { height: 36px !important; padding: 7px 10px !important; font-size: 12px !important; }
-        .kit-dev-form select.scale-field { min-height: 36px !important; font-size: 11px !important; }
-        select.scale-field option, select.form-field option { font-size: 12px; }
+        .form-field, .scale-field { padding: 9px 12px; font-size: 14px; height: 40px; }
+        select.scale-field, select.form-field { font-size: 11px; height: 40px; min-height: 40px; padding-top: 9px; padding-bottom: 9px; }
+        .kit-dev-form .scale-field { height: 36px !important; padding: 6px 8px !important; font-size: 11px !important; }
+        .kit-dev-form select.scale-field { min-height: 36px !important; height: 36px !important; font-size: 11px !important; }
+        select.scale-field option, select.form-field option, select.ms-diff-select option { font-size: 11px; }
         .warning-banner { margin: 8px 12px 0; padding: 10px 12px; }
         .buoy-card-title { font-size: 22px; }
         .buoy-card-desc { font-size: 12px; }
         .buoy-card-body { padding: 10px 12px; }
         .buoy-card-formula { padding: 6px 12px; }
         .buoy-card-formula .formula-inline { font-size: 15px; }
-        .header-title { font-size: 36px; letter-spacing: 2px; }
+        .header-title svg.led-display { height: 36px; }
     }
     @media (max-width: 400px) {
         .menu-btn { width: calc(100% - 16px); margin: 3px 8px; padding: 10px 12px; }
@@ -418,11 +435,11 @@
         #page-dashboard .menu-btn-sublabel { font-size: 11px; }
         .nav-btn { padding: 8px 12px; font-size: 12px; gap: 5px; }
         .nav-btn svg { width: 12px; height: 12px; }
-        .form-field, .scale-field { padding: 10px 10px; font-size: 13px; }
-        select.scale-field, select.form-field { font-size: 11px; min-height: 42px; }
-        .kit-dev-form .scale-field { height: 34px !important; padding: 6px 8px !important; font-size: 11px !important; }
-        .kit-dev-form select.scale-field { min-height: 34px !important; font-size: 10px !important; }
-        select.scale-field option, select.form-field option { font-size: 11px; }
+        .form-field, .scale-field { padding: 8px 10px; font-size: 13px; height: 38px; }
+        select.scale-field, select.form-field { font-size: 11px; height: 38px; min-height: 38px; padding-top: 8px; padding-bottom: 8px; }
+        .kit-dev-form .scale-field { height: 34px !important; padding: 5px 8px !important; font-size: 11px !important; }
+        .kit-dev-form select.scale-field { min-height: 34px !important; height: 34px !important; font-size: 10px !important; }
+        select.scale-field option, select.form-field option, select.ms-diff-select option { font-size: 11px; }
         .bottom-nav-item { min-width: 52px; padding: 5px 2px; }
         .bottom-nav-label { font-size: 10px; }
         .buoy-card-title { font-size: 20px; }
@@ -431,7 +448,7 @@
         .buoy-card-formula { padding: 5px 10px; }
         .buoy-card-formula .formula-inline { font-size: 13px; }
         .buoy-select-container { flex-direction: column; padding: 6px 12px; gap: 8px; }
-        .header-title { font-size: 28px; letter-spacing: 1px; }
+        .header-title svg.led-display { height: 28px; }
     }
     @media (min-width: 481px) { .menu-btn { max-width: 480px; } }
 
@@ -498,11 +515,6 @@
     /* Light theme text color overrides */
     [data-theme="light"] body {
         color: var(--text-primary);
-    }
-    [data-theme="light"] .header-title {
-        background: linear-gradient(135deg, #2563eb, #3b82f6, #16a34a);
-        -webkit-background-clip: text;
-        background-clip: text;
     }
     [data-theme="light"] .content-header h2 {
         color: #1a1a2e;
@@ -778,12 +790,12 @@
         background: var(--input-bg);
         border: 1px solid var(--card-border);
         border-radius: 10px;
-        color: #4a8fc7; font-size: 13px; font-weight: 600;
+        color: #e0e0e0; font-size: 12px; font-weight: 500;
         font-family: 'Inter', sans-serif;
         padding: 8px 24px 8px 8px;
         cursor: pointer; outline: none;
         -webkit-appearance: none; appearance: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%234a8fc7'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23e0e0e0'/%3E%3C/svg%3E");
         background-repeat: no-repeat;
         background-position: right 8px center;
         background-size: 10px 6px;
@@ -793,7 +805,7 @@
     }
     .ms-diff-select:focus { border-color: rgba(74,143,199,0.5); box-shadow: 0 0 0 3px rgba(74,143,199,0.12); }
     .ms-diff-select option {
-        font-size: 13px; padding: 6px 8px;
+        font-size: 12px; padding: 3px 6px;
         background: #1a2233; color: #e0e0e0;
     }
     .ms-board {
@@ -884,14 +896,12 @@
         50% { box-shadow: 0 0 20px 4px rgba(199,150,74,0.3); }
         100% { box-shadow: none; }
     }
-    .header-title {
-        cursor: pointer; user-select: none; -webkit-user-select: none;
-        -webkit-touch-callout: none; touch-action: manipulation;
-        transition: color 0.2s;
+    .header-title.hint-pulse svg.led-display {
+        filter: drop-shadow(0 0 8px rgba(199,150,74,0.7)) drop-shadow(0 0 16px rgba(199,150,74,0.3)) !important;
     }
-    .header-title.hint-pulse {
-        color: #c7964a !important;
-        transition: color 0.15s;
+    .header-title.hint-pulse .led-seg-on {
+        fill: #c7964a !important;
+        transition: fill 0.15s;
     }
     .ms-restart-btn {
         padding: 10px 24px; border-radius: 10px;
@@ -944,7 +954,7 @@
     [data-theme="light"] .ms-timer { color: #2563eb; }
     [data-theme="light"] .ms-timer svg { stroke: #2563eb; }
     [data-theme="light"] .ms-board { background: rgba(220,230,245,0.4); border-color: rgba(37,99,235,0.15); }
-    [data-theme="light"] .ms-diff-select { background-color: rgba(255,255,255,0.8); border-color: rgba(37,99,235,0.2); color: #2563eb; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%232563eb'/%3E%3C/svg%3E"); }
+    [data-theme="light"] .ms-diff-select { background-color: rgba(255,255,255,0.8); border-color: rgba(37,99,235,0.2); color: #1a1a2e; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%231a1a2e'/%3E%3C/svg%3E"); }
     [data-theme="light"] .ms-diff-select option { background: #fff; color: #1a1a2e; }
     [data-theme="light"] .ms-game-over-overlay { background: rgba(232,236,241,0.9); }
     [data-theme="light"] .ms-game-over-text { color: #1a1a2e; }
@@ -962,7 +972,7 @@
             animation-iteration-count: 1 !important;
             transition-duration: 0.01ms !important;
         }
-        .header-title {
+        .header-title svg.led-display, .header-title svg.led-display * {
             animation: none !important;
         }
         .bg-network svg * {
@@ -1009,9 +1019,74 @@
 <div class="header-btn" id="menuBtn" onclick="toggleSidebar()" style="margin-right:6px;display:none;">
     <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:rgba(74,143,199,0.9);fill:none;stroke-width:2;stroke-linecap:round;"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
 </div>
-<img class="header-logo" id="headerLogo" src="logo_black.png" alt="КИП" style="width:48px;height:48px;border-radius:12px;cursor:pointer;" onclick="event.stopPropagation(); toggleSidebar();">
+<img class="header-logo" id="headerLogo" src="logo_black.png" alt="КИП" style="width:40px;height:40px;border-radius:10px;cursor:pointer;" onclick="event.stopPropagation(); toggleSidebar();">
                 <div>
-                    <div class="header-title">КИПиА</div>
+<div class="header-title"><svg class="led-display" viewBox="0 0 362 88" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="ledGradient" x1="0" y1="0" x2="362" y2="0" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#4a8fc7"><animate attributeName="stop-color" values="#4a8fc7;#7ab8e0;#7ae0a0;#c77ae0;#4ac771;#4a8fc7" dur="10s" repeatCount="indefinite"/></stop>
+    <stop offset="25%" stop-color="#7ae0a0"><animate attributeName="stop-color" values="#7ae0a0;#c77ae0;#4ac771;#4a8fc7;#7ab8e0;#7ae0a0" dur="10s" repeatCount="indefinite"/></stop>
+    <stop offset="50%" stop-color="#c77ae0"><animate attributeName="stop-color" values="#c77ae0;#4ac771;#4a8fc7;#7ab8e0;#7ae0a0;#c77ae0" dur="10s" repeatCount="indefinite"/></stop>
+    <stop offset="75%" stop-color="#4ac771"><animate attributeName="stop-color" values="#4ac771;#4a8fc7;#7ab8e0;#7ae0a0;#c77ae0;#4ac771" dur="10s" repeatCount="indefinite"/></stop>
+    <stop offset="100%" stop-color="#7ab8e0"><animate attributeName="stop-color" values="#7ab8e0;#7ae0a0;#c77ae0;#4ac771;#4a8fc7;#7ab8e0" dur="10s" repeatCount="indefinite"/></stop>
+  </linearGradient>
+</defs>
+<!-- Segments: a=top horiz, b=top-right vert, c=bot-right vert, d=bot horiz, e=bot-left vert, f=top-left vert, g=middle horiz -->
+<!-- К: e+f+diagUp+diagDown -->
+<g transform="translate(2,0)">
+  <polygon points="8,0 50,0 58,8 50,16 8,16 0,8" class="led-seg-off"/>
+  <polygon points="44,8 52,0 60,8 60,38 52,46 44,38" class="led-seg-off"/>
+  <polygon points="44,50 52,42 60,50 60,80 52,88 44,80" class="led-seg-off"/>
+  <polygon points="8,72 50,72 58,80 50,88 8,88 0,80" class="led-seg-off"/>
+  <polygon points="0,50 8,42 16,50 16,80 8,88 0,80" class="led-seg-on"/>
+  <polygon points="0,8 8,0 16,8 16,38 8,46 0,38" class="led-seg-on"/>
+  <polygon points="8,36 50,36 58,44 50,52 8,52 0,44" class="led-seg-off"/>
+  <polygon points="2,40 12,44 54,12 56,4 46,0 2,32" class="led-seg-on"/>
+  <polygon points="2,48 12,44 54,76 56,84 46,88 2,56" class="led-seg-on"/>
+</g>
+<!-- И: b+c+e+f+diagDownLeft -->
+<g transform="translate(76,0)">
+  <polygon points="8,0 50,0 58,8 50,16 8,16 0,8" class="led-seg-off"/>
+  <polygon points="44,8 52,0 60,8 60,38 52,46 44,38" class="led-seg-on"/>
+  <polygon points="44,50 52,42 60,50 60,80 52,88 44,80" class="led-seg-on"/>
+  <polygon points="8,72 50,72 58,80 50,88 8,88 0,80" class="led-seg-off"/>
+  <polygon points="0,50 8,42 16,50 16,80 8,88 0,80" class="led-seg-on"/>
+  <polygon points="0,8 8,0 16,8 16,38 8,46 0,38" class="led-seg-on"/>
+  <polygon points="8,36 50,36 58,44 50,52 8,52 0,44" class="led-seg-off"/>
+  <polygon points="58,40 48,44 6,76 4,84 14,88 58,56" class="led-seg-on"/>
+</g>
+<!-- П: a+b+c+e+f -->
+<g transform="translate(150,0)">
+  <polygon points="8,0 50,0 58,8 50,16 8,16 0,8" class="led-seg-on"/>
+  <polygon points="44,8 52,0 60,8 60,38 52,46 44,38" class="led-seg-on"/>
+  <polygon points="44,50 52,42 60,50 60,80 52,88 44,80" class="led-seg-on"/>
+  <polygon points="8,72 50,72 58,80 50,88 8,88 0,80" class="led-seg-off"/>
+  <polygon points="0,50 8,42 16,50 16,80 8,88 0,80" class="led-seg-on"/>
+  <polygon points="0,8 8,0 16,8 16,38 8,46 0,38" class="led-seg-on"/>
+  <polygon points="8,36 50,36 58,44 50,52 8,52 0,44" class="led-seg-off"/>
+</g>
+<!-- и: c+e+diagDownLeft -->
+<g transform="translate(224,0)">
+  <polygon points="8,0 50,0 58,8 50,16 8,16 0,8" class="led-seg-off"/>
+  <polygon points="44,8 52,0 60,8 60,38 52,46 44,38" class="led-seg-off"/>
+  <polygon points="44,50 52,42 60,50 60,80 52,88 44,80" class="led-seg-on"/>
+  <polygon points="8,72 50,72 58,80 50,88 8,88 0,80" class="led-seg-off"/>
+  <polygon points="0,50 8,42 16,50 16,80 8,88 0,80" class="led-seg-on"/>
+  <polygon points="0,8 8,0 16,8 16,38 8,46 0,38" class="led-seg-off"/>
+  <polygon points="8,36 50,36 58,44 50,52 8,52 0,44" class="led-seg-off"/>
+  <polygon points="58,44 48,48 6,76 4,84 14,88 58,60" class="led-seg-on"/>
+</g>
+<!-- А: a+b+c+e+f+g -->
+<g transform="translate(298,0)">
+  <polygon points="8,0 50,0 58,8 50,16 8,16 0,8" class="led-seg-on"/>
+  <polygon points="44,8 52,0 60,8 60,38 52,46 44,38" class="led-seg-on"/>
+  <polygon points="44,50 52,42 60,50 60,80 52,88 44,80" class="led-seg-on"/>
+  <polygon points="8,72 50,72 58,80 50,88 8,88 0,80" class="led-seg-off"/>
+  <polygon points="0,50 8,42 16,50 16,80 8,88 0,80" class="led-seg-on"/>
+  <polygon points="0,8 8,0 16,8 16,38 8,46 0,38" class="led-seg-on"/>
+  <polygon points="8,36 50,36 58,44 50,52 8,52 0,44" class="led-seg-on"/>
+</g>
+</svg></div>
                 </div>
             </div>
             
@@ -1087,7 +1162,7 @@
         <div id="page-conv-pressure" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Давление</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="text" inputmode="text" id="conv-pressure-input" class="form-field" placeholder="Введите значение" autocomplete="off" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-pressure-unit" class="form-field" autocomplete="off"><option value="Pa">Па</option><option value="kPa">кПа</option><option value="MPa" selected>МПа</option><option value="bar">бар</option><option value="mbar">мбар</option><option value="atm">атм</option><option value="kgf_cm2">кгс/см²</option><option value="mmHg">мм рт. ст.</option><option value="PSI">PSI</option><option value="mmH2O">мм вод. ст.</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="text" inputmode="text" id="conv-pressure-input" class="form-field" placeholder="Введите значение" autocomplete="off" enterkeyhint="done"><div class="form-label">Единица измерения</div><select id="conv-pressure-unit" class="form-field" autocomplete="off"><option value="Pa">Па</option><option value="kPa">кПа</option><option value="MPa" selected>МПа</option><option value="bar">бар</option><option value="mbar">мбар</option><option value="atm">атм</option><option value="kgf_cm2">кгс/см²</option><option value="mmHg">мм рт. ст.</option><option value="PSI">PSI</option><option value="mmH2O">мм вод. ст.</option></select></div>
             <button type="button" class="converter-convert-btn" onclick="convertUnits('pressure')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-pressure-results"></div>
             <div class="converter-result-group" id="conv-pressure-table" style="display:none;"></div>
@@ -1097,7 +1172,7 @@
         <div id="page-conv-flow" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Расход</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="text" inputmode="text" id="conv-flow-input" class="form-field" placeholder="Введите значение" autocomplete="off" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-flow-unit" class="form-field" autocomplete="off"><option value="m3h" selected>м³/ч</option><option value="m3s">м³/с</option><option value="l_min">л/мин</option><option value="l_s">л/с</option><option value="t_h">т/ч</option><option value="kg_s">кг/с</option><option value="kg_h">кг/ч</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="text" inputmode="text" id="conv-flow-input" class="form-field" placeholder="Введите значение" autocomplete="off" enterkeyhint="done"><div class="form-label">Единица измерения</div><select id="conv-flow-unit" class="form-field" autocomplete="off"><option value="m3h" selected>м³/ч</option><option value="m3s">м³/с</option><option value="l_min">л/мин</option><option value="l_s">л/с</option><option value="t_h">т/ч</option><option value="kg_s">кг/с</option><option value="kg_h">кг/ч</option></select></div>
             <button type="button" class="converter-convert-btn" onclick="convertUnits('flow')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-flow-results"></div>
             <div class="converter-result-group" id="conv-flow-table" style="display:none;"></div>
@@ -1107,7 +1182,7 @@
         <div id="page-conv-mass" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Вес и масса</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="text" inputmode="text" id="conv-mass-input" class="form-field" placeholder="Введите значение" autocomplete="off" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-mass-unit" class="form-field" autocomplete="off"><option value="kg" selected>кг</option><option value="g">г</option><option value="mg">мг</option><option value="t">т</option><option value="lb">фунт (lb)</option><option value="oz">унция (oz)</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="text" inputmode="text" id="conv-mass-input" class="form-field" placeholder="Введите значение" autocomplete="off" enterkeyhint="done"><div class="form-label">Единица измерения</div><select id="conv-mass-unit" class="form-field" autocomplete="off"><option value="kg" selected>кг</option><option value="g">г</option><option value="mg">мг</option><option value="t">т</option><option value="lb">lb</option><option value="oz">oz</option></select></div>
             <button type="button" class="converter-convert-btn" onclick="convertUnits('mass')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-mass-results"></div>
             <div class="converter-result-group" id="conv-mass-table" style="display:none;"></div>
@@ -1117,7 +1192,7 @@
         <div id="page-conv-temp" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Температура</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="text" inputmode="text" id="conv-temp-input" class="form-field" placeholder="Введите значение" autocomplete="off" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-temp-unit" class="form-field" autocomplete="off"><option value="C" selected>°C (Цельсий)</option><option value="F">°F (Фаренгейт)</option><option value="K">K (Кельвин)</option><option value="R">°R (Реомюр)</option><option value="Ra">°Ra (Ранкин)</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="text" inputmode="text" id="conv-temp-input" class="form-field" placeholder="Введите значение" autocomplete="off" enterkeyhint="done"><div class="form-label">Единица измерения</div><select id="conv-temp-unit" class="form-field" autocomplete="off"><option value="C" selected>°C</option><option value="F">°F</option><option value="K">K</option><option value="R">°R</option><option value="Ra">°Ra</option></select></div>
             <button type="button" class="converter-convert-btn" onclick="convertTemp()"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-temp-results"></div>
             <div class="converter-result-group" id="conv-temp-table" style="display:none;"></div>
@@ -1127,7 +1202,7 @@
         <div id="page-conv-length" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Длина и расстояние</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="text" inputmode="text" id="conv-length-input" class="form-field" placeholder="Введите значение" autocomplete="off" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-length-unit" class="form-field" autocomplete="off"><option value="m" selected>м</option><option value="km">км</option><option value="cm">см</option><option value="mm">мм</option><option value="um">мкм</option><option value="mi">миля</option><option value="ft">фут</option><option value="in">дюйм</option><option value="yd">ярд</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="text" inputmode="text" id="conv-length-input" class="form-field" placeholder="Введите значение" autocomplete="off" enterkeyhint="done"><div class="form-label">Единица измерения</div><select id="conv-length-unit" class="form-field" autocomplete="off"><option value="m" selected>м</option><option value="km">км</option><option value="cm">см</option><option value="mm">мм</option><option value="um">мкм</option><option value="mi">миля</option><option value="ft">фут</option><option value="in">дюйм</option><option value="yd">ярд</option></select></div>
             <button type="button" class="converter-convert-btn" onclick="convertUnits('length')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-length-results"></div>
             <div class="converter-result-group" id="conv-length-table" style="display:none;"></div>
@@ -1137,7 +1212,7 @@
         <div id="page-conv-density" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Плотность</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="text" inputmode="text" id="conv-density-input" class="form-field" placeholder="Введите значение" autocomplete="off" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-density-unit" class="form-field" autocomplete="off"><option value="kg_m3" selected>кг/м³</option><option value="g_cm3">г/см³</option><option value="g_l">г/л</option><option value="kg_l">кг/л</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="text" inputmode="text" id="conv-density-input" class="form-field" placeholder="Введите значение" autocomplete="off" enterkeyhint="done"><div class="form-label">Единица измерения</div><select id="conv-density-unit" class="form-field" autocomplete="off"><option value="kg_m3" selected>кг/м³</option><option value="g_cm3">г/см³</option><option value="g_l">г/л</option><option value="kg_l">кг/л</option></select></div>
             <button type="button" class="converter-convert-btn" onclick="convertUnits('density')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-density-results"></div>
             <div class="converter-result-group" id="conv-density-table" style="display:none;"></div>
@@ -1147,7 +1222,7 @@
         <div id="page-conv-time" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Время</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="text" inputmode="text" id="conv-time-input" class="form-field" placeholder="Введите значение" autocomplete="off" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-time-unit" class="form-field" autocomplete="off"><option value="s" selected>секунда</option><option value="ms">миллисекунда</option><option value="min">минута</option><option value="h">час</option><option value="d">сутки</option><option value="week">неделя</option><option value="month">месяц (30 дн.)</option><option value="year">год (365 дн.)</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="text" inputmode="text" id="conv-time-input" class="form-field" placeholder="Введите значение" autocomplete="off" enterkeyhint="done"><div class="form-label">Единица измерения</div><select id="conv-time-unit" class="form-field" autocomplete="off"><option value="s" selected>секунда</option><option value="ms">миллисекунда</option><option value="min">минута</option><option value="h">час</option><option value="d">сутки</option><option value="week">неделя</option><option value="month">месяц</option><option value="year">год</option></select></div>
             <button type="button" class="converter-convert-btn" onclick="convertUnits('time')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-time-results"></div>
             <div class="converter-result-group" id="conv-time-table" style="display:none;"></div>
@@ -1157,7 +1232,7 @@
         <div id="page-conv-volume" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Объём</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="converter-form"><div class="form-label">Значение</div><input type="text" inputmode="text" id="conv-volume-input" class="form-field" placeholder="Введите значение" autocomplete="off" enterkeyhint="next"><div class="form-label">Единица измерения</div><select id="conv-volume-unit" class="form-field" autocomplete="off"><option value="m3" selected>м³</option><option value="l">литр</option><option value="ml">мл</option><option value="cm3">см³</option><option value="gal">галлон (US)</option><option value="bbl">баррель</option><option value="ft3">куб. фут</option><option value="dm3">дм³</option></select></div>
+            <div class="converter-form"><div class="form-label">Значение</div><input type="text" inputmode="text" id="conv-volume-input" class="form-field" placeholder="Введите значение" autocomplete="off" enterkeyhint="done"><div class="form-label">Единица измерения</div><select id="conv-volume-unit" class="form-field" autocomplete="off"><option value="m3" selected>м³</option><option value="l">литр</option><option value="ml">мл</option><option value="cm3">см³</option><option value="gal">галлон</option><option value="bbl">баррель</option><option value="ft3">куб. фут</option><option value="dm3">дм³</option></select></div>
             <button type="button" class="converter-convert-btn" onclick="convertUnits('volume')"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Перевести</button>
             <div class="converter-result-group" id="conv-volume-results"></div>
             <div class="converter-result-group" id="conv-volume-table" style="display:none;"></div>
@@ -1168,9 +1243,9 @@
             <div class="page-inline-header"><div class="page-inline-header-title">Шкала-сигнал</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
             <div class="scale-form"><div class="scale-form-label">Тип шкалы</div><select id="scaleType" class="scale-field" autocomplete="off"><option value="linear" selected>Линейная</option><option value="quadratic">Квадратичная</option><option value="sqrt">Корнеизвлекающая</option></select><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Линейная: прямая зависимость · Квадратичная: сигнал ∝ (шкала)² · Корнеизвлекающая: сигнал ∝ √(шкала)</div></div>
-            <div class="scale-form"><div class="scale-form-label">Диапазон шкалы измерения</div><select id="scalePreset" class="scale-field" onchange="setScaleDefaults()" autocomplete="off"><option value="0_100" selected>0 – 100 %</option><option value="0_20">0 – 20 мА</option><option value="0_5mA">0 – 5 мА</option><option value="0_10V">0 – 10 В</option><option value="1_5V">1 – 5 В</option><option value="0_5V">0 – 5 В</option><option value="bipolar_10">-10 – +10 В</option><option value="20_100_kPa">20 – 100 кПа</option><option value="0_2_1_0_bar">0.2 – 1.0 бар</option><option value="3_15_psi">3 – 15 psi</option><option value="0_2_1_0_kgf_cm2">0.2 – 1.0 кгс/см²</option><option value="custom">Своё значение</option></select><div id="scaleCustomRange" style="margin-top:12px;"><input type="text" inputmode="text" id="scaleMin" class="scale-field" placeholder="Минимум шкалы" value="0" style="margin-bottom:6px;" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="scaleMax" class="scale-field" placeholder="Максимум шкалы" value="100" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="scaleUnitName" class="scale-field" placeholder="Ед. измерения" value="%" style="margin-top:6px;" autocomplete="off" ></div></div>
-            <div class="scale-form"><div class="scale-form-label">Тип выходного сигнала</div><select id="sigType" class="scale-field" onchange="setSignalDefaults()" autocomplete="off"><optgroup label=" Электрические (токовые)"><option value="4_20">4 – 20 мА</option><option value="0_20">0 – 20 мА</option><option value="0_5mA">0 – 5 мА</option></optgroup><optgroup label=" Электрические (напряжения)"><option value="0_10V">0 – 10 В</option><option value="1_5V">1 – 5 В</option><option value="0_5V">0 – 5 В</option><option value="bipolar_10">-10 – +10 В</option></optgroup><optgroup label=" Пневматические"><option value="20_100_kPa">20 – 100 кПа</option><option value="0_2_1_0_bar">0.2 – 1.0 бар</option><option value="3_15_psi">3 – 15 psi</option><option value="0_2_1_0_kgf_cm2" selected>0.2 – 1.0 кгс/см²</option></optgroup><optgroup label=" Другие"><option value="custom">Своё значение</option></optgroup></select>
-            <div id="sigCustomRange" style="margin-top:8px;"><div class="scale-form-label">Диапазон сигнала</div><input type="text" inputmode="text" id="sigMin" class="scale-field" placeholder="Минимум" style="margin-bottom:6px;" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="sigMax" class="scale-field" placeholder="Максимум" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="sigUnitCustom" class="scale-field" placeholder="Ед. измерения" value="мА" style="margin-top:6px;" autocomplete="off" ><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;" id="sigUnitLabel">мА</div></div></div>
+            <div class="scale-form"><div class="scale-form-label">Диапазон шкалы измерения</div><select id="scalePreset" class="scale-field" onchange="setScaleDefaults()" autocomplete="off"><option value="0_100" selected>0 – 100 %</option><option value="0_20">0 – 20 мА</option><option value="0_5mA">0 – 5 мА</option><option value="0_10V">0 – 10 В</option><option value="1_5V">1 – 5 В</option><option value="0_5V">0 – 5 В</option><option value="bipolar_10">-10 – +10 В</option><option value="20_100_kPa">20 – 100 кПа</option><option value="0_2_1_0_bar">0.2 – 1.0 бар</option><option value="3_15_psi">3 – 15 psi</option><option value="0_2_1_0_kgf_cm2">0.2 – 1.0 кгс/см²</option><option value="custom">Своё значение</option></select><div id="scaleCustomRange" style="margin-top:12px;"><input type="text" inputmode="text" id="scaleMin" class="scale-field" placeholder="Минимум шкалы" value="0" style="margin-bottom:6px;" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="scaleMax" class="scale-field" placeholder="Максимум шкалы" value="100" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="scaleUnitName" class="scale-field" placeholder="Ед. измерения" value="%" style="margin-top:6px;" autocomplete="off" enterkeyhint="done" ></div></div>
+            <div class="scale-form"><div class="scale-form-label">Тип выходного сигнала</div><select id="sigType" class="scale-field" onchange="setSignalDefaults()" autocomplete="off"><optgroup label="Токовые"><option value="4_20">4 – 20 мА</option><option value="0_20">0 – 20 мА</option><option value="0_5mA">0 – 5 мА</option></optgroup><optgroup label="Напряжения"><option value="0_10V">0 – 10 В</option><option value="1_5V">1 – 5 В</option><option value="0_5V">0 – 5 В</option><option value="bipolar_10">-10 – +10 В</option></optgroup><optgroup label="Пневматические"><option value="20_100_kPa">20 – 100 кПа</option><option value="0_2_1_0_bar">0,2 – 1,0 бар</option><option value="3_15_psi">3 – 15 psi</option><option value="0_2_1_0_kgf_cm2" selected>0,2 – 1,0 кгс/см²</option></optgroup><optgroup label="Другие"><option value="custom">Своё</option></optgroup></select>
+            <div id="sigCustomRange" style="margin-top:8px;"><div class="scale-form-label">Диапазон сигнала</div><input type="text" inputmode="text" id="sigMin" class="scale-field" placeholder="Минимум" style="margin-bottom:6px;" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="sigMax" class="scale-field" placeholder="Максимум" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="sigUnitCustom" class="scale-field" placeholder="Ед. измерения" value="мА" style="margin-top:6px;" autocomplete="off" enterkeyhint="done" ><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;" id="sigUnitLabel">мА</div></div></div>
             <button type="button" class="scale-calc-btn" onclick="calcScaleSignal()"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/><line x1="8" y1="18" x2="16" y2="18"/></svg>Рассчитать</button>
             <div id="scaleResultsArea" style="display:none;"><div class="scale-form"><div class="scale-form-label">Расчётные значения</div><div id="scaleTableContainer"></div></div><div class="scale-form"><div class="scale-form-label">Значение шкалы → сигнал</div><input type="text" inputmode="text" id="queryScaleVal" class="scale-field" placeholder="Значение шкалы" style="margin-bottom:8px;" autocomplete="off" enterkeyhint="next"><button type="button" class="query-btn" onclick="queryFromScale()"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Найти сигнал</button><div id="queryScaleResult" style="margin-top:8px;"></div></div><div class="scale-form"><div class="scale-form-label">Сигнал → значение шкалы</div><input type="text" inputmode="text" id="querySigVal" class="scale-field" placeholder="Значение сигнала" style="margin-bottom:8px;" autocomplete="off" enterkeyhint="next"><button type="button" class="query-btn" onclick="queryFromSignal()"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Найти значение</button><div id="querySigResult" style="margin-top:8px;"></div></div></div>
         </div>
@@ -1183,13 +1258,13 @@
             <div class="scale-form">
                 <div class="scale-form-label">Тип питания</div>
                 <select id="cb_supply_type" class="scale-field" onchange="updateCbForm()" autocomplete="off">
-                    <option value="ac220" selected>Переменный ток ~220 В (розетки, освещение)</option>
-                    <option value="dc24">Постоянный ток =24 В (КИП, клапаны, датчики)</option>
-                    <option value="dc12">Постоянный ток =12 В (блоки питания, реле)</option>
-                    <option value="dc36">Постоянный ток =36 В (исполнительные механизмы)</option>
-                    <option value="ac24">Переменный ток ~24 В (сигнальные цепи)</option>
-                    <option value="ac36">Переменный ток ~36 В (местное освещение)</option>
-                    <option value="custom">Своё напряжение</option>
+                    <option value="ac220" selected>~220 В</option>
+                    <option value="dc24">=24 В</option>
+                    <option value="dc12">=12 В</option>
+                    <option value="dc36">=36 В</option>
+                    <option value="ac24">~24 В</option>
+                    <option value="ac36">~36 В</option>
+                    <option value="custom">Своё</option>
                 </select>
                 <div id="cb_custom_voltage_block" style="display:none; margin-top:12px;">
                     <div style="display:flex; gap:8px; align-items:stretch;">
@@ -1205,8 +1280,8 @@
             <div class="scale-form">
                 <div class="scale-form-label">Тип нагрузки</div>
                 <select id="cb_load_type" class="scale-field" onchange="updateCbForm()" autocomplete="off">
-                    <option value="power" selected>По мощности (P, Вт)</option>
-                    <option value="current">По току (I, А)</option>
+                    <option value="power" selected>Мощность</option>
+                    <option value="current">Ток</option>
                 </select>
             </div>
 
@@ -1232,12 +1307,12 @@
             <div class="scale-form">
                 <div class="scale-form-label">Тип потребителей</div>
                 <select id="cb_consumer_type" class="scale-field" onchange="updateCbCosPhi()" autocomplete="off">
-                    <option value="kip_resistive" selected>КИП — активная нагрузка (датчики, индикация)</option>
-                    <option value="kip_inductive">КИП — индуктивная нагрузка (клапаны, реле, соленоиды)</option>
-                    <option value="asutp_controller">АСУ ТП — контроллер + модули ввода/вывода</option>
-                    <option value="asutp_actuator">АСУ ТП — исполнительные механизмы (IM)</option>
-                    <option value="mixed">Смешанная нагрузка (контроллер + клапана + датчики)</option>
-                    <option value="custom">Своё значение cos φ / пусковой ток</option>
+                    <option value="kip_resistive" selected>КИП (активная)</option>
+                    <option value="kip_inductive">КИП (индуктивная)</option>
+                    <option value="asutp_controller">АСУ ТП (контроллер)</option>
+                    <option value="asutp_actuator">АСУ ТП (ИМ)</option>
+                    <option value="mixed">Смешанная</option>
+                    <option value="custom">Своё</option>
                 </select>
                 <div id="cb_custom_cosphi_block" style="display:none; margin-top:12px;">
                     <div style="display:flex; gap:8px; align-items:stretch;">
@@ -1251,11 +1326,11 @@
             <div class="scale-form">
                 <div class="scale-form-label">Тип линии и сечение кабеля</div>
                 <select id="cb_line_type" class="scale-field" onchange="updateCbCableTable()" autocomplete="off">
-                    <option value="signal_0_75" selected>Сигнальный кабель 0,75 мм² (датчики, 4-20 мА)</option>
-                    <option value="power_1_0">Силовой кабель 1,0 мм² (питание 24 В)</option>
-                    <option value="power_1_5">Силовой кабель 1,5 мм² (питание 220 В)</option>
-                    <option value="power_2_5">Силовой кабель 2,5 мм² (группа приборов)</option>
-                    <option value="custom">Своё сечение кабеля</option>
+                    <option value="signal_0_75" selected>0,75 мм²</option>
+                    <option value="power_1_0">1,0 мм²</option>
+                    <option value="power_1_5">1,5 мм²</option>
+                    <option value="power_2_5">2,5 мм²</option>
+                    <option value="custom">Своё</option>
                 </select>
                 <div id="cb_custom_cable" style="display:none; margin-top:12px;">
                     <div style="display:flex; gap:8px; align-items:stretch;">
@@ -1269,8 +1344,8 @@
                             <option value="6">6 мм²</option>
                         </select>
                         <select id="cb_cable_material" class="scale-field" style="flex:1; margin-bottom:0;" autocomplete="off">
-                            <option value="cu" selected>Медь (Cu)</option>
-                            <option value="al">Алюминий (Al)</option>
+                            <option value="cu" selected>Медь</option>
+                            <option value="al">Алюминий</option>
                         </select>
                     </div>
                 </div>
@@ -1279,17 +1354,17 @@
             <div class="scale-form">
                 <div class="scale-form-label">Характеристика срабатывания</div>
                 <select id="cb_curve" class="scale-field" autocomplete="off">
-                    <option value="B">B (3–5 In) — электроника, датчики, контроллеры</option>
-                    <option value="C" selected>C (5–10 In) — клапана, реле, смешанная нагрузка</option>
-                    <option value="D">D (10–20 In) — соленоиды, пускатели с высоким inrush</option>
-                    <option value="Z">Z (2–3 In) — сверхчувствительная защита (измерит. цепи)</option>
+                    <option value="B">B</option>
+                    <option value="C" selected>C</option>
+                    <option value="D">D</option>
+                    <option value="Z">Z</option>
                 </select>
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">B — чувствительный · C — универсальный · D — инерционный · Z — сверхчувствительный</div>
             </div>
 
             <div class="scale-form">
                 <div class="scale-form-label">Количество потребителей (опционально)</div>
-                <input type="text" inputmode="text" id="cb_device_count" class="scale-field" value="1" min="1" placeholder="шт." autocomplete="off" enterkeyhint="next">
+                <input type="text" inputmode="text" id="cb_device_count" class="scale-field" value="1" min="1" placeholder="шт." autocomplete="off" enterkeyhint="done">
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Для расчёта суммарного тока группы приборов</div>
             </div>
 
@@ -1341,8 +1416,8 @@
             <div class="scale-form">
                 <div class="scale-form-label">Тип среды</div>
                 <select id="op_dp_medium_type" class="scale-field" onchange="updateOpDpForm()" autocomplete="off">
-                    <option value="liquid" selected>Жидкость (несжимаемая)</option>
-                    <option value="gas">Газ / пар (сжимаемая)</option>
+                    <option value="liquid" selected>Жидкость</option>
+                    <option value="gas">Газ / пар</option>
                 </select>
             </div>
 
@@ -1398,14 +1473,14 @@
                     </div>
                     <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Показатель адиабаты κ · Коэффициент сжимаемости Z</div>
                 </div>
-                <input type="text" inputmode="text" id="op_dp_pressure" class="scale-field" style="margin-top:8px; margin-bottom:0;" value="0.1" placeholder="P, МПа" autocomplete="off" enterkeyhint="next">
+                <input type="text" inputmode="text" id="op_dp_pressure" class="scale-field" style="margin-top:8px; margin-bottom:0;" value="0.1" placeholder="P, МПа" autocomplete="off" enterkeyhint="done">
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Избыточное давление, МПа (для газов)</div>
             </div>
 
             <div class="scale-form">
                 <div class="scale-form-label">Тип сужающего устройства</div>
                 <select id="op_dp_device_type" class="scale-field" autocomplete="off">
-                    <option value="orifice" selected>Диафрагма стандартная (ГОСТ 26969-86)</option>
+                    <option value="orifice" selected>Диафрагма</option>
                     <option value="nozzle">Сопло стандартное</option>
                     <option value="venturi">Труба Вентури</option>
                 </select>
@@ -1434,8 +1509,8 @@
             <div class="scale-form">
                 <div class="scale-form-label">Тип среды</div>
                 <select id="op_flow_medium_type" class="scale-field" onchange="updateOpFlowForm()" autocomplete="off">
-                    <option value="liquid" selected>Жидкость (несжимаемая)</option>
-                    <option value="gas">Газ / пар (сжимаемая)</option>
+                    <option value="liquid" selected>Жидкость</option>
+                    <option value="gas">Газ / пар</option>
                 </select>
             </div>
 
@@ -1491,14 +1566,14 @@
                     </div>
                     <div style="color:rgba(255,255,255,0.25); font-size:10px; padding-left:4px;">Показатель адиабаты κ · Коэффициент сжимаемости Z</div>
                 </div>
-                <input type="text" inputmode="text" id="op_flow_pressure" class="scale-field" style="margin-top:8px; margin-bottom:0;" value="0.1" placeholder="P, МПа" autocomplete="off" enterkeyhint="next">
+                <input type="text" inputmode="text" id="op_flow_pressure" class="scale-field" style="margin-top:8px; margin-bottom:0;" value="0.1" placeholder="P, МПа" autocomplete="off" enterkeyhint="done">
                 <div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">Избыточное давление, МПа (для газов)</div>
             </div>
 
             <div class="scale-form">
                 <div class="scale-form-label">Тип сужающего устройства</div>
                 <select id="op_flow_device_type" class="scale-field" autocomplete="off">
-                    <option value="orifice" selected>Диафрагма стандартная (ГОСТ 26969-86)</option>
+                    <option value="orifice" selected>Диафрагма</option>
                     <option value="nozzle">Сопло стандартное</option>
                     <option value="venturi">Труба Вентури</option>
                 </select>
@@ -1527,8 +1602,8 @@
             <div class="scale-form">
                 <div class="scale-form-label">Тип среды</div>
                 <select id="op_medium_type" class="scale-field" onchange="updateOpForm()" autocomplete="off">
-                    <option value="liquid" selected>Жидкость (несжимаемая)</option>
-                    <option value="gas">Газ / пар (сжимаемая)</option>
+                    <option value="liquid" selected>Жидкость</option>
+                    <option value="gas">Газ / пар</option>
                 </select>
             </div>
 
@@ -1610,7 +1685,7 @@
             <div class="scale-form">
                 <div class="scale-form-label">Тип сужающего устройства</div>
                 <select id="op_device_type" class="scale-field" autocomplete="off">
-                    <option value="orifice" selected>Диафрагма стандартная (ГОСТ 26969-86)</option>
+                    <option value="orifice" selected>Диафрагма</option>
                     <option value="nozzle">Сопло стандартное</option>
                     <option value="venturi">Труба Вентури</option>
                 </select>
@@ -1715,13 +1790,13 @@
                     <option value="1.5">1,5</option>
                     <option value="2.5">2,5</option>
                     <option value="4.0">4,0</option>
-                    <option value="custom">Своё значение...</option>
+                    <option value="custom">Своё</option>
                 </select>
                 <div id="ep_class_val_custom_wrap" style="display:none;">
                     <div class="scale-form-label">Своё значение класса точности <span class="greek-gamma">γ</span> (%)</div>
                     <input type="text" inputmode="decimal" id="ep_class_val_custom" class="scale-field" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next">
                 </div>
-                <div class="scale-form-label">Диапазон измерения (ед.изм.)</div><div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;"><input type="text" inputmode="decimal" id="ep_xmin" class="scale-field" style="flex:1;" placeholder="НПИ" value="0" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="decimal" id="ep_xmax" class="scale-field" style="flex:1;" placeholder="ВПИ" value="10" autocomplete="off" enterkeyhint="next"></div>
+                <div class="scale-form-label">Диапазон измерения (ед.изм.)</div><div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;"><input type="text" inputmode="decimal" id="ep_xmin" class="scale-field" style="flex:1;" placeholder="НПИ" value="0" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="decimal" id="ep_xmax" class="scale-field" style="flex:1;" placeholder="ВПИ" value="10" autocomplete="off" enterkeyhint="done"></div>
             </div>
             <button type="button" class="converter-convert-btn" onclick="calcPressureError()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="ep_results" class="converter-result-group" style="display:none;"></div>
@@ -1740,10 +1815,10 @@
         <div id="page-error-temp-rtd" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Термопреобразователи сопротивления</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="scale-form"><div class="scale-form-label">Группа ТС</div><select id="rtd_group" class="scale-field" onchange="updateRtdTypeOptions()" autocomplete="off"><option value="Pt">Платиновые (Pt)</option><option value="Cu" selected>Медные (Cu)</option><option value="Ni">Никелевые (Ni)</option></select>
-            <div class="scale-form-label">Тип ТС (НСХ)</div><select id="rtd_type" class="scale-field" onchange="updateRtdClassOptions()" autocomplete="off"><option value="cu10">Cu10 (10М)</option><option value="cu50" selected>Cu50 (50М)</option><option value="cu100">Cu100 (100М)</option></select>
-            <div class="scale-form-label">Класс допуска</div><select id="rtd_class" class="scale-field" autocomplete="off"><option value="A">A</option><option value="B" selected>B</option></select>
-            <div class="scale-form-label">Температура (t), °C</div><input type="text" inputmode="text" id="rtd_temperature" class="scale-field" value="100" placeholder="температура в °C" autocomplete="off" enterkeyhint="next">
+            <div class="scale-form"><div class="scale-form-label">Группа ТС</div><select id="rtd_group" class="scale-field" onchange="updateRtdTypeOptions()" autocomplete="off"><option value="Pt">Pt</option><option value="Cu" selected>Cu</option><option value="Ni">Ni</option></select>
+            <div class="scale-form-label">Тип ТС (НСХ)</div><select id="rtd_type" class="scale-field" onchange="updateRtdClassOptions()" autocomplete="off"><option value="cu10">Cu10</option><option value="cu50" selected>Cu50</option><option value="cu100">Cu100</option></select>
+            <div class="scale-form-label">Класс допуска</div><select id="rtd_class" class="scale-field" autocomplete="off"><option value="AA">AA</option><option value="A">A</option><option value="B" selected>B</option><option value="C">C</option></select>
+            <div class="scale-form-label">Температура (t), °C</div><input type="text" inputmode="text" id="rtd_temperature" class="scale-field" value="100" placeholder="температура в °C" autocomplete="off" enterkeyhint="done">
             <div id="rtd_range_warning" style="color:#c7964a; font-size:11px; margin-top:4px; padding-left:4px; display:none;"></div></div>
             <button type="button" class="converter-convert-btn" onclick="calcRtdError()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="rtdResults" class="converter-result-group" style="display:none;"></div>
@@ -1764,9 +1839,9 @@
         <div id="page-error-temp-tc" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Термопары (ТП)</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="scale-form"><div class="scale-form-label">Тип термопары</div><select id="tc_type" class="scale-field" onchange="updateTcRanges()" autocomplete="off"><option value="K" selected>K (ТХА)</option><option value="J">J (ТЖК)</option><option value="T">T (ТМК)</option><option value="N">N (ТНН)</option><option value="E">E (ТХКн)</option><option value="R">R (ТПП)</option><option value="S">S (ТПП)</option><option value="B">B (ТПР)</option></select>
-            <div class="scale-form-label">Класс точности</div><select id="tc_class" class="scale-field" onchange="updateTcRanges()" autocomplete="off"><option value="1">Класс 1</option><option value="2" selected>Класс 2</option><option value="3">Класс 3</option></select>
-            <div class="scale-form-label">Температура (t), °C</div><input type="text" inputmode="text" id="tc_temperature" class="scale-field" value="100" placeholder="температура в °C" autocomplete="off" enterkeyhint="next">
+            <div class="scale-form"><div class="scale-form-label">Тип термопары</div><select id="tc_type" class="scale-field" onchange="updateTcRanges()" autocomplete="off"><option value="K" selected>K</option><option value="J">J</option><option value="T">T</option><option value="N">N</option><option value="E">E</option><option value="R">R</option><option value="S">S</option><option value="B">B</option></select>
+            <div class="scale-form-label">Класс точности</div><select id="tc_class" class="scale-field" onchange="updateTcRanges()" autocomplete="off"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option></select>
+            <div class="scale-form-label">Температура (t), °C</div><input type="text" inputmode="text" id="tc_temperature" class="scale-field" value="100" placeholder="температура в °C" autocomplete="off" enterkeyhint="done">
             <div id="tc_range_warning" style="color:#c7964a; font-size:11px; margin-top:4px; padding-left:4px; display:none;"></div></div>
             <button type="button" class="converter-convert-btn" onclick="calcTcError()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="tcResults" class="converter-result-group" style="display:none;"></div>
@@ -1797,13 +1872,13 @@
                     <option value="2.0">2,0</option>
                     <option value="2.5">2,5</option>
                     <option value="4.0">4,0</option>
-                    <option value="custom">Своё значение...</option>
+                    <option value="custom">Своё</option>
                 </select>
                 <div id="ef_class_val_custom_wrap" style="display:none;">
                     <div class="scale-form-label">Своё значение класса точности <span class="greek-delta">δ</span> (%)</div>
                     <input type="text" inputmode="decimal" id="ef_class_val_custom" class="scale-field" placeholder="Напр. 1.0" autocomplete="off" enterkeyhint="next">
                 </div>
-                <div class="scale-form-label">Текущее значение X (ед.изм.)</div><input type="text" inputmode="decimal" id="ef_x_current" class="scale-field" placeholder="обязательно" autocomplete="off" enterkeyhint="next">
+                <div class="scale-form-label">Текущее значение X (ед.изм.)</div><input type="text" inputmode="decimal" id="ef_x_current" class="scale-field" placeholder="обязательно" autocomplete="off" enterkeyhint="done">
             </div>
             <button type="button" class="converter-convert-btn" onclick="calcFlowmeterError()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="ef_results" class="converter-result-group" style="display:none;"></div>
@@ -1835,13 +1910,13 @@
                     <option value="1.5">1,5</option>
                     <option value="2.5">2,5</option>
                     <option value="4.0">4,0</option>
-                    <option value="custom">Своё значение...</option>
+                    <option value="custom">Своё</option>
                 </select>
                 <div id="el_class_val_custom_wrap" style="display:none;">
                     <div class="scale-form-label">Своё значение класса точности <span class="greek-gamma">γ</span> (%)</div>
                     <input type="text" inputmode="decimal" id="el_class_val_custom" class="scale-field" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next">
                 </div>
-                <div class="scale-form-label">Диапазон измерения (ед.изм.)</div><div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;"><input type="text" inputmode="decimal" id="el_xmin" class="scale-field" style="flex:1;" placeholder="НПИ" value="0" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="decimal" id="el_xmax" class="scale-field" style="flex:1;" placeholder="ВПИ" value="100" autocomplete="off" enterkeyhint="next"></div>
+                <div class="scale-form-label">Диапазон измерения (ед.изм.)</div><div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;"><input type="text" inputmode="decimal" id="el_xmin" class="scale-field" style="flex:1;" placeholder="НПИ" value="0" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="decimal" id="el_xmax" class="scale-field" style="flex:1;" placeholder="ВПИ" value="100" autocomplete="off" enterkeyhint="done"></div>
             </div>
             <button type="button" class="converter-convert-btn" onclick="calcLevelError()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="el_results" class="converter-result-group" style="display:none;"></div>
@@ -1887,13 +1962,13 @@
                     <option value="1.5">1,5</option>
                     <option value="2.5">2,5</option>
                     <option value="4.0">4,0</option>
-                    <option value="custom">Своё значение...</option>
+                    <option value="custom">Своё</option>
                 </select>
                 <div id="egn_class_val_custom_wrap" style="display:none;">
                     <div class="scale-form-label">Своё значение класса точности <span class="greek-gamma">γ</span> (%)</div>
                     <input type="text" inputmode="decimal" id="egn_class_val_custom" class="scale-field" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next">
                 </div>
-                <div class="scale-form-label">Диапазон измерения (ед.изм.)</div><div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;"><input type="text" inputmode="decimal" id="egn_xmin" class="scale-field" style="flex:1;" placeholder="НПИ" value="0" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="decimal" id="egn_xmax" class="scale-field" style="flex:1;" placeholder="ВПИ" value="100" autocomplete="off" enterkeyhint="next"></div>
+                <div class="scale-form-label">Диапазон измерения (ед.изм.)</div><div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;"><input type="text" inputmode="decimal" id="egn_xmin" class="scale-field" style="flex:1;" placeholder="НПИ" value="0" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="decimal" id="egn_xmax" class="scale-field" style="flex:1;" placeholder="ВПИ" value="100" autocomplete="off" enterkeyhint="done"></div>
             </div>
             <button type="button" class="converter-convert-btn" onclick="calcGenericNumber()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="egn_results" class="converter-result-group" style="display:none;"></div>
@@ -1928,13 +2003,13 @@
                     <option value="1.5">1,5</option>
                     <option value="2.5">2,5</option>
                     <option value="4.0">4,0</option>
-                    <option value="custom">Своё значение...</option>
+                    <option value="custom">Своё</option>
                 </select>
                 <div id="egu_class_val_custom_wrap" style="display:none;">
                     <div class="scale-form-label">Своё значение класса точности <span class="greek-gamma">γ</span> (%)</div>
                     <input type="text" inputmode="decimal" id="egu_class_val_custom" class="scale-field" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next">
                 </div>
-                <div class="scale-form-label">Нормирующее значение Xн (ед.изм.)</div><input type="text" inputmode="decimal" id="egu_xn_scale" class="scale-field" placeholder="Длина шкалы" autocomplete="off" enterkeyhint="next">
+                <div class="scale-form-label">Нормирующее значение Xн (ед.изм.)</div><input type="text" inputmode="decimal" id="egu_xn_scale" class="scale-field" placeholder="Длина шкалы" autocomplete="off" enterkeyhint="done">
 
             </div>
             <button type="button" class="converter-convert-btn" onclick="calcGenericUnderline()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
@@ -1968,13 +2043,13 @@
                     <option value="2.0">2,0</option>
                     <option value="2.5">2,5</option>
                     <option value="4.0">4,0</option>
-                    <option value="custom">Своё значение...</option>
+                    <option value="custom">Своё</option>
                 </select>
                 <div id="egc_class_val_custom_wrap" style="display:none;">
                     <div class="scale-form-label">Своё значение класса точности <span class="greek-delta">δ</span> (%)</div>
                     <input type="text" inputmode="decimal" id="egc_class_val_custom" class="scale-field" placeholder="Напр. 0.5" autocomplete="off" enterkeyhint="next">
                 </div>
-                <div class="scale-form-label">Текущее значение X (ед.изм.)</div><input type="text" inputmode="decimal" id="egc_x_current" class="scale-field" placeholder="обязательно" autocomplete="off" enterkeyhint="next">
+                <div class="scale-form-label">Текущее значение X (ед.изм.)</div><input type="text" inputmode="decimal" id="egc_x_current" class="scale-field" placeholder="обязательно" autocomplete="off" enterkeyhint="done">
             </div>
             <button type="button" class="converter-convert-btn" onclick="calcGenericCircle()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="egc_results" class="converter-result-group" style="display:none;"></div>
@@ -2008,7 +2083,7 @@
                     <option value="0.2">0,2</option>
                     <option value="0.25">0,25</option>
                     <option value="0.5">0,5</option>
-                    <option value="custom_c">Своё значение...</option>
+                    <option value="custom_c">Своё</option>
                 </select>
                 <div id="egf_c_val_custom_wrap" style="display:none;">
                     <div class="scale-form-label">Своё значение c (%)</div>
@@ -2025,14 +2100,14 @@
                     <option value="0.025">0,025</option>
                     <option value="0.05">0,05</option>
                     <option value="0.1">0,1</option>
-                    <option value="custom_d">Своё значение...</option>
+                    <option value="custom_d">Своё</option>
                 </select>
                 <div id="egf_d_val_custom_wrap" style="display:none;">
                     <div class="scale-form-label">Своё значение d (%)</div>
                     <input type="text" inputmode="decimal" id="egf_d_val_custom" class="scale-field" placeholder="Напр. 0.01" autocomplete="off" enterkeyhint="next">
                 </div>
                 <div class="scale-form-label">ВПИ (Xmax, ед.изм.)</div><input type="text" inputmode="decimal" id="egf_xmax" class="scale-field" placeholder="ВПИ" value="100" autocomplete="off" enterkeyhint="next" oninput="syncEgfXcurrent()">
-                <div class="scale-form-label">Текущее значение X (ед.изм.)</div><input type="text" inputmode="decimal" id="egf_x_current" class="scale-field" placeholder="обязательно" value="100" autocomplete="off" enterkeyhint="next" oninput="this.dataset.userEdited='1'">
+                <div class="scale-form-label">Текущее значение X (ед.изм.)</div><input type="text" inputmode="decimal" id="egf_x_current" class="scale-field" placeholder="обязательно" value="100" autocomplete="off" enterkeyhint="done" oninput="this.dataset.userEdited='1'">
             </div>
             <button type="button" class="converter-convert-btn" onclick="calcGenericFraction()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="egf_results" class="converter-result-group" style="display:none;"></div>
@@ -2054,9 +2129,9 @@
             <div class="scale-form">
                 <div class="scale-form-label">Тип весов</div>
                 <select id="ws_type" class="scale-field" onchange="toggleScaleTypeFields()" autocomplete="off">
-                    <option value="mechanical">Механические весы (рычажные, пружинные)</option>
-                    <option value="electronic_lc">Электронные весы на тензодатчиках (с балансировочной коробкой и модулем ввода АСУТП)</option>
-                    <option value="electronic_simple">Электронные весы (автономные, без модуля ввода АСУТП)</option>
+                    <option value="mechanical">Механические</option>
+                    <option value="electronic_simple">Электронные</option>
+                    <option value="electronic_lc">Тензометрические системы (ТВЭУ)</option>
                 </select>
             </div>
 
@@ -2064,10 +2139,10 @@
             <div id="ws_mech_group" class="scale-form" style="margin-top:4px;">
                 <div class="scale-form-label">Класс точности по ГОСТ OIML R 76-1-2011</div>
                 <select id="ws_mech_oiml_class" class="scale-field" autocomplete="off">
-                    <option value="I">I (специальный)</option>
-                    <option value="II">II (высокий)</option>
-                    <option value="III" selected>III (средний)</option>
-                    <option value="IIII">IIII (обычный)</option>
+                    <option value="I">I — спец. точность</option>
+                    <option value="II">II — высокая</option>
+                    <option value="III" selected>III — средняя</option>
+                    <option value="IIII">IIII — обычная</option>
                 </select>
                 <div class="scale-form-label">Число поверочных делений (n = Max/e)</div>
                 <input type="text" inputmode="decimal" id="ws_mech_n" class="scale-field" value="3000" placeholder="Напр. 3000" autocomplete="off" enterkeyhint="next">
@@ -2093,7 +2168,7 @@
                 </div>
                 <div class="scale-form-label">Масса нагрузки (опционально)</div>
                 <div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;">
-                    <input type="text" inputmode="decimal" id="ws_mech_load" class="scale-field" style="flex:1;" placeholder="опционально" autocomplete="off" enterkeyhint="next">
+                    <input type="text" inputmode="decimal" id="ws_mech_load" class="scale-field" style="flex:1;" placeholder="опционально" autocomplete="off" enterkeyhint="done">
                     <select id="ws_mech_load_unit" class="scale-field" style="flex:0 0 auto;width:100px;">
                         <option value="mg">мг</option>
                         <option value="g">г</option>
@@ -2112,10 +2187,10 @@
                 <div style="padding:6px 0 4px;font-size:13px;font-weight:600;color:rgba(74,143,199,0.9);text-transform:uppercase;letter-spacing:0.5px;">Тензодатчик(и)</div>
                 <div class="scale-form-label">Класс точности тензодатчика (по OIML R 60)</div>
                 <select id="ws_lc_class" class="scale-field" autocomplete="off">
-                    <option value="A">A</option>
-                    <option value="B" selected>B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
+                    <option value="A">A — высокая</option>
+                    <option value="B" selected>B — средняя</option>
+                    <option value="C">C — обычная</option>
+                    <option value="D">D — грубая</option>
                 </select>
                 <div class="scale-form-label">Число поверочных делений тензодатчика (n<sub>LC</sub>)</div>
                 <input type="text" inputmode="decimal" id="ws_lc_n" class="scale-field" value="3000" placeholder="Напр. 3000" autocomplete="off" enterkeyhint="next">
@@ -2163,7 +2238,7 @@
                 </div>
                 <div class="scale-form-label">Масса нагрузки (опционально)</div>
                 <div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;">
-                    <input type="text" inputmode="decimal" id="ws_elc_load" class="scale-field" style="flex:1;" placeholder="опционально" autocomplete="off" enterkeyhint="next">
+                    <input type="text" inputmode="decimal" id="ws_elc_load" class="scale-field" style="flex:1;" placeholder="опционально" autocomplete="off" enterkeyhint="done">
                     <select id="ws_elc_load_unit" class="scale-field" style="flex:0 0 auto;width:100px;">
                         <option value="mg">мг</option>
                         <option value="g">г</option>
@@ -2177,10 +2252,10 @@
             <div id="ws_els_group" class="scale-form" style="display:none;margin-top:4px;">
                 <div class="scale-form-label">Класс точности по ГОСТ OIML R 76-1-2011</div>
                 <select id="ws_els_oiml_class" class="scale-field" autocomplete="off">
-                    <option value="I">I (специальный)</option>
-                    <option value="II">II (высокий)</option>
-                    <option value="III" selected>III (средний)</option>
-                    <option value="IIII">IIII (обычный)</option>
+                    <option value="I">I — спец. точность</option>
+                    <option value="II">II — высокая</option>
+                    <option value="III" selected>III — средняя</option>
+                    <option value="IIII">IIII — обычная</option>
                 </select>
                 <div class="scale-form-label">Число поверочных делений (n = Max/e)</div>
                 <input type="text" inputmode="decimal" id="ws_els_n" class="scale-field" value="3000" placeholder="Напр. 3000" autocomplete="off" enterkeyhint="next">
@@ -2206,7 +2281,7 @@
                 </div>
                 <div class="scale-form-label">Масса нагрузки (опционально)</div>
                 <div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;">
-                    <input type="text" inputmode="decimal" id="ws_els_load" class="scale-field" style="flex:1;" placeholder="опционально" autocomplete="off" enterkeyhint="next">
+                    <input type="text" inputmode="decimal" id="ws_els_load" class="scale-field" style="flex:1;" placeholder="опционально" autocomplete="off" enterkeyhint="done">
                     <select id="ws_els_load_unit" class="scale-field" style="flex:0 0 auto;width:100px;">
                         <option value="mg">мг</option>
                         <option value="g">г</option>
@@ -2232,9 +2307,9 @@
             <div class="scale-form" style="margin-top:4px;">
                 <div class="scale-form-label">Метод суммирования</div>
                 <select id="kit_method" class="scale-field" autocomplete="off">
-                    <option value="geometric_plain" selected>Геометрическое суммирование (без коэффициента)</option>
-                    <option value="geometric">Геометрическое суммирование (К=1.1, P=0.95)</option>
-                    <option value="arithmetic">Арифметическое суммирование</option>
+                    <option value="geometric_plain" selected>Геометрическое (без коэфф.)</option>
+                    <option value="geometric">Геометрическое (K=1,1)</option>
+                    <option value="arithmetic">Арифметическое</option>
                 </select>
             </div>
             <button type="button" class="converter-convert-btn" onclick="calcErrorKit()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать суммарную погрешность</button>
@@ -2270,12 +2345,12 @@
         <div id="page-buoy-calc" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Буйковый уровнемер</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="scale-form"><div class="scale-form-label">Параметры буйка</div><div class="scale-form-label" style="margin-top:0;">Диаметр (D)</div><input type="text" inputmode="text" id="buoy_diam" class="scale-field" value="50" placeholder="мм" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">мм</div><div class="scale-form-label">Длина (L)</div><input type="text" inputmode="text" id="buoy_length" class="scale-field" value="300" placeholder="мм" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">мм</div><div id="buoyWeightContainer"><div class="scale-form-label">Вес буйка в воздухе</div><input type="text" inputmode="text" id="buoy_weight_kg" class="scale-field" value="2.0" placeholder="кг" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:-6px; margin-bottom:8px; padding-left:4px;"> Масса буйка (кг)</div></div></div>
-            <div class="scale-form"><div class="scale-form-label">Параметры жидкости</div><div class="scale-form-label" style="margin-top:0;">Тип среды</div><div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;"><select id="liquid_preset" class="scale-field" style="flex:2; margin-bottom:0;" onchange="setLiquidDensity()" autocomplete="off"><option value="998">Вода (20°C)</option><option value="926">Дивинилбензол C₆H₄(CH=CH₂)₂ (20°C)</option><option value="860">Диэтилбензол C₆H₄(CH₂CH₃)₂ (20°C)</option><option value="906">Стирол C₆H₅CH=CH₂ (20°C)</option><option value="1253">Дихлорэтан CH₂Cl-CH₂Cl (20°C)</option><option value="789">Этиловый спирт C₂H₅OH (20°C)</option><option value="1111.5">Этиленгликоль CH₂OH-CH₂OH (20°C)</option><option value="2130">Едкий натр NaOH (20°C)</option><option value="2530">Кальцинированная сода Na₂CO₃ (20°C)</option><option value="1890">Олеум H₂SO₄·SO₃ (20°C)</option><option value="1834">Серная кислота H₂SO₄ 96% (20°C)</option><option value="1683">Динитрофенол C₆H₃(NO₂)₂OH (20°C)</option><option value="1334">Перекись бензоила (C₆H₅)₂COO₂ (20°C)</option><option value="1450">Перекись водорода H₂O₂ 100% (20°C)</option><option value="custom">Своё значение</option></select><input type="text" inputmode="text" id="liquid_density" class="scale-field" style="flex:1; margin-bottom:0;" value="998" placeholder="кг/м³" autocomplete="off" enterkeyhint="next"></div><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">кг/м³</div></div>
-            <div class="scale-form"><div class="scale-form-label">Подвесная система</div><input type="text" inputmode="text" id="suspension_mass" class="scale-field" value="0" placeholder="0" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;"> Масса тарелки/крюка, г</div></div>
-            <div class="scale-form"><div class="scale-form-label">Выходной сигнал</div><select id="buoy_signal_type" class="scale-field" onchange="updateBuoySignalUnit()" autocomplete="off"><optgroup label=" Электрические (токовые)"><option value="4_20">4 – 20 мА</option><option value="0_20">0 – 20 мА</option><option value="0_5mA">0 – 5 мА</option></optgroup><optgroup label=" Электрические (напряжения)"><option value="0_10V">0 – 10 В</option><option value="1_5V">1 – 5 В</option><option value="0_5V">0 – 5 В</option><option value="bipolar_10">-10 – +10 В</option></optgroup><optgroup label=" Пневматические"><option value="20_100_kPa">20 – 100 кПа</option><option value="0_2_1_0_bar">0.2 – 1.0 бар</option><option value="3_15_psi">3 – 15 psi</option><option value="0_2_1_0_kgf_cm2" selected>0.2 – 1.0 кгс/см²</option></optgroup><optgroup label=" Другие"><option value="custom">Своё значение</option></optgroup></select><div id="customSignalRange" style="display:none; margin-top:12px;"><div style="display:flex; gap:8px;"><input type="text" inputmode="text" id="signal_min_custom" class="scale-field" style="flex:1;" placeholder="Мин." autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="signal_max_custom" class="scale-field" style="flex:1;" placeholder="Макс." autocomplete="off" enterkeyhint="next"></div><input type="text" inputmode="text" id="signal_unit_custom" class="scale-field" style="margin-top:8px;" placeholder="Ед. измерения (например: мА, В, кПа)" value="мА" autocomplete="off" ></div><div id="signalUnitDisplay" style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:8px; padding-left:4px;"> Сигнал: 0.2-1.0 кгс/см²</div></div>
+            <div class="scale-form"><div class="scale-form-label">Параметры буйка</div><div class="scale-form-label" style="margin-top:0;">Диаметр (D)</div><input type="text" inputmode="text" id="buoy_diam" class="scale-field" value="50" placeholder="мм" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">мм</div><div class="scale-form-label">Длина (L)</div><input type="text" inputmode="text" id="buoy_length" class="scale-field" value="300" placeholder="мм" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">мм</div><div id="buoyWeightContainer"><div class="scale-form-label">Вес буйка в воздухе</div><input type="text" inputmode="text" id="buoy_weight_kg" class="scale-field" value="2.0" placeholder="кг" autocomplete="off" enterkeyhint="done"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:-6px; margin-bottom:8px; padding-left:4px;"> Масса буйка (кг)</div></div></div>
+            <div class="scale-form"><div class="scale-form-label">Параметры жидкости</div><div class="scale-form-label" style="margin-top:0;">Тип среды</div><div style="display:flex; gap:8px; margin-bottom:12px; align-items:stretch;"><select id="liquid_preset" class="scale-field" style="flex:2; margin-bottom:0;" onchange="setLiquidDensity()" autocomplete="off"><option value="998">Вода</option><option value="926">Дивинилбензол</option><option value="860">Диэтилбензол</option><option value="906">Стирол</option><option value="1253">Дихлорэтан</option><option value="789">Этиловый спирт</option><option value="1111.5">Этиленгликоль</option><option value="2130">Едкий натр</option><option value="2530">Кальцинированная сода</option><option value="1890">Олеум</option><option value="1834">Серная кислота 96%</option><option value="1683">Динитрофенол</option><option value="1334">Перекись бензоила</option><option value="1450">Перекись водорода</option><option value="custom">Своё значение</option></select><input type="text" inputmode="text" id="liquid_density" class="scale-field" style="flex:1; margin-bottom:0;" value="998" placeholder="кг/м³" autocomplete="off" enterkeyhint="done"></div><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;">кг/м³</div></div>
+            <div class="scale-form"><div class="scale-form-label">Подвесная система</div><input type="text" inputmode="text" id="suspension_mass" class="scale-field" value="0" placeholder="0" autocomplete="off" enterkeyhint="done"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:4px; padding-left:4px;"> Масса тарелки/крюка, г</div></div>
+            <div class="scale-form"><div class="scale-form-label">Выходной сигнал</div><select id="buoy_signal_type" class="scale-field" onchange="updateBuoySignalUnit()" autocomplete="off"><optgroup label="Токовые"><option value="4_20">4 – 20 мА</option><option value="0_20">0 – 20 мА</option><option value="0_5mA">0 – 5 мА</option></optgroup><optgroup label="Напряжения"><option value="0_10V">0 – 10 В</option><option value="1_5V">1 – 5 В</option><option value="0_5V">0 – 5 В</option><option value="bipolar_10">-10 – +10 В</option></optgroup><optgroup label="Пневматические"><option value="20_100_kPa">20 – 100 кПа</option><option value="0_2_1_0_bar">0,2 – 1,0 бар</option><option value="3_15_psi">3 – 15 psi</option><option value="0_2_1_0_kgf_cm2" selected>0,2 – 1,0 кгс/см²</option></optgroup><optgroup label="Другие"><option value="custom">Своё</option></optgroup></select><div id="customSignalRange" style="display:none; margin-top:12px;"><div style="display:flex; gap:8px;"><input type="text" inputmode="text" id="signal_min_custom" class="scale-field" style="flex:1;" placeholder="Мин." autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="signal_max_custom" class="scale-field" style="flex:1;" placeholder="Макс." autocomplete="off" enterkeyhint="done"></div><input type="text" inputmode="text" id="signal_unit_custom" class="scale-field" style="margin-top:8px;" placeholder="Ед. измерения (например: мА, В, кПа)" value="мА" autocomplete="off" enterkeyhint="done" ></div><div id="signalUnitDisplay" style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:8px; padding-left:4px;"> Сигнал: 0.2-1.0 кгс/см²</div></div>
             <button type="button" class="converter-convert-btn" onclick="calculateBuoyCalibration()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать калибровку</button>
-            <div id="buoyResults" class="converter-result-group" style="display:none;"><div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><div class="converter-result-label-title">Таблица калибровки (шаг 10%)</div><button type="button" class="query-btn" onclick="copyBuoyTable()" style="width:auto; padding:5px 10px; font-size:11px;"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Копировать</button></div><div id="buoyTableContainer" style="overflow-x:auto;"></div><div id="buoyInfo" style="margin-top:14px; padding:14px 18px; background:rgba(13,17,23,0.5); border-radius:10px; font-size:15px; color:rgba(255,255,255,0.35); line-height:1.6;"></div><div id="buoyCustomCalcPanel" style="display:none;"><div class="converter-result-label-title" style="margin-top:16px;">Расчёт произвольных значений</div><div class="scale-form" style="margin-top:8px;"><div style="color:rgba(255,255,255,0.25); font-size:11px; margin-bottom:10px; line-height:1.4;">Введите значение в любое поле — два других рассчитаются автоматически</div><div class="scale-form-label">Уровень (%)</div><input type="text" inputmode="decimal" id="buoyCustomLevel" class="scale-field" placeholder="Например: 37.5" oninput="calcBuoyFromLevel()" autocomplete="off"><div class="scale-form-label">Масса гирь (г)</div><input type="text" inputmode="decimal" id="buoyCustomMass" class="scale-field" placeholder="Например: 542.3" oninput="calcBuoyFromMass()" autocomplete="off"><div class="scale-form-label">Сигнал (<span id="buoyCustomSigUnit">мА</span>)</div><input type="text" inputmode="decimal" id="buoyCustomSignal" class="scale-field" placeholder="Например: 9.6" oninput="calcBuoyFromSignal()" autocomplete="off"></div></div></div>
+            <div id="buoyResults" class="converter-result-group" style="display:none;"><div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><div class="converter-result-label-title">Таблица калибровки (шаг 10%)</div><button type="button" class="query-btn" onclick="copyBuoyTable()" style="width:auto; padding:5px 10px; font-size:11px;"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Копировать</button></div><div id="buoyTableContainer" style="overflow-x:auto;"></div><div id="buoyInfo" style="margin-top:14px; padding:14px 18px; background:rgba(13,17,23,0.5); border-radius:10px; font-size:15px; color:rgba(255,255,255,0.35); line-height:1.6;"></div><div id="buoyCustomCalcPanel" style="display:none;"><div class="converter-result-label-title" style="margin-top:16px;">Расчёт произвольных значений</div><div class="scale-form" style="margin-top:8px;"><div style="color:rgba(255,255,255,0.25); font-size:11px; margin-bottom:10px; line-height:1.4;">Введите значение в любое поле — два других рассчитаются автоматически</div><div class="scale-form-label">Уровень (%)</div><input type="text" inputmode="decimal" id="buoyCustomLevel" class="scale-field" placeholder="Например: 37.5" oninput="calcBuoyFromLevel()" autocomplete="off" enterkeyhint="done"><div class="scale-form-label">Масса гирь (г)</div><input type="text" inputmode="decimal" id="buoyCustomMass" class="scale-field" placeholder="Например: 542.3" oninput="calcBuoyFromMass()" autocomplete="off" enterkeyhint="done"><div class="scale-form-label">Сигнал (<span id="buoyCustomSigUnit">мА</span>)</div><input type="text" inputmode="decimal" id="buoyCustomSignal" class="scale-field" placeholder="Например: 9.6" oninput="calcBuoyFromSignal()" autocomplete="off" enterkeyhint="done"></div></div></div>
         </div>
     </div>
 </div>
@@ -2580,11 +2655,13 @@
 
     // ИСТОРИЯ И НАВИГАЦИЯ
     let pageHistory = [];
+    let isNavigating = false;
     function navigateTo(page, addToHistory=true) {
         if (page === 'library') { navigateTo('library-internal'); return; }
         if (page === 'minesweeper') { setTimeout(() => { if (typeof msInit === 'function') msInit(); }, 50); }
         let active = document.querySelector('.page-content.active');
-        if (active && addToHistory) { let id = active.id.replace('page-', ''); if (id !== page) pageHistory.push(id); }
+        let currentPageId = active ? active.id.replace('page-', '') : 'dashboard';
+        if (active && addToHistory) { if (currentPageId !== page) pageHistory.push(currentPageId); }
         document.querySelectorAll('.page-content').forEach(el => { el.classList.remove('active', 'visible'); });
         let target = document.getElementById('page-' + page);
         if (target) { target.classList.add('active'); requestAnimationFrame(() => { requestAnimationFrame(() => target.classList.add('visible')); }); }
@@ -2594,13 +2671,95 @@
         // Toggle global app-header visibility
         let appHeader = document.querySelector('.app-header');
         if (appHeader) appHeader.style.display = (page === 'dashboard') ? 'block' : 'none';
+        // Sync browser history
+        if (addToHistory && !isNavigating) {
+            history.pushState({ page: page }, '', '#' + page);
+        }
+        isNavigating = false;
     }
     function updateBottomNavActive(page) {
         let map = {'converter':0,'scale-signal':1,'error-select':2,'buoy-select':3,'library':4};
         let idx = map[page];
         document.querySelectorAll('.bottom-nav-item').forEach((el, i) => { el.classList.toggle('active', i === idx); });
     }
-    function goBack() { if (pageHistory.length) { let prev = pageHistory.pop(); navigateTo(prev, false); } else { navigateTo('dashboard', false); } }
+    function goBack() {
+        let active = document.querySelector('.page-content.active');
+        let currentPageId = active ? active.id.replace('page-', '') : 'dashboard';
+        if (currentPageId === 'dashboard') {
+            // На главной — выйти из сайта
+            if (pageHistory.length) { pageHistory = []; }
+            window.close();
+            // window.close() работает только для окон, открытых скриптом.
+            // Для обычных вкладок — пытаемся перейти назад в браузере
+            history.back();
+            return;
+        }
+        if (pageHistory.length) {
+            let prev = pageHistory.pop();
+            isNavigating = true;
+            history.back();
+            navigateTo(prev, false);
+        } else {
+            isNavigating = true;
+            history.back();
+            navigateTo('dashboard', false);
+        }
+    }
+    // Обработчик системной кнопки «Назад»
+    window.addEventListener('popstate', function(e) {
+        let active = document.querySelector('.page-content.active');
+        let currentPageId = active ? active.id.replace('page-', '') : 'dashboard';
+        if (currentPageId === 'dashboard') {
+            // На главной — ещё один back закроет вкладку/выйдет
+            // Ничего не делаем, позволяем браузеру закрыть вкладку
+            return;
+        }
+        // Синхронизируем с внутренней историей
+        if (pageHistory.length) {
+            let prev = pageHistory.pop();
+            navigateTo(prev, false);
+        } else {
+            navigateTo('dashboard', false);
+        }
+    });
+    // Инициализация: записать стартовую страницу в историю браузера
+    history.replaceState({ page: 'dashboard' }, '', '#dashboard');
+
+    // Обработчик Enter/Next на клавиатуре — логичный переход между полями и расчёт
+    document.addEventListener('keydown', function(e) {
+        if (e.key !== 'Enter') return;
+        let el = e.target;
+        // Работаем только с input и select полями
+        if (el.tagName !== 'INPUT' && el.tagName !== 'SELECT') return;
+        e.preventDefault();
+
+        // Ищем контейнер текущей страницы
+        let page = el.closest('.page-content');
+        if (!page) return;
+
+        // Собираем все видимые input и select на текущей странице, которые не hidden и не disabled
+        let fields = Array.from(page.querySelectorAll('input:not([type="hidden"]), select')).filter(f => {
+            return f.offsetParent !== null && !f.disabled && !f.readOnly;
+        });
+
+        let idx = fields.indexOf(el);
+        if (idx >= 0 && idx < fields.length - 1) {
+            // Есть следующее поле — переходим к нему
+            fields[idx + 1].focus();
+            // Выделяем текст в input для удобной замены
+            if (fields[idx + 1].tagName === 'INPUT' && fields[idx + 1].select) {
+                fields[idx + 1].select();
+            }
+        } else {
+            // Последнее поле — нажимаем кнопку «Рассчитать»
+            let btn = page.querySelector('.converter-convert-btn, .scale-calc-btn, .query-btn');
+            if (btn) {
+                btn.click();
+            }
+            // Скрываем клавиатуру
+            el.blur();
+        }
+    });
     function toggleSidebar() {
     let sidebar = document.getElementById('sidebar');
     let overlay = document.getElementById('sidebarOverlay');
@@ -2636,11 +2795,11 @@ function showToast(msg) { let t = document.getElementById('toast'); document.get
         time: { units: { 's':{label:'секунда',factor:1}, 'ms':{label:'мс',factor:0.001}, 'min':{label:'минута',factor:60}, 'h':{label:'час',factor:3600}, 'd':{label:'сутки',factor:86400}, 'week':{label:'неделя',factor:604800}, 'month':{label:'месяц',factor:2592000}, 'year':{label:'год',factor:31536000} } },
         volume: { units: { 'm3':{label:'м³',factor:1}, 'l':{label:'литр',factor:0.001}, 'ml':{label:'мл',factor:0.000001}, 'cm3':{label:'см³',factor:0.000001}, 'gal':{label:'галлон US',factor:0.00378541}, 'bbl':{label:'баррель',factor:0.158987}, 'ft3':{label:'куб. фут',factor:0.0283168}, 'dm3':{label:'дм³',factor:0.001} } }
     };
-    function formatNumber(n) { if (n===0) return '0'; if (Math.abs(n)>=1e9||Math.abs(n)<0.00001&&n!==0) return n.toExponential(4); let d=Math.abs(n)>=100?2:Math.abs(n)>=1?4:6; return parseFloat(n.toFixed(d)).toString(); }
+    function formatNumber(n) { if (n===0) return '0'; if (Math.abs(n)>=1e9||Math.abs(n)<0.00001&&n!==0) return n.toExponential(4).replace('.',','); let d=Math.abs(n)>=100?2:Math.abs(n)>=1?4:6; return parseFloat(n.toFixed(d)).toString().replace('.',','); }
 function roundNumber(n) {
     if (n === 0) return '0';
     let absN = Math.abs(n);
-    if (absN >= 1e9 || (absN < 0.00001 && n !== 0)) return n.toExponential(1);
+    if (absN >= 1e9 || (absN < 0.00001 && n !== 0)) return n.toExponential(1).replace('.',',');
     // Round to 2 significant figures: keep first 2 digits, rest zeros
     let order = Math.floor(Math.log10(absN));
     let dp = 1 - order; // decimal places needed for 2 sig figs
@@ -2648,10 +2807,10 @@ function roundNumber(n) {
         // Round to nearest 10^(-dp) for large numbers
         let factor = Math.pow(10, -dp);
         let result = Math.round(n / factor) * factor;
-        return result.toString();
+        return result.toString().replace('.',',');
     } else {
         let result = parseFloat(n.toFixed(dp));
-        return result.toString();
+        return result.toString().replace('.',',');
     }
 }
     function convertUnits(cat) { if (cat==='temp') { convertTemp(); return; } let d=unitData[cat]; let val=parseFloat(document.getElementById(`conv-${cat}-input`).value); let from=document.getElementById(`conv-${cat}-unit`).value; let resDiv=document.getElementById(`conv-${cat}-results`); let tableDiv=document.getElementById(`conv-${cat}-table`); if(tableDiv) tableDiv.style.display='none'; if(isNaN(val)) { resDiv.innerHTML='<p style="text-align:center;color:#c74a4a;font-size:14px;padding:16px;">Введите значение</p>'; return; } let base=val*d.units[from].factor; let html='<div class="converter-result-label-title">Результаты</div>'; let delay=0; for(let u in d.units){ if(u===from) continue; let v=base/d.units[u].factor; html+=`<div class="converter-result-item" style="animation-delay:${delay}ms;cursor:pointer;" onclick="showConverterTable('${cat}','${from}','${u}',${base})"><span class="converter-result-label">${d.units[u].label}</span><span class="converter-result-value">${formatNumber(v)} <span style="color:rgba(255,255,255,0.25);font-weight:400;font-size:0.85em;">(${roundNumber(v)})</span></span></div>`; delay+=40; } resDiv.innerHTML=html; }
@@ -2737,8 +2896,8 @@ function showTempTable(fromUnit, toUnit, baseCelsius) {
 function setSignalDefaults() { let type=document.getElementById('sigType').value; let def={'4_20':[4,20],'0_20':[0,20],'0_5mA':[0,5],'0_10V':[0,10],'1_5V':[1,5],'0_5V':[0,5],'bipolar_10':[-10,10],'20_100_kPa':[20,100],'0_2_1_0_bar':[0.2,1.0],'3_15_psi':[3,15],'0_2_1_0_kgf_cm2':[0.2,1.0]}; let customDiv=document.getElementById('sigCustomRange'); if(def[type]){document.getElementById('sigMin').value=def[type][0]; document.getElementById('sigMax').value=def[type][1]; customDiv.style.display='none';} else{document.getElementById('sigMin').value='0'; document.getElementById('sigMax').value='100'; document.getElementById('sigUnitCustom').value='%'; customDiv.style.display='block';} document.getElementById('sigUnitLabel').innerText=sigUnitLabels[type]; }
     function setScaleDefaults() { let type=document.getElementById('scalePreset').value; let def={'0_100':[0,100,'%'],'0_20':[0,20,'мА'],'0_5mA':[0,5,'мА'],'0_10V':[0,10,'В'],'1_5V':[1,5,'В'],'0_5V':[0,5,'В'],'bipolar_10':[-10,10,'В'],'20_100_kPa':[20,100,'кПа'],'0_2_1_0_bar':[0.2,1.0,'бар'],'3_15_psi':[3,15,'psi'],'0_2_1_0_kgf_cm2':[0.2,1.0,'кгс/см²']}; let customDiv=document.getElementById('scaleCustomRange'); if(def[type]){document.getElementById('scaleMin').value=def[type][0]; document.getElementById('scaleMax').value=def[type][1]; document.getElementById('scaleUnitName').value=def[type][2]; customDiv.style.display='none';} else{customDiv.style.display='block';} }
     function calcScaleSignal() { let smin=parseFloat(document.getElementById('scaleMin').value); let smax=parseFloat(document.getElementById('scaleMax').value); let gmin=parseFloat(document.getElementById('sigMin').value); let gmax=parseFloat(document.getElementById('sigMax').value); let scaleType=document.getElementById('scaleType').value; if(isNaN(smin)||isNaN(smax)||isNaN(gmin)||isNaN(gmax)){showToast('Заполните все поля');return;} if(smin===smax||gmin===gmax){showToast('Пределы не должны совпадать');return;} document.getElementById('scaleResultsArea').style.display='block'; let unit=document.getElementById('scaleUnitName').value||'ед.'; let sigRange=getSignalRangeAndUnit(document.getElementById('sigType').value); let sigUnit=sigRange.unit; let typeLabels={linear:'Линейная',quadratic:'Квадратичная',sqrt:'Корнеизвлекающая'}; let pct=[0,5,10,15,20,25,30,40,50,60,70,75,80,90,95,100]; let html='<div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.05);"><table style="min-width:100%;width:100%;border-collapse:collapse;"><thead><tr style="background:rgba(22,27,34,0.7);"><th style="padding:10px 12px;font-size:13px;color:#4a8fc7;text-align:left;">%</th><th style="padding:10px 12px;font-size:13px;color:#4a8fc7;text-align:left;">Шкала ('+unit+')</th><th style="padding:10px 12px;font-size:13px;color:#4a8fc7;text-align:left;">Сигнал ('+sigUnit+')</th></tr></thead><tbody>'; for(let i=0;i<pct.length;i++){ let pr=pct[i]/100; let scaleVal=smin+(smax-smin)*pr; let sigVal; if(scaleType==='quadratic'){ sigVal=gmin+(gmax-gmin)*pr*pr; } else if(scaleType==='sqrt'){ sigVal=gmin+(gmax-gmin)*Math.sqrt(pr); } else { sigVal=gmin+(gmax-gmin)*pr; } let bg=i%2?'rgba(22,27,34,0.4)':'rgba(13,17,23,0.4)'; html+=`<tr style="background:${bg};"><td style="padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.4);">${pct[i]}</td><td style="padding:8px 12px;font-size:14px;color:#e0e0e0;">${formatNumber(scaleVal)}</td><td style="padding:8px 12px;font-size:14px;color:#4ac771;">${formatNumber(sigVal)}</td></tr>`; } html+='</tbody></table></div>'; html+=`<div style="margin-top:10px;padding:8px 12px;background:rgba(13,17,23,0.4);border-radius:8px;font-size:12px;color:rgba(255,255,255,0.35);">Тип шкалы: <b style="color:#4a8fc7;">${typeLabels[scaleType]}</b> · Сигнал: ${sigRange.label}</div>`; document.getElementById('scaleTableContainer').innerHTML=html; document.getElementById('queryScaleResult').innerHTML=''; document.getElementById('querySigResult').innerHTML=''; setTimeout(()=>document.getElementById('scaleResultsArea').scrollIntoView({behavior:'smooth',block:'start'}),100); }
-    function queryFromScale(){ let smin=parseFloat(document.getElementById('scaleMin').value), smax=parseFloat(document.getElementById('scaleMax').value), gmin=parseFloat(document.getElementById('sigMin').value), gmax=parseFloat(document.getElementById('sigMax').value), scaleType=document.getElementById('scaleType').value, q=parseFloat(document.getElementById('queryScaleVal').value), unit=document.getElementById('scaleUnitName').value||'ед.', sigRange=getSignalRangeAndUnit(document.getElementById('sigType').value), sigUnit=sigRange.unit, res=document.getElementById('queryScaleResult'); if(isNaN(q)){res.innerHTML='<p style="color:#c74a4a;font-size:12px;">Введите значение</p>';return;} let p=(q-smin)/(smax-smin); let sig; if(scaleType==='quadratic'){ sig=gmin+(gmax-gmin)*p*p; } else if(scaleType==='sqrt'){ sig=gmin+(gmax-gmin)*Math.sqrt(p); } else { sig=gmin+(gmax-gmin)*p; } res.innerHTML=`<div style="padding:8px 10px;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:rgba(255,255,255,0.4);">Шкала: <b>${formatNumber(q)} ${unit}</b> (${(p*100).toFixed(2)}%)</span></div><div style="padding:8px 10px;background:rgba(13,17,23,0.4);border-radius:8px;margin-top:5px;"><span style="color:rgba(255,255,255,0.4);">→ Сигнал: <b style="color:#4ac771;">${formatNumber(sig)} ${sigUnit}</b></span></div>`; }
-    function queryFromSignal(){ let smin=parseFloat(document.getElementById('scaleMin').value), smax=parseFloat(document.getElementById('scaleMax').value), gmin=parseFloat(document.getElementById('sigMin').value), gmax=parseFloat(document.getElementById('sigMax').value), scaleType=document.getElementById('scaleType').value, q=parseFloat(document.getElementById('querySigVal').value), unit=document.getElementById('scaleUnitName').value||'ед.', sigRange=getSignalRangeAndUnit(document.getElementById('sigType').value), sigUnit=sigRange.unit, res=document.getElementById('querySigResult'); if(isNaN(q)){res.innerHTML='<p style="color:#c74a4a;font-size:12px;">Введите значение</p>';return;} let p=(q-gmin)/(gmax-gmin); let val_lin; if(scaleType==='quadratic'){ val_lin=Math.sqrt(p); } else if(scaleType==='sqrt'){ val_lin=p*p; } else { val_lin=p; } let val=smin+(smax-smin)*val_lin; res.innerHTML=`<div style="padding:8px 10px;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:rgba(255,255,255,0.4);">Сигнал: <b>${formatNumber(q)} ${sigUnit}</b> (${(p*100).toFixed(2)}%)</span></div><div style="padding:8px 10px;background:rgba(13,17,23,0.4);border-radius:8px;margin-top:5px;"><span style="color:rgba(255,255,255,0.4);">→ Шкала: <b style="color:#4ac771;">${formatNumber(val)} ${unit}</b></span></div>`; }
+    function queryFromScale(){ let smin=parseFloat(document.getElementById('scaleMin').value), smax=parseFloat(document.getElementById('scaleMax').value), gmin=parseFloat(document.getElementById('sigMin').value), gmax=parseFloat(document.getElementById('sigMax').value), scaleType=document.getElementById('scaleType').value, q=parseFloat(document.getElementById('queryScaleVal').value), unit=document.getElementById('scaleUnitName').value||'ед.', sigRange=getSignalRangeAndUnit(document.getElementById('sigType').value), sigUnit=sigRange.unit, res=document.getElementById('queryScaleResult'); if(isNaN(q)){res.innerHTML='<p style="color:#c74a4a;font-size:12px;">Введите значение</p>';return;} let p=(q-smin)/(smax-smin); let sig; if(scaleType==='quadratic'){ sig=gmin+(gmax-gmin)*p*p; } else if(scaleType==='sqrt'){ sig=gmin+(gmax-gmin)*Math.sqrt(p); } else { sig=gmin+(gmax-gmin)*p; } res.innerHTML=`<div style="padding:8px 10px;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:rgba(255,255,255,0.4);">Шкала: <b>${formatNumber(q)} ${unit}</b> (${(p*100).toFixed(2).replace('.',',')}%)</span></div><div style="padding:8px 10px;background:rgba(13,17,23,0.4);border-radius:8px;margin-top:5px;"><span style="color:rgba(255,255,255,0.4);">→ Сигнал: <b style="color:#4ac771;">${formatNumber(sig)} ${sigUnit}</b></span></div>`; }
+    function queryFromSignal(){ let smin=parseFloat(document.getElementById('scaleMin').value), smax=parseFloat(document.getElementById('scaleMax').value), gmin=parseFloat(document.getElementById('sigMin').value), gmax=parseFloat(document.getElementById('sigMax').value), scaleType=document.getElementById('scaleType').value, q=parseFloat(document.getElementById('querySigVal').value), unit=document.getElementById('scaleUnitName').value||'ед.', sigRange=getSignalRangeAndUnit(document.getElementById('sigType').value), sigUnit=sigRange.unit, res=document.getElementById('querySigResult'); if(isNaN(q)){res.innerHTML='<p style="color:#c74a4a;font-size:12px;">Введите значение</p>';return;} let p=(q-gmin)/(gmax-gmin); let val_lin; if(scaleType==='quadratic'){ val_lin=Math.sqrt(p); } else if(scaleType==='sqrt'){ val_lin=p*p; } else { val_lin=p; } let val=smin+(smax-smin)*val_lin; res.innerHTML=`<div style="padding:8px 10px;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:rgba(255,255,255,0.4);">Сигнал: <b>${formatNumber(q)} ${sigUnit}</b> (${(p*100).toFixed(2).replace('.',',')}%)</span></div><div style="padding:8px 10px;background:rgba(13,17,23,0.4);border-radius:8px;margin-top:5px;"><span style="color:rgba(255,255,255,0.4);">→ Шкала: <b style="color:#4ac771;">${formatNumber(val)} ${unit}</b></span></div>`; }
 
     // Расчёт погрешности для всех типов
     function toggleErrorClassFields(prefix) {
@@ -3097,9 +3256,9 @@ function setSignalDefaults() { let type=document.getElementById('sigType').value
         'ni500': { name:'Ni500 (500Н)', group:'Ni', r0:500, nsc:'500Н', classAA:null, classA:{formula:{const:0.15,coeff:0.0020},range:[-60,180]}, classB:{formula:{const:0.30,coeff:0.0050},range:[-60,180]}, classC:null },
         'ni1000': { name:'Ni1000 (1000Н)', group:'Ni', r0:1000, nsc:'1000Н', classAA:null, classA:{formula:{const:0.15,coeff:0.0020},range:[-60,180]}, classB:{formula:{const:0.30,coeff:0.0050},range:[-60,180]}, classC:null }
     };
-    function updateRtdTypeOptions(){ let g=document.getElementById('rtd_group').value; let typeSel=document.getElementById('rtd_type'); let classSel=document.getElementById('rtd_class'); let opts=''; if(g==='Pt'){ opts='<option value="pt10">Pt10 (10П)</option><option value="pt50">Pt50 (50П)</option><option value="pt100" selected>Pt100 (100П)</option><option value="pt500">Pt500 (500П)</option><option value="pt1000">Pt1000 (1000П)</option>'; classSel.innerHTML='<option value="AA">AA (1/3 B)</option><option value="A" selected>A</option><option value="B">B</option><option value="C">C</option>'; } else if(g==='Cu'){ opts='<option value="cu10">Cu10 (10М)</option><option value="cu50" selected>Cu50 (50М)</option><option value="cu100">Cu100 (100М)</option>'; classSel.innerHTML='<option value="A">A</option><option value="B" selected>B</option>'; } else if(g==='Ni'){ opts='<option value="ni50">Ni50 (50Н)</option><option value="ni100">Ni100 (100Н)</option><option value="ni120">Ni120 (120Н)</option><option value="ni500">Ni500 (500Н)</option><option value="ni1000" selected>Ni1000 (1000Н)</option>'; classSel.innerHTML='<option value="A">A</option><option value="B" selected>B</option>'; } typeSel.innerHTML=opts; updateRtdClassOptions(); }
+    function updateRtdTypeOptions(){ let g=document.getElementById('rtd_group').value; let typeSel=document.getElementById('rtd_type'); let classSel=document.getElementById('rtd_class'); let opts=''; if(g==='Pt'){ opts='<option value="pt10">Pt10</option><option value="pt50">Pt50</option><option value="pt100" selected>Pt100</option><option value="pt500">Pt500</option><option value="pt1000">Pt1000</option>'; classSel.innerHTML='<option value="AA">AA</option><option value="A" selected>A</option><option value="B">B</option><option value="C">C</option>'; } else if(g==='Cu'){ opts='<option value="cu10">Cu10</option><option value="cu50" selected>Cu50</option><option value="cu100">Cu100</option>'; classSel.innerHTML='<option value="A">A</option><option value="B" selected>B</option><option value="C">C</option>'; } else if(g==='Ni'){ opts='<option value="ni50">Ni50</option><option value="ni100">Ni100</option><option value="ni120">Ni120</option><option value="ni500">Ni500</option><option value="ni1000" selected>Ni1000</option>'; classSel.innerHTML='<option value="A">A</option><option value="B" selected>B</option><option value="C">C</option>'; } typeSel.innerHTML=opts; updateRtdClassOptions(); }
     function updateRtdClassOptions(){ let type=document.getElementById('rtd_type').value; let d=rtdData[type]; let classSel=document.getElementById('rtd_class'); if(!d)return; for(let i=0;i<classSel.options.length;i++){ let opt=classSel.options[i]; let key='class'+opt.value.toUpperCase(); let avail=!!d[key]; opt.disabled=!avail; if(!avail&&opt.selected){ for(let j=0;j<classSel.options.length;j++){ if(!classSel.options[j].disabled){ classSel.options[j].selected=true; break; } } } } }
-    function calcRtdError(){ let type=document.getElementById('rtd_type').value; let cls=document.getElementById('rtd_class').value.toLowerCase(); let t=parseFloat(document.getElementById('rtd_temperature').value); let warn=document.getElementById('rtd_range_warning'); if(isNaN(t)){showToast('Введите температуру');return;} let d=rtdData[type]; if(!d){showToast('Некорректный тип ТС');return;} let data=d['class'+cls.toUpperCase()]; if(!data){showToast(`Класс ${cls.toUpperCase()} не определён`);return;} let absT=Math.abs(t); let err=data.formula.const+data.formula.coeff*absT; let rng=data.range; if(t<rng[0]||t>rng[1]){ warn.style.display='block'; warn.innerHTML=` Температура ${t}°C вне диапазона [${rng[0]}…${rng[1]}]°C`; }else warn.style.display='none'; let groupNames={Pt:'Платиновый (Pt)',Cu:'Медный (Cu)',Ni:'Никелевый (Ni)'}; let html=`<div class="converter-result-label-title">Результаты (ГОСТ 6651-2009)</div><div class="converter-result-item"><span class="converter-result-label">Тип ТС</span><span class="converter-result-value">${d.name}</span></div><div class="converter-result-item"><span class="converter-result-label">Материал</span><span class="converter-result-value">${groupNames[d.group]}</span></div><div class="converter-result-item"><span class="converter-result-label">R₀ (0°C)</span><span class="converter-result-value">${d.r0} Ом</span></div><div class="converter-result-item"><span class="converter-result-label">Класс допуска</span><span class="converter-result-value">${cls.toUpperCase()}</span></div><div class="converter-result-item"><span class="converter-result-label">Предел погрешности</span><span class="converter-result-value" style="color:#4ac771;">± ${formatNumber(err)} °C</span></div><div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">Δ = ±(${data.formula.const} + ${data.formula.coeff}·|t|) °C</span></div><div class="converter-result-item"><span class="converter-result-label">Диапазон</span><span class="converter-result-value">${rng[0]} … ${rng[1]} °C</span></div>`; document.getElementById('rtdResults').innerHTML=html; document.getElementById('rtdResults').style.display='block'; setTimeout(()=>document.getElementById('rtdResults').scrollIntoView({behavior:'smooth',block:'start'}),100); }
+    function calcRtdError(){ let type=document.getElementById('rtd_type').value; let cls=document.getElementById('rtd_class').value.toLowerCase(); let t=parseFloat(document.getElementById('rtd_temperature').value); let warn=document.getElementById('rtd_range_warning'); if(isNaN(t)){showToast('Введите температуру');return;} let d=rtdData[type]; if(!d){showToast('Некорректный тип ТС');return;} let data=d['class'+cls.toUpperCase()]; if(!data){showToast(`Класс ${cls.toUpperCase()} не определён`);return;} let absT=Math.abs(t); let err=data.formula.const+data.formula.coeff*absT; let rng=data.range; if(t<rng[0]||t>rng[1]){ warn.style.display='block'; warn.innerHTML=` Температура ${formatNumber(t)}°C вне диапазона [${rng[0]}…${rng[1]}]°C`; }else warn.style.display='none'; let groupNames={Pt:'Платиновый (Pt)',Cu:'Медный (Cu)',Ni:'Никелевый (Ni)'}; let html=`<div class="converter-result-label-title">Результаты (ГОСТ 6651-2009)</div><div class="converter-result-item"><span class="converter-result-label">Тип ТС</span><span class="converter-result-value">${d.name}</span></div><div class="converter-result-item"><span class="converter-result-label">Материал</span><span class="converter-result-value">${groupNames[d.group]}</span></div><div class="converter-result-item"><span class="converter-result-label">R₀ (0°C)</span><span class="converter-result-value">${d.r0} Ом</span></div><div class="converter-result-item"><span class="converter-result-label">Класс допуска</span><span class="converter-result-value">${cls.toUpperCase()}</span></div><div class="converter-result-item"><span class="converter-result-label">Предел погрешности</span><span class="converter-result-value" style="color:#4ac771;">± ${formatNumber(err)} °C</span></div><div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">Δ = ±(${formatNumber(data.formula.const)} + ${formatNumber(data.formula.coeff)}·|t|) °C</span></div><div class="converter-result-item"><span class="converter-result-label">Диапазон</span><span class="converter-result-value">${rng[0]} … ${rng[1]} °C</span></div>`; document.getElementById('rtdResults').innerHTML=html; document.getElementById('rtdResults').style.display='block'; setTimeout(()=>document.getElementById('rtdResults').scrollIntoView({behavior:'smooth',block:'start'}),100); }
 
     const tcData={
         'K':{name:'K (ТХА)',ranges:{class1:[[-40,375,'const',1.5],[375,1000,'linear',0.004]],class2:[[-40,333,'const',2.5],[333,1300,'linear',0.0075]],class3:[[-250,-167,'linear',0.015],[-167,40,'const',2.5]]}},
@@ -3112,7 +3271,7 @@ function setSignalDefaults() { let type=document.getElementById('sigType').value
         'B':{name:'B (ТПР 30/6%)',ranges:{class1:null,class2:[[600,1700,'linear',0.005]],class3:[[600,800,'const',4.0],[800,1700,'linear',0.005]]}}
     };
     function updateTcRanges(){ let type=document.getElementById('tc_type').value; let cls=document.getElementById('tc_class').value; let warn=document.getElementById('tc_range_warning'); if(tcData[type] && tcData[type].ranges['class'+cls]) warn.style.display='none'; }
-    function calcTcError(){ let type=document.getElementById('tc_type').value; let cls=document.getElementById('tc_class').value; let t=parseFloat(document.getElementById('tc_temperature').value); let warn=document.getElementById('tc_range_warning'); if(isNaN(t)){showToast('Введите температуру');return;} let data=tcData[type]; if(!data){showToast('Некорректный тип термопары');return;} let classData=data.ranges['class'+cls]; if(!classData){showToast(`Класс ${cls} не определён`);return;} let absT=Math.abs(t); let err=null, formula='', valid=''; for(let i=0;i<classData.length;i++){ let r=classData[i]; if(t>=r[0]&&t<=r[1]){ if(r[2]==='const'){ err=r[3]; formula=`Δ = ±${r[3]} °C`; } else if(r[2]==='linear'){ err=r[3]*absT; formula=`Δ = ±(${r[3]}·|t|) °C`; } else if(r[2]==='linear2'){ let p=r[3]; err=p[0]+p[1]*(t-1100); formula=`Δ = ±[${p[0]} + ${p[1]}·(t−1100)] °C`; } valid=`${r[0]} … ${r[1]} °C`; break; } } if(err===null||isNaN(err)){ warn.style.display='block'; warn.innerHTML=` Температура ${t}°C вне допустимого диапазона для данного класса`; return; } else warn.style.display='none'; let html=`<div class="converter-result-label-title">Результаты (ГОСТ Р 8.585-2001)</div><div class="converter-result-item"><span class="converter-result-label">Тип термопары</span><span class="converter-result-value">${data.name}</span></div><div class="converter-result-item"><span class="converter-result-label">Класс точности (<span class="greek-gamma">&gamma;</span>)</span><span class="converter-result-value">${cls}</span></div><div class="converter-result-item"><span class="converter-result-label">Предел погрешности</span><span class="converter-result-value" style="color:#4ac771;">± ${formatNumber(err)} °C</span></div><div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">${formula}</span></div><div class="converter-result-item"><span class="converter-result-label">Диапазон</span><span class="converter-result-value">${valid}</span></div>`; document.getElementById('tcResults').innerHTML=html; document.getElementById('tcResults').style.display='block'; setTimeout(()=>document.getElementById('tcResults').scrollIntoView({behavior:'smooth',block:'start'}),100); }
+    function calcTcError(){ let type=document.getElementById('tc_type').value; let cls=document.getElementById('tc_class').value; let t=parseFloat(document.getElementById('tc_temperature').value); let warn=document.getElementById('tc_range_warning'); if(isNaN(t)){showToast('Введите температуру');return;} let data=tcData[type]; if(!data){showToast('Некорректный тип термопары');return;} let classData=data.ranges['class'+cls]; if(!classData){showToast(`Класс ${cls} не определён`);return;} let absT=Math.abs(t); let err=null, formula='', valid=''; for(let i=0;i<classData.length;i++){ let r=classData[i]; if(t>=r[0]&&t<=r[1]){ if(r[2]==='const'){ err=r[3]; formula=`Δ = ±${String(r[3]).replace('.',',')} °C`; } else if(r[2]==='linear'){ err=r[3]*absT; formula=`Δ = ±(${String(r[3]).replace('.',',')}·|t|) °C`; } else if(r[2]==='linear2'){ let p=r[3]; err=p[0]+p[1]*(t-1100); formula=`Δ = ±[${String(p[0]).replace('.',',')} + ${String(p[1]).replace('.',',')}·(t−1100)] °C`; } valid=`${r[0]} … ${r[1]} °C`; break; } } if(err===null||isNaN(err)){ warn.style.display='block'; warn.innerHTML=` Температура ${formatNumber(t)}°C вне допустимого диапазона для данного класса`; return; } else warn.style.display='none'; let html=`<div class="converter-result-label-title">Результаты (ГОСТ Р 8.585-2001)</div><div class="converter-result-item"><span class="converter-result-label">Тип термопары</span><span class="converter-result-value">${data.name}</span></div><div class="converter-result-item"><span class="converter-result-label">Класс точности (<span class="greek-gamma">&gamma;</span>)</span><span class="converter-result-value">${cls}</span></div><div class="converter-result-item"><span class="converter-result-label">Предел погрешности</span><span class="converter-result-value" style="color:#4ac771;">± ${formatNumber(err)} °C</span></div><div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">${formula}</span></div><div class="converter-result-item"><span class="converter-result-label">Диапазон</span><span class="converter-result-value">${valid}</span></div>`; document.getElementById('tcResults').innerHTML=html; document.getElementById('tcResults').style.display='block'; setTimeout(()=>document.getElementById('tcResults').scrollIntoView({behavior:'smooth',block:'start'}),100); }
 
     // Весы — расчёт погрешности
     function toggleScaleTypeFields() {
@@ -3461,7 +3620,7 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
     function calculateSignalValue(pct,st){ let r=getSignalRangeAndUnit(st); if(r.isCustom && (isNaN(r.min)||isNaN(r.max))) return {value:0,unit:r.unit,isValid:false}; if(r.min===r.max) return {value:r.min,unit:r.unit,isValid:true}; return {value:r.min+(pct/100)*(r.max-r.min),unit:r.unit,isValid:true}; }
     function calcBuoyVolume(d,l){ let r=(d/1000)/2, l_m=l/1000; return Math.PI*r*r*l_m; }
     function calcBuoyancyMass(pct,d,l,rho){ let l_m=l/1000, sub=(pct/100)*l_m; if(sub<=0)return 0; if(sub>l_m)sub=l_m; let r=(d/1000)/2; return Math.PI*r*r*sub*rho; }
-    function formatBuoyNumber(n){ if(n===0)return '0'; if(Math.abs(n)<0.0001)return n.toExponential(4); let d=Math.abs(n)>=100?2:Math.abs(n)>=1?3:4; return parseFloat(n.toFixed(d)).toString(); }
+    function formatBuoyNumber(n){ if(n===0)return '0'; if(Math.abs(n)<0.0001)return n.toExponential(4).replace('.',','); let d=Math.abs(n)>=100?2:Math.abs(n)>=1?3:4; return parseFloat(n.toFixed(d)).toString().replace('.',','); }
     let lastBuoyParams = null;
 
     function clearBuoyCustomFields(exceptId) {
@@ -3552,9 +3711,9 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
         div.style.marginBottom = '6px';
         div.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;"><div style="font-size:13px;font-weight:600;color:rgba(74,143,199,0.9);margin:0;">Прибор ' + visualNum + '</div><button type="button" onclick="removeKitDevice(' + idx + ')" style="background:rgba(199,74,74,0.15);border:1px solid rgba(199,74,74,0.3);color:#c74a4a;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;font-family:Inter,sans-serif;min-height:28px;">Удалить</button></div>'
             + '<div style="display:flex;gap:6px;align-items:flex-end;"><div style="flex:1.2;"><div class="scale-form-label">Выбор погрешности</div><select id="' + p + 'class_form" class="scale-field" style="margin-bottom:0;" onchange="toggleKitDevFields(' + idx + ')" autocomplete="off">'
-            + '<option value="absolute"' + (form === 'absolute' ? ' selected' : '') + '>Абсолютная (ед.изм.)</option>'
-            + '<option value="circle"' + (form === 'circle' ? ' selected' : '') + '>Относительная (%)</option>'
-            + '<option value="number"' + (form === 'number' ? ' selected' : '') + '>Приведённая (к.т.) (%)</option></select></div>'
+            + '<option value="absolute"' + (form === 'absolute' ? ' selected' : '') + '>Абсолютная</option>'
+            + '<option value="circle"' + (form === 'circle' ? ' selected' : '') + '>Относительная</option>'
+            + '<option value="number"' + (form === 'number' ? ' selected' : '') + '>Приведённая</option></select></div>'
             + '<div id="' + p + 'cls_simple_wrap" style="flex:0.8;' + (form !== 'number' ? 'display:none;' : '') + '"><div class="scale-form-label"><span class="greek-gamma">γ</span> (%)</div><select id="' + p + 'class_val" class="scale-field" style="margin-bottom:0;" onchange="toggleKitDevCustom(' + idx + ',\'number\')" autocomplete="off">'
             + '<option value="0.05"' + (cls === '0.05' ? ' selected' : '') + '>0,05</option>'
             + '<option value="0.06"' + (cls === '0.06' ? ' selected' : '') + '>0,06</option>'
@@ -3567,7 +3726,7 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
             + '<option value="1.5"' + (cls === '1.5' ? ' selected' : '') + '>1,5</option>'
             + '<option value="2.5"' + (cls === '2.5' ? ' selected' : '') + '>2,5</option>'
             + '<option value="4.0"' + (cls === '4.0' ? ' selected' : '') + '>4,0</option>'
-            + '<option value="custom">Своё...</option></select>'
+            + '<option value="custom">Своё</option></select>'
             + '<input type="text" inputmode="decimal" id="' + p + 'class_val_custom" class="scale-field kit-dev-custom-input" style="margin-bottom:0;display:none;" placeholder="γ %" autocomplete="off" enterkeyhint="next"></div>'
             + '<div id="' + p + 'cls_circle_wrap" style="flex:0.8;' + (form !== 'circle' ? 'display:none;' : '') + '"><div class="scale-form-label"><span class="greek-delta">δ</span> (%)</div><select id="' + p + 'class_val_c" class="scale-field" style="margin-bottom:0;" onchange="toggleKitDevCustom(' + idx + ',\'circle\')" autocomplete="off">'
             + '<option value="0.1"' + (cls === '0.1' ? ' selected' : '') + '>0,1</option>'
@@ -3580,7 +3739,7 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
             + '<option value="2.0"' + (cls === '2.0' ? ' selected' : '') + '>2,0</option>'
             + '<option value="2.5"' + (cls === '2.5' ? ' selected' : '') + '>2,5</option>'
             + '<option value="4.0"' + (cls === '4.0' ? ' selected' : '') + '>4,0</option>'
-            + '<option value="custom">Своё...</option></select>'
+            + '<option value="custom">Своё</option></select>'
             + '<input type="text" inputmode="decimal" id="' + p + 'class_val_c_custom" class="scale-field kit-dev-custom-input" style="margin-bottom:0;display:none;" placeholder="δ %" autocomplete="off" enterkeyhint="next"></div>'
             + '<div id="' + p + 'cls_absolute_wrap" style="flex:0.8;' + (form !== 'absolute' ? 'display:none;' : '') + '"><div class="scale-form-label" style="text-transform:none;">±Δ (ед.изм.)</div><input type="text" inputmode="decimal" id="' + p + 'abs_val" class="scale-field" style="margin-bottom:0;" value="" placeholder="±Δ" autocomplete="off" enterkeyhint="next"></div>'
             + '</div>'
@@ -3777,12 +3936,12 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
             for(let tc=start;tc<=end;tc+=step){
                 let rv=isCu?calcCuResistance(tc,sd.r0,sd.alpha):calcRtdResistance(tc,sd.r0,sd.nsc);
                 let bg=row%2?'rgba(22,27,34,0.4)':'rgba(13,17,23,0.4)';
-                html+=`<tr style="background:${bg};"><td style="padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.4);">${tc}</td><td style="padding:8px 12px;font-size:14px;color:#4ac771;">${formatNumber(rv)}</td></tr>`;
+                html+=`<tr style="background:${bg};"><td style="padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.4);">${formatNumber(tc)}</td><td style="padding:8px 12px;font-size:14px;color:#4ac771;">${formatNumber(rv)}</td></tr>`;
                 row++;
             }
             if(row===0){
                 let rv=isCu?calcCuResistance(tMin,sd.r0,sd.alpha):calcRtdResistance(tMin,sd.r0,sd.nsc);
-                html+=`<tr style="background:rgba(13,17,23,0.4);"><td style="padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.4);">${tMin}</td><td style="padding:8px 12px;font-size:14px;color:#4ac771;">${formatNumber(rv)}</td></tr>`;
+                html+=`<tr style="background:rgba(13,17,23,0.4);"><td style="padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.4);">${formatNumber(tMin)}</td><td style="padding:8px 12px;font-size:14px;color:#4ac771;">${formatNumber(rv)}</td></tr>`;
             }
             html+=`</tbody></table></div></div>`;
             resDiv.innerHTML=html;
@@ -3792,7 +3951,7 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
             let html=`<div class="converter-result-label-title">Результаты расчёта (ГОСТ Р 8.585-2001)</div>`;
             html+=`<div class="converter-result-item"><span class="converter-result-label">Тип термопары</span><span class="converter-result-value">${names[tcType]}</span></div>`;
             html+=`<div class="converter-result-item"><span class="converter-result-label">Диапазон</span><span class="converter-result-value">${formatNumber(tMin)} … ${formatNumber(tMax)} °C</span></div>`;
-            html+=`<div class="converter-result-item"><span class="converter-result-label">E(0°C)</span><span class="converter-result-value">0.000 мВ</span></div>`;
+            html+=`<div class="converter-result-item"><span class="converter-result-label">E(0°C)</span><span class="converter-result-value">0,000 мВ</span></div>`;
             html+=`<div class="converter-result-item"><span class="converter-result-label">Формула</span><span class="converter-result-value">E = Σ cᵢ·tⁱ (полином НИСТ)</span></div>`;
             html+=`<div style="margin-top:14px;"><div class="converter-result-label-title">Таблица значений (шаг ${step}°C)</div>`;
             html+=`<div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.05);"><table style="min-width:100%;width:100%;border-collapse:collapse;"><thead><tr style="background:rgba(22,27,34,0.7);"><th style="padding:10px 12px;font-size:13px;color:#4a8fc7;text-align:left;">t, °C</th><th style="padding:10px 12px;font-size:13px;color:#4ac771;text-align:left;">E(t), мВ</th></tr></thead><tbody>`;
@@ -3803,12 +3962,12 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
             for(let tc=start;tc<=end;tc+=step){
                 let ev=calcTcVoltage(tc,tcType);
                 let bg=row%2?'rgba(22,27,34,0.4)':'rgba(13,17,23,0.4)';
-                html+=`<tr style="background:${bg};"><td style="padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.4);">${tc}</td><td style="padding:8px 12px;font-size:14px;color:#4ac771;">${formatNumber(ev)}</td></tr>`;
+                html+=`<tr style="background:${bg};"><td style="padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.4);">${formatNumber(tc)}</td><td style="padding:8px 12px;font-size:14px;color:#4ac771;">${formatNumber(ev)}</td></tr>`;
                 row++;
             }
             if(row===0){
                 let ev=calcTcVoltage(tMin,tcType);
-                html+=`<tr style="background:rgba(13,17,23,0.4);"><td style="padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.4);">${tMin}</td><td style="padding:8px 12px;font-size:14px;color:#4ac771;">${formatNumber(ev)}</td></tr>`;
+                html+=`<tr style="background:rgba(13,17,23,0.4);"><td style="padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.4);">${formatNumber(tMin)}</td><td style="padding:8px 12px;font-size:14px;color:#4ac771;">${formatNumber(ev)}</td></tr>`;
             }
             html+=`</tbody></table></div></div>`;
             resDiv.innerHTML=html;
@@ -4497,19 +4656,19 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
                 <div id="rtd_options">
                     <div class="scale-form-label" style="margin-top:12px;">Тип ТС</div>
                     <select id="temp_rtd_type" class="scale-field" autocomplete="off">
-                        <optgroup label="Cu — W₁₀₀ = 1,428, α = 0,00428 °С⁻¹">
+                        <optgroup label="Cu  (α = 0,00428 °С⁻¹)">
                             <option value="cu50_1428">Cu50 (50М)</option>
                             <option value="cu100_1428">Cu100 (100М)</option>
                         </optgroup>
-                        <optgroup label="Cu — W₁₀₀ = 1,426, α = 0,00426 °С⁻¹">
+                        <optgroup label="Cu  (α = 0,00426 °С⁻¹)">
                             <option value="cu50_1426">Cu50 (50М)</option>
                             <option value="cu100_1426">Cu100 (100М)</option>
                         </optgroup>
-                        <optgroup label="Pt — W₁₀₀ = 1,391, α = 0,00391 °С⁻¹">
+                        <optgroup label="Pt  (α = 0,00391 °С⁻¹)">
                             <option value="pt50_1391">Pt50 (50П)</option>
                             <option value="pt100_1391" selected>Pt100 (100П)</option>
                         </optgroup>
-                        <optgroup label="Pt — W₁₀₀ = 1,385, α = 0,00385 °С⁻¹">
+                        <optgroup label="Pt  (α = 0,00385 °С⁻¹)">
                             <option value="pt100_1385">Pt100</option>
                             <option value="pt1000_1385">Pt1000</option>
                         </optgroup>
@@ -4531,7 +4690,7 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
                 <div class="scale-form-label" style="margin-top:12px;">Диапазон измерения (°C)</div>
                 <div style="display: flex; gap: 8px; margin-bottom: 12px; align-items: stretch;"><input type="text" inputmode="text" id="temp_sensor_min" class="scale-field" style="flex: 1; margin-bottom: 0;" value="0" placeholder="min °C" autocomplete="off" enterkeyhint="next"><input type="text" inputmode="text" id="temp_sensor_max" class="scale-field" style="flex: 1; margin-bottom: 0;" value="100" placeholder="max °C" autocomplete="off" enterkeyhint="next"></div>
                 <div class="scale-form-label">Шаг таблицы (°C)</div>
-                <input type="text" inputmode="text" id="temp_sensor_step" class="scale-field" value="10" placeholder="10" autocomplete="off" enterkeyhint="next"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">Шаг расчёта таблицы в градусах Цельсия</div>
+                <input type="text" inputmode="text" id="temp_sensor_step" class="scale-field" value="10" placeholder="10" autocomplete="off" enterkeyhint="done"><div style="color:rgba(255,255,255,0.25); font-size:10px; margin-top:-6px; margin-bottom:8px; padding-left:4px;">Шаг расчёта таблицы в градусах Цельсия</div>
                             </div>
             <button type="button" class="converter-convert-btn" onclick="calcTempSensor()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать</button>
             <div id="tempSensorResults" class="converter-result-group" style="display:none;"></div>
