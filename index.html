@@ -92,13 +92,16 @@
         -webkit-transform: translateZ(0); transform: translateZ(0); will-change: transform;
     }
     .app-header-inner {
-        display: flex; align-items: center; justify-content: space-between;
+        display: flex; align-items: center; justify-content: center;
         width: 100%; padding: 0 20px; height: 100%;
+        position: relative;
     }
     .header-left {
         display: flex;
         align-items: center;
         gap: 10px;
+        position: absolute;
+        left: 20px;
     }
     .header-title svg.led-display {
         height: 44px; width: auto;
@@ -908,6 +911,7 @@
     .header-title {
         cursor: pointer; user-select: none; -webkit-user-select: none;
         -webkit-touch-callout: none; touch-action: manipulation;
+        display: flex; align-items: center;
     }
     .header-title.hint-pulse svg.led-display {
         filter: drop-shadow(0 0 5px rgba(199,150,74,0.55)) drop-shadow(0 0 10px rgba(199,150,74,0.22)) !important;
@@ -1036,7 +1040,7 @@
     <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:rgba(74,143,199,0.9);fill:none;stroke-width:2;stroke-linecap:round;"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
 </div>
 <img class="header-logo" id="headerLogo" src="logo_black.png" alt="КИП" style="width:48px;height:48px;border-radius:12px;cursor:pointer;" onclick="event.stopPropagation(); toggleSidebar();">
-                <div>
+            </div>
 <div class="header-title"><svg class="led-display" viewBox="0 0 362 88" xmlns="http://www.w3.org/2000/svg">
 <defs>
   <linearGradient id="ledGradient" x1="0" y1="0" x2="362" y2="0" gradientUnits="userSpaceOnUse">
@@ -1102,9 +1106,7 @@
   <polygon points="14,39 46,39 51,44 46,49 14,49 9,44" class="led-seg-on"/>
 </g>
 </svg></div>
-                </div>
-            </div>
-            
+
         </div>
     </header>
 
