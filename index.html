@@ -260,7 +260,7 @@
         font-weight: 700;
         font-size: 11px;
         color: rgba(74, 143, 199, 0.8);
-        padding: 4px 4px 2px;
+        padding: 0 4px 4px;
         white-space: nowrap;
         overflow: visible;
     }
@@ -1388,6 +1388,16 @@
             <button type="button" class="converter-convert-btn" onclick="calcCircuitBreaker()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать автомат</button>
 
             <div id="cbResults" class="converter-result-group" style="display:none;"></div>
+            <div style="margin:14px 16px 10px;padding:14px 16px;background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--card-border);border-radius:14px;position:relative;z-index:2;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#4a8fc7;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span style="font-size:14px;font-weight:700;color:#e0e0e0;letter-spacing:-0.2px;">Справочная информация</span></div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;">
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Номинальный ток (I<sub>n</sub>):</b> выбирается из стандартного ряда: 1, 2, 3, 4, 6, 10, 16, 20, 25, 32, 40, 50, 63 А. Автоматический выключатель должен выдерживать номинальный ток неограниченно долго.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Характеристика срабатывания:</b> B (3–5·I<sub>n</sub>), C (5–10·I<sub>n</sub>), D (10–20·I<sub>n</sub>), Z (2–3·I<sub>n</sub>). Для КИП и АСУ ТП обычно применяют характеристику C или Z.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Условие выбора:</b> I<sub>n</sub> ≥ I<sub>расч</sub>, I<sub>отс</sub> ≥ I<sub>пуск</sub>. Ток отключения автомата должен превышать пусковой ток нагрузки.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Проверка кабеля:</b> длительно допустимый ток кабеля I<sub>доп</sub> должен быть не менее номинального тока автомата: I<sub>доп</sub> ≥ I<sub>n</sub>.</div>
+                    <div><b style="color:rgba(255,255,255,0.7);">Нормативный документ:</b> ГОСТ Р 50345-2010 (IEC 60898-1) «Автоматические выключатели для защиты от сверхтоков электроустановок бытового и аналогичного назначения».</div>
+                </div>
+            </div>
         </div>
 
         <!-- ======================== ВЫБОР РАСЧЁТА СУЖАЮЩЕГО УСТРОЙСТВА ======================== -->
@@ -1516,6 +1526,15 @@
             <button type="button" class="converter-convert-btn" onclick="calcOrificeDp()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать перепад Δp</button>
 
             <div id="opResultsDp" class="converter-result-group" style="display:none;"></div>
+            <div style="margin:14px 16px 10px;padding:14px 16px;background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--card-border);border-radius:14px;position:relative;z-index:2;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#4a8fc7;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span style="font-size:14px;font-weight:700;color:#e0e0e0;letter-spacing:-0.2px;">Справочная информация</span></div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;">
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Принцип измерения:</b> сужающее устройство (диафрагма) создаёт местное сужение потока, в результате которого скорость потока увеличивается, а статическое давление падает. Перепад давления пропорционален квадрату расхода.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Формула расхода:</b> Q = α·ε·m·(π/4)·d²·√(2Δp/ρ), где α — коэффициент расхода, ε — поправка на сжимаемость, m — относительная площадь сужения, d — диаметр отверстия, Δp — перепад давления, ρ — плотность.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Коэффициент расхода α:</b> зависит от относительной площади m = (d/D)² и типа сужающего устройства. Для стандартной диафрагмы: m < 0,5 → α ≈ 0,5959 + 0,0312·m^1,05 − 0,184·m^0,8.</div>
+                    <div><b style="color:rgba(255,255,255,0.7);">Нормативный документ:</b> ГОСТ 8.586.1-2005 (ИСО 5167-1) «Измерение расхода и количества жидкостей и газов с помощью стандартных сужающих устройств».</div>
+                </div>
+            </div>
         </div>
 
         <!-- ======================== РАСЧЁТ РАСХОДА (Q) ======================== -->
@@ -1609,6 +1628,15 @@
             <button type="button" class="converter-convert-btn" onclick="calcOrificeFlow()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать расход Q</button>
 
             <div id="opResultsFlow" class="converter-result-group" style="display:none;"></div>
+            <div style="margin:14px 16px 10px;padding:14px 16px;background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--card-border);border-radius:14px;position:relative;z-index:2;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#4a8fc7;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span style="font-size:14px;font-weight:700;color:#e0e0e0;letter-spacing:-0.2px;">Справочная информация</span></div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;">
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Расход через диафрагму:</b> определяется по перепаду давления на сужающем устройстве. Зависимость квадратичная: при увеличении расхода в 2 раза перепад давления возрастает в 4 раза.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Поправка на сжимаемость ε:</b> для жидкостей ε = 1,0. Для газов и пара ε < 1 и зависит от показателя адиабаты κ, отношения давлений и относительной площади m.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Температурная поправка:</b> диаметр трубопровода и диафрагмы при рабочей температуре определяется с учётом коэффициента теплового расширения: D = D₂₀·[1 + α·(t − 20°C)].</div>
+                    <div><b style="color:rgba(255,255,255,0.7);">Нормативный документ:</b> ГОСТ 8.586.1-2005 (ИСО 5167-1) «Измерение расхода и количества жидкостей и газов с помощью стандартных сужающих устройств».</div>
+                </div>
+            </div>
         </div>
 
         <!-- ======================== СУЖАЮЩЕЕ УСТРОЙСТВО (ДИАФРАГМА) ======================== -->
@@ -1721,6 +1749,15 @@
             <button type="button" class="converter-convert-btn" onclick="calcOrificeDiameter()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать диафрагму</button>
 
             <div id="opResultsDiameter" class="converter-result-group" style="display:none;"></div>
+            <div style="margin:14px 16px 10px;padding:14px 16px;background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--card-border);border-radius:14px;position:relative;z-index:2;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#4a8fc7;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span style="font-size:14px;font-weight:700;color:#e0e0e0;letter-spacing:-0.2px;">Справочная информация</span></div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;">
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Расчёт диаметра диафрагмы:</b> выполняется итерационным методом, так как коэффициент расхода α зависит от относительной площади m = (d/D)², которая неизвестна до определения диаметра d.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Относительная площадь:</b> m = (d/D)². Рекомендуемый диапазон: 0,05 ≤ m ≤ 0,64. Оптимальные значения m = 0,2…0,5 обеспечивают достаточный перепад давления при умеренных потерях.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Потери давления:</b> безвозвратные потери давления на диафрагме составляют ≈ (1 − m·α)·Δp. При m = 0,5 потери достигают ≈ 70 % от перепада Δp.</div>
+                    <div><b style="color:rgba(255,255,255,0.7);">Нормативный документ:</b> ГОСТ 8.586.1-2005 (ИСО 5167-1) «Измерение расхода и количества жидкостей и газов с помощью стандартных сужающих устройств».</div>
+                </div>
+            </div>
         </div>
 
         <!-- ======================== БИБЛИОТЕКА КИП И А (ВНУТРЕННЯЯ) ======================== -->
@@ -1856,7 +1893,7 @@
         <div id="page-error-temp-tc" class="page-content">
             <div class="page-inline-header"><div class="page-inline-header-title">Термопары (ТП)</div></div>
     <div class="nav-bar"><div class="nav-btn nav-btn-home" onclick="navigateTo('dashboard')"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Главная</span></div><span class="nav-separator">‹</span><div class="nav-btn" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span>Назад</span></div></div>
-            <div class="scale-form"><div class="scale-form-label">Тип термопары</div><select id="tc_type" class="scale-field" onchange="updateTcRanges()" autocomplete="off"><option value="K" selected>K</option><option value="J">J</option><option value="T">T</option><option value="N">N</option><option value="E">E</option><option value="R">R</option><option value="S">S</option><option value="B">B</option></select>
+            <div class="scale-form"><div class="scale-form-label">Тип термопары</div><select id="tc_type" class="scale-field" onchange="updateTcRanges()" autocomplete="off"><option value="K" selected>K (ТХА)</option><option value="J">J (ТЖК)</option><option value="T">T (ТМК)</option><option value="N">N (ТНН)</option><option value="E">E (ТХКн)</option><option value="R">R (ТПП)</option><option value="S">S (ТПП)</option><option value="B">B (ТПР)</option></select>
             <div class="scale-form-label">Класс точности</div><select id="tc_class" class="scale-field" onchange="updateTcRanges()" autocomplete="off"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option></select>
             <div class="scale-form-label">Температура (t), °C</div><input type="text" inputmode="text" id="tc_temperature" class="scale-field" value="100" placeholder="температура в °C" autocomplete="off" enterkeyhint="done">
             <div id="tc_range_warning" style="color:#c7964a; font-size:11px; margin-top:4px; padding-left:4px; display:none;"></div></div>
@@ -2161,32 +2198,22 @@
                     <option value="III" selected>III — средняя</option>
                     <option value="IIII">IIII — обычная</option>
                 </select>
-                <div class="scale-form-label">Число поверочных делений (n = Max/e)</div>
+                <div class="scale-form-label">Число поверочных делений (n = Max/<span style="text-transform:none;font-style:italic;">e</span>)</div>
                 <input type="text" inputmode="decimal" id="ws_mech_n" class="scale-field" value="3000" placeholder="Напр. 3000" autocomplete="off" enterkeyhint="next">
-                <div class="scale-form-label">Цена поверочного деления e</div>
+                <div class="scale-form-label">Цена поверочного деления <span style="text-transform:none;font-style:italic;">e</span></div>
                 <div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;">
-                    <input type="text" inputmode="decimal" id="ws_mech_e" class="scale-field" style="flex:1;" placeholder="e" value="0,01" autocomplete="off" enterkeyhint="next">
+                    <input type="text" inputmode="decimal" id="ws_mech_e" class="scale-field" style="flex:1;" placeholder="e" value="1" autocomplete="off" enterkeyhint="next">
                     <select id="ws_mech_e_unit" class="scale-field" style="flex:0 0 auto;width:100px;">
-                        <option value="mg">мг</option>
-                        <option value="g" selected>г</option>
-                        <option value="kg">кг</option>
-                        <option value="t">т</option>
-                    </select>
-                </div>
-                <div class="scale-form-label">Наибольший предел взвешивания (Max)</div>
-                <div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;">
-                    <input type="text" inputmode="decimal" id="ws_mech_max" class="scale-field" style="flex:1;" placeholder="Max" value="30" autocomplete="off" enterkeyhint="next">
-                    <select id="ws_mech_max_unit" class="scale-field" style="flex:0 0 auto;width:100px;">
                         <option value="mg">мг</option>
                         <option value="g">г</option>
                         <option value="kg" selected>кг</option>
                         <option value="t">т</option>
                     </select>
                 </div>
-                <div class="scale-form-label">Масса нагрузки (опционально)</div>
+                <div class="scale-form-label">Наибольший предел взвешивания (Max)</div>
                 <div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;">
-                    <input type="text" inputmode="decimal" id="ws_mech_load" class="scale-field" style="flex:1;" placeholder="опционально" autocomplete="off" enterkeyhint="done">
-                    <select id="ws_mech_load_unit" class="scale-field" style="flex:0 0 auto;width:100px;">
+                    <input type="text" inputmode="decimal" id="ws_mech_max" class="scale-field" style="flex:1;" placeholder="Max" value="3000" autocomplete="off" enterkeyhint="next">
+                    <select id="ws_mech_max_unit" class="scale-field" style="flex:0 0 auto;width:100px;">
                         <option value="mg">мг</option>
                         <option value="g">г</option>
                         <option value="kg" selected>кг</option>
@@ -2196,73 +2223,73 @@
             </div>
 
             <!-- Электронные весы на тензодатчиках -->
-            <div id="ws_elc_group" class="scale-form" style="display:none;margin-top:4px;">
-                <div style="padding:8px 12px;margin-bottom:10px;background:rgba(74,143,199,0.08);border:1px solid rgba(74,143,199,0.18);border-radius:10px;font-size:12px;color:rgba(255,255,255,0.45);line-height:1.4;">
-                    Состав измерительного канала: тензодатчик(и) — балансировочная коробка (БК) — модуль ввода АСУТП. Погрешность рассчитывается как суммарная составляющих.
-                </div>
+            <div id="ws_elc_group" style="display:none;margin-top:4px;">
 
-                <div style="padding:6px 0 4px;font-size:13px;font-weight:600;color:rgba(74,143,199,0.9);text-transform:uppercase;letter-spacing:0.5px;">Тензодатчик(и)</div>
-                <div class="scale-form-label">Класс точности тензодатчика (по OIML R 60)</div>
-                <select id="ws_lc_class" class="scale-field" autocomplete="off">
-                    <option value="A">A — высокая</option>
-                    <option value="B" selected>B — средняя</option>
-                    <option value="C">C — обычная</option>
-                    <option value="D">D — грубая</option>
-                </select>
-                <div class="scale-form-label">Число поверочных делений тензодатчика (n<sub>LC</sub>)</div>
-                <input type="text" inputmode="decimal" id="ws_lc_n" class="scale-field" value="3000" placeholder="Напр. 3000" autocomplete="off" enterkeyhint="next">
-                <div class="scale-form-label">Цена поверочного деления тензодатчика e<sub>LC</sub></div>
-                <input type="text" inputmode="decimal" id="ws_lc_e" class="scale-field" value="0,01" placeholder="e_LC" autocomplete="off" enterkeyhint="next">
-                <div class="scale-form-label">Количество тензодатчиков</div>
-                <select id="ws_lc_count" class="scale-field" autocomplete="off">
-                    <option value="1" selected>1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
-
-                <div style="padding:10px 0 4px;font-size:13px;font-weight:600;color:rgba(74,143,199,0.9);text-transform:uppercase;letter-spacing:0.5px;">Балансировочная коробка (БК)</div>
-                <div class="scale-form-label">Погрешность БК</div>
-                <div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;">
-                    <input type="text" inputmode="decimal" id="ws_jbox_err" class="scale-field" style="flex:1;" placeholder="Погрешность БК" value="0,02" autocomplete="off" enterkeyhint="next">
-                    <select id="ws_jbox_err_unit" class="scale-field" style="flex:0 0 auto;width:80px;">
-                        <option value="mV">мВ</option>
-                        <option value="pct" selected>%</option>
+                <!-- Блок: Тензодатчик -->
+                <div class="scale-form">
+                    <div style="padding:6px 0 4px;font-size:13px;font-weight:600;color:rgba(74,143,199,0.9);text-transform:uppercase;letter-spacing:0.5px;">Тензодатчик</div>
+                    <div class="scale-form-label">Класс точности тензодатчика (по OIML R 60)</div>
+                    <select id="ws_lc_class" class="scale-field" autocomplete="off">
+                        <option value="A">A — высокая</option>
+                        <option value="B">B — средняя</option>
+                        <option value="C" selected>C — обычная</option>
+                        <option value="D">D — грубая</option>
+                    </select>
+                    <div class="scale-form-label">Число поверочных делений тензодатчика (n<sub>LC</sub>)</div>
+                    <input type="text" inputmode="decimal" id="ws_lc_n" class="scale-field" value="3000" placeholder="Напр. 3000" autocomplete="off" enterkeyhint="next">
+                    <div class="scale-form-label">Цена поверочного деления тензодатчика <span style="text-transform:none;font-style:italic;">e</span><sub>LC</sub></div>
+                    <input type="text" inputmode="decimal" id="ws_lc_e" class="scale-field" value="0,1" placeholder="e_LC" autocomplete="off" enterkeyhint="next">
+                    <div class="scale-form-label">Количество тензодатчиков</div>
+                    <select id="ws_lc_count" class="scale-field" autocomplete="off">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4" selected>4</option>
                     </select>
                 </div>
-                <div class="scale-form-label">Выходной сигнал БК при Max (для пересчёта % в мВ)</div>
-                <input type="text" inputmode="decimal" id="ws_jbox_sig_max" class="scale-field" placeholder="мВ (напр. 20)" value="20" autocomplete="off" enterkeyhint="next">
 
-                <div style="padding:10px 0 4px;font-size:13px;font-weight:600;color:rgba(74,143,199,0.9);text-transform:uppercase;letter-spacing:0.5px;">Модуль ввода АСУТП</div>
-                <div class="scale-form-label">Класс точности модуля ввода</div>
-                <input type="text" inputmode="decimal" id="ws_module_class" class="scale-field" value="0,1" placeholder="Класс точности %" autocomplete="off" enterkeyhint="next">
-                <div class="scale-form-label">Диапазон входного сигнала модуля</div>
-                <div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;">
-                    <input type="text" inputmode="decimal" id="ws_module_sig_min" class="scale-field" style="flex:1;" placeholder="Мин. мВ" value="0" autocomplete="off" enterkeyhint="next">
-                    <input type="text" inputmode="decimal" id="ws_module_sig_max" class="scale-field" style="flex:1;" placeholder="Макс. мВ" value="20" autocomplete="off" enterkeyhint="next">
+                <!-- Блок: Балансировочная коробка -->
+                <div class="scale-form" style="margin-top:8px;">
+                    <div style="padding:6px 0 4px;font-size:13px;font-weight:600;color:rgba(74,143,199,0.9);text-transform:uppercase;letter-spacing:0.5px;">Балансировочная коробка</div>
+                    <div class="scale-form-label">Погрешность БК</div>
+                    <div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;">
+                        <input type="text" inputmode="decimal" id="ws_jbox_err" class="scale-field" style="flex:1;" placeholder="Погрешность БК" value="0,02" autocomplete="off" enterkeyhint="next">
+                        <select id="ws_jbox_err_unit" class="scale-field" style="flex:0 0 auto;width:80px;">
+                            <option value="mV"><span style="text-transform:none;">мВ</span></option>
+                            <option value="pct" selected>%</option>
+                        </select>
+                    </div>
+                    <div class="scale-form-label">Выходной сигнал БК при Max (для пересчёта % в <span style="text-transform:none;">мВ</span>)</div>
+                    <input type="text" inputmode="decimal" id="ws_jbox_sig_max" class="scale-field" placeholder="мВ (напр. 20)" value="20" autocomplete="off" enterkeyhint="next">
                 </div>
 
-                <div style="padding:10px 0 4px;font-size:13px;font-weight:600;color:rgba(74,143,199,0.9);text-transform:uppercase;letter-spacing:0.5px;">Общие параметры</div>
-                <div class="scale-form-label">Наибольший предел взвешивания (Max)</div>
-                <div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;">
-                    <input type="text" inputmode="decimal" id="ws_elc_max" class="scale-field" style="flex:1;" placeholder="Max" value="30" autocomplete="off" enterkeyhint="next">
-                    <select id="ws_elc_max_unit" class="scale-field" style="flex:0 0 auto;width:100px;">
-                        <option value="mg">мг</option>
-                        <option value="g">г</option>
-                        <option value="kg" selected>кг</option>
-                        <option value="t">т</option>
-                    </select>
+                <!-- Блок: Модуль ввода АСУТП -->
+                <div class="scale-form" style="margin-top:8px;">
+                    <div style="padding:6px 0 4px;font-size:13px;font-weight:600;color:rgba(74,143,199,0.9);text-transform:uppercase;letter-spacing:0.5px;">Модуль ввода АСУТП</div>
+                    <div class="scale-form-label">Класс точности модуля ввода</div>
+                    <input type="text" inputmode="decimal" id="ws_module_class" class="scale-field" value="0,1" placeholder="Класс точности %" autocomplete="off" enterkeyhint="next">
+                    <div class="scale-form-label">Диапазон входного сигнала модуля</div>
+                    <div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;">
+                        <input type="text" inputmode="decimal" id="ws_module_sig_min" class="scale-field" style="flex:1;" placeholder="Мин. мВ" value="0" autocomplete="off" enterkeyhint="next">
+                        <input type="text" inputmode="decimal" id="ws_module_sig_max" class="scale-field" style="flex:1;" placeholder="Макс. мВ" value="20" autocomplete="off" enterkeyhint="next">
+                    </div>
                 </div>
-                <div class="scale-form-label">Масса нагрузки (опционально)</div>
-                <div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;">
-                    <input type="text" inputmode="decimal" id="ws_elc_load" class="scale-field" style="flex:1;" placeholder="опционально" autocomplete="off" enterkeyhint="done">
-                    <select id="ws_elc_load_unit" class="scale-field" style="flex:0 0 auto;width:100px;">
-                        <option value="mg">мг</option>
-                        <option value="g">г</option>
-                        <option value="kg" selected>кг</option>
-                        <option value="t">т</option>
-                    </select>
+
+                <!-- Блок: Общие параметры -->
+                <div class="scale-form" style="margin-top:8px;">
+                    <div style="padding:6px 0 4px;font-size:13px;font-weight:600;color:rgba(74,143,199,0.9);text-transform:uppercase;letter-spacing:0.5px;">Общие параметры</div>
+                    <div class="scale-form-label">Наибольший предел взвешивания (Max)</div>
+                    <div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;">
+                        <input type="text" inputmode="decimal" id="ws_elc_max" class="scale-field" style="flex:1;" placeholder="Max" value="3000" autocomplete="off" enterkeyhint="next">
+                        <select id="ws_elc_max_unit" class="scale-field" style="flex:0 0 auto;width:100px;">
+                            <option value="mg">мг</option>
+                            <option value="g">г</option>
+                            <option value="kg" selected>кг</option>
+                            <option value="t">т</option>
+                        </select>
+                    </div>
                 </div>
+
             </div>
 
             <!-- Электронные весы автономные -->
@@ -2274,11 +2301,11 @@
                     <option value="III" selected>III — средняя</option>
                     <option value="IIII">IIII — обычная</option>
                 </select>
-                <div class="scale-form-label">Число поверочных делений (n = Max/e)</div>
-                <input type="text" inputmode="decimal" id="ws_els_n" class="scale-field" value="3000" placeholder="Напр. 3000" autocomplete="off" enterkeyhint="next">
-                <div class="scale-form-label">Цена поверочного деления e</div>
+                <div class="scale-form-label">Число поверочных делений (n = Max/<span style="text-transform:none;font-style:italic;">e</span>)</div>
+                <input type="text" inputmode="decimal" id="ws_els_n" class="scale-field" value="1500" placeholder="Напр. 1500" autocomplete="off" enterkeyhint="next">
+                <div class="scale-form-label">Цена поверочного деления <span style="text-transform:none;font-style:italic;">e</span></div>
                 <div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;">
-                    <input type="text" inputmode="decimal" id="ws_els_e" class="scale-field" style="flex:1;" placeholder="e" value="0,01" autocomplete="off" enterkeyhint="next">
+                    <input type="text" inputmode="decimal" id="ws_els_e" class="scale-field" style="flex:1;" placeholder="e" value="1" autocomplete="off" enterkeyhint="next">
                     <select id="ws_els_e_unit" class="scale-field" style="flex:0 0 auto;width:100px;">
                         <option value="mg">мг</option>
                         <option value="g" selected>г</option>
@@ -2288,18 +2315,8 @@
                 </div>
                 <div class="scale-form-label">Наибольший предел взвешивания (Max)</div>
                 <div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;">
-                    <input type="text" inputmode="decimal" id="ws_els_max" class="scale-field" style="flex:1;" placeholder="Max" value="30" autocomplete="off" enterkeyhint="next">
+                    <input type="text" inputmode="decimal" id="ws_els_max" class="scale-field" style="flex:1;" placeholder="Max" value="150" autocomplete="off" enterkeyhint="next">
                     <select id="ws_els_max_unit" class="scale-field" style="flex:0 0 auto;width:100px;">
-                        <option value="mg">мг</option>
-                        <option value="g">г</option>
-                        <option value="kg" selected>кг</option>
-                        <option value="t">т</option>
-                    </select>
-                </div>
-                <div class="scale-form-label">Масса нагрузки (опционально)</div>
-                <div style="display:flex;gap:8px;margin-bottom:12px;align-items:stretch;">
-                    <input type="text" inputmode="decimal" id="ws_els_load" class="scale-field" style="flex:1;" placeholder="опционально" autocomplete="off" enterkeyhint="done">
-                    <select id="ws_els_load_unit" class="scale-field" style="flex:0 0 auto;width:100px;">
                         <option value="mg">мг</option>
                         <option value="g">г</option>
                         <option value="kg" selected>кг</option>
@@ -2310,6 +2327,44 @@
 
             <button type="button" class="converter-convert-btn" onclick="calcScaleError()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать погрешность</button>
             <div id="ws_results" class="converter-result-group" style="display:none;"></div>
+
+            <!-- Справочная информация: Механические весы -->
+            <div id="ws_ref_mech" style="margin:14px 16px 10px;padding:14px 16px;background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--card-border);border-radius:14px;position:relative;z-index:2;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#4a8fc7;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span style="font-size:14px;font-weight:700;color:#e0e0e0;letter-spacing:-0.2px;">Справочная информация</span></div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;">
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Механические весы</b> — средства измерения массы, основанные на принципе рычажного уравновешивания (равноплечие весы) или упругой деформации (пружинные весы). Погрешность определяется по ГОСТ OIML R 76-1-2011 и зависит от класса точности и нагрузки.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Классы точности по OIML R 76-1-2011:</b> I — специальный (лабораторные, аналитические весы высокой точности); II — высокий (лабораторные весы обычной точности, технические весы 1-го класса); III — средний (торговые, промышленные весы — наиболее распространённый класс); IIII — обычный (грубые промышленные весы).</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Цена поверочного деления <span style="font-style:italic;">e</span></b> — наименьшая дискретная ступень показаний весов, используемая для их классификации по точности. Определяет минимальный шаг индикации массы и является базовой единицей для расчёта пределов допускаемой погрешности. Для многодиапазонных и многоинтервальных весов могут устанавливаться разные значения <span style="font-style:italic;">e</span> для разных диапазонов.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Число поверочных делений (n = Max/<span style="font-style:italic;">e</span>)</b> — безразмерная величина, равная отношению наибольшего предела взвешивания (Max) к цене поверочного деления (<span style="font-style:italic;">e</span>). Характеризует разрешающую способность весов и определяет, к какому классу точности они относятся. Чем больше n, тем выше точность весов при том же Max.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Максимальная допускаемая погрешность (МПЕ)</b> — наибольшая погрешность весов, допускаемая нормативным документом. Для класса III: ±1<span style="font-style:italic;">e</span> при 0 &lt; m &le; 500<span style="font-style:italic;">e</span>; ±2<span style="font-style:italic;">e</span> при 500<span style="font-style:italic;">e</span> &lt; m &le; 2000<span style="font-style:italic;">e</span>; ±3<span style="font-style:italic;">e</span> при 2000<span style="font-style:italic;">e</span> &lt; m &le; Max. При поверке МПЕ уменьшается вдвое (±0,5<span style="font-style:italic;">e</span>; ±1<span style="font-style:italic;">e</span>; ±1,5<span style="font-style:italic;">e</span> соответственно).</div>
+                    <div><b style="color:rgba(255,255,255,0.7);">Нормативный документ:</b> ГОСТ OIML R 76-1-2011 «Весы неавтоматического действия. Часть 1. Метрологические и технические требования. Испытания»; ГОСТ 8.009-84 «ГСИ. Нормируемые метрологические характеристики средств измерений».</div>
+                </div>
+            </div>
+
+            <!-- Справочная информация: Электронные весы автономные -->
+            <div id="ws_ref_els" style="display:none;margin:14px 16px 10px;padding:14px 16px;background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--card-border);border-radius:14px;position:relative;z-index:2;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#4a8fc7;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span style="font-size:14px;font-weight:700;color:#e0e0e0;letter-spacing:-0.2px;">Справочная информация</span></div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;">
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Электронные весы автономные</b> — весы с цифровой индикацией и встроенным измерительным преобразователем (тензодатчиком), не требующие подключения к внешним вторичным приборам или АСУТП. Погрешность определяется по ГОСТ OIML R 76-1-2011 и зависит от класса точности и нагрузки.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Классы точности по OIML R 76-1-2011:</b> I — специальный; II — высокий; III — средний (наиболее распространённый для торговых и промышленных электронных весов); IIII — обычный. Выбор класса определяется назначением весов и требованиями к точности измерений.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Цена поверочного деления <span style="font-style:italic;">e</span></b> — минимальная ступень дискретности цифрового отсчётного устройства. Для электронных весов <span style="font-style:italic;">e</span> обычно совпадает с ценой деления шкалы (d), но в некоторых случаях <span style="font-style:italic;">e</span> может быть больше d (например, <span style="font-style:italic;">e</span> = 2d или <span style="font-style:italic;">e</span> = 5d).</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Максимальная допускаемая погрешность (МПЕ)</b> — определяется аналогично механическим весам. Для класса III: ±1<span style="font-style:italic;">e</span> при 0 &lt; m &le; 500<span style="font-style:italic;">e</span>; ±2<span style="font-style:italic;">e</span> при 500<span style="font-style:italic;">e</span> &lt; m &le; 2000<span style="font-style:italic;">e</span>; ±3<span style="font-style:italic;">e</span> при 2000<span style="font-style:italic;">e</span> &lt; m &le; Max. При первичной поверке применяются уменьшенные пределы (±0,5<span style="font-style:italic;">e</span>; ±1<span style="font-style:italic;">e</span>; ±1,5<span style="font-style:italic;">e</span>).</div>
+                    <div><b style="color:rgba(255,255,255,0.7);">Нормативный документ:</b> ГОСТ OIML R 76-1-2011 «Весы неавтоматического действия. Часть 1. Метрологические и технические требования. Испытания»; ГОСТ 8.009-84 «ГСИ. Нормируемые метрологические характеристики средств измерений».</div>
+                </div>
+            </div>
+
+            <!-- Справочная информация: Тензометрические системы -->
+            <div id="ws_ref_elc" style="display:none;margin:14px 16px 10px;padding:14px 16px;background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--card-border);border-radius:14px;position:relative;z-index:2;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#4a8fc7;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span style="font-size:14px;font-weight:700;color:#e0e0e0;letter-spacing:-0.2px;">Справочная информация</span></div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;">
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Тензометрические весоизмерительные системы (ТВЭУ)</b> — измерительные системы, состоящие из тензодатчика(ов), балансировочной коробки (БК) и модуля ввода АСУТП. Погрешность рассчитывается как суммарная составляющих каждого элемента измерительного канала с учётом их взаимного влияния.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Тензодатчик</b> — измерительный преобразователь, преобразующий деформацию упругого элемента в электрический сигнал. Классификация по OIML R 60: A — высокая точность (n<sub>LC</sub> до 50 000); B — средняя (n<sub>LC</sub> до 10 000); C — обычная (n<sub>LC</sub> до 5 000); D — грубая (n<sub>LC</sub> до 2 000). При нескольких датчиках погрешность суммируется геометрически: Δ<sub>Σ</sub> = Δ<sub>LC</sub> · √N, где N — количество датчиков.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Балансировочная коробка (БК)</b> — устройство для суммирования выходных сигналов нескольких тензодатчиков и согласования с модулем ввода. Вносит дополнительную погрешность, которая может быть задана в процентах от выходного сигнала или в милливольтах.</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Модуль ввода АСУТП</b> — аналого-цифровой преобразователь, преобразующий аналоговый сигнал (мВ) в цифровой код. Погрешность определяется классом точности (в %) и диапазоном входного сигнала. Расчёт: Δ<sub>мод</sub> = (γ/100) · (U<sub>max</sub> − U<sub>min</sub>).</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Суммарная погрешность</b> — рассчитывается геометрическим суммированием с коэффициентом K = 1,1 при доверительной вероятности P = 0,95: Δ<sub>Σ</sub> = K · √(Δ<sub>LC</sub>² + Δ<sub>БК</sub>² + Δ<sub>мод</sub>²). Пересчёт из мВ в единицы массы: Δ<sub>масса</sub> = (Δ<sub>Σ</sub>(мВ) / U<sub>max</sub>) · Max.</div>
+                    <div><b style="color:rgba(255,255,255,0.7);">Нормативные документы:</b> ГОСТ OIML R 76-1-2011; OIML R 60 «Метрологические требования к тензодатчикам»; ГОСТ 8.009-84 «ГСИ. Нормируемые метрологические характеристики средств измерений»; ГОСТ 8.401-80 «ГСИ. Классы точности средств измерений».</div>
+                </div>
+            </div>
         </div>
 
         <!-- Комплект приборов -->
@@ -2711,16 +2766,8 @@
             history.back();
             return;
         }
-        if (pageHistory.length) {
-            let prev = pageHistory.pop();
-            isNavigating = true;
-            history.back();
-            navigateTo(prev, false);
-        } else {
-            isNavigating = true;
-            history.back();
-            navigateTo('dashboard', false);
-        }
+        // Только history.back() — навигацию выполнит обработчик popstate
+        history.back();
     }
     // Обработчик системной кнопки «Назад»
     window.addEventListener('popstate', function(e) {
@@ -3298,6 +3345,9 @@ function setSignalDefaults() { let type=document.getElementById('sigType').value
         document.getElementById('ws_mech_group').style.display = type === 'mechanical' ? 'block' : 'none';
         document.getElementById('ws_elc_group').style.display = type === 'electronic_lc' ? 'block' : 'none';
         document.getElementById('ws_els_group').style.display = type === 'electronic_simple' ? 'block' : 'none';
+        document.getElementById('ws_ref_mech').style.display = type === 'mechanical' ? 'block' : 'none';
+        document.getElementById('ws_ref_elc').style.display = type === 'electronic_lc' ? 'block' : 'none';
+        document.getElementById('ws_ref_els').style.display = type === 'electronic_simple' ? 'block' : 'none';
     }
 
     function wsUnitFactor(unit) {
@@ -3352,8 +3402,6 @@ function setSignalDefaults() { let type=document.getElementById('sigType').value
         let eUnit = document.getElementById('ws_mech_e_unit').value;
         let maxVal = parseLocaleNumber(document.getElementById('ws_mech_max').value);
         let maxUnit = document.getElementById('ws_mech_max_unit').value;
-        let loadVal = document.getElementById('ws_mech_load').value;
-        let loadUnit = document.getElementById('ws_mech_load_unit').value;
 
         if (isNaN(n) || n <= 0) { showToast('Введите число поверочных делений'); return; }
         if (isNaN(e) || e <= 0) { showToast('Введите цену поверочного деления'); return; }
@@ -3397,24 +3445,6 @@ function setSignalDefaults() { let type=document.getElementById('sigType').value
         }
         html += '</tbody></table></div>';
 
-        // Расчёт для конкретной нагрузки
-        if (loadVal !== '' && !isNaN(parseLocaleNumber(loadVal))) {
-            let loadInGrams = parseLocaleNumber(loadVal) * wsUnitFactor(loadUnit);
-            let loadInE = loadInGrams / eInGrams;
-            let mpeMultiplier = getOimlMpe(oimlClass, loadInE);
-            let mpeValue = mpeMultiplier * e;
-            let mpeInLoadUnit = mpeValue / wsUnitFactor(loadUnit);
-            let relErr = loadInGrams > 0 ? (mpeValue / loadInGrams) * 100 : undefined;
-
-            html += '<div style="margin-top:10px;padding:10px 12px;background:rgba(13,17,23,0.4);border-radius:10px;border:1px solid rgba(74,199,113,0.15);">';
-            html += '<div style="font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:6px;">При нагрузке ' + formatNumber(parseLocaleNumber(loadVal)) + ' ' + wsUnitLabel(loadUnit) + '</div>';
-            html += '<div class="converter-result-item" style="margin:0 0 4px;padding:8px 0;border:none;"><span class="converter-result-label">МПЕ (абсолютная)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(mpeInLoadUnit) + ' ' + wsUnitLabel(loadUnit) + '</span></div>';
-            if (relErr !== undefined) {
-                html += '<div class="converter-result-item" style="margin:0;padding:8px 0;border:none;"><span class="converter-result-label">Относительная погрешность</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(relErr) + ' %</span></div>';
-            }
-            html += '</div>';
-        }
-
         document.getElementById('ws_results').innerHTML = html;
         document.getElementById('ws_results').style.display = 'block';
         setTimeout(() => document.getElementById('ws_results').scrollIntoView({behavior:'smooth',block:'start'}), 100);
@@ -3433,8 +3463,6 @@ function setSignalDefaults() { let type=document.getElementById('sigType').value
         let moduleSigMax = parseLocaleNumber(document.getElementById('ws_module_sig_max').value);
         let maxVal = parseLocaleNumber(document.getElementById('ws_elc_max').value);
         let maxUnit = document.getElementById('ws_elc_max_unit').value;
-        let loadVal = document.getElementById('ws_elc_load').value;
-        let loadUnit = document.getElementById('ws_elc_load_unit').value;
 
         if (isNaN(lcN) || lcN <= 0) { showToast('Введите число поверочных делений тензодатчика'); return; }
         if (isNaN(lcE) || lcE <= 0) { showToast('Введите цену поверочного деления тензодатчика'); return; }
@@ -3444,22 +3472,11 @@ function setSignalDefaults() { let type=document.getElementById('sigType').value
         if (isNaN(moduleSigMin) || isNaN(moduleSigMax) || moduleSigMin >= moduleSigMax) { showToast('Введите корректный диапазон входного сигнала модуля'); return; }
         if (isNaN(maxVal) || maxVal <= 0) { showToast('Введите НПВ'); return; }
 
-        let maxInGrams = maxVal * wsUnitFactor(maxUnit);
-
         // 1. Погрешность тензодатчика(ов) по OIML R 60
-        // Для нагрузки Max: mpe_LC = mpe_multiplier * e_LC
-        // При нескольких датчиках: каждый несёт долю нагрузки, погрешность складывается геометрически
         let lcMpeMultiplier = getOimlMpeR60(lcClass, lcN);
-        let lcMpePerUnit = lcMpeMultiplier * lcE; // в единицах измерения тензодатчика (мВ или ед.)
-        // Погрешность датчика в мВ (считаем e_LC в мВ — это цена деления в единицах выходного сигнала)
-        // Для тензодатчиков e обычно указывается в единицах массы, пересчитываем через чувствительность
-        // Примем, что lcE — это цена деления в единицах массы (г, кг и т.д.)
-        // Но для расчёта по цепи нужно пересчитать в мВ
-        // Упрощённый подход: максимальная погрешность в единицах массы
-        // Пересчёт в мВ через пропорцию: при Max → jboxSigMax мВ
-        let lcMpeInMV = (lcMpePerUnit / maxVal) * jboxSigMax; // мВ при полной нагрузке
+        let lcMpePerUnit = lcMpeMultiplier * lcE;
+        let lcMpeInMV = (lcMpePerUnit / maxVal) * jboxSigMax;
         if (lcCount > 1) {
-            // При нескольких датчиках каждый нагружен долей Max, погрешность суммируется геометрически
             lcMpeInMV = lcMpeInMV * Math.sqrt(lcCount);
         }
 
@@ -3488,43 +3505,19 @@ function setSignalDefaults() { let type=document.getElementById('sigType').value
         html += '<div class="converter-result-item"><span class="converter-result-label">n<sub>LC</sub> (число поверочных делений)</span><span class="converter-result-value">' + formatNumber(lcN) + '</span></div>';
         html += '<div class="converter-result-item"><span class="converter-result-label">Количество тензодатчиков</span><span class="converter-result-value">' + lcCount + '</span></div>';
 
-        html += '<div style="margin-top:8px;padding:6px 0;font-size:12px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.5px;">Составляющие погрешности (в мВ)</div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Погрешность тензодатчика(ов)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(lcMpeInMV) + ' мВ</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Погрешность балансировочной коробки</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(jboxAbsMV) + ' мВ</span></div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Погрешность модуля ввода АСУТП</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(moduleAbsMV) + ' мВ</span></div>';
+        html += '<div style="margin-top:8px;padding:6px 0;font-size:12px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.5px;">Составляющие погрешности (в <span style="text-transform:none;">мВ</span>)</div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Погрешность тензодатчика</span><span class="converter-result-value" style="color:#4a8fc7;">± ' + formatNumber(lcMpeInMV) + ' <span style="text-transform:none;">мВ</span></span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Погрешность балансировочной коробки</span><span class="converter-result-value" style="color:#4a8fc7;">± ' + formatNumber(jboxAbsMV) + ' <span style="text-transform:none;">мВ</span></span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Погрешность модуля ввода АСУТП</span><span class="converter-result-value" style="color:#4a8fc7;">± ' + formatNumber(moduleAbsMV) + ' <span style="text-transform:none;">мВ</span></span></div>';
 
         html += '<div style="margin-top:8px;padding:6px 0;font-size:12px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.5px;">Суммарная погрешность</div>';
-        html += '<div class="converter-result-item"><span class="converter-result-label">Суммарная абс. погрешность (мВ)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(totalAbsMV) + ' мВ</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Суммарная абс. погрешность (<span style="text-transform:none;">мВ</span>)</span><span class="converter-result-value" style="color:#4a8fc7;">± ' + formatNumber(totalAbsMV) + ' <span style="text-transform:none;">мВ</span></span></div>';
         html += '<div class="converter-result-item"><span class="converter-result-label">Суммарная абс. погрешность (масса)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(totalAbsMass) + ' ' + wsUnitLabel(maxUnit) + '</span></div>';
 
         let totalRelPct = (totalAbsMass / maxVal) * 100;
-        html += '<div class="converter-result-item"><span class="converter-result-label">Относительная погрешность при Max</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(totalRelPct) + ' %</span></div>';
+        html += '<div class="converter-result-item"><span class="converter-result-label">Относительная погрешность при Max</span><span class="converter-result-value" style="color:#4a8fc7;">± ' + formatNumber(totalRelPct) + ' %</span></div>';
 
-        html += '<div class="converter-result-item" style="flex-direction:column;align-items:flex-start;gap:4px;"><span class="converter-result-label">Формула расчёта</span><span style="font-size:13px;color:rgba(140,180,210,0.9);line-height:1.5;">Δ<sub>Σ</sub> = K·√(Δ<sub>LC</sub>² + Δ<sub>БК</sub>² + Δ<sub>мод</sub>²), K=1.1, P=0.95<br>Δ<sub>масса</sub> = (Δ<sub>Σ</sub>(мВ) / U<sub>max</sub>) · Max</span></div>';
-
-        // Расчёт для конкретной нагрузки
-        if (loadVal !== '' && !isNaN(parseLocaleNumber(loadVal))) {
-            let loadNum = parseLocaleNumber(loadVal);
-            let loadInGrams = loadNum * wsUnitFactor(loadUnit);
-            let ratio = loadInGrams / maxInGrams;
-            if (ratio <= 0 || ratio > 1) {
-                html += '<div style="margin-top:8px;padding:8px 12px;background:rgba(199,150,74,0.1);border-radius:8px;font-size:12px;color:#c7964a;">Нагрузка вне диапазона взвешивания</div>';
-            } else {
-                let loadAbsMV = 1.1 * Math.sqrt(
-                    Math.pow(lcMpeInMV * ratio, 2) +
-                    Math.pow(jboxAbsMV, 2) +
-                    Math.pow(moduleAbsMV, 2)
-                );
-                let loadAbsMass = (loadAbsMV / jboxSigMax) * maxVal;
-                let loadRelPct = (loadAbsMass / loadNum) * 100;
-
-                html += '<div style="margin-top:10px;padding:10px 12px;background:rgba(13,17,23,0.4);border-radius:10px;border:1px solid rgba(74,199,113,0.15);">';
-                html += '<div style="font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:6px;">При нагрузке ' + formatNumber(loadNum) + ' ' + wsUnitLabel(loadUnit) + '</div>';
-                html += '<div class="converter-result-item" style="margin:0 0 4px;padding:8px 0;border:none;"><span class="converter-result-label">Абсолютная погрешность</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(loadAbsMass) + ' ' + wsUnitLabel(maxUnit) + '</span></div>';
-                html += '<div class="converter-result-item" style="margin:0;padding:8px 0;border:none;"><span class="converter-result-label">Относительная погрешность</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(loadRelPct) + ' %</span></div>';
-                html += '</div>';
-            }
-        }
+        html += '<div class="converter-result-item" style="flex-direction:column;align-items:flex-start;gap:4px;"><span class="converter-result-label">Формула расчёта</span><span style="font-size:13px;color:rgba(140,180,210,0.9);line-height:1.5;">Δ<sub>Σ</sub> = K·√(Δ<sub>LC</sub>² + Δ<sub>БК</sub>² + Δ<sub>мод</sub>²), K=1.1, P=0.95<br>Δ<sub>масса</sub> = (Δ<sub>Σ</sub>(<span style="text-transform:none;">мВ</span>) / U<sub>max</sub>) · Max</span></div>';
 
         document.getElementById('ws_results').innerHTML = html;
         document.getElementById('ws_results').style.display = 'block';
@@ -3563,8 +3556,6 @@ function setSignalDefaults() { let type=document.getElementById('sigType').value
         let eUnit = document.getElementById('ws_els_e_unit').value;
         let maxVal = parseLocaleNumber(document.getElementById('ws_els_max').value);
         let maxUnit = document.getElementById('ws_els_max_unit').value;
-        let loadVal = document.getElementById('ws_els_load').value;
-        let loadUnit = document.getElementById('ws_els_load_unit').value;
 
         if (isNaN(n) || n <= 0) { showToast('Введите число поверочных делений'); return; }
         if (isNaN(e) || e <= 0) { showToast('Введите цену поверочного деления'); return; }
@@ -3606,23 +3597,6 @@ function setSignalDefaults() { let type=document.getElementById('sigType').value
             html += '<tr style="background:' + bg + ';"><td style="padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.6);">от ' + formatNumber(lowerMass) + ' до ' + formatNumber(upperMass) + ' ' + unitLabel + '</td><td style="padding:8px 12px;font-size:14px;color:#4ac771;">± ' + formatNumber(mpe) + ' ' + unitLabel + ' (' + r[2] + 'e)</td></tr>';
         }
         html += '</tbody></table></div>';
-
-        if (loadVal !== '' && !isNaN(parseLocaleNumber(loadVal))) {
-            let loadInGrams = parseLocaleNumber(loadVal) * wsUnitFactor(loadUnit);
-            let loadInE = loadInGrams / eInGrams;
-            let mpeMultiplier = getOimlMpe(oimlClass, loadInE);
-            let mpeValue = mpeMultiplier * e;
-            let mpeInLoadUnit = mpeValue / wsUnitFactor(loadUnit);
-            let relErr = loadInGrams > 0 ? (mpeValue / loadInGrams) * 100 : undefined;
-
-            html += '<div style="margin-top:10px;padding:10px 12px;background:rgba(13,17,23,0.4);border-radius:10px;border:1px solid rgba(74,199,113,0.15);">';
-            html += '<div style="font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:6px;">При нагрузке ' + formatNumber(parseLocaleNumber(loadVal)) + ' ' + wsUnitLabel(loadUnit) + '</div>';
-            html += '<div class="converter-result-item" style="margin:0 0 4px;padding:8px 0;border:none;"><span class="converter-result-label">МПЕ (абсолютная)</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(mpeInLoadUnit) + ' ' + wsUnitLabel(loadUnit) + '</span></div>';
-            if (relErr !== undefined) {
-                html += '<div class="converter-result-item" style="margin:0;padding:8px 0;border:none;"><span class="converter-result-label">Относительная погрешность</span><span class="converter-result-value" style="color:#4ac771;">± ' + formatNumber(relErr) + ' %</span></div>';
-            }
-            html += '</div>';
-        }
 
         document.getElementById('ws_results').innerHTML = html;
         document.getElementById('ws_results').style.display = 'block';
@@ -4713,6 +4687,15 @@ function calculateBuoySignalValue(pct,st){ let r=getBuoySignalRangeAndUnit(st); 
                             </div>
             <button type="button" class="converter-convert-btn" onclick="calcTempSensor()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Рассчитать</button>
             <div id="tempSensorResults" class="converter-result-group" style="display:none;"></div>
+            <div style="margin:14px 16px 10px;padding:14px 16px;background:var(--card-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--card-border);border-radius:14px;position:relative;z-index:2;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#4a8fc7;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span style="font-size:14px;font-weight:700;color:#e0e0e0;letter-spacing:-0.2px;">Справочная информация</span></div>
+                <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6;">
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Термопреобразователи сопротивления (ТС):</b> измеряют температуру по изменению электрического сопротивления чувствительного элемента. Для медных ТС: R(t) = R₀·(1 + α·t). Для платиновых: R(t) = R₀·[1 + A·t + B·t² + C·(t−100)·t³] (ниже 0°C добавляется член C).</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Термопары (ТП):</b> измеряют температуру по термо-ЭДС, возникающей в спае двух разнородных проводников. НСХ термопар стандартизированы ГОСТ Р 8.585-2001. Наиболее распространённые типы: K (ТХА), J (ТЖК), T (ТМК), N (ТНН), E (ТХКн), R, S (ТПП), B (ТПР).</div>
+                    <div style="margin-bottom:8px;"><b style="color:rgba(255,255,255,0.7);">Температурные коэффициенты ТС:</b> Cu: α = 0,00428 °C⁻¹ (50М, 100М) или 0,00426 °C⁻¹. Pt: α = 0,00391 °C⁻¹ (50П, 100П) или 0,00385 °C⁻¹ (IEC 60751). Ni: α = 0,00617 °C⁻¹.</div>
+                    <div><b style="color:rgba(255,255,255,0.7);">Нормативные документы:</b> ГОСТ 6651-2009 (ТС), ГОСТ Р 8.585-2001 (ТП), IEC 60751 (Pt).</div>
+                </div>
+            </div>
     </div>
 <script>
 if ('serviceWorker' in navigator) {
