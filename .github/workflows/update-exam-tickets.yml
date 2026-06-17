@@ -1,0 +1,43 @@
+name: Update Exam Tickets
+
+on:
+  # Ручной запуск
+  workflow_dispatch:
+  # По расписанию — каждый день в 06:00 UTC (09:00 МСК)
+  schedule:
+    - cron: '0 6 * * *'
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install openpyxl requests
+
+      - name: Convert XLSX to JSON
+        run: python scripts/convert-exam-tickets.py
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --exit-code data/exam-tickets.json || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push if changed
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/exam-tickets.json
+          git commit -m "auto: update exam tickets data"
+          git push
